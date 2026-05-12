@@ -38,13 +38,13 @@
     }
   },
   "rules": [
-    { "find": "cf", "replace": "आ" },
-    { "find": "cf]", "replace": "ओ" },
     { "find": "cf}", "replace": "औ" },
-    { "find": "O{", "replace": "ई" },
-    { "find": "pm", "replace": "ऊ" },
-    { "find": "P{", "replace": "ऐ" },
-    { "find": "if", "replace": "ष" },
-    { "find": "em", "replace": "झ" }
+    { "find": "cf]", "replace": "ओ" },
+    { "find": "cf",  "replace": "आ" },
+    { "find": "O{",  "replace": "ई" },
+    { "find": "P{",  "replace": "ऐ" },
+    { "find": "pm",  "replace": "ऊ" },
+    { "find": "if",  "replace": "ष" },
+    { "find": "em",  "replace": "झ" }
   ]
 }
