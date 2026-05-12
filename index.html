@@ -14,7 +14,6 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="canonical" href="https://thenepal.io">
 
-    <!-- Schema Markup: SoftwareApplication + HowTo -->
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -24,13 +23,7 @@
             "operatingSystem": "Any",
             "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
             "description": "Free Preeti, Kantipur & PCS Nepali to Unicode converter with file upload, batch mode, and offline PWA support. 100% private.",
-            "featureList": [
-                "Preeti to Unicode", "Unicode to Preeti", "Kantipur font support",
-                "PCS Nepali font support", "DOCX file upload & download",
-                "TXT file upload & download", "Batch conversion", "Smart text cleaning",
-                "Dark mode", "Offline PWA", "Character & word counter",
-                "One-click copy", "URL shareable states"
-            ],
+            "featureList": [ "Preeti to Unicode", "Unicode to Preeti", "Kantipur font support", "PCS Nepali font support", "DOCX file upload & download", "TXT file upload & download", "Batch conversion", "Smart text cleaning", "Dark mode", "Offline PWA", "Character & word counter", "One-click copy", "URL shareable states" ],
             "author": { "@type": "Organization", "name": "thenepal.io", "url": "https://thenepal.io" },
             "datePublished": "2025-01-01",
             "url": "https://thenepal.io"
@@ -43,46 +36,24 @@
             "name": "How to Convert Preeti to Unicode",
             "description": "Step-by-step guide to convert Preeti font text to Unicode Devanagari using the free thenepal.io toolkit.",
             "step": [
-                { "@type": "HowToStep", "position": 1, "text": "Choose your source font (Preeti, Kantipur, or PCS Nepali) from the dropdown." },
-                { "@type": "HowToStep", "position": 2, "text": "Type or paste your legacy font text into the input box, or upload a .docx/.txt file." },
-                { "@type": "HowToStep", "position": 3, "text": "Click 'Convert' or watch the real-time conversion appear in the output box." },
-                { "@type": "HowToStep", "position": 4, "text": "Use the 'Copy Unicode' button to copy the result, or download it as a file." }
+                { "@type": "HowToStep", "position": 1, "text": "Choose your source font from the dropdown." },
+                { "@type": "HowToStep", "position": 2, "text": "Type or paste your legacy font text, or upload a .docx/.txt file." },
+                { "@type": "HowToStep", "position": 3, "text": "See the instant conversion in the output box." },
+                { "@type": "HowToStep", "position": 4, "text": "Copy the Unicode or download the file." }
             ]
         }
     </script>
-
-    <!-- PWA Manifest -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlByZWV0aSDihpQgVW5pY29kZSBDb252ZXJ0ZXIgLSB0aGVuZXBhbC5pbyIsCiAgInNob3J0X25hbWUiOiAiUHJlZXRpLVVuaWNvZGUiLAogICJkZXNjcmlwdGlvbiI6ICJGcmVlIE5lcGFsaSBmb250IGNvbnZlcnRlci4gUHJlZXRpLCBLYW50aXB1ciwgUENTIE5lcGFsaSDihpIgVW5pY29kZS4gV29ya3Mgb2ZmbGluZS4iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMzg5MyIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDM4OTMiLAogICJvcmllbnRhdGlvbiI6ICJhbnkiLAogICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyUzRSUzQ3JlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHJ4PSczMicgZmlsbD0nJTIzMDAzODkzJy8lM0UlM0N0ZXh0IHg9Jzk2JyB5PScxMzAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMTAwJyBmaWxsPSd3aGl0ZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnJTNF8J+HrfCfh6UlM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-    <!-- External libraries for file conversion -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
 
     <style>
-        /* ═══════════════════ CSS (same as style.css) ═══════════════════ */
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        :root{
-            --red:#C0392B;--red-dark:#96281B;--red-light:#f9e8e6;
-            --blue:#003893;--blue-mid:#0050c8;--blue-light:#e6ecf8;--blue-soft:#f0f4ff;
-            --gold:#D4AF37;--green:#1a7a4a;--green-light:#e6f4ed;
-            --bg:#FAFAF8;--surface:#FFFFFF;--text:#1a1a18;--muted:#6b6b68;
-            --border:#e2e0d8;--radius:14px;--radius-sm:9px;
-            --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 20px rgba(0,0,0,0.04);
-            --shadow-lg:0 2px 8px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);
-            --transition:0.2s cubic-bezier(0.4,0,0.2,1);
-            --output-font-size:19px;--input-font-size:15px;
-        }
-        [data-theme="dark"]{
-            --bg:#121418;--surface:#1c1f24;--text:#e8e6e0;--muted:#999892;
-            --border:#2e3036;--blue-light:#1a2440;--blue-soft:#141c30;
-            --green-light:#162a1e;--red-light:#2a1416;
-            --shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 20px rgba(0,0,0,0.25);
-            --shadow-lg:0 2px 8px rgba(0,0,0,0.4),0 8px 32px rgba(0,0,0,0.35);
-        }
+        :root{--red:#C0392B;--red-dark:#96281B;--red-light:#f9e8e6;--blue:#003893;--blue-mid:#0050c8;--blue-light:#e6ecf8;--blue-soft:#f0f4ff;--gold:#D4AF37;--green:#1a7a4a;--green-light:#e6f4ed;--bg:#FAFAF8;--surface:#FFFFFF;--text:#1a1a18;--muted:#6b6b68;--border:#e2e0d8;--radius:14px;--radius-sm:9px;--shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 20px rgba(0,0,0,0.04);--shadow-lg:0 2px 8px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);--transition:0.2s cubic-bezier(0.4,0,0.2,1);--output-font-size:19px;--input-font-size:15px}
+        [data-theme="dark"]{--bg:#121418;--surface:#1c1f24;--text:#e8e6e0;--muted:#999892;--border:#2e3036;--blue-light:#1a2440;--blue-soft:#141c30;--green-light:#162a1e;--red-light:#2a1416;--shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 20px rgba(0,0,0,0.25);--shadow-lg:0 2px 8px rgba(0,0,0,0.4),0 8px 32px rgba(0,0,0,0.35)}
         html{scroll-behavior:smooth;scroll-padding-top:70px}
         body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;transition:background var(--transition),color var(--transition)}
         header{background:var(--blue);color:white;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,0.2);gap:10px;flex-wrap:wrap}
@@ -352,7 +323,6 @@
             </div>
         </div>
 
-        <!-- AD BANNER 2 -->
         <div class="ad-container" id="ad-banner-2" style="margin-top:24px;">
             <div>
                 <div class="ad-label">Advertisement</div>
@@ -380,492 +350,226 @@
     </main>
 
     <footer>
-        <p>Built with ❤️ for Nepal 🇳🇵 · Free forever · No ads, no tracking ·
-            Copyright © <a href="https://thenepal.io" target="_blank" rel="noopener">thenepal.io</a> ·
-            <a href="https://tools.madankc.com.np/" target="_blank" rel="noopener">tools.madankc.com.np</a>
-        </p>
+        <p>Built with ❤️ for Nepal 🇳🇵 · Free forever · No ads, no tracking · Copyright © <a href="https://thenepal.io" target="_blank" rel="noopener">thenepal.io</a> · <a href="https://tools.madankc.com.np/" target="_blank" rel="noopener">tools.madankc.com.np</a></p>
     </footer>
 
     <div class="toast" id="toast"></div>
 
     <script>
         // ═══════════════════════════════════════════════════
-        // PREETI ↔ UNICODE CONVERTER - Complete JavaScript
+        // PREETI ↔ UNICODE CONVERTER - with Full Mapping
         // Copyright © thenepal.io
         // ═══════════════════════════════════════════════════
 
-        // ─── Full Preeti Mapping Database (embedded) ─────
-        const PREETI_MAP = {
-            "cf]": "ओ", "cf}": "औ", "cf": "आ", "f]": "ो", "f}": "ौ",
-            "km": "फ", "Qm": "फ्र", "k|": "प्त",
-            "c": "अ", "O": "इ", "Ö": "ई", "p": "उ", "P": "ऊ", "C": "ए",
-            "s": "क", "v": "ख", "u": "ग", "3": "घ", "ª": "ङ",
-            "r": "च", "5": "छ", "h": "ज", "´": "झ", "~": "ञ",
-            "6": "ट", "7": "ठ", "8": "ड", "9": "ढ", "0": "ण",
-            "t": "त", "y": "थ", "b": "द", "w": "ध", "g": "न",
-            "k": "प", "a": "ब", "e": "भ", "d": "म",
-            "o": "य", "/": "य", "n": "ल", "j": "व", "z": "श",
-            "if": "ष", ";": "स", "x": "ह",
-            "f": "ा", "l": "ि", "L": "ी", "'": "ु", "\"": "ू",
-            "]": "े", "}": "ै", "M": "ं", "F": "ँ", "\\": "्",
-            "H": "ः", ":": "ँ", ".": "।", "<": ",", ">": ".",
-            "|": "।", "?": "रु",
-            "1": "१", "2": "२", "3": "३", "4": "४",
-            "5": "५", "6": "६", "7": "७", "8": "८", "9": "९", "0": "०",
-            "‚": "घ", "…": "'", "ˆ": "फ", "‰": "भ", "‹": "झ",
-            "•": "ड", "˜": "ु", "›": "ढ", "£": "छ", "¥": "े",
-            "§": "ठ", "°": "ञ", "±": "+", "¶": "ण", "¿": "रू",
-            "Å": "हृ", "Æ": "\"", "Ë": "झ्", "Ì": "त्र", "Í": "क्ष",
-            "Î": "ज्ञ", "Ð": "…", "Ö": "=", "Ø": "च्य", "Ù": ";",
-            "Ú": "'", "Û": "!", "Ü": "%", "Ý": "ठू", "Þ": ".",
-            "ß": "श्र", "å": "द्य", "æ": "“", "ç": "ॐ", "÷": "/",
-            " ": " ", "\n": "\n", "\t": "\t"
+        // ─── Complete Preeti Mapping (normal + shift + alt_codes + rules) ─────
+        const PREETI_FULL_MAP = {
+            normal: {
+                "a": "ब", "b": "द", "c": "अ", "d": "म", "e": "भ", "f": "ा", "g": "न", "h": "ज",
+                "i": "ष्", "j": "व", "k": "प", "l": "ि", "m": "ु", "n": "ल", "o": "य", "p": "उ",
+                "q": "त्र", "r": "च", "s": "क", "t": "त", "u": "ग", "v": "ख", "w": "ध", "x": "ह",
+                "y": "थ", "z": "श",
+                "0": "ण्", "1": "ज्ञ", "2": "द्द", "3": "घ", "4": "द्ध", "5": "छ", "6": "ट", "7": "ठ",
+                "8": "ड", "9": "ढ",
+                ".": "।", ",": ",", "/": "र", ";": "स", "'": "ु", "[": "ृ", "]": "े", "\\": "्"
+            },
+            shift: {
+                "A": "ब्", "B": "द्य", "C": "ऋ", "D": "म्", "E": "भ्", "F": "ँ", "G": "न्", "H": "ज्",
+                "I": "क्ष्", "J": "व्", "K": "प्", "L": "ी", "M": "ः", "N": "ल्", "O": "इ", "P": "ए",
+                "Q": "त्त", "R": "च्", "S": "क्", "T": "त्", "U": "ग्", "V": "ख्", "W": "ध्", "X": "ह्",
+                "Y": "थ्", "Z": "श्",
+                "!": "१", "@": "२", "#": "३", "$": "४", "%": "५", "^": "६", "&": "७", "*": "८", "(": "९", ")": "०",
+                ":": "स्", "\"": "ू", "{": "ै", "}": "ै", "|": "्र", "_": ")", "+": "ं", "?": "रु", "<": "?", ">": "श्रो"
+            },
+            alt_codes: {
+                "ª": "ङ", "¡": "ज्ञ्", "¢": "द्घ", "£": "घ्", "¤": "झ्", "¥": "र्‍", "§": "ट्ट", "©": "र",
+                "«": "्र", "¬": "ञ्", "®": "्र", "°": "ङ्ढ", "±": "+", "²": "द्द", "³": "घ", "´": "झ",
+                "µ": "म", "¶": "ट्ठ", "·": "ड्ड", "¸": "ड्ढ", "¹": "ष्", "º": "ङ्क", "»": "ङ्ख",
+                "¼": "ङ्ग", "½": "ङ्घ", "¾": "च्च", "¿": "रू", "å": "द्व", "æ": "“", "ç": "ॐ",
+                "è": "क्क", "é": "क्त", "ê": "क्त", "ë": "“", "ì": "न्न", "í": "ङ्क", "î": "ङ्ख",
+                "ï": "ङ्क", "ð": "ङ्ख", "ñ": "ङ्ग", "ò": "¨", "ó": "ो", "ô": "ौ", "õ": "।",
+                "ö": "=", "÷": "/", "ø": "्य", "ù": ";", "ú": "’", "û": "!", "ü": "%", "ý": "ड्ड", "þ": "द्ब"
+            },
+            rules: [
+                { "find": "cf", "replace": "आ" },
+                { "find": "cf]", "replace": "ओ" },
+                { "find": "cf}", "replace": "औ" },
+                { "find": "O{", "replace": "ई" },
+                { "find": "pm", "replace": "ऊ" },
+                { "find": "P{", "replace": "ऐ" },
+                { "find": "if", "replace": "ष" },
+                { "find": "em", "replace": "झ" }
+            ]
         };
 
-        // Additional font maps (Kantipur & PCS Nepali)
+        // Build merged forward map (character -> Unicode)
+        function buildForwardMap() {
+            const forward = new Map();
+            // Normal lowercase mappings
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.normal)) {
+                forward.set(ch, uni);
+            }
+            // Shift (uppercase) mappings
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.shift)) {
+                forward.set(ch, uni);
+            }
+            // Alt codes
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.alt_codes)) {
+                forward.set(ch, uni);
+            }
+            return forward;
+        }
+
+        const FORWARD_MAP = buildForwardMap();
+
+        // Build reverse map (Unicode -> best Preeti representation)
+        const REVERSE_MAP = new Map();
+        function buildReverseMap() {
+            // Prefer normal lowercase mapping for reverse
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.normal)) {
+                if (!REVERSE_MAP.has(uni)) {
+                    REVERSE_MAP.set(uni, ch);
+                }
+            }
+            // Add shift mappings only if not already present
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.shift)) {
+                if (!REVERSE_MAP.has(uni)) {
+                    REVERSE_MAP.set(uni, ch);
+                }
+            }
+            // Alt codes
+            for (const [ch, uni] of Object.entries(PREETI_FULL_MAP.alt_codes)) {
+                if (!REVERSE_MAP.has(uni)) {
+                    REVERSE_MAP.set(uni, ch);
+                }
+            }
+        }
+        buildReverseMap();
+
+        // Additional font maps (Kantipur & PCS Nepali) – use simple forward maps
         const K2U_SINGLE = {
             'k':'क','l':'ख','m':'ग','n':'घ','o':'ङ','p':'च','q':'छ','r':'ज','s':'झ','t':'ञ',
             'u':'ट','v':'ठ','w':'ड','x':'ढ','y':'ण','z':'त','A':'थ','B':'द','C':'ध','D':'न',
             'E':'प','F':'फ','G':'ब','H':'भ','I':'म','J':'य','K':'र','L':'ल','M':'व','N':'श',
             'O':'ष','P':'स','Q':'ह','a':'अ','b':'आ','c':'इ','d':'ई','e':'उ','f':'ऊ','g':'ए',
             'h':'ऐ','i':'ओ','j':'औ','R':'क्ष','S':'त्र','T':'ज्ञ','[':'ि',']':'ी','{':'ु',
-            '}':'ू',';':'ے',"'":'ै','/':'ो','?':'ौ','.':'।',',':'ं','<':'ँ','>':'ः',
+            '}':'ू',';':'े',"'":'ै','/':'ो','?':'ौ','.':'।',',':'ं','<':'ँ','>':'ः',
             '1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९','0':'०',
             ' ':' ','\n':'\n','\t':'\t'
         };
-        const PCS2U_SINGLE = { ...PREETI_MAP };
+        const PCS2U_SINGLE = { ...Object.fromEntries(FORWARD_MAP) };
 
-        let FONT_MAPS = { preeti: { forward: PREETI_MAP, reverse: {} },
-                         kantipur: { forward: K2U_SINGLE, reverse: {} },
-                         pcsnepali: { forward: PCS2U_SINGLE, reverse: {} } };
-
-        // Build reverse maps (Unicode → legacy)
-        function buildReverseMaps() {
-            for (const font of ['preeti','kantipur','pcsnepali']) {
-                const fwd = FONT_MAPS[font].forward;
-                const rev = {};
-                for (const [k,v] of Object.entries(fwd)) {
-                    if (!rev[v] && k.length === 1 && ![' ','\n','\t'].includes(k)) rev[v] = k;
-                }
-                FONT_MAPS[font].reverse = rev;
-            }
+        const FONT_MAPS = {
+            preeti: { forward: FORWARD_MAP, reverse: REVERSE_MAP },
+            kantipur: { forward: K2U_SINGLE, reverse: {} },
+            pcsnepali: { forward: PCS2U_SINGLE, reverse: {} }
+        };
+        // Build reverse for Kantipur
+        const k2uRev = {};
+        for (const [k,v] of Object.entries(K2U_SINGLE)) {
+            if (!k2uRev[v] && k.length === 1 && ![' ','\n','\t'].includes(k)) k2uRev[v] = k;
         }
-        buildReverseMaps();
+        FONT_MAPS.kantipur.reverse = k2uRev;
+        // Build reverse for PCS Nepali
+        const pcsRev = {};
+        for (const [k,v] of Object.entries(PCS2U_SINGLE)) {
+            if (!pcsRev[v] && k.length === 1 && ![' ','\n','\t'].includes(k)) pcsRev[v] = k;
+        }
+        FONT_MAPS.pcsnepali.reverse = pcsRev;
 
-        // ─── State ─────────────────────────────────────────
-        let currentMode = 'pu';      // 'pu' (Preeti→Unicode) or 'up' (Unicode→Preeti)
-        let currentFont = 'preeti';  // 'preeti', 'kantipur', 'pcsnepali'
+        let currentMode = 'pu';
+        let currentFont = 'preeti';
         let uploadedFiles = [];
+        let hashUpdateTimeout;
 
         // ─── Conversion Engine ────────────────────────────
-        function convertText(text, mode, font) {
-            if (!text) return '';
-            const map = FONT_MAPS[font];
-            if (mode === 'pu') {
-                return forwardConvert(text, map.forward);
-            } else {
-                return reverseConvert(text, map.reverse, map.forward);
-            }
-        }
-
-        function forwardConvert(text, map) {
-            const keys = Object.keys(map).sort((a,b) => b.length - a.length);
-            let result = text;
-            for (const key of keys) {
-                const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        function forwardConvert(text, forwardMap) {
+            // Apply rules first (longest match)
+            for (const rule of PREETI_FULL_MAP.rules) {
+                const escaped = rule.find.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
                 const regex = new RegExp(escaped, 'g');
-                result = result.replace(regex, map[key]);
+                text = text.replace(regex, rule.replace);
             }
-            // Fix ि matra ordering (ि before consonant → after)
+            // Then apply character-by-character mapping (only for remaining characters)
+            let result = '';
+            for (const ch of text) {
+                result += forwardMap.get(ch) || ch;
+            }
+            // Fix ि / ी matra ordering
             result = result.replace(/ि([कखगघङचछजझञटठडढणतथदधनपफबभमयरलळवशषसहक्षज्ञत्रश्र])/g, '$1ि');
+            result = result.replace(/ी([कखगघङचछजझञटठडढणतथदधनपफबभमयरलळवशषसहक्षज्ञत्रश्र])/g, '$1ी');
             return result;
         }
 
-        function reverseConvert(text, revMap, fwdMap) {
-            // Longest multi-char Unicode sequences first (e.g., ऐ → cf])
-            const multiSeq = Object.entries(fwdMap)
-                .filter(([k,v]) => k.length > 1 && v.length > 1)
-                .sort((a,b) => b[1].length - a[1].length);
-            let result = text;
-            for (const [preeti, uni] of multiSeq) {
-                result = result.split(uni).join(preeti);
+        function reverseConvert(text, reverseMap, forwardMap) {
+            // Apply multi-char rules in reverse (Unicode → Preeti sequences)
+            for (const rule of PREETI_FULL_MAP.rules) {
+                // Escape the Unicode sequence
+                const escapedUni = rule.replace.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(escapedUni, 'g');
+                text = text.replace(regex, rule.find);
             }
-            // Single characters
-            for (const [uni, preeti] of Object.entries(revMap)) {
-                result = result.split(uni).join(preeti);
+            // Replace remaining single characters using reverse map
+            let result = '';
+            for (const ch of text) {
+                result += reverseMap.get(ch) || ch;
             }
-            // Fix ि matra: consonant+l → l+consonant
+            // Fix ि matra swap: consonant + 'l' → 'l' + consonant
             result = result.replace(/([कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसहक्षज्ञत्रश्र])l/g, 'l$1');
             return result;
         }
 
-        // ─── UI Updates ────────────────────────────────────
-        function setMode(m) {
-            currentMode = m;
-            document.getElementById('btn-pu').classList.toggle('active', m === 'pu');
-            document.getElementById('btn-up').classList.toggle('active', m === 'up');
-            document.getElementById('in-label').textContent =
-                (m === 'pu' ? getFontLabel() + ' Input' : 'Unicode Input');
-            document.getElementById('out-label').textContent =
-                (m === 'pu' ? 'Unicode Output' : getFontLabel() + ' Output');
-            const placeholders = {
-                preeti: 'Type Preeti…\nExample: g]kfn = नेपाल\ns = क, v = ख',
-                kantipur: 'Type Kantipur…\nk=क, l=ख',
-                pcsnepali: 'Type PCS Nepali…\nSimilar to Preeti'
-            };
-            document.getElementById('inp').placeholder = m === 'pu'
-                ? (placeholders[currentFont] || '')
-                : 'Type Unicode Devanagari…';
-            const ob = document.getElementById('out');
-            ob.className = 'out-box' + (m === 'up' ? ' preeti-out' : '')
-                           + (ob.textContent === 'Converted text appears here…' ? ' empty' : '');
-            updateURLHash();
-            convert();
-        }
-
-        function getFontLabel() {
-            if (currentFont === 'kantipur') return 'Kantipur';
-            if (currentFont === 'pcsnepali') return 'PCS Nepali';
-            return 'Preeti';
-        }
-
-        function onFontChange() {
-            currentFont = document.getElementById('font-select').value;
-            setMode(currentMode);
-        }
-
-        function convert() {
-            const inp = document.getElementById('inp').value;
-            updateCounters('in', inp);
-            const ob = document.getElementById('out');
-            if (!inp) {
-                ob.textContent = 'Converted text appears here…';
-                ob.classList.add('empty');
-                updateCounters('out', '');
-                return;
-            }
-            const result = convertText(inp, currentMode, currentFont);
-            ob.textContent = result;
-            ob.classList.remove('empty');
-            updateCounters('out', result);
-            updateURLHash();
-        }
-
-        function onInputChange() {
-            convert();
-            updateURLHashDebounced();
-        }
-
-        function updateCounters(prefix, text) {
-            document.getElementById(prefix + '-chars').textContent = text.length;
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            document.getElementById(prefix + '-words').textContent = words;
-        }
-
-        function swapAll() {
-            const cur = document.getElementById('inp').value;
-            const converted = document.getElementById('out').textContent;
-            const newMode = currentMode === 'pu' ? 'up' : 'pu';
-            setMode(newMode);
-            if (converted && converted !== 'Converted text appears here…') {
-                document.getElementById('inp').value = converted;
-                convert();
+        function convertText(text, mode, font) {
+            if (!text) return '';
+            const fontData = FONT_MAPS[font];
+            if (mode === 'pu') {
+                return forwardConvert(text, fontData.forward);
+            } else {
+                return reverseConvert(text, fontData.reverse, fontData.forward);
             }
         }
 
-        function getOutputText() {
-            const t = document.getElementById('out').textContent;
-            return (t && t !== 'Converted text appears here…') ? t : '';
-        }
-
-        async function copyOut() {
-            const t = getOutputText();
-            if (!t) { showToast('⚠️ Nothing to copy yet'); return; }
-            try {
-                await navigator.clipboard.writeText(t);
-                showToast('✓ Copied to clipboard!');
-                document.getElementById('copy-tooltip').classList.add('show');
-                setTimeout(() => document.getElementById('copy-tooltip').classList.remove('show'), 1800);
-            } catch { showToast('Use Ctrl+C to copy'); }
-        }
-
-        async function pasteInput() {
-            try {
-                const t = await navigator.clipboard.readText();
-                document.getElementById('inp').value = t;
-                convert();
-            } catch { showToast('Use Ctrl+V to paste'); }
-        }
-
-        function cleanText() {
-            const ob = document.getElementById('out');
-            let t = ob.textContent;
-            if (!t || t === 'Converted text appears here…') {
-                const inp = document.getElementById('inp');
-                if (inp.value) {
-                    t = inp.value.replace(/\|/g, '।').replace(/  +/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
-                    inp.value = t;
-                    convert();
-                    showToast('✓ Input cleaned!');
-                    return;
-                }
-                showToast('⚠️ Nothing to clean');
-                return;
-            }
-            t = t.replace(/\|/g, '।').replace(/  +/g, ' ').replace(/\n{3,}/g, '\n\n')
-                 .replace(/।\s*।/g, '।').replace(/\s+।/g, '।').replace(/।([^\s])/g, '। $1').trim();
-            ob.textContent = t;
-            updateCounters('out', t);
-            updateURLHash();
-            showToast('✓ Text cleaned (|→।, spaces)');
-        }
-
-        function downloadTxt() {
-            const t = getOutputText();
-            if (!t) { showToast('⚠️ Nothing to download'); return; }
-            const filename = currentMode === 'pu' ? 'unicode-output.txt' : currentFont + '-output.txt';
-            dlText(t, filename);
-            showToast('✓ Downloaded ' + filename);
-        }
-
-        function clearAll() {
-            document.getElementById('inp').value = '';
-            document.getElementById('out').textContent = 'Converted text appears here…';
-            document.getElementById('out').classList.add('empty');
-            updateCounters('in', '');
-            updateCounters('out', '');
-            updateURLHash();
-            showToast('✓ All cleared');
-        }
-
-        function changeFontSize(val) {
-            document.documentElement.style.setProperty('--output-font-size', val + 'px');
-            document.getElementById('font-size-val').textContent = val + 'px';
-            localStorage.setItem('preeti-font-size', val);
-        }
-
-        // ─── Dark Mode ─────────────────────────────────────
-        function toggleDarkMode() {
-            const html = document.documentElement;
-            const current = html.getAttribute('data-theme');
-            const next = current === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', next);
-            document.getElementById('dark-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
-            localStorage.setItem('preeti-theme', next);
-        }
-
-        function initDarkMode() {
-            const saved = localStorage.getItem('preeti-theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = saved || (prefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-            document.getElementById('dark-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
-        }
-
-        // ─── URL Hash (Shareable State) ─────────────────
-        let hashUpdateTimeout;
-        function updateURLHash() {
-            const inp = document.getElementById('inp').value;
-            const params = new URLSearchParams();
-            params.set('m', currentMode);
-            params.set('f', currentFont);
-            if (inp && inp.length <= 2000) params.set('t', inp);
-            else if (inp) params.set('t', inp.substring(0, 2000));
-            window.location.hash = params.toString();
-        }
-        function updateURLHashDebounced() {
-            clearTimeout(hashUpdateTimeout);
-            hashUpdateTimeout = setTimeout(updateURLHash, 400);
-        }
-        function loadFromURLHash() {
-            const hash = window.location.hash.replace('#', '');
-            if (!hash) return;
-            const params = new URLSearchParams(hash);
-            const m = params.get('m');
-            const f = params.get('f');
-            const t = params.get('t');
-            if (m && (m === 'pu' || m === 'up')) currentMode = m;
-            if (f && ['preeti','kantipur','pcsnepali'].includes(f)) {
-                currentFont = f;
-                document.getElementById('font-select').value = f;
-            }
-            if (t) document.getElementById('inp').value = t;
-            setMode(currentMode);
-        }
-
-        // ─── File Upload & Conversion ──────────────────────
-        function handleDrag(e, over) {
-            e.preventDefault();
-            document.getElementById('drop-zone').classList.toggle('dragover', over);
-        }
-        function handleDrop(e) {
-            e.preventDefault();
-            document.getElementById('drop-zone').classList.remove('dragover');
-            handleFiles(e.dataTransfer.files);
-        }
-        function handleFiles(files) {
-            for (const f of files) {
-                const ext = f.name.split('.').pop().toLowerCase();
-                if (!['txt','docx'].includes(ext)) { showToast('Only .txt and .docx supported'); continue; }
-                uploadedFiles.push({ file: f, name: f.name, size: f.size, status: 'pending', result: null });
-            }
-            renderFileList();
-            document.getElementById('file-actions').style.display = uploadedFiles.length ? 'flex' : 'none';
-        }
-        function renderFileList() {
-            const el = document.getElementById('file-list');
-            el.innerHTML = uploadedFiles.map((f,i) => `
-                <div class="file-item">
-                    <span class="file-icon">${f.name.endsWith('.docx') ? '📝' : '📄'}</span>
-                    <div class="file-info"><div class="file-name">${f.name}</div><div class="file-size">${fmtSize(f.size)}</div></div>
-                    <span class="file-status ${f.status}">${f.status==='pending'?'⏳ Pending':f.status==='done'?'✅ Done':'❌ Error'}</span>
-                    ${f.status==='done'?`<button class="btn" style="padding:5px 10px;font-size:10px" onclick="downloadSingleFile(${i})">⬇</button>`:''}
-                    <button class="file-remove" onclick="removeFile(${i})">✕</button>
-                </div>
-            `).join('');
-        }
-        function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); document.getElementById('file-actions').style.display = uploadedFiles.length?'flex':'none'; }
-        function clearFiles() { uploadedFiles=[]; renderFileList(); document.getElementById('file-actions').style.display='none'; document.getElementById('file-input').value=''; }
-
-        async function convertAllFiles() {
-            if (!uploadedFiles.length) return;
-            const prog = document.getElementById('prog-wrap'), bar = document.getElementById('prog-bar'), lbl = document.getElementById('prog-label');
-            prog.classList.add('show');
-            for (let i=0; i<uploadedFiles.length; i++) {
-                const f = uploadedFiles[i];
-                lbl.textContent = `Processing ${f.name}…`;
-                bar.style.width = Math.round((i/uploadedFiles.length)*100)+'%';
-                try {
-                    const ext = f.name.split('.').pop().toLowerCase();
-                    if (ext === 'txt') {
-                        const text = await readFileAsText(f.file);
-                        f.result = { type:'txt', data: convertText(text, currentMode, currentFont), name: convertedName(f.name) };
-                    } else if (ext === 'docx') {
-                        const buf = await readFileAsArrayBuffer(f.file);
-                        const res = await mammoth.extractRawText({ arrayBuffer: buf });
-                        f.result = { type:'docx', data: convertText(res.value, currentMode, currentFont), name: convertedName(f.name) };
-                    }
-                    f.status = 'done';
-                } catch(e) { f.status='error'; console.error(e); }
-                renderFileList();
-                await sleep(30);
-            }
-            bar.style.width='100%'; lbl.textContent='✅ All files converted!';
-            setTimeout(()=>prog.classList.remove('show'),2000);
-        }
-        function downloadSingleFile(i) {
-            const f = uploadedFiles[i]; if (!f?.result) return;
-            if (f.result.type==='txt') dlText(f.result.data, f.result.name);
-            else dlDocxFallback(f.result.data, f.result.name);
-            showToast('✓ Downloaded: '+f.result.name);
-        }
-        async function downloadAllFiles() {
-            const done = uploadedFiles.filter(f=>f.status==='done');
-            if (!done.length) { showToast('Convert files first'); return; }
-            for (const f of done) {
-                if (f.result.type==='txt') dlText(f.result.data, f.result.name);
-                else await dlDocxFallback(f.result.data, f.result.name);
-                await sleep(200);
-            }
-            showToast('✓ Downloaded '+done.length+' file(s)');
-        }
-        function convertedName(name) { const p=name.split('.'); p.pop(); return p.join('.')+'-converted.'+name.split('.').pop(); }
-
-        async function dlDocxFallback(text, filename) {
-            try {
-                const { Document, Packer, Paragraph, TextRun } = docx;
-                const pars = text.split('\n').map(l => new Paragraph({ children: [new TextRun({ text: l, font: 'Kalimati' })] }));
-                const doc = new Document({ sections: [{ children: pars }] });
-                const buf = await Packer.toBlob(doc);
-                const a = document.createElement('a'); a.href=URL.createObjectURL(buf); a.download=filename; a.click();
-                URL.revokeObjectURL(a.href);
-            } catch(e) { console.warn('docx fallback to txt'); dlText(text, filename.replace('.docx','.txt')); }
-        }
-
-        // ─── Utilities ─────────────────────────────────────
-        function dlText(text, filename) {
-            const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-            const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
-            URL.revokeObjectURL(a.href);
-        }
-        function readFileAsText(file) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsText(file,'UTF-8'); }); }
-        function readFileAsArrayBuffer(file) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsArrayBuffer(file); }); }
-        function fmtSize(b) { return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB'; }
-        function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
-        function showToast(msg) {
-            const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
-            clearTimeout(t._timeout); t._timeout=setTimeout(()=>t.classList.remove('show'),2200);
-        }
-
-        // ─── PWA Service Worker Registration ──────────────
-        function registerSW() {
-            if ('serviceWorker' in navigator) {
-                // Create inline service worker for offline caching
-                const swCode = `
-                    const CACHE_NAME = 'preeti-unicode-v2';
-                    const ASSETS = [self.location.href];
-                    self.addEventListener('install', e => {
-                        e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)).catch(() => {}));
-                        self.skipWaiting();
-                    });
-                    self.addEventListener('activate', e => {
-                        e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));
-                        self.clients.claim();
-                    });
-                    self.addEventListener('fetch', e => {
-                        e.respondWith(
-                            caches.match(e.request).then(cached => cached || fetch(e.request).then(resp => {
-                                if(resp.ok){
-                                    const clone = resp.clone();
-                                    caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
-                                }
-                                return resp;
-                            }).catch(() => cached))
-                        );
-                    });
-                `;
-                const swBlob = new Blob([swCode], {type:'application/javascript'});
-                const swUrl = URL.createObjectURL(swBlob);
-                navigator.serviceWorker.register(swUrl).catch(err => console.log('SW registration:', err));
-            }
-        }
-
-        // ─── Init ───────────────────────────────────────────
-        async function init() {
-            initDarkMode();
-            registerSW();
-            const savedFS = localStorage.getItem('preeti-font-size');
-            if (savedFS) {
-                document.getElementById('font-size-slider').value = savedFS;
-                changeFontSize(savedFS);
-            }
-            loadFromURLHash();
-            if (document.getElementById('inp').value) convert();
-            window.addEventListener('hashchange', loadFromURLHash);
-        }
-
-        // Expose functions globally
-        window.setMode = setMode;
-        window.onFontChange = onFontChange;
-        window.swapAll = swapAll;
-        window.copyOut = copyOut;
-        window.pasteInput = pasteInput;
-        window.cleanText = cleanText;
-        window.downloadTxt = downloadTxt;
-        window.clearAll = clearAll;
-        window.toggleDarkMode = toggleDarkMode;
-        window.changeFontSize = changeFontSize;
-        window.onInputChange = onInputChange;
-        window.handleDrag = handleDrag;
-        window.handleDrop = handleDrop;
-        window.handleFiles = handleFiles;
-        window.removeFile = removeFile;
-        window.clearFiles = clearFiles;
-        window.convertAllFiles = convertAllFiles;
-        window.downloadAllFiles = downloadAllFiles;
-        window.downloadSingleFile = downloadSingleFile;
-
-        document.addEventListener('DOMContentLoaded', init);
+        // ─── UI Functions ─────────────────────────────────
+        function setMode(m) { currentMode = m; document.getElementById('btn-pu').classList.toggle('active', m==='pu'); document.getElementById('btn-up').classList.toggle('active', m==='up'); document.getElementById('in-label').textContent = m==='pu' ? getFontLabel()+' Input' : 'Unicode Input'; document.getElementById('out-label').textContent = m==='pu' ? 'Unicode Output' : getFontLabel()+' Output'; const placeholders={preeti:'Type Preeti…\nExample: g]kfn = नेपाल\ns = क, v = ख',kantipur:'Type Kantipur…\nk=क, l=ख',pcsnepali:'Type PCS Nepali…\nSimilar to Preeti'}; document.getElementById('inp').placeholder = m==='pu' ? (placeholders[currentFont]||'') : 'Type Unicode Devanagari…'; const ob=document.getElementById('out'); ob.className='out-box'+(m==='up'?' preeti-out':'')+(ob.textContent==='Converted text appears here…'?' empty':''); updateURLHash(); convert(); }
+        function getFontLabel(){return currentFont==='kantipur'?'Kantipur':currentFont==='pcsnepali'?'PCS Nepali':'Preeti'}
+        function onFontChange(){currentFont=document.getElementById('font-select').value;setMode(currentMode)}
+        function convert(){const inp=document.getElementById('inp').value;updateCounters('in',inp);const ob=document.getElementById('out');if(!inp){ob.textContent='Converted text appears here…';ob.classList.add('empty');updateCounters('out','');return}const result=convertText(inp,currentMode,currentFont);ob.textContent=result;ob.classList.remove('empty');updateCounters('out',result);updateURLHash()}
+        function onInputChange(){convert();updateURLHashDebounced()}
+        function updateCounters(prefix,text){document.getElementById(prefix+'-chars').textContent=text.length;const words=text.trim()?text.trim().split(/\s+/).length:0;document.getElementById(prefix+'-words').textContent=words}
+        function swapAll(){const cur=document.getElementById('inp').value;const converted=document.getElementById('out').textContent;const newMode=currentMode==='pu'?'up':'pu';setMode(newMode);if(converted&&converted!=='Converted text appears here…'){document.getElementById('inp').value=converted;convert()}}
+        function getOutputText(){const t=document.getElementById('out').textContent;return(t&&t!=='Converted text appears here…')?t:''}
+        async function copyOut(){const t=getOutputText();if(!t){showToast('⚠️ Nothing to copy yet');return}try{await navigator.clipboard.writeText(t);showToast('✓ Copied to clipboard!');document.getElementById('copy-tooltip').classList.add('show');setTimeout(()=>document.getElementById('copy-tooltip').classList.remove('show'),1800)}catch{showToast('Use Ctrl+C to copy')}}
+        async function pasteInput(){try{const t=await navigator.clipboard.readText();document.getElementById('inp').value=t;convert()}catch{showToast('Use Ctrl+V to paste')}}
+        function cleanText(){const ob=document.getElementById('out');let t=ob.textContent;if(!t||t==='Converted text appears here…'){const inp=document.getElementById('inp');if(inp.value){t=inp.value.replace(/\|/g,'।').replace(/  +/g,' ').replace(/\n{3,}/g,'\n\n').trim();inp.value=t;convert();showToast('✓ Input cleaned!');return}showToast('⚠️ Nothing to clean');return}t=t.replace(/\|/g,'।').replace(/  +/g,' ').replace(/\n{3,}/g,'\n\n').replace(/।\s*।/g,'।').replace(/\s+।/g,'।').replace(/।([^\s])/g,'। $1').trim();ob.textContent=t;updateCounters('out',t);updateURLHash();showToast('✓ Text cleaned (|→।, spaces)')}
+        function downloadTxt(){const t=getOutputText();if(!t){showToast('⚠️ Nothing to download');return}const filename=currentMode==='pu'?'unicode-output.txt':currentFont+'-output.txt';dlText(t,filename);showToast('✓ Downloaded '+filename)}
+        function clearAll(){document.getElementById('inp').value='';document.getElementById('out').textContent='Converted text appears here…';document.getElementById('out').classList.add('empty');updateCounters('in','');updateCounters('out','');updateURLHash();showToast('✓ All cleared')}
+        function changeFontSize(val){document.documentElement.style.setProperty('--output-font-size',val+'px');document.getElementById('font-size-val').textContent=val+'px';localStorage.setItem('preeti-font-size',val)}
+        function toggleDarkMode(){const html=document.documentElement;const current=html.getAttribute('data-theme');const next=current==='dark'?'light':'dark';html.setAttribute('data-theme',next);document.getElementById('dark-toggle').textContent=next==='dark'?'☀️':'🌙';localStorage.setItem('preeti-theme',next)}
+        function initDarkMode(){const saved=localStorage.getItem('preeti-theme');const prefersDark=window.matchMedia('(prefers-color-scheme:dark)').matches;const theme=saved||(prefersDark?'dark':'light');document.documentElement.setAttribute('data-theme',theme);document.getElementById('dark-toggle').textContent=theme==='dark'?'☀️':'🌙'}
+        function updateURLHash(){const inp=document.getElementById('inp').value;const params=new URLSearchParams();params.set('m',currentMode);params.set('f',currentFont);if(inp&&inp.length<=2000)params.set('t',inp);else if(inp)params.set('t',inp.substring(0,2000));window.location.hash=params.toString()}
+        function updateURLHashDebounced(){clearTimeout(hashUpdateTimeout);hashUpdateTimeout=setTimeout(updateURLHash,400)}
+        function loadFromURLHash(){const hash=window.location.hash.replace('#','');if(!hash)return;const params=new URLSearchParams(hash);const m=params.get('m');const f=params.get('f');const t=params.get('t');if(m&&(m==='pu'||m==='up'))currentMode=m;if(f&&['preeti','kantipur','pcsnepali'].includes(f)){currentFont=f;document.getElementById('font-select').value=f}if(t)document.getElementById('inp').value=t;setMode(currentMode)}
+        // File handling (unchanged)
+        function handleDrag(e,over){e.preventDefault();document.getElementById('drop-zone').classList.toggle('dragover',over)}
+        function handleDrop(e){e.preventDefault();document.getElementById('drop-zone').classList.remove('dragover');handleFiles(e.dataTransfer.files)}
+        function handleFiles(files){for(const f of files){const ext=f.name.split('.').pop().toLowerCase();if(!['txt','docx'].includes(ext)){showToast('Only .txt and .docx supported');continue}uploadedFiles.push({file:f,name:f.name,size:f.size,status:'pending',result:null})}renderFileList();document.getElementById('file-actions').style.display=uploadedFiles.length?'flex':'none'}
+        function renderFileList(){const el=document.getElementById('file-list');el.innerHTML=uploadedFiles.map((f,i)=>`<div class="file-item"><span class="file-icon">${f.name.endsWith('.docx')?'📝':'📄'}</span><div class="file-info"><div class="file-name">${f.name}</div><div class="file-size">${fmtSize(f.size)}</div></div><span class="file-status ${f.status}">${f.status==='pending'?'⏳ Pending':f.status==='done'?'✅ Done':'❌ Error'}</span>${f.status==='done'?`<button class="btn" style="padding:5px 10px;font-size:10px" onclick="downloadSingleFile(${i})">⬇</button>`:''}<button class="file-remove" onclick="removeFile(${i})">✕</button></div>`).join('')}
+        function removeFile(i){uploadedFiles.splice(i,1);renderFileList();document.getElementById('file-actions').style.display=uploadedFiles.length?'flex':'none'}
+        function clearFiles(){uploadedFiles=[];renderFileList();document.getElementById('file-actions').style.display='none';document.getElementById('file-input').value=''}
+        async function convertAllFiles(){if(!uploadedFiles.length)return;const prog=document.getElementById('prog-wrap'),bar=document.getElementById('prog-bar'),lbl=document.getElementById('prog-label');prog.classList.add('show');for(let i=0;i<uploadedFiles.length;i++){const f=uploadedFiles[i];lbl.textContent=`Processing ${f.name}…`;bar.style.width=Math.round((i/uploadedFiles.length)*100)+'%';try{const ext=f.name.split('.').pop().toLowerCase();if(ext==='txt'){const text=await readFileAsText(f.file);f.result={type:'txt',data:convertText(text,currentMode,currentFont),name:convertedName(f.name)}}else if(ext==='docx'){const buf=await readFileAsArrayBuffer(f.file);const res=await mammoth.extractRawText({arrayBuffer:buf});f.result={type:'docx',data:convertText(res.value,currentMode,currentFont),name:convertedName(f.name)}}f.status='done'}catch(e){f.status='error';console.error(e)}renderFileList();await sleep(30)}bar.style.width='100%';lbl.textContent='✅ All files converted!';setTimeout(()=>prog.classList.remove('show'),2000)}
+        function downloadSingleFile(i){const f=uploadedFiles[i];if(!f?.result)return;if(f.result.type==='txt')dlText(f.result.data,f.result.name);else dlDocxFallback(f.result.data,f.result.name);showToast('✓ Downloaded: '+f.result.name)}
+        async function downloadAllFiles(){const done=uploadedFiles.filter(f=>f.status==='done');if(!done.length){showToast('Convert files first');return}for(const f of done){if(f.result.type==='txt')dlText(f.result.data,f.result.name);else await dlDocxFallback(f.result.data,f.result.name);await sleep(200)}showToast('✓ Downloaded '+done.length+' file(s)')}
+        function convertedName(name){const p=name.split('.');p.pop();return p.join('.')+'-converted.'+name.split('.').pop()}
+        async function dlDocxFallback(text,filename){try{const{Document,Packer,Paragraph,TextRun}=docx;const pars=text.split('\n').map(l=>new Paragraph({children:[new TextRun({text:l,font:'Kalimati'})]}));const doc=new Document({sections:[{children:pars}]});const buf=await Packer.toBlob(doc);const a=document.createElement('a');a.href=URL.createObjectURL(buf);a.download=filename;a.click();URL.revokeObjectURL(a.href)}catch(e){console.warn('docx fallback to txt');dlText(text,filename.replace('.docx','.txt'))}}
+        function dlText(text,filename){const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();URL.revokeObjectURL(a.href)}
+        function readFileAsText(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsText(file,'UTF-8')})}
+        function readFileAsArrayBuffer(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsArrayBuffer(file)})}
+        function fmtSize(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB'}
+        function sleep(ms){return new Promise(r=>setTimeout(r,ms))}
+        function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timeout);t._timeout=setTimeout(()=>t.classList.remove('show'),2200)}
+        function registerSW(){if('serviceWorker' in navigator){navigator.serviceWorker.register('/sw.js').catch(e=>console.log('SW optional'))}}
+        async function init(){initDarkMode();registerSW();const savedFS=localStorage.getItem('preeti-font-size');if(savedFS){document.getElementById('font-size-slider').value=savedFS;changeFontSize(savedFS)}loadFromURLHash();if(document.getElementById('inp').value)convert();window.addEventListener('hashchange',loadFromURLHash)}
+        window.setMode=setMode;window.onFontChange=onFontChange;window.swapAll=swapAll;window.copyOut=copyOut;window.pasteInput=pasteInput;window.cleanText=cleanText;window.downloadTxt=downloadTxt;window.clearAll=clearAll;window.toggleDarkMode=toggleDarkMode;window.changeFontSize=changeFontSize;window.onInputChange=onInputChange;window.handleDrag=handleDrag;window.handleDrop=handleDrop;window.handleFiles=handleFiles;window.removeFile=removeFile;window.clearFiles=clearFiles;window.convertAllFiles=convertAllFiles;window.downloadAllFiles=downloadAllFiles;window.downloadSingleFile=downloadSingleFile;
+        document.addEventListener('DOMContentLoaded',init);
     </script>
 </body>
 </html>
