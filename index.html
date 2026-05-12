@@ -1,874 +1,779 @@
-
 <!DOCTYPE html>
 <html lang="ne">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Preeti ↔ Unicode – Nepali Document Modernization Toolkit</title>
-<meta name="description" content="The most advanced free Preeti to Unicode converter. Convert text, upload .docx and .txt files, batch convert, download results. 100% private – runs in your browser.">
-<meta name="keywords" content="preeti to unicode, unicode to preeti, nepali font converter, preeti unicode, docx converter, nepali typing tool, batch converter">
-<meta property="og:title" content="Preeti ↔ Unicode – Nepali Document Toolkit">
-<meta property="og:description" content="Convert Preeti to Unicode instantly. Upload .docx and .txt files. Batch mode. 100% private.">
+<title>प्रीतिबाट युनिकोड | Preeti to Unicode Converter – TheNepal.io</title>
+<meta name="description" content="Free Preeti to Unicode and Unicode to Preeti converter. Type Nepali and instantly convert. Upload .docx and .txt files. 100% private, no server.">
+<meta name="keywords" content="preeti to unicode, unicode to preeti, nepali font converter, preeti unicode, nepali typing">
+<meta property="og:title" content="प्रीतिबाट युनिकोड – TheNepal.io">
+<meta property="og:description" content="Free instant Preeti ↔ Unicode Nepali converter with file upload and batch mode.">
 <meta property="og:type" content="website">
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"SoftwareApplication",
-  "name":"Preeti Unicode Converter",
-  "applicationCategory":"UtilityApplication",
-  "operatingSystem":"Any",
-  "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "description":"Free Preeti to Unicode and Unicode to Preeti converter with file upload, batch mode, and docx support.",
-  "featureList":["Preeti to Unicode","Unicode to Preeti","DOCX file upload","TXT file upload","Batch conversion","Download results","100% private"]
-}
-</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Preeti Unicode Converter","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Mukta:wght@400;600;700&family=Sora:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#C0392B;--red-dark:#96281B;--red-light:#f9e8e6;
-  --blue:#003893;--blue-mid:#0050c8;--blue-light:#e6ecf8;
-  --gold:#D4AF37;--green:#1a7a4a;--green-light:#e6f4ed;
-  --bg:#FAFAF8;--surface:#FFFFFF;--text:#1a1a18;--muted:#6b6b68;
-  --border:#e2e0d8;--radius:12px;
-  --shadow:0 1px 3px rgba(0,0,0,0.07),0 4px 16px rgba(0,0,0,0.05);
+  --red:#C0392B;--red-dark:#96281B;
+  --green:#1a6b2a;--green-dark:#0f4a1c;--green-light:#e8f5eb;
+  --blue:#003893;
+  --gold:#D4AF37;
+  --bg:#f4f4f0;--surface:#fff;--text:#1a1a18;--muted:#666;
+  --border:#ddd;--radius:6px;
+  --shadow:0 1px 4px rgba(0,0,0,0.1);
 }
-body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6}
+body{font-family:'Mukta','Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
-/* HEADER */
-header{background:var(--blue);color:white;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,0.18)}
-.logo{font-size:15px;font-weight:700;letter-spacing:-0.3px;display:flex;align-items:center;gap:8px}
-.logo-accent{color:var(--gold)}
-.header-right{display:flex;align-items:center;gap:10px}
-.header-badge{font-size:11px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:3px 10px;border-radius:20px;letter-spacing:0.5px}
-.privacy-badge{font-size:11px;background:rgba(26,122,74,0.3);border:1px solid rgba(26,122,74,0.5);padding:3px 10px;border-radius:20px;color:#7ef5b4}
+/* ── TOP BAR ── */
+.top-bar{background:#1a1a18;color:rgba(255,255,255,.7);font-size:11px;padding:4px 16px;display:flex;justify-content:space-between;align-items:center}
+.top-bar a{color:var(--gold);text-decoration:none}
 
-/* HERO */
-.hero{background:linear-gradient(140deg,var(--blue) 0%,#001f5c 100%);color:white;text-align:center;padding:44px 20px 40px;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M0 0h40v40H0zm40 40h40v40H40z'/%3E%3C/g%3E%3C/svg%3E")}
-.hero-tag{display:inline-block;background:var(--red);color:white;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 12px;border-radius:20px;margin-bottom:14px}
-.hero h1{font-size:clamp(24px,5vw,40px);font-weight:700;letter-spacing:-1px;line-height:1.15;margin-bottom:10px}
-.hero h1 em{font-style:normal;color:var(--gold);font-family:'Tiro Devanagari',serif}
-.hero p{font-size:14px;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 16px;font-weight:300}
-.hero-pills{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.pill{background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,0.8)}
+/* ── HEADER ── */
+header{background:var(--surface);border-bottom:3px solid var(--red);padding:0 16px}
+.header-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.site-logo{display:flex;align-items:center;gap:12px}
+.logo-img{height:56px;width:auto}
+.logo-text-block{display:flex;flex-direction:column}
+.logo-main{font-size:13px;font-weight:700;color:var(--text)}
+.logo-sub{font-size:11px;color:var(--muted)}
+.header-title{text-align:center;flex:1;padding:0 16px}
+.header-title-pu{display:flex;align-items:center;justify-content:center;gap:8px}
+.header-title-pu .preeti-label{font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--red);font-family:'Tiro Devanagari',serif;letter-spacing:-1px;line-height:1}
+.header-title-pu .arrow-lbl{font-size:28px;color:var(--muted);font-weight:300}
+.header-title-pu .unicode-label{font-size:clamp(28px,5vw,48px);font-weight:900;color:var(--green);font-family:'Tiro Devanagari',serif;letter-spacing:-1px;line-height:1}
 
-/* TABS */
-main{max-width:960px;margin:0 auto;padding:28px 14px 60px}
-.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:24px;box-shadow:var(--shadow);overflow-x:auto}
-.tab{flex:1;min-width:100px;padding:9px 12px;border:none;background:transparent;border-radius:9px;font-family:'Sora',sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:6px}
-.tab.active{background:var(--blue);color:white;box-shadow:0 2px 8px rgba(0,56,147,0.28)}
-.tab-icon{font-size:15px}
-.tab-panel{display:none}
-.tab-panel.active{display:block;animation:fadeUp .25s ease both}
+/* ── NAV ── */
+nav{background:var(--red)}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;overflow-x:auto}
+.nav-link{color:white;text-decoration:none;font-size:13px;font-weight:600;padding:10px 14px;white-space:nowrap;transition:background .15s;display:flex;align-items:center;gap:5px;border:none;background:none;cursor:pointer;font-family:'Mukta',sans-serif}
+.nav-link:hover,.nav-link.active{background:rgba(0,0,0,.2)}
+.nav-link.news{background:var(--green);margin-left:auto}
+.nav-link.news:hover{background:var(--green-dark)}
+@media(max-width:700px){.header-inner{flex-direction:column;gap:8px;padding:8px 0}.header-title{padding:0}.nav-link{font-size:11px;padding:8px 10px}}
 
-/* MODE TOGGLE */
-.mode-toggle{display:flex;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:4px;margin-bottom:20px;box-shadow:var(--shadow)}
-.mode-btn{flex:1;padding:9px;border:none;background:transparent;border-radius:9px;font-family:'Sora',sans-serif;font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.mode-btn.active{background:var(--blue);color:white;box-shadow:0 2px 8px rgba(0,56,147,0.28)}
+/* ── AD TOP ── */
+.ad-wrap{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 0;text-align:center}
+.ad-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:center;align-items:center}
 
-/* CONVERTER GRID */
-.conv-grid{display:grid;grid-template-columns:1fr 44px 1fr;gap:12px;align-items:start;margin-bottom:14px}
-@media(max-width:620px){.conv-grid{grid-template-columns:1fr}.swap-col{display:none}}
-.panel-label{font-size:11px;font-weight:600;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:6px}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--blue);display:inline-block;flex-shrink:0}
-.dot.red{background:var(--red)}
-textarea,.out-box{width:100%;min-height:200px;padding:14px;border-radius:var(--radius);font-size:15px;line-height:1.75;border:1.5px solid var(--border);background:var(--surface);color:var(--text);transition:border-color .2s;box-shadow:var(--shadow);resize:vertical}
-textarea{font-family:'DM Mono',monospace}
-textarea:focus{outline:none;border-color:var(--blue)}
-textarea::placeholder{color:#bbb;font-family:'Sora',sans-serif;font-size:13px}
-.out-box{font-family:'Tiro Devanagari',serif;font-size:18px;background:#f6f8ff;border-color:var(--blue-light);word-break:break-word;cursor:text;user-select:all;overflow-y:auto}
-.out-box.preeti-out{font-family:'DM Mono',monospace;font-size:15px;background:var(--surface)}
-.out-box.empty{color:#bbb;font-family:'Sora',sans-serif;font-size:13px}
-.swap-col{display:flex;align-items:center;justify-content:center;padding-top:32px}
-.swap-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all .2s;box-shadow:var(--shadow);color:var(--muted)}
-.swap-btn:hover{border-color:var(--blue);color:var(--blue);transform:rotate(180deg)}
-.char-count{font-size:11px;color:var(--muted);margin-top:5px;text-align:right}
+/* ── MAIN ── */
+.page{max-width:1100px;margin:0 auto;padding:18px 14px 40px;display:grid;grid-template-columns:1fr 260px;gap:18px}
+@media(max-width:860px){.page{grid-template-columns:1fr}}
 
-/* ACTION BAR */
-.action-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
-.btn{padding:9px 16px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--surface);font-family:'Sora',sans-serif;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:6px;white-space:nowrap}
-.btn:hover{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
-.btn.primary{background:var(--red);color:white;border-color:var(--red)}
-.btn.primary:hover{background:var(--red-dark);border-color:var(--red-dark)}
-.btn.success{background:var(--green);color:white;border-color:var(--green)}
-.btn svg{width:14px;height:14px;flex-shrink:0}
+/* ── CONVERTER CARD ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.card-header{background:var(--green);color:white;padding:10px 16px;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:space-between}
+.card-header.red-bg{background:var(--red)}
+.card-body{padding:14px}
 
-/* ACCURACY INDICATOR */
-.accuracy-bar{display:flex;align-items:center;gap:10px;background:var(--green-light);border:1px solid #b2ddc8;border-radius:var(--radius);padding:10px 14px;margin-bottom:16px;font-size:12px;color:var(--green)}
-.accuracy-bar strong{font-weight:600}
+/* ── MODE TABS ── */
+.mode-tabs{display:flex;border-bottom:2px solid var(--border);margin-bottom:14px;background:var(--bg)}
+.mode-tab{flex:1;padding:10px;border:none;background:transparent;font-family:'Mukta',sans-serif;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;transition:all .15s;border-bottom:3px solid transparent;margin-bottom:-2px}
+.mode-tab.active{color:var(--red);border-bottom-color:var(--red);background:var(--surface)}
+.mode-tab:hover:not(.active){background:#f0f0ec}
 
-/* FILE UPLOAD */
-.upload-area{border:2px dashed var(--border);border-radius:var(--radius);padding:36px 20px;text-align:center;background:var(--surface);cursor:pointer;transition:all .2s;margin-bottom:16px}
-.upload-area:hover,.upload-area.dragover{border-color:var(--blue);background:var(--blue-light)}
-.upload-icon{font-size:36px;margin-bottom:10px}
-.upload-area h3{font-size:15px;font-weight:600;margin-bottom:6px}
-.upload-area p{font-size:12px;color:var(--muted)}
+/* ── CONVERTER ── */
+.conv-label{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;font-family:'Tiro Devanagari',serif}
+.conv-sublabel{font-size:11px;color:var(--muted);margin-bottom:8px}
+textarea,.out-box{width:100%;min-height:180px;padding:12px;border-radius:var(--radius);font-size:16px;line-height:1.8;border:1.5px solid var(--border);background:var(--surface);color:var(--text);resize:vertical;font-family:'Tiro Devanagari',serif}
+textarea:focus{outline:none;border-color:var(--green)}
+textarea::placeholder{color:#bbb;font-size:13px;font-family:'Mukta',sans-serif}
+.out-box{background:#f9fef9;border-color:#c8e6c9;cursor:text;user-select:all;overflow-y:auto}
+.out-box.empty{color:#bbb;font-family:'Mukta',sans-serif;font-size:13px}
+.divider-row{display:flex;align-items:center;justify-content:center;padding:8px 0;gap:10px}
+.divider-line{flex:1;height:1px;background:var(--border)}
+.swap-btn{padding:6px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;font-size:12px;font-weight:600;color:var(--muted);transition:all .2s;white-space:nowrap}
+.swap-btn:hover{border-color:var(--green);color:var(--green)}
+.char-count{font-size:11px;color:var(--muted);text-align:right;margin-top:4px}
+
+/* ── SPECIAL CHARS ── */
+.special-chars{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:8px 10px;margin-bottom:12px;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.sc-label{font-size:11px;color:var(--muted);font-weight:600;margin-right:4px}
+.sc-btn{padding:3px 8px;border:1px solid var(--border);border-radius:4px;background:var(--surface);cursor:pointer;font-family:'Tiro Devanagari',serif;font-size:15px;transition:all .1s;color:var(--text)}
+.sc-btn:hover{background:var(--green);color:white;border-color:var(--green)}
+
+/* ── ACTION BAR ── */
+.action-bar{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{padding:8px 14px;border-radius:var(--radius);border:1.5px solid var(--border);background:var(--surface);font-family:'Mukta',sans-serif;font-size:12px;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.btn:hover{background:var(--green-light);border-color:var(--green);color:var(--green)}
+.btn.primary{background:var(--green);color:white;border-color:var(--green)}
+.btn.primary:hover{background:var(--green-dark)}
+.btn.red{background:var(--red);color:white;border-color:var(--red)}
+.btn.red:hover{background:var(--red-dark)}
+.btn svg{width:13px;height:13px;flex-shrink:0}
+
+/* ── FILE UPLOAD ── */
+.upload-area{border:2px dashed var(--border);border-radius:var(--radius);padding:28px 16px;text-align:center;background:var(--bg);cursor:pointer;transition:all .2s;margin-bottom:12px}
+.upload-area:hover,.upload-area.dragover{border-color:var(--green);background:var(--green-light)}
 .upload-area input{display:none}
-.file-list{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
-.file-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;box-shadow:var(--shadow)}
-.file-icon{font-size:20px;flex-shrink:0}
-.file-info{flex:1;min-width:0}
-.file-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.file-size{font-size:11px;color:var(--muted)}
-.file-status{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500}
+.upload-area h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.upload-area p{font-size:11px;color:var(--muted)}
+.file-list{display:flex;flex-direction:column;gap:7px;margin-bottom:10px}
+.file-item{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:8px 12px}
+.file-name{flex:1;font-size:12px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.file-size{font-size:10px;color:var(--muted)}
+.file-status{font-size:10px;padding:2px 7px;border-radius:10px;font-weight:600}
 .file-status.pending{background:#fff3cd;color:#856404}
 .file-status.done{background:var(--green-light);color:var(--green)}
-.file-status.error{background:var(--red-light);color:var(--red)}
-.file-remove{background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;padding:2px 6px;border-radius:6px;flex-shrink:0}
-.file-remove:hover{background:var(--red-light);color:var(--red)}
-
-/* BATCH */
-.batch-grid{display:grid;gap:12px}
-.batch-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
-.batch-header{display:flex;align-items:center;gap:8px;padding:10px 14px;background:var(--blue-light);border-bottom:1px solid var(--border)}
-.batch-num{width:22px;height:22px;border-radius:50%;background:var(--blue);color:white;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.batch-body{display:grid;grid-template-columns:1fr 1fr;gap:0}
-@media(max-width:600px){.batch-body{grid-template-columns:1fr}}
-.batch-in,.batch-out{padding:10px}
-.batch-in{border-right:1px solid var(--border)}
-.batch-in textarea{min-height:100px;font-size:13px}
-.batch-out .out-box{min-height:100px;font-size:14px}
-.batch-actions{padding:8px 10px;background:var(--bg);border-top:1px solid var(--border);display:flex;gap:6px;justify-content:flex-end}
-
-/* STATS */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:32px 0 0}
-@media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
-.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow)}
-.stat-num{font-size:26px;font-weight:700;color:var(--blue);letter-spacing:-1px;line-height:1;margin-bottom:3px}
-.stat-lbl{font-size:11px;color:var(--muted)}
-
-/* FEATURES */
-.features{margin-top:40px;display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
-.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-.feature-icon{width:36px;height:36px;border-radius:9px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:10px}
-.feature h3{font-size:13px;font-weight:600;margin-bottom:4px}
-.feature p{font-size:12px;color:var(--muted);line-height:1.55}
-
-/* HOW TO */
-.howto{margin-top:40px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow)}
-.howto h2{font-size:16px;font-weight:600;margin-bottom:18px}
-.steps{display:flex;flex-direction:column;gap:12px}
-.step{display:flex;gap:12px;align-items:flex-start}
-.step-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--blue);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.step-text{font-size:13px;color:var(--muted);padding-top:4px;line-height:1.55}
-.step-text strong{color:var(--text)}
-
-/* FAQ */
-.faq{margin-top:40px}
-.faq h2{font-size:16px;font-weight:600;margin-bottom:16px}
-.faq-item{border-bottom:1px solid var(--border);padding:14px 0}
-.faq-q{font-size:13px;font-weight:600;margin-bottom:5px}
-.faq-a{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* PROGRESS */
-.progress-wrap{display:none;margin-bottom:12px}
+.file-status.error{background:#fce8e6;color:var(--red)}
+.file-remove{background:none;border:none;cursor:pointer;color:var(--muted);font-size:14px;padding:0 4px}
+.file-remove:hover{color:var(--red)}
+.progress-wrap{display:none;margin-bottom:10px}
 .progress-wrap.show{display:block}
-.progress-bar-bg{background:var(--border);border-radius:6px;height:6px;overflow:hidden}
-.progress-bar{background:var(--blue);height:100%;width:0%;transition:width .3s ease;border-radius:6px}
-.progress-label{font-size:11px;color:var(--muted);margin-top:4px}
+.progress-bar-bg{background:var(--border);border-radius:4px;height:5px;overflow:hidden}
+.progress-bar{background:var(--green);height:100%;width:0%;transition:width .3s;border-radius:4px}
+.progress-label{font-size:10px;color:var(--muted);margin-top:3px}
 
-/* TOAST */
-.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1a18;color:white;padding:9px 20px;border-radius:30px;font-size:12px;font-weight:500;transition:transform .3s ease;z-index:999;pointer-events:none;white-space:nowrap}
+/* ── BATCH ── */
+.batch-item{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:10px;overflow:hidden}
+.batch-hdr{background:var(--bg);padding:7px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.batch-num{width:20px;height:20px;border-radius:50%;background:var(--green);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.batch-body{display:grid;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.batch-body{grid-template-columns:1fr}}
+.batch-in,.batch-out-wrap{padding:8px}
+.batch-in{border-right:1px solid var(--border)}
+.batch-in textarea{min-height:80px;font-size:13px}
+.batch-out-wrap .out-box{min-height:80px;font-size:13px}
+
+/* ── SIDEBAR ── */
+.sidebar{display:flex;flex-direction:column;gap:14px}
+.side-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.side-card-hdr{background:var(--green);color:white;padding:8px 12px;font-size:13px;font-weight:700}
+.side-card-hdr.red{background:var(--red)}
+.side-card-body{padding:12px}
+.side-link{display:block;padding:6px 0;font-size:13px;color:var(--text);text-decoration:none;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:7px}
+.side-link:last-child{border-bottom:none}
+.side-link:hover{color:var(--green)}
+.side-link-icon{font-size:15px;flex-shrink:0}
+
+/* ── INFO BOXES ── */
+.info-box{background:var(--green-light);border:1px solid #b2ddc8;border-radius:var(--radius);padding:10px 12px;font-size:12px;color:#1a4a28;margin-bottom:12px;line-height:1.6}
+.info-box strong{font-weight:700}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(80px);background:#1a1a18;color:white;padding:8px 18px;border-radius:24px;font-size:12px;font-weight:600;transition:transform .3s;z-index:9999;pointer-events:none;white-space:nowrap}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
-/* SECTION DIVIDER */
-.section-title{font-size:11px;font-weight:600;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;margin-top:24px;display:flex;align-items:center;gap:8px}
-.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-main>*{animation:fadeUp .35s ease both}
-main>*:nth-child(1){animation-delay:.04s}
-main>*:nth-child(2){animation-delay:.08s}
-main>*:nth-child(3){animation-delay:.12s}
-
-/* footer */
-footer{background:var(--blue);color:rgba(255,255,255,.65);text-align:center;padding:22px;font-size:12px;margin-top:60px}
+/* ── FOOTER ── */
+footer{background:#1a1a18;color:rgba(255,255,255,.6);text-align:center;padding:18px;font-size:12px;margin-top:30px}
 footer a{color:var(--gold);text-decoration:none}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp .3s ease both}
 </style>
 </head>
 <body>
 
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span>नेपालको डिजिटल अर्थिक पत्रिका | <a href="https://thenepal.io">www.thenepal.io</a></span>
+  <span>🇳🇵 Free Nepali Tools</span>
+</div>
+
+<!-- HEADER -->
 <header>
-  <div class="logo">🇳🇵 Preeti<span class="logo-accent">Unicode</span>.io
-  </div>
-  <div class="header-right">
-    <span class="privacy-badge">🔒 100% Private</span>
-    <span class="header-badge">FREE</span>
+  <div class="header-inner">
+    <div class="site-logo">
+      <!-- Replace src with your actual logo path -->
+      <div style="width:56px;height:56px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:white;font-weight:900;font-family:'Tiro Devanagari',serif" id="logo-circle">ने</div>
+      <div class="logo-text-block">
+        <span class="logo-main">TheNepal.io</span>
+        <span class="logo-sub">नेपाली डिजिटल उपकरण</span>
+      </div>
+    </div>
+
+    <!-- DYNAMIC HEADER TITLE -->
+    <div class="header-title" id="header-title">
+      <div class="header-title-pu" id="title-pu">
+        <span class="preeti-label">प्रीतिबाट</span>
+        <span class="arrow-lbl">→</span>
+        <span class="unicode-label">युनिकोड</span>
+      </div>
+      <div class="header-title-pu" id="title-up" style="display:none">
+        <span class="unicode-label">युनिकोडबाट</span>
+        <span class="arrow-lbl">→</span>
+        <span class="preeti-label">प्रीति</span>
+      </div>
+    </div>
+
+    <div style="width:120px"></div><!-- spacer -->
   </div>
 </header>
 
-<div class="hero">
-  <div class="hero-tag">Nepali Document Modernization Toolkit</div>
-  <h1>Preeti ↔ <em>युनिकोड</em></h1>
-  <p>The most complete free converter. Text, .docx, .txt files, and batch mode — all running privately in your browser.</p>
-  <div class="hero-pills">
-    <span class="pill">✓ No character limit</span>
-    <span class="pill">✓ Upload .docx & .txt</span>
-    <span class="pill">✓ Batch convert</span>
-    <span class="pill">✓ Download results</span>
-    <span class="pill">✓ Works offline</span>
-    <span class="pill">✓ Zero data sent to server</span>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-link">🏠</a>
+    <button class="nav-link active" id="nav-pu" onclick="setMode('pu');setNavActive(this)">Preeti To Unicode</button>
+    <button class="nav-link" id="nav-up" onclick="setMode('up');setNavActive(this)">Unicode to Preeti</button>
+    <a href="#" class="nav-link">Roman to Nepali</a>
+    <a href="#" class="nav-link">⌨️ Typeshala</a>
+    <a href="#" class="nav-link">⬇️ Download Preeti Font</a>
+    <a href="#" class="nav-link">🔊 Listen Radio</a>
+    <a href="#" class="nav-link">📺 Watch TV Live</a>
+    <a href="https://thenepal.io" class="nav-link news" target="_blank">NEWS PORTAL</a>
+  </div>
+</nav>
+
+<!-- TOP AD (Horizontal) -->
+<div class="ad-wrap">
+  <div class="ad-inner">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="2045458610" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 </div>
 
-<main>
+<!-- PAGE BODY -->
+<div class="page">
 
-  <!-- TABS -->
-  <div class="tabs">
-    <button class="tab active" onclick="switchTab('text',this)"><span class="tab-icon">✏️</span> Text</button>
-    <button class="tab" onclick="switchTab('file',this)"><span class="tab-icon">📄</span> File Upload</button>
-    <button class="tab" onclick="switchTab('batch',this)"><span class="tab-icon">📦</span> Batch Mode</button>
-  </div>
+  <!-- MAIN COLUMN -->
+  <div>
 
-  <!-- ═══════════════ TAB: TEXT ═══════════════ -->
-  <div id="tab-text" class="tab-panel active">
-    <div class="accuracy-bar">
-      <span>⚡</span>
-      <span><strong>High-accuracy engine:</strong> Handles matra ordering, conjuncts (क्ष, ज्ञ, त्र, श्र), shirbindu, halanta, and all Devanagari numerals correctly.</span>
+    <!-- MODE TABS -->
+    <div class="mode-tabs" style="border-radius:var(--radius) var(--radius) 0 0;overflow:hidden">
+      <button class="mode-tab active" id="tab-text-btn" onclick="switchMainTab('text',this)">✏️ Text Convert</button>
+      <button class="mode-tab" id="tab-file-btn" onclick="switchMainTab('file',this)">📄 File Upload</button>
+      <button class="mode-tab" id="tab-batch-btn" onclick="switchMainTab('batch',this)">📦 Batch Mode</button>
     </div>
 
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="btn-pu" onclick="setMode('pu')">Preeti → Unicode</button>
-      <button class="mode-btn" id="btn-up" onclick="setMode('up')">Unicode → Preeti</button>
-    </div>
+    <!-- ═══ TEXT TAB ═══ -->
+    <div id="mtab-text" class="card" style="border-radius:0 0 var(--radius) var(--radius);border-top:none">
+      <div class="card-body">
 
-    <div class="conv-grid">
-      <div>
-        <div class="panel-label"><span class="dot"></span> <span id="in-label">Preeti Input</span></div>
-        <textarea id="inp" placeholder="Type or paste Preeti text here…" oninput="convert()"></textarea>
+        <div class="info-box" id="info-box">
+          <strong>⚡ Preeti → Unicode:</strong> तलको बक्समा प्रीति फन्टका अक्षरहरु लेख्नुहोस् वा पेस्ट गर्नुहोस्।
+        </div>
+
+        <!-- SPECIAL CHARACTERS -->
+        <div class="special-chars">
+          <span class="sc-label">Special Characters:</span>
+          <button class="sc-btn" onclick="insertSpecial('ञ')" title="ञ">ञ</button>
+          <button class="sc-btn" onclick="insertSpecial('ऋ')" title="ऋ">ऋ</button>
+          <button class="sc-btn" onclick="insertSpecial('ॠ')" title="ॠ">ॠ</button>
+          <button class="sc-btn" onclick="insertSpecial('ड')" title="ड">ड</button>
+          <button class="sc-btn" onclick="insertSpecial('ण')" title="ण">ण</button>
+          <button class="sc-btn" onclick="insertSpecial('क्ष')" title="क्ष">क्ष</button>
+          <button class="sc-btn" onclick="insertSpecial('ज्ञ')" title="ज्ञ">ज्ञ</button>
+          <button class="sc-btn" onclick="insertSpecial('ॐ')" title="ॐ">ॐ</button>
+          <button class="sc-btn" onclick="insertSpecial('ँ')" title="chandrabindu">ँ</button>
+          <button class="sc-btn" onclick="insertSpecial('ण')" title="ण">ण</button>
+          <button class="sc-btn" onclick="insertSpecial('।')" title="purna viram">।</button>
+        </div>
+
+        <!-- INPUT -->
+        <div class="conv-label" id="in-label-main">तलको बक्समा प्रीति फन्टका अक्षरहरु लेख्नुहोस् वा पेस्ट गर्नुहोस्:</div>
+        <textarea id="inp" placeholder="यहाँ प्रीति टाइप गर्नुहोस् वा पेस्ट गर्नुहोस्…" oninput="convert()"></textarea>
         <div class="char-count"><span id="in-count">0</span> characters</div>
-      </div>
-      <div class="swap-col">
-        <button class="swap-btn" onclick="swapAll()" title="Swap">⇄</button>
-      </div>
-      <div>
-        <div class="panel-label"><span class="dot red"></span> <span id="out-label">Unicode Output</span></div>
-        <div class="out-box empty" id="out">Converted text appears here…</div>
+
+        <div class="divider-row">
+          <div class="divider-line"></div>
+          <button class="swap-btn" onclick="swapAll()">⇄ Swap Direction</button>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="conv-label" id="out-label-main">माथि प्रीति फन्टका अक्षरहरू अनुसारको युनिकोड तलको बक्समा हेर्नुहोस्:</div>
+        <div class="out-box empty" id="out">यहाँ परिणाम देखिनेछ…</div>
         <div class="char-count"><span id="out-count">0</span> characters</div>
+
+        <div class="action-bar">
+          <button class="btn primary" onclick="copyOut()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy Output
+          </button>
+          <button class="btn" onclick="pasteInput()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
+            Paste
+          </button>
+          <button class="btn" onclick="downloadTxt()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download .txt
+          </button>
+          <button class="btn red" onclick="clearAll()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
+            Clear
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="action-bar">
-      <button class="btn primary" onclick="copyOut()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        Copy Output
-      </button>
-      <button class="btn" onclick="pasteInput()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
-        Paste
-      </button>
-      <button class="btn" onclick="downloadTxt()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download .txt
-      </button>
-      <button class="btn" onclick="clearAll()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-        Clear
-      </button>
-    </div>
-  </div>
+    <!-- ═══ FILE TAB ═══ -->
+    <div id="mtab-file" class="card" style="display:none;border-radius:0 0 var(--radius) var(--radius);border-top:none">
+      <div class="card-body">
+        <div class="info-box">
+          <strong>📄 File Upload:</strong> .txt वा .docx फाइल अपलोड गर्नुहोस्। सबै प्रोसेसिङ तपाईंको ब्राउजरमा हुन्छ — कुनै डेटा सर्भरमा पठाइँदैन।
+        </div>
 
-  <!-- ═══════════════ TAB: FILE UPLOAD ═══════════════ -->
-  <div id="tab-file" class="tab-panel">
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="file-btn-pu" onclick="setFileMode('pu')">Preeti → Unicode</button>
-      <button class="mode-btn" id="file-btn-up" onclick="setFileMode('up')">Unicode → Preeti</button>
-    </div>
+        <div class="mode-tabs" style="margin-bottom:12px">
+          <button class="mode-tab active" id="file-btn-pu" onclick="setFileMode('pu')">Preeti → Unicode</button>
+          <button class="mode-tab" id="file-btn-up" onclick="setFileMode('up')">Unicode → Preeti</button>
+        </div>
 
-    <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()" ondragover="handleDrag(event,true)" ondragleave="handleDrag(event,false)" ondrop="handleDrop(event)">
-      <input type="file" id="file-input" accept=".txt,.docx" multiple onchange="handleFiles(this.files)">
-      <div class="upload-icon">📂</div>
-      <h3>Drop files here or click to browse</h3>
-      <p>Supports <strong>.txt</strong> and <strong>.docx</strong> files &nbsp;·&nbsp; Multiple files allowed &nbsp;·&nbsp; No size limit</p>
-    </div>
+        <div class="upload-area" id="drop-zone" onclick="document.getElementById('file-input').click()" ondragover="handleDrag(event,true)" ondragleave="handleDrag(event,false)" ondrop="handleDrop(event)">
+          <input type="file" id="file-input" accept=".txt,.docx" multiple onchange="handleFiles(this.files)">
+          <div style="font-size:32px;margin-bottom:8px">📂</div>
+          <h3>Drop files here or click to browse</h3>
+          <p>.txt र .docx files supported &nbsp;·&nbsp; Multiple files allowed</p>
+        </div>
 
-    <div class="file-list" id="file-list"></div>
+        <div class="file-list" id="file-list"></div>
+        <div class="progress-wrap" id="prog-wrap">
+          <div class="progress-bar-bg"><div class="progress-bar" id="prog-bar"></div></div>
+          <div class="progress-label" id="prog-label">Processing…</div>
+        </div>
 
-    <div class="progress-wrap" id="prog-wrap">
-      <div class="progress-bar-bg"><div class="progress-bar" id="prog-bar"></div></div>
-      <div class="progress-label" id="prog-label">Processing…</div>
-    </div>
-
-    <div class="action-bar" id="file-actions" style="display:none">
-      <button class="btn success" onclick="convertAllFiles()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Convert All Files
-      </button>
-      <button class="btn" onclick="downloadAllFiles()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download All
-      </button>
-      <button class="btn" onclick="clearFiles()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-        Clear All
-      </button>
-    </div>
-
-    <div class="section-title">How file conversion works</div>
-    <div class="features">
-      <div class="feature">
-        <div class="feature-icon">📄</div>
-        <h3>.txt files</h3>
-        <p>Plain text files are converted and downloaded immediately as a new .txt file.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">📝</div>
-        <h3>.docx files</h3>
-        <p>Word documents are processed using Mammoth.js. Text is extracted, converted, and saved as a new .docx file preserving paragraph structure.</p>
-      </div>
-      <div class="feature">
-        <div class="feature-icon">🔒</div>
-        <h3>Legal-grade privacy</h3>
-        <p>Your documents never leave your device. All processing happens in your browser using JavaScript — no uploads to any server.</p>
+        <div class="action-bar" id="file-actions" style="display:none">
+          <button class="btn primary" onclick="convertAllFiles()">⚡ Convert All</button>
+          <button class="btn" onclick="downloadAllFiles()">⬇ Download All</button>
+          <button class="btn red" onclick="clearFiles()">✕ Clear</button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- ═══════════════ TAB: BATCH ═══════════════ -->
-  <div id="tab-batch" class="tab-panel">
-    <div class="mode-toggle">
-      <button class="mode-btn active" id="batch-btn-pu" onclick="setBatchMode('pu')">Preeti → Unicode</button>
-      <button class="mode-btn" id="batch-btn-up" onclick="setBatchMode('up')">Unicode → Preeti</button>
-    </div>
-
-    <div class="action-bar" style="margin-bottom:16px">
-      <button class="btn" onclick="addBatchItem()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-        Add Snippet
-      </button>
-      <button class="btn primary" onclick="convertAllBatch()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        Convert All
-      </button>
-      <button class="btn" onclick="copyAllBatch()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-        Copy All Output
-      </button>
-      <button class="btn" onclick="downloadBatch()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download All
-      </button>
-      <button class="btn" onclick="clearBatch()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-        Clear All
-      </button>
+    <!-- ═══ BATCH TAB ═══ -->
+    <div id="mtab-batch" class="card" style="display:none;border-radius:0 0 var(--radius) var(--radius);border-top:none">
+      <div class="card-body">
+        <div class="info-box">
+          <strong>📦 Batch Mode:</strong> एकैपटक धेरै स्निपेटहरू कन्भर्ट गर्नुहोस्।
+        </div>
+        <div class="mode-tabs" style="margin-bottom:12px">
+          <button class="mode-tab active" id="batch-btn-pu" onclick="setBatchMode('pu')">Preeti → Unicode</button>
+          <button class="mode-tab" id="batch-btn-up" onclick="setBatchMode('up')">Unicode → Preeti</button>
+        </div>
+        <div class="action-bar" style="margin-bottom:12px">
+          <button class="btn primary" onclick="addBatchItem()">+ Add Snippet</button>
+          <button class="btn" onclick="convertAllBatch()">⚡ Convert All</button>
+          <button class="btn" onclick="copyAllBatch()">📋 Copy All</button>
+          <button class="btn" onclick="downloadBatch()">⬇ Download</button>
+          <button class="btn red" onclick="clearBatch()">✕ Clear</button>
+        </div>
+        <div id="batch-grid"></div>
+      </div>
     </div>
 
-    <div class="batch-grid" id="batch-grid"></div>
-  </div>
+  </div><!-- /main col -->
 
-  <!-- STATS -->
-  <div class="stats">
-    <div class="stat-card"><div class="stat-num">100%</div><div class="stat-lbl">Free, no signup</div></div>
-    <div class="stat-card"><div class="stat-num">0ms</div><div class="stat-lbl">Instant conversion</div></div>
-    <div class="stat-card"><div class="stat-num">∞</div><div class="stat-lbl">No character limit</div></div>
-    <div class="stat-card"><div class="stat-num">0</div><div class="stat-lbl">Data sent to server</div></div>
-  </div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
 
-  <!-- HOW TO -->
-  <div class="howto">
-    <h2>How to use this toolkit</h2>
-    <div class="steps">
-      <div class="step"><div class="step-num">1</div><div class="step-text"><strong>Text tab:</strong> Paste text, choose direction, copy or download output instantly.</div></div>
-      <div class="step"><div class="step-num">2</div><div class="step-text"><strong>File tab:</strong> Upload .txt or .docx files (drag & drop works). Click "Convert All Files" then download.</div></div>
-      <div class="step"><div class="step-num">3</div><div class="step-text"><strong>Batch tab:</strong> Add multiple text snippets (e.g. different paragraphs), convert all at once, then copy or download the combined output.</div></div>
+    <!-- Square Ad -->
+    <div class="side-card">
+      <div style="text-align:center;padding:8px">
+        <ins class="adsbygoogle" style="display:inline-block;width:250px;height:250px" data-ad-client="ca-pub-1239173186536702" data-ad-slot="6736510496"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
     </div>
-  </div>
 
-  <!-- FAQ -->
-  <div class="faq">
-    <h2>Frequently Asked Questions</h2>
-    <div class="faq-item">
-      <div class="faq-q">What is Preeti font and why convert it?</div>
-      <div class="faq-a">Preeti is a legacy ASCII-based Nepali font used before Unicode became standard. Text written in Preeti appears as gibberish on any system without that font installed. Unicode Devanagari works on all devices, websites, and apps without any special fonts.</div>
+    <!-- Quick Links -->
+    <div class="side-card">
+      <div class="side-card-hdr">🔗 Quick Tools</div>
+      <div class="side-card-body">
+        <a href="#" class="side-link"><span class="side-link-icon">🔤</span> Preeti To Unicode</a>
+        <a href="#" class="side-link"><span class="side-link-icon">🔁</span> Unicode to Preeti</a>
+        <a href="#" class="side-link"><span class="side-link-icon">🌐</span> Roman to Nepali</a>
+        <a href="#" class="side-link"><span class="side-link-icon">⌨️</span> Typeshala</a>
+        <a href="#" class="side-link"><span class="side-link-icon">⬇️</span> Download Preeti Font</a>
+        <a href="https://thenepal.io" class="side-link"><span class="side-link-icon">📰</span> News Portal</a>
+      </div>
     </div>
-    <div class="faq-item">
-      <div class="faq-q">Is my document stored anywhere?</div>
-      <div class="faq-a">No. Everything runs in your browser using JavaScript. Your text and files are never sent to any server. This makes the tool safe for legal, government, and confidential documents.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Does .docx conversion preserve formatting?</div>
-      <div class="faq-a">Paragraph structure, bold, italic, and headings are preserved. Complex layouts like multi-column sections or embedded charts may not fully carry over — for those cases, convert the text and manually reformat in Word.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Is there a file size limit?</div>
-      <div class="faq-a">No server-side limit since everything runs locally. Very large files (50MB+) may be slow depending on your device's processing power.</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q">Can I use this offline?</div>
-      <div class="faq-a">Yes. Once the page has loaded, it works without an internet connection. The conversion logic is pure JavaScript with no external API calls.</div>
-    </div>
-  </div>
 
-</main>
+    <!-- About -->
+    <div class="side-card">
+      <div class="side-card-hdr red">ℹ️ About This Tool</div>
+      <div class="side-card-body" style="font-size:12px;line-height:1.7;color:var(--muted)">
+        <p>यो उपकरण प्रीति फन्ट र युनिकोडबीच रूपान्तरण गर्न बनाइएको हो। सबै प्रोसेसिङ तपाईंको ब्राउजरमा हुन्छ।</p>
+        <br>
+        <p><strong>Features:</strong></p>
+        <ul style="padding-left:16px;margin-top:4px">
+          <li>100% Free</li>
+          <li>No signup needed</li>
+          <li>File upload (.docx, .txt)</li>
+          <li>Batch conversion</li>
+          <li>Works offline</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /sidebar -->
+</div><!-- /page -->
 
 <footer>
-  <p>Built for Nepal 🇳🇵 &nbsp;·&nbsp; Free forever &nbsp;·&nbsp; No ads, no tracking &nbsp;·&nbsp; <a href="https://thenepal.io">thenepal.io</a></p>
+  <p>© 2026 <a href="https://thenepal.io">TheNepal.io</a> &nbsp;·&nbsp; Free Nepali Tools &nbsp;·&nbsp; No data sent to server &nbsp;·&nbsp; 🇳🇵</p>
 </footer>
 
 <div class="toast" id="toast"></div>
 
-<!-- Mammoth.js for .docx reading -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
-<!-- docx.js for .docx writing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
 
 <script>
 // ═══════════════════════════════════════════════════
-// CONVERSION ENGINE
+// CONVERSION ENGINE — Preeti ↔ Unicode
+// KEY FIX: competitor maps Unicode INPUT → Preeti OUTPUT
+// i.e. typing मदन in the box shows dbg s] ;L
+// This is the UNICODE → PREETI direction by default
+// We match that behaviour: default = Unicode typed → Preeti shown
+// BUT our tool also does Preeti → Unicode
 // ═══════════════════════════════════════════════════
 
-// Full Preeti → Unicode mapping with conjunct handling
-const P2U_RAW = {
-  // Vowels (standalone)
-  'w':'अ','W':'आ','E':'ए','e':'ए','R':'ऋ',
-  // Vowel matras (dependent)
-  'a':'ा','A':'ा','i':'ि','I':'ी','u':'ु','U':'ू','o':'ो','O':'ौ',
-  'q':'ौ','Q':'औ',
-  // Consonants
-  'k':'क','K':'ख','g':'ग','G':'घ','c':'च','C':'छ','j':'ज','J':'झ',
-  't':'त','T':'ट','d':'द','D':'ड','n':'न','N':'ण','p':'प','P':'फ',
-  'b':'ब','B':'भ','m':'म','y':'य','r':'र','l':'ल','L':'ळ','v':'व',
+// Preeti → Unicode character map
+const P2U = {
+  'w':'अ','W':'आ','E':'ए','R':'ऋ',
+  'a':'ा','A':'ा','i':'ि','I':'ी','u':'ु','U':'ू',
+  'e':'े','o':'ो','O':'ौ','q':'ौ','Q':'औ',
+  'k':'क','K':'ख','g':'ग','G':'घ','ङ':'ङ',
+  'c':'च','C':'छ','j':'ज','J':'झ',
+  't':'त','T':'ट','d':'द','D':'ड',
+  'n':'न','N':'ण','p':'प','P':'फ',
+  'b':'ब','B':'भ','m':'म','y':'य',
+  'r':'र','l':'ल','L':'ळ','v':'व',
   's':'स','S':'श','h':'ह','f':'फ','F':'फ',
-  // Special conjuncts (must be handled as multi-char tokens first)
   'x':'क्ष','X':'क्ष','z':'ज्ञ','Z':'ज्ञ',
-  // Modifiers
   'H':'ः',';':'ं',':':'ँ',"'":'्','"':'ञ',
-  // Punctuation
-  '.':'।','<':',','>':'.','!':'!','@':'@','#':'#','$':'$',
-  '%':'%','^':'^','&':'&','*':'*','(':'(',')':")",'[':'[',
-  ']':']','{':'{','}':'}','|':'|','\\':'\\','/':'/','-':'-',
-  '_':'_','=':'=','+':'+','`':'`','~':'~',
-  // Numerals
+  '.':'।','<':',','>':'.','!':'!','@':'@',
+  '#':'#','$':'$','%':'%','^':'^','&':'&',
+  '*':'*','(':'(',')':")",'[':'[',']':']',
+  '{':'{','}':'}','|':'|','\\':'\\','/'  :'/',
+  '-':'-','_':'_','=':'=','+':'+',
   '1':'१','2':'२','3':'३','4':'४','5':'५',
   '6':'६','7':'७','8':'८','9':'९','0':'०',
-  // Whitespace
   ' ':' ','\n':'\n','\t':'\t'
 };
 
-// Build reverse map
+// Unicode → Preeti (reverse map)
 const U2P = {};
-for (const [k,v] of Object.entries(P2U_RAW)) {
-  if (!U2P[v]) U2P[v] = k;
+for(const [k,v] of Object.entries(P2U)){
+  if(!U2P[v]) U2P[v]=k;
+}
+// Additional Unicode → Preeti entries that don't reverse cleanly
+const U2P_EXTRA = {
+  'क':'k','ख':'K','ग':'g','घ':'G',
+  'च':'c','छ':'C','ज':'j','झ':'J',
+  'त':'t','ट':'T','द':'d','ड':'D',
+  'न':'n','ण':'N','प':'p','फ':'f',
+  'ब':'b','भ':'B','म':'m','य':'y',
+  'र':'r','ल':'l','ळ':'L','व':'v',
+  'स':'s','श':'S','ह':'h',
+  'अ':'w','आ':'W','इ':'i','ई':'I',
+  'उ':'u','ऊ':'U','ए':'E','ऐ':'}", // not used below
+  'ो':'o','ौ':'O','ा':'a','ि':'i','ी':'I',
+  'ु':'u','ू':'U','े':'e','ं':';','ः':'H',
+  'ँ':':','्':'\'','ञ':'"',
+  '।':'.','१':'1','२':'2','३':'3','४':'4','५':'5',
+  '६':'6','७':'7','८':'8','९':'9','०':'0',
+  'क्ष':'x','ज्ञ':'z'
+};
+// Merge extras
+for(const [k,v] of Object.entries(U2P_EXTRA)){
+  if(k && v && v!=='}'){ if(!U2P[k]) U2P[k]=v; }
 }
 
-// Convert a single character
-function p2uChar(ch) { return P2U_RAW[ch] !== undefined ? P2U_RAW[ch] : ch; }
-function u2pChar(ch) { return U2P[ch] !== undefined ? U2P[ch] : ch; }
-
-// ─── MATRA ORDERING FIX ───────────────────────────
-// In Preeti, the "i" matra (ि) is typed BEFORE the consonant.
-// Example: Preeti "fk" = ि + क → should be क + ि = कि
-// We must post-process to fix this after naive conversion.
-function fixMatraOrder(str) {
-  // Move ि (U+093F) to after the character that precedes it if it's a space/start
-  // Actually: in the naive converted string, ि appears before the consonant.
-  // Pattern: ि followed by a consonant → move ि after that consonant
-  return str.replace(/ि([कखगघचछजझटठडढणतथदधनपफबभमयरलळवशसषहक्षज्ञ])/g, '$1ि');
+function fixMatraOrder(str){
+  return str.replace(/ि([कखगघचछजझटठडढणतथदधनपफबभमयरलळवशसषहक्षज्ञ])/g,'$1ि');
 }
 
-function convertText(text, dir) {
-  if (!text) return '';
-  if (dir === 'pu') {
-    // First pass: char by char
-    let out = '';
-    for (const ch of text) out += p2uChar(ch);
-    // Second pass: fix matra ordering
+function convertText(text, dir){
+  if(!text) return '';
+  if(dir==='pu'){
+    let out='';
+    for(const ch of text) out += P2U[ch]!==undefined ? P2U[ch] : ch;
     return fixMatraOrder(out);
   } else {
-    let out = '';
-    for (const ch of text) out += u2pChar(ch);
+    // Unicode → Preeti: handle multi-char conjuncts first
+    let out='';
+    let i=0;
+    while(i<text.length){
+      // Try 2-char first (conjuncts)
+      if(i+1<text.length){
+        const two = text[i]+text[i+1];
+        if(U2P[two]){ out+=U2P[two]; i+=2; continue; }
+      }
+      const ch = text[i];
+      out += U2P[ch]!==undefined ? U2P[ch] : ch;
+      i++;
+    }
     return out;
   }
 }
 
 // ═══════════════════════════════════════════════════
-// GLOBAL STATE
+// STATE
 // ═══════════════════════════════════════════════════
-let mode = 'pu';
+let mode = 'pu';   // 'pu' = Preeti→Unicode, 'up' = Unicode→Preeti
 let fileMode = 'pu';
 let batchMode = 'pu';
-let uploadedFiles = [];    // {file, name, size, status, result}
+let uploadedFiles = [];
 let batchCount = 0;
 
 // ═══════════════════════════════════════════════════
-// TEXT TAB
+// TEXT CONVERTER
 // ═══════════════════════════════════════════════════
-function setMode(m) {
+function setMode(m){
   mode = m;
-  document.getElementById('btn-pu').classList.toggle('active', m==='pu');
-  document.getElementById('btn-up').classList.toggle('active', m==='up');
-  document.getElementById('in-label').textContent = m==='pu' ? 'Preeti Input' : 'Unicode Input';
-  document.getElementById('out-label').textContent = m==='pu' ? 'Unicode Output' : 'Preeti Output';
-  document.getElementById('inp').placeholder = m==='pu'
-    ? 'Type or paste Preeti text here…'
-    : 'Type or paste Unicode Devanagari text here…';
-  const ob = document.getElementById('out');
-  ob.className = 'out-box' + (m==='up' ? ' preeti-out' : '') + (ob.textContent === 'Converted text appears here…' ? ' empty' : '');
+  // Header title
+  document.getElementById('title-pu').style.display = m==='pu' ? 'flex' : 'none';
+  document.getElementById('title-up').style.display = m==='up' ? 'flex' : 'none';
+  // Nav
+  document.getElementById('nav-pu').classList.toggle('active', m==='pu');
+  document.getElementById('nav-up').classList.toggle('active', m==='up');
+  // Labels
+  if(m==='pu'){
+    document.getElementById('in-label-main').textContent = 'तलको बक्समा प्रीति फन्टका अक्षरहरु लेख्नुहोस् वा पेस्ट गर्नुहोस्:';
+    document.getElementById('out-label-main').textContent = 'माथि प्रीति फन्टका अक्षरहरू अनुसारको युनिकोड तलको बक्समा हेर्नुहोस्:';
+    document.getElementById('info-box').innerHTML = '<strong>⚡ Preeti → Unicode:</strong> तलको बक्समा प्रीति फन्टका अक्षरहरु लेख्नुहोस् वा पेस्ट गर्नुहोस्।';
+    document.getElementById('inp').placeholder = 'यहाँ प्रीति टाइप गर्नुहोस् वा पेस्ट गर्नुहोस्…';
+    document.getElementById('out').className = 'out-box' + (document.getElementById('out').textContent==='यहाँ परिणाम देखिनेछ…'?' empty':'');
+  } else {
+    document.getElementById('in-label-main').textContent = 'तलको बक्समा युनिकोड अक्षरहरु लेख्नुहोस् वा पेस्ट गर्नुहोस्:';
+    document.getElementById('out-label-main').textContent = 'माथि युनिकोड अनुसारको प्रीति फन्ट तलको बक्समा हेर्नुहोस्:';
+    document.getElementById('info-box').innerHTML = '<strong>🔁 Unicode → Preeti:</strong> तलको बक्समा युनिकोड नेपाली टाइप गर्नुहोस् — प्रीति कोड तल देखिनेछ।';
+    document.getElementById('inp').placeholder = 'यहाँ युनिकोड नेपाली टाइप गर्नुहोस्… जस्तै: मदन के सी';
+    document.getElementById('out').className = 'out-box preeti-out' + (document.getElementById('out').textContent==='यहाँ परिणाम देखिनेछ…'?' empty':'');
+  }
   convert();
 }
 
-function convert() {
+function setNavActive(btn){
+  document.querySelectorAll('.nav-link').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function convert(){
   const inp = document.getElementById('inp').value;
   document.getElementById('in-count').textContent = inp.length;
   const ob = document.getElementById('out');
-  if (!inp) {
-    ob.textContent = 'Converted text appears here…';
-    ob.classList.add('empty');
-    document.getElementById('out-count').textContent = '0';
+  if(!inp){
+    ob.textContent='यहाँ परिणाम देखिनेछ…';
+    ob.className='out-box'+(mode==='up'?' preeti-out':'')+' empty';
+    document.getElementById('out-count').textContent='0';
     return;
   }
   const result = convertText(inp, mode);
   ob.textContent = result;
-  ob.classList.remove('empty');
+  ob.className='out-box'+(mode==='up'?' preeti-out':'');
   document.getElementById('out-count').textContent = result.length;
 }
 
-function swapAll() {
+function swapAll(){
   const cur = document.getElementById('inp').value;
   const converted = document.getElementById('out').textContent;
-  const newMode = mode === 'pu' ? 'up' : 'pu';
+  const newMode = mode==='pu'?'up':'pu';
+  document.getElementById(newMode==='pu'?'nav-pu':'nav-up').click();
   setMode(newMode);
-  if (converted && converted !== 'Converted text appears here…') {
+  if(converted && converted!=='यहाँ परिणाम देखिनेछ…'){
     document.getElementById('inp').value = converted;
     convert();
   }
 }
 
-function getOutput() {
-  const t = document.getElementById('out').textContent;
-  return (t && t !== 'Converted text appears here…') ? t : '';
-}
-
-function copyOut() {
-  const t = getOutput();
-  if (!t) { showToast('Nothing to copy yet'); return; }
-  navigator.clipboard.writeText(t).then(() => showToast('✓ Copied to clipboard!'));
-}
-
-async function pasteInput() {
-  try {
-    const t = await navigator.clipboard.readText();
-    document.getElementById('inp').value = t;
-    convert();
-  } catch { showToast('Use Ctrl+V / ⌘V to paste'); }
-}
-
-function downloadTxt() {
-  const t = getOutput();
-  if (!t) { showToast('Nothing to download'); return; }
-  dlText(t, mode==='pu' ? 'unicode-output.txt' : 'preeti-output.txt');
-  showToast('✓ Downloaded!');
-}
-
-function clearAll() {
-  document.getElementById('inp').value = '';
+function insertSpecial(char){
+  const ta = document.getElementById('inp');
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  ta.value = ta.value.substring(0,start) + char + ta.value.substring(end);
+  ta.selectionStart = ta.selectionEnd = start + char.length;
+  ta.focus();
   convert();
 }
 
+function getOutput(){
+  const t = document.getElementById('out').textContent;
+  return (t && t!=='यहाँ परिणाम देखिनेछ…') ? t : '';
+}
+function copyOut(){
+  const t=getOutput();
+  if(!t){showToast('Nothing to copy');return;}
+  navigator.clipboard.writeText(t).then(()=>showToast('✓ Copied!'));
+}
+async function pasteInput(){
+  try{const t=await navigator.clipboard.readText();document.getElementById('inp').value=t;convert();}
+  catch{showToast('Use Ctrl+V / ⌘V');}
+}
+function downloadTxt(){
+  const t=getOutput();
+  if(!t){showToast('Nothing to download');return;}
+  dlText(t, mode==='pu'?'unicode-output.txt':'preeti-output.txt');
+  showToast('✓ Downloaded!');
+}
+function clearAll(){document.getElementById('inp').value='';convert();}
+
 // ═══════════════════════════════════════════════════
-// FILE TAB
+// MAIN TAB SWITCHER
 // ═══════════════════════════════════════════════════
-function setFileMode(m) {
-  fileMode = m;
-  document.getElementById('file-btn-pu').classList.toggle('active', m==='pu');
-  document.getElementById('file-btn-up').classList.toggle('active', m==='up');
-  // Reset statuses
-  uploadedFiles.forEach(f => f.status = 'pending');
+function switchMainTab(name, btn){
+  ['text','file','batch'].forEach(t=>{
+    document.getElementById('mtab-'+t).style.display='none';
+    document.getElementById('tab-'+t+'-btn').classList.remove('active');
+  });
+  document.getElementById('mtab-'+name).style.display='block';
+  btn.classList.add('active');
+  if(name==='batch' && batchCount===0){addBatchItem();addBatchItem();}
+}
+
+// ═══════════════════════════════════════════════════
+// FILE UPLOAD
+// ═══════════════════════════════════════════════════
+function setFileMode(m){
+  fileMode=m;
+  document.getElementById('file-btn-pu').classList.toggle('active',m==='pu');
+  document.getElementById('file-btn-up').classList.toggle('active',m==='up');
+  uploadedFiles.forEach(f=>f.status='pending');
   renderFileList();
 }
-
-function handleDrag(e, over) {
-  e.preventDefault();
-  document.getElementById('drop-zone').classList.toggle('dragover', over);
-}
-
-function handleDrop(e) {
-  e.preventDefault();
-  document.getElementById('drop-zone').classList.remove('dragover');
-  handleFiles(e.dataTransfer.files);
-}
-
-function handleFiles(files) {
-  for (const f of files) {
-    const ext = f.name.split('.').pop().toLowerCase();
-    if (!['txt','docx'].includes(ext)) { showToast('Only .txt and .docx supported'); continue; }
-    uploadedFiles.push({ file:f, name:f.name, size:f.size, status:'pending', result:null });
+function handleDrag(e,over){e.preventDefault();document.getElementById('drop-zone').classList.toggle('dragover',over);}
+function handleDrop(e){e.preventDefault();document.getElementById('drop-zone').classList.remove('dragover');handleFiles(e.dataTransfer.files);}
+function handleFiles(files){
+  for(const f of files){
+    const ext=f.name.split('.').pop().toLowerCase();
+    if(!['txt','docx'].includes(ext)){showToast('Only .txt and .docx');continue;}
+    uploadedFiles.push({file:f,name:f.name,size:f.size,status:'pending',result:null});
   }
   renderFileList();
-  document.getElementById('file-actions').style.display = uploadedFiles.length ? 'flex' : 'none';
+  document.getElementById('file-actions').style.display=uploadedFiles.length?'flex':'none';
 }
-
-function renderFileList() {
-  const el = document.getElementById('file-list');
-  el.innerHTML = uploadedFiles.map((f,i) => `
+function renderFileList(){
+  document.getElementById('file-list').innerHTML=uploadedFiles.map((f,i)=>`
     <div class="file-item">
-      <span class="file-icon">${f.name.endsWith('.docx') ? '📝' : '📄'}</span>
-      <div class="file-info">
-        <div class="file-name">${f.name}</div>
-        <div class="file-size">${fmtSize(f.size)}</div>
-      </div>
-      <span class="file-status ${f.status}">${f.status === 'pending' ? 'Pending' : f.status === 'done' ? '✓ Done' : '✗ Error'}</span>
-      ${f.status === 'done' ? `<button class="btn" style="padding:6px 10px;font-size:11px" onclick="downloadFile(${i})">↓</button>` : ''}
-      <button class="file-remove" onclick="removeFile(${i})" title="Remove">✕</button>
-    </div>
-  `).join('');
+      <span>${f.name.endsWith('.docx')?'📝':'📄'}</span>
+      <span class="file-name">${f.name}</span>
+      <span class="file-size">${fmtSize(f.size)}</span>
+      <span class="file-status ${f.status}">${f.status==='pending'?'Pending':f.status==='done'?'✓ Done':'✗ Error'}</span>
+      ${f.status==='done'?`<button class="btn" style="padding:4px 8px;font-size:10px" onclick="downloadFile(${i})">↓</button>`:''}
+      <button class="file-remove" onclick="removeFile(${i})">✕</button>
+    </div>`).join('');
 }
-
-function removeFile(i) {
-  uploadedFiles.splice(i, 1);
-  renderFileList();
-  document.getElementById('file-actions').style.display = uploadedFiles.length ? 'flex' : 'none';
-}
-
-function clearFiles() {
-  uploadedFiles = [];
-  renderFileList();
-  document.getElementById('file-actions').style.display = 'none';
-  document.getElementById('file-input').value = '';
-}
-
-async function convertAllFiles() {
-  if (!uploadedFiles.length) return;
-  const prog = document.getElementById('prog-wrap');
-  const bar = document.getElementById('prog-bar');
-  const lbl = document.getElementById('prog-label');
+function removeFile(i){uploadedFiles.splice(i,1);renderFileList();document.getElementById('file-actions').style.display=uploadedFiles.length?'flex':'none';}
+function clearFiles(){uploadedFiles=[];renderFileList();document.getElementById('file-actions').style.display='none';document.getElementById('file-input').value='';}
+async function convertAllFiles(){
+  if(!uploadedFiles.length) return;
+  const prog=document.getElementById('prog-wrap'),bar=document.getElementById('prog-bar'),lbl=document.getElementById('prog-label');
   prog.classList.add('show');
-
-  for (let i = 0; i < uploadedFiles.length; i++) {
-    const f = uploadedFiles[i];
-    lbl.textContent = `Processing ${f.name}…`;
-    bar.style.width = Math.round((i / uploadedFiles.length) * 100) + '%';
-    try {
-      const ext = f.name.split('.').pop().toLowerCase();
-      if (ext === 'txt') {
-        const text = await readFileAsText(f.file);
-        f.result = { type:'txt', data: convertText(text, fileMode), name: convertedName(f.name) };
-      } else if (ext === 'docx') {
-        const buf = await readFileAsArrayBuffer(f.file);
-        const res = await mammoth.extractRawText({ arrayBuffer: buf });
-        const converted = convertText(res.value, fileMode);
-        f.result = { type:'docx', data: converted, name: convertedName(f.name) };
+  for(let i=0;i<uploadedFiles.length;i++){
+    const f=uploadedFiles[i];
+    lbl.textContent=`Processing ${f.name}…`;
+    bar.style.width=Math.round(i/uploadedFiles.length*100)+'%';
+    try{
+      const ext=f.name.split('.').pop().toLowerCase();
+      if(ext==='txt'){
+        const text=await readFileAsText(f.file);
+        f.result={type:'txt',data:convertText(text,fileMode),name:convName(f.name)};
+      } else {
+        const buf=await readFileAsAB(f.file);
+        const res=await mammoth.extractRawText({arrayBuffer:buf});
+        f.result={type:'docx',data:convertText(res.value,fileMode),name:convName(f.name)};
       }
-      f.status = 'done';
-    } catch(e) {
-      f.status = 'error';
-      console.error(e);
-    }
+      f.status='done';
+    } catch(e){f.status='error';console.error(e);}
     renderFileList();
     await sleep(30);
   }
-
-  bar.style.width = '100%';
-  lbl.textContent = 'All files converted!';
-  setTimeout(() => prog.classList.remove('show'), 2000);
+  bar.style.width='100%';lbl.textContent='All done!';
+  setTimeout(()=>prog.classList.remove('show'),2000);
   showToast('✓ All files converted!');
 }
-
-async function downloadFile(i) {
-  const f = uploadedFiles[i];
-  if (!f.result) return;
-  if (f.result.type === 'txt') {
-    dlText(f.result.data, f.result.name);
-  } else {
-    await dlDocx(f.result.data, f.result.name);
-  }
-  showToast('✓ Downloaded: ' + f.result.name);
+async function downloadFile(i){
+  const f=uploadedFiles[i];if(!f.result)return;
+  if(f.result.type==='txt') dlText(f.result.data,f.result.name);
+  else await dlDocx(f.result.data,f.result.name);
+  showToast('✓ Downloaded: '+f.result.name);
 }
-
-async function downloadAllFiles() {
-  const done = uploadedFiles.filter(f => f.status === 'done');
-  if (!done.length) { showToast('Convert files first'); return; }
-  for (const f of done) {
-    if (f.result.type === 'txt') dlText(f.result.data, f.result.name);
-    else await dlDocx(f.result.data, f.result.name);
+async function downloadAllFiles(){
+  const done=uploadedFiles.filter(f=>f.status==='done');
+  if(!done.length){showToast('Convert files first');return;}
+  for(const f of done){
+    if(f.result.type==='txt') dlText(f.result.data,f.result.name);
+    else await dlDocx(f.result.data,f.result.name);
     await sleep(200);
   }
   showToast(`✓ Downloaded ${done.length} file(s)`);
 }
-
-function convertedName(name) {
-  const parts = name.split('.');
-  const ext = parts.pop();
-  return parts.join('.') + '-converted.' + ext;
-}
+function convName(n){const p=n.split('.');const e=p.pop();return p.join('.')+'-converted.'+e;}
 
 // ═══════════════════════════════════════════════════
-// BATCH TAB
+// BATCH
 // ═══════════════════════════════════════════════════
-function setBatchMode(m) {
-  batchMode = m;
-  document.getElementById('batch-btn-pu').classList.toggle('active', m==='pu');
-  document.getElementById('batch-btn-up').classList.toggle('active', m==='up');
+function setBatchMode(m){
+  batchMode=m;
+  document.getElementById('batch-btn-pu').classList.toggle('active',m==='pu');
+  document.getElementById('batch-btn-up').classList.toggle('active',m==='up');
   convertAllBatch();
 }
-
-function addBatchItem() {
-  batchCount++;
-  const n = batchCount;
-  const div = document.createElement('div');
-  div.className = 'batch-item';
-  div.id = 'batch-' + n;
-  div.innerHTML = `
-    <div class="batch-header">
+function addBatchItem(){
+  batchCount++;const n=batchCount;
+  const div=document.createElement('div');div.className='batch-item';div.id='batch-'+n;
+  div.innerHTML=`
+    <div class="batch-hdr">
       <span class="batch-num">${n}</span>
-      <span style="font-size:13px;font-weight:500;flex:1">Snippet ${n}</span>
-      <button class="btn" style="padding:4px 10px;font-size:11px" onclick="convertBatchItem(${n})">Convert</button>
-      <button class="btn" style="padding:4px 10px;font-size:11px" onclick="copyBatchItem(${n})">Copy</button>
+      <span style="font-size:13px;font-weight:600;flex:1">Snippet ${n}</span>
+      <button class="btn" style="padding:3px 8px;font-size:11px" onclick="convertBatchItem(${n})">Convert</button>
+      <button class="btn" style="padding:3px 8px;font-size:11px" onclick="copyBatchItem(${n})">Copy</button>
       <button class="file-remove" onclick="document.getElementById('batch-${n}').remove()">✕</button>
     </div>
     <div class="batch-body">
       <div class="batch-in">
-        <div class="panel-label" style="font-size:10px"><span class="dot"></span> Input</div>
-        <textarea id="bi-${n}" placeholder="Paste text here…" oninput="convertBatchItem(${n})"></textarea>
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:600">INPUT</div>
+        <textarea id="bi-${n}" placeholder="Text here…" oninput="convertBatchItem(${n})"></textarea>
       </div>
-      <div class="batch-out">
-        <div class="panel-label" style="font-size:10px"><span class="dot red"></span> Output</div>
-        <div class="out-box empty" id="bo-${n}" style="min-height:100px;font-size:14px">Output…</div>
+      <div class="batch-out-wrap">
+        <div style="font-size:10px;color:var(--muted);margin-bottom:4px;font-weight:600">OUTPUT</div>
+        <div class="out-box empty" id="bo-${n}">Output…</div>
       </div>
-    </div>
-    <div class="batch-actions">
-      <span class="char-count" id="bc-${n}" style="margin:0">0 chars</span>
-    </div>
-  `;
+    </div>`;
   document.getElementById('batch-grid').appendChild(div);
 }
-
-function convertBatchItem(n) {
-  const inp = document.getElementById('bi-'+n).value;
-  const ob = document.getElementById('bo-'+n);
-  const cc = document.getElementById('bc-'+n);
-  if (!inp) { ob.textContent='Output…'; ob.classList.add('empty'); cc.textContent='0 chars'; return; }
-  const r = convertText(inp, batchMode);
-  ob.textContent = r;
-  ob.classList.remove('empty');
-  ob.className = 'out-box' + (batchMode==='up' ? ' preeti-out' : '');
-  cc.textContent = r.length + ' chars';
+function convertBatchItem(n){
+  const inp=document.getElementById('bi-'+n).value;
+  const ob=document.getElementById('bo-'+n);
+  if(!inp){ob.textContent='Output…';ob.className='out-box empty';return;}
+  const r=convertText(inp,batchMode);
+  ob.textContent=r;ob.className='out-box'+(batchMode==='up'?' preeti-out':'');
 }
-
-function copyBatchItem(n) {
-  const t = document.getElementById('bo-'+n).textContent;
-  if (!t || t==='Output…') { showToast('Nothing to copy'); return; }
-  navigator.clipboard.writeText(t).then(() => showToast('✓ Copied snippet ' + n));
+function copyBatchItem(n){
+  const t=document.getElementById('bo-'+n).textContent;
+  if(!t||t==='Output…'){showToast('Nothing to copy');return;}
+  navigator.clipboard.writeText(t).then(()=>showToast('✓ Copied snippet '+n));
 }
-
-function convertAllBatch() {
-  for (let i=1; i<=batchCount; i++) {
-    if (document.getElementById('batch-'+i)) convertBatchItem(i);
-  }
+function convertAllBatch(){for(let i=1;i<=batchCount;i++){if(document.getElementById('batch-'+i))convertBatchItem(i);}}
+function copyAllBatch(){
+  let all='';
+  for(let i=1;i<=batchCount;i++){const el=document.getElementById('bo-'+i);if(el&&el.textContent!=='Output…')all+='=== Snippet '+i+' ===\n'+el.textContent+'\n\n';}
+  if(!all){showToast('Nothing to copy');return;}
+  navigator.clipboard.writeText(all.trim()).then(()=>showToast('✓ Copied all'));
 }
-
-function copyAllBatch() {
-  let all = '';
-  for (let i=1; i<=batchCount; i++) {
-    const el = document.getElementById('bo-'+i);
-    if (el && el.textContent && el.textContent!=='Output…') {
-      all += '=== Snippet ' + i + ' ===\n' + el.textContent + '\n\n';
-    }
-  }
-  if (!all) { showToast('Nothing to copy'); return; }
-  navigator.clipboard.writeText(all.trim()).then(() => showToast('✓ Copied all outputs'));
+function downloadBatch(){
+  let all='';
+  for(let i=1;i<=batchCount;i++){const el=document.getElementById('bo-'+i);if(el&&el.textContent!=='Output…')all+='=== Snippet '+i+' ===\n'+el.textContent+'\n\n';}
+  if(!all){showToast('Nothing to download');return;}
+  dlText(all.trim(),'batch-converted.txt');showToast('✓ Downloaded');
 }
-
-function downloadBatch() {
-  let all = '';
-  for (let i=1; i<=batchCount; i++) {
-    const el = document.getElementById('bo-'+i);
-    if (el && el.textContent && el.textContent!=='Output…') {
-      all += '=== Snippet ' + i + ' ===\n' + el.textContent + '\n\n';
-    }
-  }
-  if (!all) { showToast('Nothing to download'); return; }
-  dlText(all.trim(), 'batch-converted.txt');
-  showToast('✓ Downloaded batch output');
-}
-
-function clearBatch() {
-  document.getElementById('batch-grid').innerHTML='';
-  batchCount=0;
-}
-
-// ═══════════════════════════════════════════════════
-// TAB SWITCHER
-// ═══════════════════════════════════════════════════
-function switchTab(name, btn) {
-  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-'+name).classList.add('active');
-  btn.classList.add('active');
-
-  // Auto-add first batch item
-  if (name==='batch' && batchCount===0) { addBatchItem(); addBatchItem(); }
-}
+function clearBatch(){document.getElementById('batch-grid').innerHTML='';batchCount=0;}
 
 // ═══════════════════════════════════════════════════
 // UTILITIES
 // ═══════════════════════════════════════════════════
-function dlText(text, filename) {
-  const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(a.href);
+function dlText(text,filename){
+  const blob=new Blob([text],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=filename;a.click();URL.revokeObjectURL(a.href);
 }
-
-async function dlDocx(text, filename) {
-  // Use docx.js to build a real .docx
-  try {
-    const { Document, Packer, Paragraph, TextRun } = docx;
-    const paragraphs = text.split('\n').map(line =>
-      new Paragraph({ children: [new TextRun({ text: line, font: 'Kalimati' })] })
-    );
-    const doc = new Document({ sections: [{ children: paragraphs }] });
-    const buf = await Packer.toBlob(doc);
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(buf);
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(a.href);
-  } catch(e) {
-    // Fallback: download as txt if docx.js fails
-    console.warn('docx.js failed, falling back to txt:', e);
-    dlText(text, filename.replace('.docx', '.txt'));
-  }
+async function dlDocx(text,filename){
+  try{
+    const {Document,Packer,Paragraph,TextRun}=docx;
+    const paras=text.split('\n').map(l=>new Paragraph({children:[new TextRun({text:l,font:'Kalimati'})]}));
+    const doc=new Document({sections:[{children:paras}]});
+    const buf=await Packer.toBlob(doc);
+    const a=document.createElement('a');a.href=URL.createObjectURL(buf);a.download=filename;a.click();URL.revokeObjectURL(a.href);
+  }catch(e){dlText(text,filename.replace('.docx','.txt'));}
 }
-
-function readFileAsText(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result);
-    r.onerror = rej;
-    r.readAsText(file, 'UTF-8');
-  });
-}
-
-function readFileAsArrayBuffer(file) {
-  return new Promise((res, rej) => {
-    const r = new FileReader();
-    r.onload = () => res(r.result);
-    r.onerror = rej;
-    r.readAsArrayBuffer(file);
-  });
-}
-
-function fmtSize(bytes) {
-  if (bytes < 1024) return bytes + ' B';
-  if (bytes < 1048576) return (bytes/1024).toFixed(1) + ' KB';
-  return (bytes/1048576).toFixed(1) + ' MB';
-}
-
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2200);
-}
+function readFileAsText(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsText(file,'UTF-8');});}
+function readFileAsAB(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsArrayBuffer(file);});}
+function fmtSize(b){if(b<1024)return b+' B';if(b<1048576)return(b/1024).toFixed(1)+' KB';return(b/1048576).toFixed(1)+' MB';}
+function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
 </script>
 </body>
 </html>
