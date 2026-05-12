@@ -4,18 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Preeti ↔ Unicode Converter – Free Nepali Font Toolkit | thenepal.io</title>
-    <meta name="description" content="The most advanced free Preeti to Unicode converter with .docx/.txt file upload, batch mode, Kantipur & PCS Nepali support, dark mode, and offline PWA. 100% private — runs in your browser.">
+    <meta name="description" content="The most advanced free Preeti to Unicode converter. Upload .docx/.txt, batch convert, Kantipur & PCS Nepali support. 100% private.">
     <meta name="keywords" content="preeti to unicode, unicode to preeti, nepali font converter, kantipur to unicode, pcs nepali converter, preeti unicode, docx converter, nepali typing tool, batch converter, nepali unicode">
     <meta name="author" content="thenepal.io">
-    <meta name="robots" content="index, follow">
     <meta property="og:title" content="Preeti ↔ Unicode – Free Nepali Font Toolkit | thenepal.io">
     <meta property="og:description" content="Convert Preeti, Kantipur & PCS Nepali to Unicode instantly. Upload .docx/.txt files. Batch mode. 100% private. Works offline.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thenepal.io">
-    <meta property="og:site_name" content="thenepal.io">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Preeti ↔ Unicode Converter | thenepal.io">
-    <meta name="twitter:description" content="Free Nepali font converter. Preeti, Kantipur, PCS Nepali → Unicode. File upload, batch mode, offline support.">
     <link rel="canonical" href="https://thenepal.io">
 
     <!-- Schema Markup: SoftwareApplication + HowTo -->
@@ -58,10 +54,158 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlByZWV0aSDihpQgVW5pY29kZSBDb252ZXJ0ZXIgLSB0aGVuZXBhbC5pbyIsCiAgInNob3J0X25hbWUiOiAiUHJlZXRpLVVuaWNvZGUiLAogICJkZXNjcmlwdGlvbiI6ICJGcmVlIE5lcGFsaSBmb250IGNvbnZlcnRlci4gUHJlZXRpLCBLYW50aXB1ciwgUENTIE5lcGFsaSDihpIgVW5pY29kZS4gV29ya3Mgb2ZmbGluZS4iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzAwMzg5MyIsCiAgInRoZW1lX2NvbG9yIjogIiMwMDM4OTMiLAogICJvcmllbnRhdGlvbiI6ICJhbnkiLAogICJpY29ucyI6IFt7InNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWwsJTNDc3ZnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zycgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHZpZXdCb3g9JzAgMCAxOTIgMTkyJyUzRSUzQ3JlY3Qgd2lkdGg9JzE5MicgaGVpZ2h0PScxOTInIHJ4PSczMicgZmlsbD0nJTIzMDAzODkzJy8lM0UlM0N0ZXh0IHg9Jzk2JyB5PScxMzAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtc2l6ZT0nMTAwJyBmaWxsPSd3aGl0ZScgZm9udC1mYW1pbHk9J3NhbnMtc2VyaWYnJTNF8J+HrfCfh6UlM0MvdGV4dCUzRSUzQy9zdmclM0UiLCJzaXplcyI6IjE5MngxOTIiLCJ0eXBlIjoiaW1hZ2Uvc3ZnK3htbCJ9XX0=">
 
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- External libraries for file conversion -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js"></script>
+
+    <style>
+        /* ═══════════════════ CSS (same as style.css) ═══════════════════ */
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --red:#C0392B;--red-dark:#96281B;--red-light:#f9e8e6;
+            --blue:#003893;--blue-mid:#0050c8;--blue-light:#e6ecf8;--blue-soft:#f0f4ff;
+            --gold:#D4AF37;--green:#1a7a4a;--green-light:#e6f4ed;
+            --bg:#FAFAF8;--surface:#FFFFFF;--text:#1a1a18;--muted:#6b6b68;
+            --border:#e2e0d8;--radius:14px;--radius-sm:9px;
+            --shadow:0 1px 3px rgba(0,0,0,0.06),0 4px 20px rgba(0,0,0,0.04);
+            --shadow-lg:0 2px 8px rgba(0,0,0,0.08),0 8px 32px rgba(0,0,0,0.06);
+            --transition:0.2s cubic-bezier(0.4,0,0.2,1);
+            --output-font-size:19px;--input-font-size:15px;
+        }
+        [data-theme="dark"]{
+            --bg:#121418;--surface:#1c1f24;--text:#e8e6e0;--muted:#999892;
+            --border:#2e3036;--blue-light:#1a2440;--blue-soft:#141c30;
+            --green-light:#162a1e;--red-light:#2a1416;
+            --shadow:0 1px 3px rgba(0,0,0,0.3),0 4px 20px rgba(0,0,0,0.25);
+            --shadow-lg:0 2px 8px rgba(0,0,0,0.4),0 8px 32px rgba(0,0,0,0.35);
+        }
+        html{scroll-behavior:smooth;scroll-padding-top:70px}
+        body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;transition:background var(--transition),color var(--transition)}
+        header{background:var(--blue);color:white;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,0.2);gap:10px;flex-wrap:wrap}
+        .logo{font-size:15px;font-weight:700;letter-spacing:-0.3px;display:flex;align-items:center;gap:8px;white-space:nowrap;text-decoration:none;color:white}
+        .logo-accent{color:var(--gold)}
+        .header-right{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+        .header-badge,.privacy-badge{font-size:10px;padding:4px 10px;border-radius:20px;white-space:nowrap}
+        .header-badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2)}
+        .privacy-badge{background:rgba(26,122,74,0.35);border:1px solid rgba(26,122,74,0.5);color:#7ef5b4}
+        .dark-toggle{width:34px;height:34px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.08);cursor:pointer;font-size:17px;display:flex;align-items:center;justify-content:center;transition:all var(--transition);color:white;flex-shrink:0}
+        .dark-toggle:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.5)}
+        .hero{background:linear-gradient(145deg,var(--blue) 0%,#001640 100%);color:white;text-align:center;padding:40px 20px 36px;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M0 0h30v30H0zm30 30h30v30H30z'/%3E%3C/g%3E%3C/svg%3E")}
+        .hero-tag{display:inline-block;background:var(--red);color:white;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 14px;border-radius:20px;margin-bottom:12px;position:relative;z-index:1}
+        .hero h1{font-size:clamp(26px,5vw,44px);font-weight:700;letter-spacing:-1px;line-height:1.12;margin-bottom:8px;position:relative;z-index:1}
+        .hero h1 em{font-style:normal;color:var(--gold);font-family:'Tiro Devanagari','Mukta',serif}
+        .hero p{font-size:14px;color:rgba(255,255,255,0.6);max-width:520px;margin:0 auto 14px;font-weight:300;position:relative;z-index:1}
+        .hero-pills{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;position:relative;z-index:1}
+        .pill{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:20px;padding:4px 12px;font-size:11px;color:rgba(255,255,255,0.75)}
+        .quick-nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:16px;position:relative;z-index:1}
+        .quick-nav a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:11px;padding:4px 10px;border-radius:16px;border:1px solid rgba(255,255,255,0.15);transition:all var(--transition)}
+        .quick-nav a:hover{background:rgba(255,255,255,0.1);color:white}
+        .ad-container{max-width:960px;margin:20px auto;padding:0 14px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+        .ad-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:2px}
+        main{max-width:960px;margin:0 auto;padding:20px 14px 50px}
+        .top-controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 14px;box-shadow:var(--shadow)}
+        .top-controls label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px}
+        .top-controls select{padding:7px 30px 7px 10px;border-radius:var(--radius-sm);border:1.5px solid var(--border);font-family:'Sora',sans-serif;font-size:13px;background:var(--surface);color:var(--text);cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b6b68' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border var(--transition)}
+        .top-controls select:focus{outline:none;border-color:var(--blue)}
+        .mode-toggle-inline{display:flex;gap:4px;background:var(--bg);border-radius:var(--radius-sm);padding:3px;border:1px solid var(--border)}
+        .mode-btn-sm{padding:6px 14px;border:none;background:transparent;border-radius:7px;font-family:'Sora',sans-serif;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;transition:all var(--transition);white-space:nowrap}
+        .mode-btn-sm.active{background:var(--blue);color:white;box-shadow:0 2px 6px rgba(0,56,147,0.3)}
+        .font-size-group{display:flex;align-items:center;gap:6px;margin-left:auto}
+        .font-size-group input[type="range"]{width:80px;accent-color:var(--blue)}
+        .font-size-val{font-size:11px;font-weight:600;color:var(--muted);min-width:28px;text-align:center}
+        .conv-grid{display:grid;grid-template-columns:1fr 48px 1fr;gap:10px;align-items:start;margin-bottom:12px}
+        @media(max-width:640px){.conv-grid{grid-template-columns:1fr}.swap-col{display:none}.top-controls{flex-direction:column;align-items:stretch}.font-size-group{margin-left:0;justify-content:flex-end}}
+        .panel-label{font-size:11px;font-weight:600;letter-spacing:0.8px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:7px}
+        .dot{width:8px;height:8px;border-radius:50%;background:var(--blue);display:inline-block;flex-shrink:0}
+        .dot.red{background:var(--red)}
+        textarea,.out-box{width:100%;min-height:220px;padding:14px;border-radius:var(--radius);font-size:var(--input-font-size);line-height:1.8;border:1.5px solid var(--border);background:var(--surface);color:var(--text);transition:all var(--transition);box-shadow:var(--shadow);resize:vertical}
+        textarea{font-family:'DM Mono','Courier New',monospace}
+        textarea:focus{outline:none;border-color:var(--blue);box-shadow:var(--shadow-lg),0 0 0 3px rgba(0,56,147,0.08)}
+        textarea::placeholder{color:#bbb;font-family:'Sora',sans-serif;font-size:13px}
+        .out-box{font-family:'Tiro Devanagari','Mukta',serif;font-size:var(--output-font-size);background:var(--blue-soft);border-color:var(--blue-light);word-break:break-word;cursor:text;user-select:all;overflow-y:auto;transition:font-size var(--transition)}
+        .out-box.preeti-out{font-family:'DM Mono','Courier New',monospace;font-size:var(--input-font-size);background:var(--surface)}
+        .out-box.empty{color:#bbb;font-family:'Sora',sans-serif;font-size:13px}
+        .swap-col{display:flex;align-items:center;justify-content:center;padding-top:30px}
+        .swap-btn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:var(--surface);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.3s ease;box-shadow:var(--shadow);color:var(--muted)}
+        .swap-btn:hover{border-color:var(--blue);color:var(--blue);transform:rotate(180deg)}
+        .counter-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:4px;font-size:11px;color:var(--muted)}
+        .counter-row strong{color:var(--text);font-weight:600}
+        .action-bar{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;align-items:center}
+        .btn{padding:9px 15px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--surface);font-family:'Sora',sans-serif;font-size:12px;font-weight:500;color:var(--text);cursor:pointer;transition:all var(--transition);display:flex;align-items:center;gap:6px;white-space:nowrap;position:relative}
+        .btn:hover{background:var(--blue-light);border-color:var(--blue);color:var(--blue)}
+        .btn.primary{background:var(--red);color:white;border-color:var(--red);font-weight:600;padding:10px 20px;font-size:13px;animation:pulse-glow 2.5s ease-in-out infinite}
+        @keyframes pulse-glow{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.4)}50%{box-shadow:0 0 0 10px rgba(192,57,43,0)}}
+        .btn.primary:hover{background:var(--red-dark);border-color:var(--red-dark);color:white;animation:none;box-shadow:0 4px 16px rgba(192,57,43,0.35)}
+        .btn.success{background:var(--green);color:white;border-color:var(--green)}
+        .btn.success:hover{background:#156035;border-color:#156035;color:white}
+        .btn svg{width:14px;height:14px;flex-shrink:0}
+        .tooltip-pop{position:absolute;top:-38px;left:50%;transform:translateX(-50%) translateY(6px);background:#1a1a18;color:#fff;padding:5px 12px;border-radius:16px;font-size:11px;font-weight:500;white-space:nowrap;pointer-events:none;opacity:0;transition:all 0.25s ease;z-index:20}
+        .tooltip-pop.show{opacity:1;transform:translateX(-50%) translateY(0)}
+        .tooltip-pop::after{content:'';position:absolute;bottom:-5px;left:50%;transform:translateX(-50%);border-left:5px solid transparent;border-right:5px solid transparent;border-top:5px solid #1a1a18}
+        .upload-area{border:2px dashed var(--border);border-radius:var(--radius);padding:34px 20px;text-align:center;background:var(--surface);cursor:pointer;transition:all var(--transition);margin-bottom:14px}
+        .upload-area:hover,.upload-area.dragover{border-color:var(--blue);background:var(--blue-soft)}
+        .upload-icon{font-size:38px;margin-bottom:8px}
+        .upload-area h3{font-size:15px;font-weight:600;margin-bottom:4px}
+        .upload-area p{font-size:12px;color:var(--muted)}
+        .upload-area input{display:none}
+        .file-list{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+        .file-item{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;box-shadow:var(--shadow)}
+        .file-icon{font-size:20px;flex-shrink:0}
+        .file-info{flex:1;min-width:0}
+        .file-name{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+        .file-size{font-size:11px;color:var(--muted)}
+        .file-status{font-size:10px;padding:3px 8px;border-radius:16px;font-weight:500}
+        .file-status.pending{background:#fff3cd;color:#856404}
+        .file-status.done{background:var(--green-light);color:var(--green)}
+        .file-status.error{background:var(--red-light);color:var(--red)}
+        .file-remove{background:none;border:none;cursor:pointer;color:var(--muted);font-size:16px;padding:2px 6px;border-radius:6px}
+        .file-remove:hover{background:var(--red-light);color:var(--red)}
+        .progress-wrap{display:none;margin-bottom:12px}
+        .progress-wrap.show{display:block}
+        .progress-bar-bg{background:var(--border);border-radius:6px;height:6px;overflow:hidden}
+        .progress-bar{background:var(--blue);height:100%;width:0%;transition:width 0.35s ease;border-radius:6px}
+        .progress-label{font-size:11px;color:var(--muted);margin-top:3px}
+        .section-title{font-size:11px;font-weight:600;letter-spacing:0.9px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;margin-top:20px;display:flex;align-items:center;gap:8px}
+        .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+        .features{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+        .feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow)}
+        .feature-icon{width:34px;height:34px;border-radius:9px;background:var(--blue-light);display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:8px}
+        .feature h3{font-size:13px;font-weight:600;margin-bottom:3px}
+        .feature p{font-size:11px;color:var(--muted);line-height:1.5}
+        .howto{margin-top:30px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+        .howto h2{font-size:16px;font-weight:600;margin-bottom:14px}
+        .steps{display:flex;flex-direction:column;gap:10px}
+        .step{display:flex;gap:10px;align-items:flex-start}
+        .step-num{width:26px;height:26px;flex-shrink:0;border-radius:50%;background:var(--blue);color:white;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+        .step-text{font-size:13px;color:var(--muted);padding-top:3px;line-height:1.55}
+        .step-text strong{color:var(--text)}
+        .faq{margin-top:30px}
+        .faq h2{font-size:16px;font-weight:600;margin-bottom:14px}
+        .faq-item{border-bottom:1px solid var(--border);padding:13px 0}
+        .faq-q{font-size:13px;font-weight:600;margin-bottom:4px}
+        .faq-a{font-size:12px;color:var(--muted);line-height:1.6}
+        .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:28px 0 0}
+        @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr)}}
+        .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;text-align:center;box-shadow:var(--shadow)}
+        .stat-num{font-size:26px;font-weight:700;color:var(--blue);letter-spacing:-1px;line-height:1;margin-bottom:3px}
+        .stat-lbl{font-size:11px;color:var(--muted)}
+        .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(90px);background:#1a1a18;color:white;padding:10px 22px;border-radius:30px;font-size:12px;font-weight:500;transition:transform 0.35s cubic-bezier(0.4,0,0.2,1);z-index:999;pointer-events:none;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,0.3)}
+        .toast.show{transform:translateX(-50%) translateY(0)}
+        footer{background:var(--blue);color:rgba(255,255,255,0.6);text-align:center;padding:20px;font-size:11px;margin-top:50px}
+        footer a{color:var(--gold);text-decoration:none;font-weight:500}
+        footer a:hover{text-decoration:underline}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+        main>*{animation:fadeUp 0.4s ease both}
+        main>*:nth-child(1){animation-delay:0.03s}
+        main>*:nth-child(2){animation-delay:0.06s}
+        main>*:nth-child(3){animation-delay:0.09s}
+        main>*:nth-child(4){animation-delay:0.12s}
+    </style>
 </head>
 <body>
     <header>
@@ -244,11 +388,484 @@
 
     <div class="toast" id="toast"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/8.5.0/docx.umd.min.js">
-    </script>
-    <script src="script.js">
+    <script>
+        // ═══════════════════════════════════════════════════
+        // PREETI ↔ UNICODE CONVERTER - Complete JavaScript
+        // Copyright © thenepal.io
+        // ═══════════════════════════════════════════════════
+
+        // ─── Full Preeti Mapping Database (embedded) ─────
+        const PREETI_MAP = {
+            "cf]": "ओ", "cf}": "औ", "cf": "आ", "f]": "ो", "f}": "ौ",
+            "km": "फ", "Qm": "फ्र", "k|": "प्त",
+            "c": "अ", "O": "इ", "Ö": "ई", "p": "उ", "P": "ऊ", "C": "ए",
+            "s": "क", "v": "ख", "u": "ग", "3": "घ", "ª": "ङ",
+            "r": "च", "5": "छ", "h": "ज", "´": "झ", "~": "ञ",
+            "6": "ट", "7": "ठ", "8": "ड", "9": "ढ", "0": "ण",
+            "t": "त", "y": "थ", "b": "द", "w": "ध", "g": "न",
+            "k": "प", "a": "ब", "e": "भ", "d": "म",
+            "o": "य", "/": "य", "n": "ल", "j": "व", "z": "श",
+            "if": "ष", ";": "स", "x": "ह",
+            "f": "ा", "l": "ि", "L": "ी", "'": "ु", "\"": "ू",
+            "]": "े", "}": "ै", "M": "ं", "F": "ँ", "\\": "्",
+            "H": "ः", ":": "ँ", ".": "।", "<": ",", ">": ".",
+            "|": "।", "?": "रु",
+            "1": "१", "2": "२", "3": "३", "4": "४",
+            "5": "५", "6": "६", "7": "७", "8": "८", "9": "९", "0": "०",
+            "‚": "घ", "…": "'", "ˆ": "फ", "‰": "भ", "‹": "झ",
+            "•": "ड", "˜": "ु", "›": "ढ", "£": "छ", "¥": "े",
+            "§": "ठ", "°": "ञ", "±": "+", "¶": "ण", "¿": "रू",
+            "Å": "हृ", "Æ": "\"", "Ë": "झ्", "Ì": "त्र", "Í": "क्ष",
+            "Î": "ज्ञ", "Ð": "…", "Ö": "=", "Ø": "च्य", "Ù": ";",
+            "Ú": "'", "Û": "!", "Ü": "%", "Ý": "ठू", "Þ": ".",
+            "ß": "श्र", "å": "द्य", "æ": "“", "ç": "ॐ", "÷": "/",
+            " ": " ", "\n": "\n", "\t": "\t"
+        };
+
+        // Additional font maps (Kantipur & PCS Nepali)
+        const K2U_SINGLE = {
+            'k':'क','l':'ख','m':'ग','n':'घ','o':'ङ','p':'च','q':'छ','r':'ज','s':'झ','t':'ञ',
+            'u':'ट','v':'ठ','w':'ड','x':'ढ','y':'ण','z':'त','A':'थ','B':'द','C':'ध','D':'न',
+            'E':'प','F':'फ','G':'ब','H':'भ','I':'म','J':'य','K':'र','L':'ल','M':'व','N':'श',
+            'O':'ष','P':'स','Q':'ह','a':'अ','b':'आ','c':'इ','d':'ई','e':'उ','f':'ऊ','g':'ए',
+            'h':'ऐ','i':'ओ','j':'औ','R':'क्ष','S':'त्र','T':'ज्ञ','[':'ि',']':'ी','{':'ु',
+            '}':'ू',';':'ے',"'":'ै','/':'ो','?':'ौ','.':'।',',':'ं','<':'ँ','>':'ः',
+            '1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९','0':'०',
+            ' ':' ','\n':'\n','\t':'\t'
+        };
+        const PCS2U_SINGLE = { ...PREETI_MAP };
+
+        let FONT_MAPS = { preeti: { forward: PREETI_MAP, reverse: {} },
+                         kantipur: { forward: K2U_SINGLE, reverse: {} },
+                         pcsnepali: { forward: PCS2U_SINGLE, reverse: {} } };
+
+        // Build reverse maps (Unicode → legacy)
+        function buildReverseMaps() {
+            for (const font of ['preeti','kantipur','pcsnepali']) {
+                const fwd = FONT_MAPS[font].forward;
+                const rev = {};
+                for (const [k,v] of Object.entries(fwd)) {
+                    if (!rev[v] && k.length === 1 && ![' ','\n','\t'].includes(k)) rev[v] = k;
+                }
+                FONT_MAPS[font].reverse = rev;
+            }
+        }
+        buildReverseMaps();
+
+        // ─── State ─────────────────────────────────────────
+        let currentMode = 'pu';      // 'pu' (Preeti→Unicode) or 'up' (Unicode→Preeti)
+        let currentFont = 'preeti';  // 'preeti', 'kantipur', 'pcsnepali'
+        let uploadedFiles = [];
+
+        // ─── Conversion Engine ────────────────────────────
+        function convertText(text, mode, font) {
+            if (!text) return '';
+            const map = FONT_MAPS[font];
+            if (mode === 'pu') {
+                return forwardConvert(text, map.forward);
+            } else {
+                return reverseConvert(text, map.reverse, map.forward);
+            }
+        }
+
+        function forwardConvert(text, map) {
+            const keys = Object.keys(map).sort((a,b) => b.length - a.length);
+            let result = text;
+            for (const key of keys) {
+                const escaped = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp(escaped, 'g');
+                result = result.replace(regex, map[key]);
+            }
+            // Fix ि matra ordering (ि before consonant → after)
+            result = result.replace(/ि([कखगघङचछजझञटठडढणतथदधनपफबभमयरलळवशषसहक्षज्ञत्रश्र])/g, '$1ि');
+            return result;
+        }
+
+        function reverseConvert(text, revMap, fwdMap) {
+            // Longest multi-char Unicode sequences first (e.g., ऐ → cf])
+            const multiSeq = Object.entries(fwdMap)
+                .filter(([k,v]) => k.length > 1 && v.length > 1)
+                .sort((a,b) => b[1].length - a[1].length);
+            let result = text;
+            for (const [preeti, uni] of multiSeq) {
+                result = result.split(uni).join(preeti);
+            }
+            // Single characters
+            for (const [uni, preeti] of Object.entries(revMap)) {
+                result = result.split(uni).join(preeti);
+            }
+            // Fix ि matra: consonant+l → l+consonant
+            result = result.replace(/([कखगघङचछजझञटठडढणतथदधनपफबभमयरलवशषसहक्षज्ञत्रश्र])l/g, 'l$1');
+            return result;
+        }
+
+        // ─── UI Updates ────────────────────────────────────
+        function setMode(m) {
+            currentMode = m;
+            document.getElementById('btn-pu').classList.toggle('active', m === 'pu');
+            document.getElementById('btn-up').classList.toggle('active', m === 'up');
+            document.getElementById('in-label').textContent =
+                (m === 'pu' ? getFontLabel() + ' Input' : 'Unicode Input');
+            document.getElementById('out-label').textContent =
+                (m === 'pu' ? 'Unicode Output' : getFontLabel() + ' Output');
+            const placeholders = {
+                preeti: 'Type Preeti…\nExample: g]kfn = नेपाल\ns = क, v = ख',
+                kantipur: 'Type Kantipur…\nk=क, l=ख',
+                pcsnepali: 'Type PCS Nepali…\nSimilar to Preeti'
+            };
+            document.getElementById('inp').placeholder = m === 'pu'
+                ? (placeholders[currentFont] || '')
+                : 'Type Unicode Devanagari…';
+            const ob = document.getElementById('out');
+            ob.className = 'out-box' + (m === 'up' ? ' preeti-out' : '')
+                           + (ob.textContent === 'Converted text appears here…' ? ' empty' : '');
+            updateURLHash();
+            convert();
+        }
+
+        function getFontLabel() {
+            if (currentFont === 'kantipur') return 'Kantipur';
+            if (currentFont === 'pcsnepali') return 'PCS Nepali';
+            return 'Preeti';
+        }
+
+        function onFontChange() {
+            currentFont = document.getElementById('font-select').value;
+            setMode(currentMode);
+        }
+
+        function convert() {
+            const inp = document.getElementById('inp').value;
+            updateCounters('in', inp);
+            const ob = document.getElementById('out');
+            if (!inp) {
+                ob.textContent = 'Converted text appears here…';
+                ob.classList.add('empty');
+                updateCounters('out', '');
+                return;
+            }
+            const result = convertText(inp, currentMode, currentFont);
+            ob.textContent = result;
+            ob.classList.remove('empty');
+            updateCounters('out', result);
+            updateURLHash();
+        }
+
+        function onInputChange() {
+            convert();
+            updateURLHashDebounced();
+        }
+
+        function updateCounters(prefix, text) {
+            document.getElementById(prefix + '-chars').textContent = text.length;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById(prefix + '-words').textContent = words;
+        }
+
+        function swapAll() {
+            const cur = document.getElementById('inp').value;
+            const converted = document.getElementById('out').textContent;
+            const newMode = currentMode === 'pu' ? 'up' : 'pu';
+            setMode(newMode);
+            if (converted && converted !== 'Converted text appears here…') {
+                document.getElementById('inp').value = converted;
+                convert();
+            }
+        }
+
+        function getOutputText() {
+            const t = document.getElementById('out').textContent;
+            return (t && t !== 'Converted text appears here…') ? t : '';
+        }
+
+        async function copyOut() {
+            const t = getOutputText();
+            if (!t) { showToast('⚠️ Nothing to copy yet'); return; }
+            try {
+                await navigator.clipboard.writeText(t);
+                showToast('✓ Copied to clipboard!');
+                document.getElementById('copy-tooltip').classList.add('show');
+                setTimeout(() => document.getElementById('copy-tooltip').classList.remove('show'), 1800);
+            } catch { showToast('Use Ctrl+C to copy'); }
+        }
+
+        async function pasteInput() {
+            try {
+                const t = await navigator.clipboard.readText();
+                document.getElementById('inp').value = t;
+                convert();
+            } catch { showToast('Use Ctrl+V to paste'); }
+        }
+
+        function cleanText() {
+            const ob = document.getElementById('out');
+            let t = ob.textContent;
+            if (!t || t === 'Converted text appears here…') {
+                const inp = document.getElementById('inp');
+                if (inp.value) {
+                    t = inp.value.replace(/\|/g, '।').replace(/  +/g, ' ').replace(/\n{3,}/g, '\n\n').trim();
+                    inp.value = t;
+                    convert();
+                    showToast('✓ Input cleaned!');
+                    return;
+                }
+                showToast('⚠️ Nothing to clean');
+                return;
+            }
+            t = t.replace(/\|/g, '।').replace(/  +/g, ' ').replace(/\n{3,}/g, '\n\n')
+                 .replace(/।\s*।/g, '।').replace(/\s+।/g, '।').replace(/।([^\s])/g, '। $1').trim();
+            ob.textContent = t;
+            updateCounters('out', t);
+            updateURLHash();
+            showToast('✓ Text cleaned (|→।, spaces)');
+        }
+
+        function downloadTxt() {
+            const t = getOutputText();
+            if (!t) { showToast('⚠️ Nothing to download'); return; }
+            const filename = currentMode === 'pu' ? 'unicode-output.txt' : currentFont + '-output.txt';
+            dlText(t, filename);
+            showToast('✓ Downloaded ' + filename);
+        }
+
+        function clearAll() {
+            document.getElementById('inp').value = '';
+            document.getElementById('out').textContent = 'Converted text appears here…';
+            document.getElementById('out').classList.add('empty');
+            updateCounters('in', '');
+            updateCounters('out', '');
+            updateURLHash();
+            showToast('✓ All cleared');
+        }
+
+        function changeFontSize(val) {
+            document.documentElement.style.setProperty('--output-font-size', val + 'px');
+            document.getElementById('font-size-val').textContent = val + 'px';
+            localStorage.setItem('preeti-font-size', val);
+        }
+
+        // ─── Dark Mode ─────────────────────────────────────
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const current = html.getAttribute('data-theme');
+            const next = current === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            document.getElementById('dark-toggle').textContent = next === 'dark' ? '☀️' : '🌙';
+            localStorage.setItem('preeti-theme', next);
+        }
+
+        function initDarkMode() {
+            const saved = localStorage.getItem('preeti-theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            document.getElementById('dark-toggle').textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+
+        // ─── URL Hash (Shareable State) ─────────────────
+        let hashUpdateTimeout;
+        function updateURLHash() {
+            const inp = document.getElementById('inp').value;
+            const params = new URLSearchParams();
+            params.set('m', currentMode);
+            params.set('f', currentFont);
+            if (inp && inp.length <= 2000) params.set('t', inp);
+            else if (inp) params.set('t', inp.substring(0, 2000));
+            window.location.hash = params.toString();
+        }
+        function updateURLHashDebounced() {
+            clearTimeout(hashUpdateTimeout);
+            hashUpdateTimeout = setTimeout(updateURLHash, 400);
+        }
+        function loadFromURLHash() {
+            const hash = window.location.hash.replace('#', '');
+            if (!hash) return;
+            const params = new URLSearchParams(hash);
+            const m = params.get('m');
+            const f = params.get('f');
+            const t = params.get('t');
+            if (m && (m === 'pu' || m === 'up')) currentMode = m;
+            if (f && ['preeti','kantipur','pcsnepali'].includes(f)) {
+                currentFont = f;
+                document.getElementById('font-select').value = f;
+            }
+            if (t) document.getElementById('inp').value = t;
+            setMode(currentMode);
+        }
+
+        // ─── File Upload & Conversion ──────────────────────
+        function handleDrag(e, over) {
+            e.preventDefault();
+            document.getElementById('drop-zone').classList.toggle('dragover', over);
+        }
+        function handleDrop(e) {
+            e.preventDefault();
+            document.getElementById('drop-zone').classList.remove('dragover');
+            handleFiles(e.dataTransfer.files);
+        }
+        function handleFiles(files) {
+            for (const f of files) {
+                const ext = f.name.split('.').pop().toLowerCase();
+                if (!['txt','docx'].includes(ext)) { showToast('Only .txt and .docx supported'); continue; }
+                uploadedFiles.push({ file: f, name: f.name, size: f.size, status: 'pending', result: null });
+            }
+            renderFileList();
+            document.getElementById('file-actions').style.display = uploadedFiles.length ? 'flex' : 'none';
+        }
+        function renderFileList() {
+            const el = document.getElementById('file-list');
+            el.innerHTML = uploadedFiles.map((f,i) => `
+                <div class="file-item">
+                    <span class="file-icon">${f.name.endsWith('.docx') ? '📝' : '📄'}</span>
+                    <div class="file-info"><div class="file-name">${f.name}</div><div class="file-size">${fmtSize(f.size)}</div></div>
+                    <span class="file-status ${f.status}">${f.status==='pending'?'⏳ Pending':f.status==='done'?'✅ Done':'❌ Error'}</span>
+                    ${f.status==='done'?`<button class="btn" style="padding:5px 10px;font-size:10px" onclick="downloadSingleFile(${i})">⬇</button>`:''}
+                    <button class="file-remove" onclick="removeFile(${i})">✕</button>
+                </div>
+            `).join('');
+        }
+        function removeFile(i) { uploadedFiles.splice(i,1); renderFileList(); document.getElementById('file-actions').style.display = uploadedFiles.length?'flex':'none'; }
+        function clearFiles() { uploadedFiles=[]; renderFileList(); document.getElementById('file-actions').style.display='none'; document.getElementById('file-input').value=''; }
+
+        async function convertAllFiles() {
+            if (!uploadedFiles.length) return;
+            const prog = document.getElementById('prog-wrap'), bar = document.getElementById('prog-bar'), lbl = document.getElementById('prog-label');
+            prog.classList.add('show');
+            for (let i=0; i<uploadedFiles.length; i++) {
+                const f = uploadedFiles[i];
+                lbl.textContent = `Processing ${f.name}…`;
+                bar.style.width = Math.round((i/uploadedFiles.length)*100)+'%';
+                try {
+                    const ext = f.name.split('.').pop().toLowerCase();
+                    if (ext === 'txt') {
+                        const text = await readFileAsText(f.file);
+                        f.result = { type:'txt', data: convertText(text, currentMode, currentFont), name: convertedName(f.name) };
+                    } else if (ext === 'docx') {
+                        const buf = await readFileAsArrayBuffer(f.file);
+                        const res = await mammoth.extractRawText({ arrayBuffer: buf });
+                        f.result = { type:'docx', data: convertText(res.value, currentMode, currentFont), name: convertedName(f.name) };
+                    }
+                    f.status = 'done';
+                } catch(e) { f.status='error'; console.error(e); }
+                renderFileList();
+                await sleep(30);
+            }
+            bar.style.width='100%'; lbl.textContent='✅ All files converted!';
+            setTimeout(()=>prog.classList.remove('show'),2000);
+        }
+        function downloadSingleFile(i) {
+            const f = uploadedFiles[i]; if (!f?.result) return;
+            if (f.result.type==='txt') dlText(f.result.data, f.result.name);
+            else dlDocxFallback(f.result.data, f.result.name);
+            showToast('✓ Downloaded: '+f.result.name);
+        }
+        async function downloadAllFiles() {
+            const done = uploadedFiles.filter(f=>f.status==='done');
+            if (!done.length) { showToast('Convert files first'); return; }
+            for (const f of done) {
+                if (f.result.type==='txt') dlText(f.result.data, f.result.name);
+                else await dlDocxFallback(f.result.data, f.result.name);
+                await sleep(200);
+            }
+            showToast('✓ Downloaded '+done.length+' file(s)');
+        }
+        function convertedName(name) { const p=name.split('.'); p.pop(); return p.join('.')+'-converted.'+name.split('.').pop(); }
+
+        async function dlDocxFallback(text, filename) {
+            try {
+                const { Document, Packer, Paragraph, TextRun } = docx;
+                const pars = text.split('\n').map(l => new Paragraph({ children: [new TextRun({ text: l, font: 'Kalimati' })] }));
+                const doc = new Document({ sections: [{ children: pars }] });
+                const buf = await Packer.toBlob(doc);
+                const a = document.createElement('a'); a.href=URL.createObjectURL(buf); a.download=filename; a.click();
+                URL.revokeObjectURL(a.href);
+            } catch(e) { console.warn('docx fallback to txt'); dlText(text, filename.replace('.docx','.txt')); }
+        }
+
+        // ─── Utilities ─────────────────────────────────────
+        function dlText(text, filename) {
+            const blob = new Blob([text], {type:'text/plain;charset=utf-8'});
+            const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=filename; a.click();
+            URL.revokeObjectURL(a.href);
+        }
+        function readFileAsText(file) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsText(file,'UTF-8'); }); }
+        function readFileAsArrayBuffer(file) { return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsArrayBuffer(file); }); }
+        function fmtSize(b) { return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB'; }
+        function sleep(ms) { return new Promise(r=>setTimeout(r,ms)); }
+        function showToast(msg) {
+            const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show');
+            clearTimeout(t._timeout); t._timeout=setTimeout(()=>t.classList.remove('show'),2200);
+        }
+
+        // ─── PWA Service Worker Registration ──────────────
+        function registerSW() {
+            if ('serviceWorker' in navigator) {
+                // Create inline service worker for offline caching
+                const swCode = `
+                    const CACHE_NAME = 'preeti-unicode-v2';
+                    const ASSETS = [self.location.href];
+                    self.addEventListener('install', e => {
+                        e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS)).catch(() => {}));
+                        self.skipWaiting();
+                    });
+                    self.addEventListener('activate', e => {
+                        e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))));
+                        self.clients.claim();
+                    });
+                    self.addEventListener('fetch', e => {
+                        e.respondWith(
+                            caches.match(e.request).then(cached => cached || fetch(e.request).then(resp => {
+                                if(resp.ok){
+                                    const clone = resp.clone();
+                                    caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+                                }
+                                return resp;
+                            }).catch(() => cached))
+                        );
+                    });
+                `;
+                const swBlob = new Blob([swCode], {type:'application/javascript'});
+                const swUrl = URL.createObjectURL(swBlob);
+                navigator.serviceWorker.register(swUrl).catch(err => console.log('SW registration:', err));
+            }
+        }
+
+        // ─── Init ───────────────────────────────────────────
+        async function init() {
+            initDarkMode();
+            registerSW();
+            const savedFS = localStorage.getItem('preeti-font-size');
+            if (savedFS) {
+                document.getElementById('font-size-slider').value = savedFS;
+                changeFontSize(savedFS);
+            }
+            loadFromURLHash();
+            if (document.getElementById('inp').value) convert();
+            window.addEventListener('hashchange', loadFromURLHash);
+        }
+
+        // Expose functions globally
+        window.setMode = setMode;
+        window.onFontChange = onFontChange;
+        window.swapAll = swapAll;
+        window.copyOut = copyOut;
+        window.pasteInput = pasteInput;
+        window.cleanText = cleanText;
+        window.downloadTxt = downloadTxt;
+        window.clearAll = clearAll;
+        window.toggleDarkMode = toggleDarkMode;
+        window.changeFontSize = changeFontSize;
+        window.onInputChange = onInputChange;
+        window.handleDrag = handleDrag;
+        window.handleDrop = handleDrop;
+        window.handleFiles = handleFiles;
+        window.removeFile = removeFile;
+        window.clearFiles = clearFiles;
+        window.convertAllFiles = convertAllFiles;
+        window.downloadAllFiles = downloadAllFiles;
+        window.downloadSingleFile = downloadSingleFile;
+
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
