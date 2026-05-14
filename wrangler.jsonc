@@ -6,7 +6,8 @@
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    // Changed from "." to "out" so Cloudflare only uploads your website
+    "directory": "out" 
   },
   "compatibility_flags": [
     "nodejs_compat"
