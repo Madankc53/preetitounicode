@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "worker-summer-lab-a1df",
+  "name": "preeti-converter",
   "compatibility_date": "2026-05-13",
-  "pages_build_output_dir": "." 
+  "pages_build_output_dir": "."
 }
