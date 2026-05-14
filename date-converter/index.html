@@ -851,5 +851,17 @@
         console.log('BS 2081/1/1 → AD:', bsToAd(2081, 1, 1));
         console.log('AD 2024/1/1 → BS:', adToBs(2024, 1, 1));
     </script>
+    <div id="footer-placeholder"></div>
+<script>
+  fetch('/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+      // Small delay to ensure AdSense finds the new element
+      setTimeout(() => {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+      }, 500);
+    });
+</script>
 </body>
 </html>
