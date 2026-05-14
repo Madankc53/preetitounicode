@@ -2,14 +2,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "worker-summer-lab-a1df",
   "compatibility_date": "2026-05-13",
-  "observability": {
-    "enabled": true
-  },
   "assets": {
-    // Changed from "." to "out" so Cloudflare only uploads your website
-    "directory": "out" 
-  },
-  "compatibility_flags": [
-    "nodejs_compat"
-  ]
+    "directory": "." 
+  }
 }
