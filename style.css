@@ -1,32 +1,28 @@
-/* Professional Header & Footer Styles for thenepal.io */
-
-:root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --text-dark: #1f2937;
-    --text-light: #6b7280;
-    --bg-light: #f9fafb;
-    --white: #ffffff;
+/* Improved Mobile Menu */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 22px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 3px;
+    background: #1f2937;
+    transition: all 0.3s ease;
+    border-radius: 2px;
 }
 
-/* Ad Container */
-.ad-container {
-    text-align: center;
-    margin: 10px 0;
-    min-height: 90px;
-}
-
-/* Header Styles */
+/* Header Improvements */
 .site-header {
-    background: var(--white);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 15px 0;
+    background: white;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -36,29 +32,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 15px 0;
 }
 
 .logo a {
-    text-decoration: none;
     display: flex;
     align-items: center;
-    color: var(--text-dark);
+    text-decoration: none;
+    color: #1f2937;
+    font-size: 1.4rem;
 }
 
 .logo-icon {
-    font-size: 24px;
-    margin-right: 8px;
-}
-
-.logo-text {
-    font-weight: 700;
-    font-size: 20px;
-}
-
-.logo-text small {
-    font-weight: 400;
-    font-size: 14px;
-    color: var(--primary-color);
+    font-size: 32px;
+    margin-right: 10px;
 }
 
 .nav-links {
@@ -66,99 +53,22 @@
     list-style: none;
     margin: 0;
     padding: 0;
-}
-
-.nav-links li {
-    margin-left: 25px;
+    gap: 28px;
 }
 
 .nav-links a {
+    color: #374151;
     text-decoration: none;
-    color: var(--text-dark);
     font-weight: 500;
     transition: color 0.3s;
 }
 
-.nav-links a:hover {
-    color: var(--primary-color);
+.nav-links a:hover,
+.nav-links a.active {
+    color: #2563eb;
 }
 
-/* Mobile Menu Toggle */
-.mobile-menu-toggle {
-    display: none;
-    flex-direction: column;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.mobile-menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: var(--text-dark);
-    margin: 2px 0;
-    transition: 0.3s;
-}
-
-/* Footer Styles */
-.site-footer {
-    background: #111827;
-    color: var(--white);
-    padding: 60px 0 20px;
-    margin-top: 40px;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 40px;
-}
-
-.footer-section h3 {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: var(--white);
-}
-
-.footer-section p {
-    color: #9ca3af;
-    line-height: 1.6;
-}
-
-.footer-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-.footer-section ul li {
-    margin-bottom: 10px;
-}
-
-.footer-section ul a {
-    color: #9ca3af;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.footer-section ul a:hover {
-    color: var(--white);
-}
-
-.footer-bottom {
-    border-top: 1px solid #374151;
-    padding-top: 20px;
-    text-align: center;
-    color: #9ca3af;
-    font-size: 14px;
-}
-
-.footer-bottom a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-
-/* Responsive */
+/* Mobile Responsive */
 @media (max-width: 768px) {
     .mobile-menu-toggle {
         display: flex;
@@ -170,10 +80,11 @@
         top: 100%;
         left: 0;
         width: 100%;
-        background: var(--white);
+        background: white;
         flex-direction: column;
         padding: 20px;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        gap: 0;
     }
 
     .nav-links.active {
@@ -181,10 +92,11 @@
     }
 
     .nav-links li {
-        margin: 10px 0;
+        margin: 8px 0;
     }
 
-    .footer-grid {
-        grid-template-columns: 1fr;
+    .nav-links a {
+        padding: 12px 0;
+        font-size: 1.1rem;
     }
 }
