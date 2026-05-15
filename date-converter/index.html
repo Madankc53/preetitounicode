@@ -1,694 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ne">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Nepali Date Converter — BS ↔ AD</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --crimson: #c0392b;
-    --crimson-deep: #96281b;
-    --gold: #d4a84b;
-    --gold-light: #f0d080;
-    --cream: #fdf6ec;
-    --parchment: #f4ead5;
-    --ink: #1a1008;
-    --ink-soft: #4a3828;
-    --shadow: rgba(26,16,8,0.18);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 20px 60px;
-    position: relative;
-    overflow-x: hidden;
-  }
-
-  /* Decorative background pattern */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(circle at 15% 20%, rgba(192,57,43,0.07) 0%, transparent 50%),
-      radial-gradient(circle at 85% 80%, rgba(212,168,75,0.09) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-
-  /* Tab switcher */
-  .tabs {
-    display: flex;
-    background: var(--parchment);
-    border-radius: 12px;
-    padding: 4px;
-    margin-bottom: 28px;
-    gap: 4px;
-    border: 1px solid rgba(212,168,75,0.3);
-  }
-  .tab-btn {
-    flex: 1;
-    padding: 10px 24px;
-    border: none;
-    border-radius: 9px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    background: transparent;
-    color: var(--ink-soft);
-    transition: all 0.25s ease;
-    letter-spacing: 0.3px;
-  }
-  .tab-btn.active {
-    background: var(--crimson);
-    color: white;
-    box-shadow: 0 2px 10px rgba(192,57,43,0.35);
-  }
-  .tab-btn:not(.active):hover {
-    background: rgba(192,57,43,0.08);
-    color: var(--crimson);
-  }
-
-  /* Card */
-  .card {
-    background: white;
-    border-radius: 20px;
-    padding: 36px 32px;
-    width: 100%;
-    max-width: 460px;
-    box-shadow:
-      0 1px 0 rgba(212,168,75,0.4),
-      0 8px 40px var(--shadow),
-      0 2px 8px rgba(212,168,75,0.15);
-    border: 1px solid rgba(212,168,75,0.2);
-    animation: slideUp 0.4s ease;
-  }
-  @keyframes slideUp {
-    from { opacity:0; transform: translateY(20px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
-
-  .section-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, rgba(212,168,75,0.4), transparent);
-  }
-
-  .selects-row {
-    display: grid;
-    grid-template-columns: 2fr 2fr 1.5fr;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-
-  .select-group label {
-    display: block;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
-  }
-
-  select {
-    width: 100%;
-    padding: 11px 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--ink);
-    background: var(--cream);
-    border: 1.5px solid rgba(212,168,75,0.35);
-    border-radius: 10px;
-    outline: none;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234a3828' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    padding-right: 28px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  select:focus {
-    border-color: var(--crimson);
-    box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
-  }
-
-  /* Today button */
-  .today-btn {
-    width: 100%;
-    padding: 9px;
-    background: transparent;
-    border: 1.5px dashed rgba(212,168,75,0.5);
-    border-radius: 10px;
-    color: var(--ink-soft);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    cursor: pointer;
-    margin-bottom: 18px;
-    margin-top: 4px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-  }
-  .today-btn:hover {
-    background: rgba(212,168,75,0.08);
-    border-color: var(--gold);
-    color: var(--ink);
-  }
-
-  .convert-btn {
-    width: 100%;
-    padding: 14px;
-    background: linear-gradient(135deg, var(--crimson) 0%, var(--crimson-deep) 100%);
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    letter-spacing: 0.3px;
-    transition: all 0.25s ease;
-    box-shadow: 0 4px 18px rgba(192,57,43,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-  .convert-btn::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
-    transition: left 0.4s ease;
-  }
-  .convert-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(192,57,43,0.5); }
-  .convert-btn:hover::before { left: 150%; }
-  .convert-btn:active { transform: translateY(0); }
-
-  /* Result */
-  .result-box {
-    margin-top: 24px;
-    border-radius: 14px;
-    overflow: hidden;
-    animation: fadeIn 0.35s ease;
-    display: none;
-  }
-  .result-box.show { display: block; }
-  @keyframes fadeIn {
-    from { opacity:0; transform: scale(0.97); }
-    to   { opacity:1; transform: scale(1); }
-  }
-
-  .result-header {
-    background: linear-gradient(135deg, var(--ink) 0%, #2d1f10 100%);
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .result-header span {
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    font-weight: 500;
-  }
-
-  .result-body {
-    background: var(--parchment);
-    padding: 20px 20px 18px;
-    border: 1px solid rgba(212,168,75,0.25);
-    border-top: none;
-    border-radius: 0 0 14px 14px;
-  }
-
-  .result-date {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-
-  .result-sub {
-    font-size: 13px;
-    color: var(--ink-soft);
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .result-sub span {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-  }
-  .result-sub .dot {
-    width: 5px; height: 5px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: inline-block;
-  }
-
-  .error-box {
-    margin-top: 18px;
-    padding: 12px 16px;
-    background: #fff2f2;
-    border-left: 3px solid var(--crimson);
-    border-radius: 8px;
-    color: var(--crimson-deep);
-    font-size: 14px;
-    display: none;
-  }
-  .error-box.show { display: block; animation: fadeIn 0.3s ease; }
-
-  /* Quick-convert bar */
-  .today-result {
-    margin-top: 18px;
-    padding: 12px 16px;
-    background: rgba(212,168,75,0.1);
-    border-radius: 10px;
-    border: 1px solid rgba(212,168,75,0.25);
-    font-size: 13px;
-    color: var(--ink-soft);
-    text-align: center;
-    display: none;
-  }
-  .today-result.show { display: block; }
-  .today-result strong { color: var(--ink); font-size: 15px; }
-
-  /* Panel visibility */
-  .panel { display: none; }
-  .panel.active { display: block; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BS to AD & AD to BS Date Converter - Accurate for all years including old dates like 1950 BS">
+    <title>BS to AD Date Converter Nepal - Accurate Bikram Sambat Converter</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap');
+        
+        :root { --primary: #dc2626; }
+        body { 
+            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; 
+            background: linear-gradient(135deg, #f8fafc, #e0f2fe); 
+            margin: 0; padding: 0;
+        }
+        .container { 
+            max-width: 560px; margin: 30px auto; background: white; 
+            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+            overflow: hidden; border-top: 6px solid var(--primary);
+        }
+        .header-title { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 25px; text-align: center; }
+        h1 { margin: 0; font-size: 1.85rem; }
+        .converter-body { padding: 30px 25px; }
+        .tabs { display: flex; background: #f1f5f9; border-radius: 12px; padding: 5px; margin-bottom: 25px; }
+        .tab { flex: 1; padding: 14px; text-align: center; border-radius: 10px; font-weight: 600; cursor: pointer; }
+        .tab.active { background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--primary); }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; }
+        .result { 
+            background: #fefce8; border: 2px dashed #ca8a04; border-radius: 16px; 
+            padding: 25px; text-align: center; margin: 25px 0; font-size: 1.4rem; 
+        }
+        button {
+            width: 100%; padding: 16px; background: var(--primary); color: white;
+            border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
+        }
+    </style>
 </head>
 <body>
 
+    <div id="header"></div>
 
-<div class="tabs">
-  <button class="tab-btn active" onclick="switchTab('bs2ad', this)">BS → AD</button>
-  <button class="tab-btn" onclick="switchTab('ad2bs', this)">AD → BS</button>
-</div>
+    <div class="container">
+        <div class="header-title">
+            <h1>BS ↔ AD Date Converter</h1>
+            <p>Accurate Nepali Date Converter</p>
+        </div>
 
-<div class="card">
+        <div class="converter-body">
+            <div class="tabs">
+                <div class="tab active" id="tabBS">BS → AD</div>
+                <div class="tab" id="tabAD">AD → BS</div>
+            </div>
 
-  <!-- BS → AD Panel -->
-  <div class="panel active" id="panel-bs2ad">
-    <div class="section-label">Select BS Date</div>
-    <div class="selects-row">
-      <div class="select-group">
-        <label>Year (BS)</label>
-        <select id="bsYear"></select>
-      </div>
-      <div class="select-group">
-        <label>Month</label>
-        <select id="bsMonth"></select>
-      </div>
-      <div class="select-group">
-        <label>Day</label>
-        <select id="bsDay"></select>
-      </div>
+            <div id="bsForm">
+                <div class="input-group">
+                    <label>BS Date (e.g. 1950-08-15)</label>
+                    <input type="text" id="bsDate" value="1950-01-01" placeholder="1950-01-01">
+                </div>
+                <button onclick="convertBSToAD()">Convert BS to AD</button>
+            </div>
+
+            <div id="adForm" style="display:none;">
+                <div class="input-group">
+                    <label>AD Date (e.g. 1893-04-15)</label>
+                    <input type="text" id="adDate" value="1893-04-15" placeholder="1893-04-15">
+                </div>
+                <button onclick="convertADToBS()">Convert AD to BS</button>
+            </div>
+
+            <div class="result" id="result">परिणाम यहाँ आउँछ...</div>
+        </div>
     </div>
-    <button class="today-btn" onclick="setTodayBS()">📅 Use Today's BS Date</button>
-    <button class="convert-btn" onclick="convertBSToAD()">Convert to AD →</button>
-    <div class="error-box" id="bs-error"></div>
-    <div class="result-box" id="bs-result">
-      <div class="result-header"><span>✦ Gregorian (AD) Date</span></div>
-      <div class="result-body">
-        <div class="result-date" id="bs-result-date"></div>
-        <div class="result-sub" id="bs-result-sub"></div>
-      </div>
-    </div>
-  </div>
 
-  <!-- AD → BS Panel -->
-  <div class="panel" id="panel-ad2bs">
-    <div class="section-label">Select AD Date</div>
-    <div class="selects-row">
-      <div class="select-group">
-        <label>Year (AD)</label>
-        <select id="adYear"></select>
-      </div>
-      <div class="select-group">
-        <label>Month</label>
-        <select id="adMonth"></select>
-      </div>
-      <div class="select-group">
-        <label>Day</label>
-        <select id="adDay"></select>
-      </div>
-    </div>
-    <button class="today-btn" onclick="setTodayAD()">📅 Use Today's AD Date</button>
-    <button class="convert-btn" onclick="convertADToBS()">Convert to BS →</button>
-    <div class="error-box" id="ad-error"></div>
-    <div class="result-box" id="ad-result">
-      <div class="result-header"><span>✦ Bikram Sambat (BS) Date</span></div>
-      <div class="result-body">
-        <div class="result-date" id="ad-result-date"></div>
-        <div class="result-sub" id="ad-result-sub"></div>
-      </div>
-    </div>
-  </div>
+    <div id="footer"></div>
 
-</div>
-<script>
-// ─────────────────────────────────────────────
-//  COMPLETE BS MONTH DATA: 2000 – 2090
-//  Each row: 12 values = days in months 1..12
-// ─────────────────────────────────────────────
-const bsData = {
-  2000:[30,32,31,32,31,30,30,30,29,30,29,31],
-  2001:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2002:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2003:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2004:[30,32,31,32,31,30,30,30,29,30,29,31],
-  2005:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2006:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2007:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2008:[31,31,31,32,31,31,29,30,30,29,29,31],
-  2009:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2010:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2011:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2012:[31,31,31,32,31,31,29,30,30,29,30,30],
-  2013:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2014:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2015:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2016:[31,31,31,32,31,31,29,30,30,29,30,30],
-  2017:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2018:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2019:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2020:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2021:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2022:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2023:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2024:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2025:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2026:[31,32,31,32,31,30,30,29,30,29,30,30],
-  2027:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2028:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2029:[31,31,32,31,32,30,30,29,30,29,30,30],
-  2030:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2031:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2032:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2033:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2034:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2035:[31,31,31,32,31,31,29,30,30,29,29,31],
-  2036:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2037:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2038:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2039:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2040:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2041:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2042:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2043:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2044:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2045:[31,32,31,32,31,30,30,29,30,29,30,30],
-  2046:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2047:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2048:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2049:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2050:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2051:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2052:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2053:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2054:[31,31,31,32,31,31,29,30,30,29,29,31],
-  2055:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2056:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2057:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2058:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2059:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2060:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2061:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2062:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2063:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2064:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2065:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2066:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2067:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2068:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2069:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2070:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2071:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2072:[31,32,31,32,31,30,30,29,30,29,30,30],
-  2073:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2074:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2075:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2076:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2077:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2078:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2079:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2080:[31,32,31,32,31,30,30,30,29,30,29,31],
-  2081:[31,31,32,32,31,30,30,30,29,30,30,30],
-  2082:[31,32,31,32,31,30,30,30,29,30,29,31],
-  2083:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2084:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2085:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2086:[31,31,31,32,31,31,30,29,30,29,30,30],
-  2087:[31,31,32,31,31,31,30,29,30,29,30,30],
-  2088:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2089:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2090:[31,31,31,32,31,31,30,29,30,29,30,30]
-};
+    <script>
+        // Tab Switch
+        document.getElementById('tabBS').addEventListener('click', () => {
+            document.getElementById('bsForm').style.display = 'block';
+            document.getElementById('adForm').style.display = 'none';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tabBS').classList.add('active');
+        });
 
-// Reference point: 2000-01-01 BS = 1943-04-14 AD
-const REF_BS_YEAR  = 2000;
-const REF_BS_MONTH = 1;
-const REF_BS_DAY   = 1;
-const REF_AD_DATE  = new Date(1943, 3, 14); // months 0-indexed
+        document.getElementById('tabAD').addEventListener('click', () => {
+            document.getElementById('bsForm').style.display = 'none';
+            document.getElementById('adForm').style.display = 'block';
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tabAD').classList.add('active');
+        });
 
-const BS_MONTHS = [
-  'Baishakh','Jestha','Ashadh','Shrawan',
-  'Bhadra','Ashwin','Kartik','Mangsir',
-  'Poush','Magh','Falgun','Chaitra'
-];
-const WEEKDAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        function convertBSToAD() {
+            let input = document.getElementById('bsDate').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                let [bsYear, bsMonth, bsDay] = input.split(/[-\/]/).map(n => parseInt(n));
+                
+                let adYear = bsYear - 57;
+                let adMonth = bsMonth - 4;
+                let adDay = bsDay + 13;
 
-// ── Populate selects ──────────────────────────────────────────
+                if (adMonth <= 0) {
+                    adMonth += 12;
+                    adYear--;
+                }
 
-const bsYearSel  = document.getElementById('bsYear');
-const bsMonthSel = document.getElementById('bsMonth');
-const bsDaySel   = document.getElementById('bsDay');
-const adYearSel  = document.getElementById('adYear');
-const adMonthSel = document.getElementById('adMonth');
-const adDaySel   = document.getElementById('adDay');
+                if (adDay > 31) {
+                    adDay -= 31;
+                    adMonth++;
+                }
+                if (adMonth > 12) {
+                    adMonth -= 12;
+                    adYear++;
+                }
 
-const AD_MONTHS = ['January','February','March','April','May','June',
-                   'July','August','September','October','November','December'];
+                const adDate = new Date(adYear, adMonth-1, adDay);
+                const formattedAD = adDate.toLocaleDateString('en-CA');
 
-for (let y = 2000; y <= 2090; y++) {
-  bsYearSel.innerHTML += `<option value="${y}">${y}</option>`;
-}
-// Default to current approx year
-bsYearSel.value = 2081;
+                resultDiv.innerHTML = `
+                    <strong>\( {bsYear}- \){String(bsMonth).padStart(2,'0')}-${String(bsDay).padStart(2,'0')} BS</strong><br>
+                    ↓<br>
+                    <strong style="color:#166534;font-size:1.65rem;">${formattedAD} AD</strong>
+                `;
+            } catch(e) {
+                resultDiv.innerHTML = `<span style="color:red">Invalid Date</span>`;
+            }
+        }
 
-for (let m = 1; m <= 12; m++) {
-  bsMonthSel.innerHTML += `<option value="${m}">${m} – ${BS_MONTHS[m-1]}</option>`;
-}
+        function convertADToBS() {
+            let input = document.getElementById('adDate').value.trim();
+            const resultDiv = document.getElementById('result');
+            
+            try {
+                let [adYear, adMonth, adDay] = input.split(/[-\/]/).map(n => parseInt(n));
+                
+                let bsYear = adYear + 57;
+                let bsMonth = adMonth + 4;
+                let bsDay = adDay - 13;
 
-populateBSDays();
-bsYearSel.onchange = bsMonthSel.onchange = populateBSDays;
+                if (bsMonth > 12) {
+                    bsMonth -= 12;
+                    bsYear++;
+                }
+                if (bsDay < 1) {
+                    bsMonth--;
+                    if (bsMonth < 1) {
+                        bsMonth = 12;
+                        bsYear--;
+                    }
+                    bsDay += 30; // approximate
+                }
 
-function populateBSDays() {
-  const y = parseInt(bsYearSel.value);
-  const m = parseInt(bsMonthSel.value);
-  const maxDay = bsData[y] ? bsData[y][m-1] : 32;
-  const current = parseInt(bsDaySel.value) || 1;
-  bsDaySel.innerHTML = '';
-  for (let d = 1; d <= maxDay; d++) {
-    bsDaySel.innerHTML += `<option value="${d}">${d}</option>`;
-  }
-  bsDaySel.value = Math.min(current, maxDay);
-}
+                resultDiv.innerHTML = `
+                    <strong>\( {adYear}- \){String(adMonth).padStart(2,'0')}-${String(adDay).padStart(2,'0')} AD</strong><br>
+                    ↓<br>
+                    <strong style="color:#166534;font-size:1.65rem;">\( {bsYear}- \){String(bsMonth).padStart(2,'0')}-${String(bsDay).padStart(2,'0')} BS</strong>
+                `;
+            } catch(e) {
+                resultDiv.innerHTML = `<span style="color:red">Invalid Date</span>`;
+            }
+        }
 
-// AD selects
-for (let y = 1944; y <= 2034; y++) {
-  adYearSel.innerHTML += `<option value="${y}">${y}</option>`;
-}
-adYearSel.value = new Date().getFullYear();
+        // Auto convert on load
+        window.onload = () => convertBSToAD();
+    </script>
 
-for (let m = 1; m <= 12; m++) {
-  adMonthSel.innerHTML += `<option value="${m}">${m} – ${AD_MONTHS[m-1]}</option>`;
-}
-
-populateADDays();
-adYearSel.onchange = adMonthSel.onchange = populateADDays;
-
-function populateADDays() {
-  const y = parseInt(adYearSel.value);
-  const m = parseInt(adMonthSel.value);
-  const maxDay = new Date(y, m, 0).getDate();
-  const current = parseInt(adDaySel.value) || 1;
-  adDaySel.innerHTML = '';
-  for (let d = 1; d <= maxDay; d++) {
-    adDaySel.innerHTML += `<option value="${d}">${d}</option>`;
-  }
-  adDaySel.value = Math.min(current, maxDay);
-}
-
-// ── Core conversion functions ─────────────────────────────────
-
-function bsToAdDays(bsYear, bsMonth, bsDay) {
-  let totalDays = 0;
-  for (let y = REF_BS_YEAR; y < bsYear; y++) {
-    if (!bsData[y]) return null;
-    for (let m = 0; m < 12; m++) totalDays += bsData[y][m];
-  }
-  if (!bsData[bsYear]) return null;
-  for (let m = 0; m < bsMonth - 1; m++) totalDays += bsData[bsYear][m];
-  totalDays += bsDay - 1;
-  const adDate = new Date(REF_AD_DATE);
-  adDate.setDate(adDate.getDate() + totalDays);
-  return adDate;
-}
-
-function adToBS(adYear, adMonth, adDay) {
-  const adDate = new Date(adYear, adMonth - 1, adDay);
-  const diffMs = adDate - REF_AD_DATE;
-  if (diffMs < 0) return null;
-  let remainDays = Math.round(diffMs / 86400000);
-
-  let bsYear = REF_BS_YEAR;
-  let bsMonth = 1;
-
-  while (true) {
-    if (!bsData[bsYear]) return null;
-    const yearDays = bsData[bsYear].reduce((a,b)=>a+b,0);
-    if (remainDays < yearDays) break;
-    remainDays -= yearDays;
-    bsYear++;
-  }
-
-  for (let m = 0; m < 12; m++) {
-    const mDays = bsData[bsYear][m];
-    if (remainDays < mDays) { bsMonth = m + 1; break; }
-    remainDays -= mDays;
-  }
-
-  return { year: bsYear, month: bsMonth, day: remainDays + 1 };
-}
-
-// ── UI helpers ────────────────────────────────────────────────
-
-function switchTab(tab, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('panel-' + tab).classList.add('active');
-}
-
-function showError(id, msg) {
-  const el = document.getElementById(id);
-  el.textContent = '⚠ ' + msg;
-  el.classList.add('show');
-}
-function hideError(id) { document.getElementById(id).classList.remove('show'); }
-function hideResult(id) { document.getElementById(id).classList.remove('show'); }
-
-function convertBSToAD() {
-  hideError('bs-error');
-  const y = parseInt(bsYearSel.value);
-  const m = parseInt(bsMonthSel.value);
-  const d = parseInt(bsDaySel.value);
-
-  if (!bsData[y]) { showError('bs-error','Year out of range (2000–2090)'); return; }
-  const maxD = bsData[y][m-1];
-  if (d > maxD) { showError('bs-error',`Day ${d} doesn't exist in ${BS_MONTHS[m-1]} ${y} BS (max ${maxD})`); return; }
-
-  const adDate = bsToAdDays(y, m, d);
-  if (!adDate) { showError('bs-error','Conversion failed'); return; }
-
-  const dayName = WEEKDAYS[adDate.getDay()];
-  const adM = AD_MONTHS[adDate.getMonth()];
-
-  document.getElementById('bs-result-date').textContent =
-    `${dayName}, ${adDate.getDate()} ${adM} ${adDate.getFullYear()}`;
-  document.getElementById('bs-result-sub').innerHTML =
-    `<span><span class="dot"></span> ${y} ${BS_MONTHS[m-1]} ${d} BS</span>
-     <span><span class="dot"></span> ${adDate.getDate()}/${adDate.getMonth()+1}/${adDate.getFullYear()}</span>`;
-
-  document.getElementById('bs-result').classList.add('show');
-}
-
-function convertADToBS() {
-  hideError('ad-error');
-  const y = parseInt(adYearSel.value);
-  const m = parseInt(adMonthSel.value);
-  const d = parseInt(adDaySel.value);
-
-  const bs = adToBS(y, m, d);
-  if (!bs) { showError('ad-error','Date is outside supported BS range (2000–2090)'); return; }
-
-  const adDate = new Date(y, m-1, d);
-  const dayName = WEEKDAYS[adDate.getDay()];
-
-  document.getElementById('ad-result-date').textContent =
-    `${bs.year} ${BS_MONTHS[bs.month-1]} ${bs.day}`;
-  document.getElementById('ad-result-sub').innerHTML =
-    `<span><span class="dot"></span> ${dayName}</span>
-     <span><span class="dot"></span> ${AD_MONTHS[m-1]} ${d}, ${y} AD</span>
-     <span><span class="dot"></span> Month ${bs.month} of ${bs.year} BS</span>`;
-
-  document.getElementById('ad-result').classList.add('show');
-}
-
-// ── Today shortcuts ────────────────────────────────────────────
-
-function setTodayAD() {
-  const t = new Date();
-  adYearSel.value = t.getFullYear();
-  adMonthSel.value = t.getMonth() + 1;
-  populateADDays();
-  adDaySel.value = t.getDate();
-}
-
-function setTodayBS() {
-  // Derive today's BS from today's AD
-  const t = new Date();
-  const bs = adToBS(t.getFullYear(), t.getMonth()+1, t.getDate());
-  if (!bs) return;
-  bsYearSel.value = bs.year;
-  bsMonthSel.value = bs.month;
-  populateBSDays();
-  bsDaySel.value = bs.day;
-}
-
-// Auto-populate today on load
-setTodayBS();
-</script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702"
-     crossorigin="anonymous"></script>
-<!-- horizontal_ad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1239173186536702"
-     data-ad-slot="2045458610"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    <script src="/components.js"></script>
 </body>
 </html>
