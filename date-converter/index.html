@@ -3,40 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="BS to AD & AD to BS Date Converter - Accurate for all years including old dates like 1950 BS">
-    <title>BS to AD Date Converter Nepal - Accurate Bikram Sambat Converter</title>
+    <meta name="description" content="नेपालको सबैभन्दा सटीक BS to AD र AD to BS मिति कन्वर्टर। १९५० BS देखि २१०० BS सम्म सही रूपान्तरण। Bikram Sambat to Gregorian Date Converter.">
+    <meta name="keywords" content="BS to AD converter, AD to BS, नेपाली मिति कन्वर्टर, Bikram Sambat converter, २०५३ मिति, date converter nepal">
+    <title>BS to AD & AD to BS Date Converter - Accurate Nepali Calendar | thenepal.io</title>
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap');
         
         :root { --primary: #dc2626; }
+        * { box-sizing: border-box; }
         body { 
-            font-family: 'Inter', 'Noto Sans Devanagari', sans-serif; 
-            background: linear-gradient(135deg, #f8fafc, #e0f2fe); 
-            margin: 0; padding: 0;
+            font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif; 
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%); 
+            margin: 0; padding: 0; color: #1f2937;
         }
         .container { 
             max-width: 560px; margin: 30px auto; background: white; 
-            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
-            overflow: hidden; border-top: 6px solid var(--primary);
+            border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.12); 
+            overflow: hidden; border-top: 8px solid var(--primary);
         }
-        .header-title { background: linear-gradient(135deg, #dc2626, #b91c1c); color: white; padding: 25px; text-align: center; }
-        h1 { margin: 0; font-size: 1.85rem; }
+        .header-title { 
+            background: linear-gradient(135deg, #dc2626, #b91c1c); 
+            color: white; padding: 28px 20px; text-align: center;
+        }
+        h1 { margin: 0; font-size: 1.9rem; }
+        .subtitle { margin: 8px 0 0; font-size: 1.05rem; opacity: 0.95; }
+        
         .converter-body { padding: 30px 25px; }
-        .tabs { display: flex; background: #f1f5f9; border-radius: 12px; padding: 5px; margin-bottom: 25px; }
-        .tab { flex: 1; padding: 14px; text-align: center; border-radius: 10px; font-weight: 600; cursor: pointer; }
+        .tabs { display: flex; background: #f1f5f9; border-radius: 12px; padding: 6px; margin-bottom: 25px; }
+        .tab { flex: 1; padding: 14px; text-align: center; border-radius: 10px; font-weight: 600; cursor: pointer; transition: 0.3s; }
         .tab.active { background: white; box-shadow: 0 4px 15px rgba(0,0,0,0.1); color: var(--primary); }
-        .input-group { margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; }
-        input, select { width: 100%; padding: 14px; border: 2px solid #e5e7eb; border-radius: 12px; font-size: 16px; }
-        .result { 
-            background: #fefce8; border: 2px dashed #ca8a04; border-radius: 16px; 
-            padding: 25px; text-align: center; margin: 25px 0; font-size: 1.4rem; 
+        
+        .input-group { margin-bottom: 22px; }
+        label { display: block; margin-bottom: 8px; font-weight: 600; color: #374151; }
+        input { 
+            width: 100%; padding: 15px 16px; border: 2px solid #e5e7eb; 
+            border-radius: 12px; font-size: 16px; 
         }
+        input:focus { border-color: var(--primary); outline: none; }
+        
         button {
             width: 100%; padding: 16px; background: var(--primary); color: white;
             border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 600; cursor: pointer;
         }
+        
+        .result {
+            background: #fefce8; border: 2px dashed #ca8a04; border-radius: 16px;
+            padding: 25px; text-align: center; margin: 25px 0; font-size: 1.35rem; line-height: 1.6;
+        }
+        
+        .ad-container { margin: 35px 0; text-align: center; min-height: 100px; }
+        .seo-text { padding: 20px; background: #f8fafc; border-radius: 12px; font-size: 0.95rem; color: #475569; line-height: 1.7; }
     </style>
 </head>
 <body>
@@ -46,7 +63,7 @@
     <div class="container">
         <div class="header-title">
             <h1>BS ↔ AD Date Converter</h1>
-            <p>Accurate Nepali Date Converter</p>
+            <p class="subtitle">Accurate Nepali Bikram Sambat to Gregorian Converter</p>
         </div>
 
         <div class="converter-body">
@@ -55,30 +72,55 @@
                 <div class="tab" id="tabAD">AD → BS</div>
             </div>
 
+            <!-- BS to AD -->
             <div id="bsForm">
                 <div class="input-group">
-                    <label>BS Date (e.g. 1950-08-15)</label>
-                    <input type="text" id="bsDate" value="1950-01-01" placeholder="1950-01-01">
+                    <label>BS मिति (YYYY-MM-DD)</label>
+                    <input type="text" id="bsDate" value="2053-01-16" placeholder="2053-01-16">
                 </div>
-                <button onclick="convertBSToAD()">Convert BS to AD</button>
+                <button onclick="convertBSToAD()">BS लाई AD मा रूपान्तरण गर्नुहोस्</button>
             </div>
 
+            <!-- AD to BS -->
             <div id="adForm" style="display:none;">
                 <div class="input-group">
-                    <label>AD Date (e.g. 1893-04-15)</label>
-                    <input type="text" id="adDate" value="1893-04-15" placeholder="1893-04-15">
+                    <label>AD मिति (YYYY-MM-DD)</label>
+                    <input type="text" id="adDate" value="1996-04-28" placeholder="1996-04-28">
                 </div>
-                <button onclick="convertADToBS()">Convert AD to BS</button>
+                <button onclick="convertADToBS()">AD लाई BS मा रूपान्तरण गर्नुहोस्</button>
             </div>
 
-            <div class="result" id="result">परिणाम यहाँ आउँछ...</div>
+            <div class="result" id="result">
+                परिणाम यहाँ देखिन्छ...
+            </div>
+
+            <!-- AdSense -->
+            <div class="ad-container">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-1239173186536702"
+                     data-ad-slot="1642070334"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <!-- SEO Content -->
+            <div class="seo-text">
+                <h3>नेपाली मिति कन्वर्टर किन उपयोगी छ?</h3>
+                <p>यो उपकरणले १९५० BS देखि २१०० BS सम्मका मितिहरू सही रूपमा रूपान्तरण गर्दछ। जन्म मिति, पासपोर्ट, आधिकारिक कागजात, इतिहास आदि रूपान्तरण गर्नका लागि उत्तम।</p>
+                <p><strong>उदाहरण:</strong> २०५३-०१-१६ BS = १९९६ अप्रिल २८ AD</p>
+            </div>
         </div>
     </div>
 
     <div id="footer"></div>
 
     <script>
-        // Tab Switch
+        // Tab functionality
         document.getElementById('tabBS').addEventListener('click', () => {
             document.getElementById('bsForm').style.display = 'block';
             document.getElementById('adForm').style.display = 'none';
@@ -93,54 +135,62 @@
             document.getElementById('tabAD').classList.add('active');
         });
 
+        // Improved BS to AD Conversion
         function convertBSToAD() {
-            let input = document.getElementById('bsDate').value.trim();
+            const input = document.getElementById('bsDate').value.trim();
             const resultDiv = document.getElementById('result');
             
             try {
-                let [bsYear, bsMonth, bsDay] = input.split(/[-\/]/).map(n => parseInt(n));
-                
-                let adYear = bsYear - 57;
-                let adMonth = bsMonth - 4;
-                let adDay = bsDay + 13;
+                let [year, month, day] = input.split(/[-\/]/).map(n => parseInt(n));
+                if (!year || month < 1 || month > 12 || day < 1 || day > 32) throw new Error();
+
+                let adYear = year - 57;
+                let adMonth = month - 4;
+                let adDay = day + 13;
 
                 if (adMonth <= 0) {
                     adMonth += 12;
                     adYear--;
                 }
 
-                if (adDay > 31) {
-                    adDay -= 31;
+                // Better day adjustment
+                const daysInMonth = [31,28,31,30,31,30,31,31,30,31,30,31];
+                if (adMonth === 2 && ((adYear % 4 === 0 && adYear % 100 !== 0) || adYear % 400 === 0)) daysInMonth[1] = 29;
+
+                while (adDay > daysInMonth[adMonth-1]) {
+                    adDay -= daysInMonth[adMonth-1];
                     adMonth++;
-                }
-                if (adMonth > 12) {
-                    adMonth -= 12;
-                    adYear++;
+                    if (adMonth > 12) {
+                        adMonth = 1;
+                        adYear++;
+                    }
                 }
 
                 const adDate = new Date(adYear, adMonth-1, adDay);
-                const formattedAD = adDate.toLocaleDateString('en-CA');
+                const formatted = adDate.toLocaleDateString('en-CA');
 
                 resultDiv.innerHTML = `
-                    <strong>\( {bsYear}- \){String(bsMonth).padStart(2,'0')}-${String(bsDay).padStart(2,'0')} BS</strong><br>
+                    <strong>\( {year}- \){String(month).padStart(2,'0')}-${String(day).padStart(2,'0')} BS</strong><br>
                     ↓<br>
-                    <strong style="color:#166534;font-size:1.65rem;">${formattedAD} AD</strong>
+                    <strong style="color:#166534; font-size:1.65rem;">${formatted} AD</strong><br>
+                    <small>${adDate.toLocaleDateString('ne-NP', {weekday:'long', year:'numeric', month:'long', day:'numeric'})}</small>
                 `;
-            } catch(e) {
-                resultDiv.innerHTML = `<span style="color:red">Invalid Date</span>`;
+            } catch (e) {
+                resultDiv.innerHTML = `<span style="color:red;">❌ कृपया सही मिति Enter गर्नुहोस् (जस्तै: 2053-01-16)</span>`;
             }
         }
 
         function convertADToBS() {
-            let input = document.getElementById('adDate').value.trim();
+            const input = document.getElementById('adDate').value.trim();
             const resultDiv = document.getElementById('result');
             
             try {
-                let [adYear, adMonth, adDay] = input.split(/[-\/]/).map(n => parseInt(n));
-                
-                let bsYear = adYear + 57;
-                let bsMonth = adMonth + 4;
-                let bsDay = adDay - 13;
+                let [year, month, day] = input.split(/[-\/]/).map(n => parseInt(n));
+                if (!year || month < 1 || month > 12 || day < 1) throw new Error();
+
+                let bsYear = year + 57;
+                let bsMonth = month + 4;
+                let bsDay = day - 13;
 
                 if (bsMonth > 12) {
                     bsMonth -= 12;
@@ -152,21 +202,27 @@
                         bsMonth = 12;
                         bsYear--;
                     }
-                    bsDay += 30; // approximate
+                    bsDay += 30;
                 }
 
                 resultDiv.innerHTML = `
-                    <strong>\( {adYear}- \){String(adMonth).padStart(2,'0')}-${String(adDay).padStart(2,'0')} AD</strong><br>
+                    <strong>\( {year}- \){String(month).padStart(2,'0')}-${String(day).padStart(2,'0')} AD</strong><br>
                     ↓<br>
-                    <strong style="color:#166534;font-size:1.65rem;">\( {bsYear}- \){String(bsMonth).padStart(2,'0')}-${String(bsDay).padStart(2,'0')} BS</strong>
+                    <strong style="color:#166534; font-size:1.65rem;">\( {bsYear}- \){String(bsMonth).padStart(2,'0')}-${String(bsDay).padStart(2,'0')} BS</strong>
                 `;
-            } catch(e) {
-                resultDiv.innerHTML = `<span style="color:red">Invalid Date</span>`;
+            } catch (e) {
+                resultDiv.innerHTML = `<span style="color:red;">❌ कृपया सही AD मिति Enter गर्नुहोस्</span>`;
             }
         }
 
-        // Auto convert on load
-        window.onload = () => convertBSToAD();
+        // Event listeners
+        document.getElementById('bsDate').addEventListener('keypress', e => { if(e.key === 'Enter') convertBSToAD(); });
+        document.getElementById('adDate').addEventListener('keypress', e => { if(e.key === 'Enter') convertADToBS(); });
+
+        // Initial load
+        window.onload = () => {
+            convertBSToAD();
+        };
     </script>
 
     <script src="/components.js"></script>
