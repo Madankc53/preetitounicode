@@ -1,38 +1,42 @@
 /**
- * components.js  — loads header.html & footer.html into every page
- * Place <div id="header"></div> and <div id="footer"></div> in your HTML.
+ * components.js
+ * Fetches and injects header.html and footer.html into the page.
+ * Usage: Add <div id="header-placeholder"></div> and <div id="footer-placeholder"></div> to your HTML.
  */
-(async function () {
-  async function load(id, url) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(res.status);
-      el.innerHTML = await res.text();
-    } catch (e) {
-      console.warn(`Could not load ${url}:`, e);
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Inject Header
+    const headerPlaceholder = document.getElementById('header-placeholder');
+    if (headerPlaceholder) {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                headerPlaceholder.innerHTML = data;
+                // Re-initialize mobile menu if needed
+                initMobileMenu();
+            })
+            .catch(err => console.error('Error loading header:', err));
     }
-  }
 
-  // Load both in parallel
-  await Promise.all([
-    load('header', '/header.html'),
-    load('footer', '/footer.html'),
-  ]);
+    // Inject Footer
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                footerPlaceholder.innerHTML = data;
+            })
+            .catch(err => console.error('Error loading footer:', err));
+    }
+});
 
-  // Highlight the active nav link
-  const links = document.querySelectorAll('nav ul a');
-  const current = window.location.pathname.replace(/\/$/, '') || '/';
-  links.forEach(link => {
-    const href = new URL(link.href).pathname.replace(/\/$/, '') || '/';
-    if (href === current) link.classList.add('active');
-  });
-
-  // Mobile hamburger toggle
-  const toggle = document.querySelector('.nav-toggle');
-  const navList = document.querySelector('nav ul');
-  if (toggle && navList) {
-    toggle.addEventListener('click', () => navList.classList.toggle('open'));
-  }
-})();
+function initMobileMenu() {
+    const toggle = document.querySelector('.mobile-menu-toggle');
+    const nav = document.querySelector('.nav-links');
+    if (toggle && nav) {
+        toggle.addEventListener('click', function() {
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+        });
+    }
+}
