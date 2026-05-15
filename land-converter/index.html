@@ -3,54 +3,411 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>जग्गा रूपान्तरण - Land Converter</title>
+    <meta name="description" content="नेपालको जग्गा नापजाँच कन्वर्टर। रोपनी, आना, पैसा, दाम, बिघा, कठ्ठा, धुर, वर्ग फिट, वर्ग मिटर मध्ये कुनै पनि युनिटबाट अर्कोमा तुरुन्त रूपान्तरण गर्नुहोस्।">
+    <meta name="keywords" content="जग्गा कन्वर्टर, रोपनी आना क्याल्कुलेटर, बिघा कठ्ठा धुर, land converter nepal, ropani to sqft, aana to square feet, nepali land measurement">
+    <title>जग्गा रूपान्तरण कन्वर्टर - Ropani Aana Bigha Converter Nepal</title>
     
     <script>
         window.addEventListener('DOMContentLoaded', () => {
-            console.log("Page loaded, Functions should inject header/footer automatically.");
+            console.log("Awesome Land Converter Loaded - SEO Optimized");
         });
     </script>
 
     <style>
-        /* Your styles remain the same */
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f4f9; margin: 0; padding-top: 20px; }
-        .container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 90%; max-width: 400px; border-top: 5px solid #800000; margin: 40px auto; }
-        h2 { color: #800000; text-align: center; margin-bottom: 20px; }
-        .input-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
-        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
-        .result { background: #fff8e1; padding: 15px; border-radius: 6px; margin-top: 20px; text-align: center; font-weight: bold; color: #d32f2f; border: 1px dashed #ffa000; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap');
+        
+        :root {
+            --primary: #800000;
+            --accent: #d97706;
+        }
+        
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif; 
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); 
+            margin: 0; 
+            padding: 0; 
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); 
+            width: 95%; 
+            max-width: 480px; 
+            margin: 30px auto; 
+            border-top: 6px solid var(--primary); 
+        }
+        
+        h1 { 
+            color: var(--primary); 
+            text-align: center; 
+            margin: 0 0 8px 0; 
+            font-size: 1.8rem;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 1rem;
+        }
+        
+        .tabs {
+            display: flex;
+            background: #f1f3f5;
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 25px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .tab.active {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            color: var(--primary);
+        }
+        
+        .input-group { 
+            margin-bottom: 18px; 
+        }
+        
+        label { 
+            display: block; 
+            margin-bottom: 6px; 
+            font-weight: 600; 
+            color: #444; 
+        }
+        
+        select, input { 
+            width: 100%; 
+            padding: 14px; 
+            border: 2px solid #ddd; 
+            border-radius: 10px; 
+            font-size: 16px; 
+            transition: border 0.3s;
+        }
+        
+        select:focus, input:focus { 
+            border-color: var(--primary); 
+            outline: none; 
+        }
+        
+        .result { 
+            background: linear-gradient(135deg, #fff8e1, #fef3d9); 
+            padding: 22px; 
+            border-radius: 12px; 
+            margin: 25px 0; 
+            text-align: center; 
+            font-size: 1.35rem; 
+            font-weight: 700; 
+            color: #c92a2a; 
+            border: 2px dashed var(--accent);
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.1);
+        }
+        
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+            margin: 25px 0;
+        }
+        
+        .quick-btn {
+            padding: 12px 10px;
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        
+        .quick-btn:hover, .quick-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .conversion-table {
+            margin-top: 30px;
+            font-size: 0.95rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        th {
+            background: #f8f9fa;
+            color: var(--primary);
+        }
+        
+        .faq {
+            margin-top: 40px;
+        }
+        
+        .seo-content {
+            margin-top: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            font-size: 0.95rem;
+        }
+        
+        .footer-note {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
 <div id="header"></div>
+
 <div class="container">
-    <h2>जग्गा रूपान्तरण (परीक्षण)</h2>
+    <h1>जग्गा रूपान्तरण कन्वर्टर</h1>
+    <p class="subtitle">नेपालको रोपनी, आना, बिघा, कठ्ठा, धुर र वर्ग फिटबीच तुरुन्त रूपान्तरण</p>
+    
+    <!-- Quick Preset Tabs -->
+    <div class="tabs">
+        <div class="tab active" data-mode="hill">पहाडी (रोपनी प्रणाली)</div>
+        <div class="tab" data-mode="terai">तराई (बिघा प्रणाली)</div>
+    </div>
     
     <div class="input-group">
-        <label>रोपनी (Ropani):</label>
-        <input type="number" id="ropani" placeholder="0" oninput="convert()">
+        <label>बाट (From Unit):</label>
+        <select id="fromUnit" onchange="convert()">
+            <!-- Populated by JS -->
+        </select>
     </div>
-
+    
     <div class="input-group">
-        <label>आना (Aana):</label>
-        <input type="number" id="aana" placeholder="0" oninput="convert()">
+        <label>मूल्य (Value):</label>
+        <input type="number" id="value" value="1" step="any" oninput="convert()" placeholder="जग्गाको परिमाण">
     </div>
-
-    <div class="result" id="sqftResult">
-        कुल वर्ग फिट: ०
+    
+    <div class="input-group">
+        <label>लाई (To Unit):</label>
+        <select id="toUnit" onchange="convert()">
+            <!-- Populated by JS -->
+        </select>
+    </div>
+    
+    <div class="result" id="result">
+        परिणाम यहाँ देखिन्छ
+    </div>
+    
+    <!-- Quick Common Conversions -->
+    <div class="quick-buttons" id="quickButtons">
+        <!-- JS populated -->
+    </div>
+    
+    <!-- Reference Table -->
+    <div class="conversion-table">
+        <h3 style="text-align:center; color:#800000; margin-bottom:15px;">सन्दर्भ तालिका (Reference)</h3>
+        <table id="refTable">
+            <!-- JS populated -->
+        </table>
+    </div>
+    
+    <!-- SEO Content -->
+    <div class="seo-content">
+        <h3>नेपालमा जग्गा नापजाँच कसरी गर्ने?</h3>
+        <p>नेपालमा पहाडी क्षेत्रमा <strong>रोपनी-आना-पैसा-दाम</strong> र तराई क्षेत्रमा <strong>बिघा-कठ्ठा-धुर</strong> प्रचलित छन्। यो कन्वर्टरले दुवै प्रणाली र वर्ग फिट/वर्ग मिटरमा तुरुन्त रूपान्तरण गर्दछ।</p>
+        <ul>
+            <li><strong>१ रोपनी</strong> = ५४७६ वर्ग फिट = ५०८.७२ वर्ग मिटर</li>
+            <li><strong>१ बिघा</strong> = ७२९०० वर्ग फिट ≈ १३.३१ रोपनी</li>
+        </ul>
     </div>
 </div>
 
 <script>
-    function convert() {
-        const ropani = parseFloat(document.getElementById('ropani').value) || 0;
-        const aana = parseFloat(document.getElementById('aana').value) || 0;
-        const totalSqft = (ropani * 5476) + (aana * 342.25);
-        document.getElementById('sqftResult').innerText = "कुल वर्ग फिट: " + totalSqft.toFixed(2);
-    }
+// All units with conversion to square feet (base unit)
+const units = {
+    // Hill System
+    'ropani': { name: 'रोपनी (Ropani)', toSqft: 5476, group: 'hill' },
+    'aana': { name: 'आना (Aana)', toSqft: 342.25, group: 'hill' },
+    'paisa': { name: 'पैसा (Paisa)', toSqft: 85.5625, group: 'hill' },
+    'daam': { name: 'दाम (Daam)', toSqft: 21.390625, group: 'hill' },
+    
+    // Terai System
+    'bigha': { name: 'बिघा (Bigha)', toSqft: 72900, group: 'terai' },
+    'kattha': { name: 'कठ्ठा (Kattha)', toSqft: 3645, group: 'terai' },
+    'dhur': { name: 'धुर (Dhur)', toSqft: 182.25, group: 'terai' },
+    
+    // Metric / Imperial
+    'sqft': { name: 'वर्ग फिट (Sq Ft)', toSqft: 1, group: 'both' },
+    'sqm': { name: 'वर्ग मिटर (Sq m)', toSqft: 10.76391041671, group: 'both' }
+};
+
+let currentMode = 'hill';
+
+function populateUnits() {
+    const fromSelect = document.getElementById('fromUnit');
+    const toSelect = document.getElementById('toUnit');
+    
+    fromSelect.innerHTML = '';
+    toSelect.innerHTML = '';
+    
+    Object.keys(units).forEach(key => {
+        const unit = units[key];
+        
+        // Populate both selects
+        const opt1 = document.createElement('option');
+        opt1.value = key;
+        opt1.textContent = unit.name;
+        fromSelect.appendChild(opt1);
+        
+        const opt2 = document.createElement('option');
+        opt2.value = key;
+        opt2.textContent = unit.name;
+        toSelect.appendChild(opt2);
+    });
+    
+    // Default values
+    fromSelect.value = 'ropani';
+    toSelect.value = 'sqft';
+}
+
+function convert() {
+    const fromUnit = document.getElementById('fromUnit').value;
+    const toUnit = document.getElementById('toUnit').value;
+    let value = parseFloat(document.getElementById('value').value) || 0;
+    
+    if (value < 0) value = 0;
+    
+    const fromSqft = value * units[fromUnit].toSqft;
+    const resultSqft = fromSqft / units[toUnit].toSqft;
+    
+    let displayText = `${value} ${units[fromUnit].name} = `;
+    displayText += `<strong>${resultSqft.toLocaleString('ne-NP', {minimumFractionDigits: 2, maximumFractionDigits: 4})}</strong> ${units[toUnit].name}`;
+    
+    document.getElementById('result').innerHTML = displayText;
+}
+
+function createQuickButtons() {
+    const container = document.getElementById('quickButtons');
+    container.innerHTML = `
+        <div class="quick-btn active" onclick="setQuickConvert('ropani','aana')">रोपनी → आना</div>
+        <div class="quick-btn" onclick="setQuickConvert('aana','ropani')">आना → रोपनी</div>
+        <div class="quick-btn" onclick="setQuickConvert('ropani','sqft')">रोपनी → वर्ग फिट</div>
+        <div class="quick-btn" onclick="setQuickConvert('bigha','kattha')">बिघा → कठ्ठा</div>
+        <div class="quick-btn" onclick="setQuickConvert('bigha','ropani')">बिघा → रोपनी</div>
+        <div class="quick-btn" onclick="setQuickConvert('sqft','ropani')">वर्ग फिट → रोपनी</div>
+    `;
+}
+
+function setQuickConvert(from, to) {
+    document.getElementById('fromUnit').value = from;
+    document.getElementById('toUnit').value = to;
+    document.getElementById('value').value = 1;
+    convert();
+    
+    // Highlight active
+    document.querySelectorAll('.quick-btn').forEach(btn => btn.classList.remove('active'));
+}
+
+// Tab functionality
+document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        currentMode = tab.dataset.mode;
+        convert();
+    });
+});
+
+// Populate reference table
+function populateReferenceTable() {
+    const table = document.getElementById('refTable');
+    table.innerHTML = `
+        <thead>
+            <tr>
+                <th>युनिट</th>
+                <th>रोपनी</th>
+                <th>आना</th>
+                <th>वर्ग फिट</th>
+                <th>वर्ग मिटर</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>१ रोपनी</td><td>1</td><td>16</td><td>5476</td><td>508.72</td></tr>
+            <tr><td>१ आना</td><td>0.0625</td><td>1</td><td>342.25</td><td>31.80</td></tr>
+            <tr><td>१ बिघा</td><td>13.31</td><td>213</td><td>72900</td><td>6772.63</td></tr>
+            <tr><td>१ कठ्ठा</td><td>0.665</td><td>10.65</td><td>3645</td><td>338.63</td></tr>
+        </tbody>
+    `;
+}
+
+// Initialize everything
+function init() {
+    populateUnits();
+    createQuickButtons();
+    populateReferenceTable();
+    convert(); // initial calculation
+    
+    // Keyboard support
+    document.getElementById('value').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') convert();
+    });
+}
+
+// SEO Schema
+function addSchema() {
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "जग्गा रूपान्तरण कन्वर्टर",
+        "description": "नेपालको जग्गा नापजाँच कन्वर्टर - रोपनी, आना, बिघा, कठ्ठा आदि",
+        "applicationCategory": "UtilityApplication",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "NPR"
+        }
+    });
+    document.head.appendChild(script);
+}
+
+window.onload = function() {
+    init();
+    addSchema();
+};
 </script>
+
+<div class="footer-note">
+    <p>यो उपकरण पूर्ण रूपमा निःशुल्क र जाभास्क्रिप्टमा आधारित छ। डाटा तपाईंको ब्राउजरमा नै प्रशोधन हुन्छ।</p>
+    <p>सटीकताको लागि आधिकारिक नापजाँच प्रणाली प्रयोग गर्नुहोस्।</p>
+</div>
+
 <div id="footer"></div>
-  <script src="/components.js"></script>
+<script src="/components.js"></script>
 </body>
 </html>
