@@ -1,4 +1,4 @@
-<!-- Top Ad -->
+<!-- Top Ad (preserved as is) -->
 <div class="ad-container">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
     <ins class="adsbygoogle"
@@ -12,6 +12,9 @@
     </script>
 </div>
 
+<!-- ============================================================ -->
+<!-- PROFESSIONAL HEADER 2026 - Fast, Responsive, Modern UI      -->
+<!-- ============================================================ -->
 <header class="site-header">
     <div class="container">
         <div class="header-content">
@@ -22,12 +25,13 @@
                 </a>
             </div>
             <nav class="main-nav">
-                <button class="mobile-menu-toggle" aria-label="Toggle Menu">
+                <!-- Hamburger Menu for Mobile -->
+                <button class="nav-toggle mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
                     <span></span>
                     <span></span>
                     <span></span>
                 </button>
-                <ul class="nav-links">
+                <ul class="nav-links" id="navLinks">
                     <li><a href="https://converter.thenepal.io">Home</a></li>
                     <li><a href="https://gpatopercentage.thenepal.io">GPA Converter</a></li>
                     <li><a href="https://tools.madankc.com.np">Network Tools</a></li>
@@ -38,3 +42,431 @@
         </div>
     </div>
 </header>
+
+<style>
+    /* ========== RESET & BASE ========== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Body styling only for context - your actual page will have its own */
+    body {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+        background: #f5f7fb;
+    }
+
+    /* ========== HEADER STYLES - 2026 PROFESSIONAL EDITION ========== */
+    .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.92);
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02), 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+        transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    /* Scroll effect - adds depth when scrolling */
+    .site-header.scrolled {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(24px) saturate(200%);
+        -webkit-backdrop-filter: blur(24px) saturate(200%);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        border-bottom-color: rgba(0, 0, 0, 0.08);
+    }
+
+    .container {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 0 32px;
+    }
+
+    .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+        gap: 24px;
+    }
+
+    /* ===== LOGO AREA ===== */
+    .logo a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: transform 0.2s ease;
+    }
+
+    .logo a:hover {
+        transform: scale(1.02);
+    }
+
+    .logo-icon {
+        font-size: 2rem;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        transition: all 0.2s;
+    }
+
+    .logo-text {
+        font-size: 1.65rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        background: linear-gradient(125deg, #0f172a, #1e293b);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+
+    .logo-text small {
+        font-size: 0.8rem;
+        font-weight: 500;
+        background: none;
+        color: #5b6e8c;
+        background-clip: unset;
+        -webkit-background-clip: unset;
+        letter-spacing: normal;
+        margin-left: 4px;
+    }
+
+    /* ===== NAVIGATION ===== */
+    .main-nav {
+        display: flex;
+        align-items: center;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+    }
+
+    .nav-links li a {
+        text-decoration: none;
+        font-weight: 570;
+        font-size: 0.98rem;
+        color: #1f2937;
+        padding: 8px 0;
+        position: relative;
+        transition: color 0.2s ease;
+        letter-spacing: -0.2px;
+    }
+
+    /* Modern animated underline */
+    .nav-links li a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 2.5px;
+        background: linear-gradient(95deg, #2563eb, #7c3aed);
+        border-radius: 4px;
+        transition: width 0.25s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    }
+
+    .nav-links li a:hover {
+        color: #2563eb;
+    }
+
+    .nav-links li a:hover::after {
+        width: 100%;
+    }
+
+    /* Active state indicator for current page (Home by default - demo) */
+    .nav-links li:first-child a::after {
+        width: 70%;
+        opacity: 0.9;
+    }
+
+    /* ===== MOBILE MENU BUTTON (Hamburger) ===== */
+    .mobile-menu-toggle {
+        display: none;
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        width: 44px;
+        height: 44px;
+        border-radius: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        cursor: pointer;
+        backdrop-filter: blur(4px);
+        transition: all 0.2s;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .mobile-menu-toggle:hover {
+        background: white;
+        border-color: rgba(0, 0, 0, 0.12);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .mobile-menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #1f2937;
+        border-radius: 4px;
+        transition: 0.25s ease;
+    }
+
+    /* ===== RESPONSIVE DESIGN ===== */
+    @media (max-width: 860px) {
+        .container {
+            padding: 0 20px;
+        }
+
+        .header-content {
+            min-height: 68px;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+        }
+
+        .logo-icon {
+            font-size: 1.7rem;
+        }
+
+        .logo-text small {
+            font-size: 0.7rem;
+        }
+
+        /* Mobile menu panel */
+        .nav-links {
+            position: fixed;
+            top: 68px;
+            left: -100%;
+            width: 85%;
+            max-width: 340px;
+            height: calc(100vh - 68px);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 32px 28px;
+            gap: 1.8rem;
+            box-shadow: 8px 0 40px rgba(0, 0, 0, 0.12);
+            transition: left 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 998;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 0 28px 28px 0;
+        }
+
+        .nav-links.open {
+            left: 0;
+        }
+
+        .nav-links li {
+            width: 100%;
+        }
+
+        .nav-links li a {
+            font-size: 1.25rem;
+            font-weight: 530;
+            padding: 12px 0;
+            display: block;
+            width: 100%;
+        }
+
+        .nav-links li a::after {
+            bottom: 8px;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+        }
+
+        /* Backdrop overlay when menu is open */
+        body.menu-open::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25);
+            backdrop-filter: blur(3px);
+            z-index: 997;
+            transition: all 0.2s;
+        }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 520px) {
+        .container {
+            padding: 0 16px;
+        }
+
+        .header-content {
+            min-height: 62px;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+        }
+
+        .logo-icon {
+            font-size: 1.5rem;
+        }
+
+        .nav-links {
+            top: 62px;
+            height: calc(100vh - 62px);
+            padding: 28px 20px;
+        }
+    }
+
+    /* Tablet landscape adjustment */
+    @media (min-width: 861px) and (max-width: 1024px) {
+        .container {
+            padding: 0 28px;
+        }
+        
+        .nav-links {
+            gap: 1.5rem;
+        }
+    }
+
+    /* ===== UTILITY FOR DEMO (show how header works with content) ===== */
+    .demo-content {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 24px;
+        text-align: center;
+    }
+
+    .demo-card {
+        background: white;
+        border-radius: 28px;
+        padding: 48px 32px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .demo-card h2 {
+        font-size: 2rem;
+        background: linear-gradient(135deg, #0f172a, #2563eb);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        margin-bottom: 1rem;
+    }
+
+    .demo-card p {
+        color: #4b5563;
+        line-height: 1.6;
+    }
+</style>
+
+<!-- Simple JavaScript for Mobile Menu Toggle + Scroll Effect -->
+<script>
+    (function() {
+        // DOM Elements
+        const header = document.querySelector('.site-header');
+        const toggleBtn = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navLinks');
+        const bodyEl = document.body;
+
+        // ===== SCROLL EFFECT: adds 'scrolled' class to header =====
+        function handleScroll() {
+            if (window.scrollY > 10) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        }
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        handleScroll(); // initialize
+
+        // ===== MOBILE MENU TOGGLE =====
+        if (toggleBtn && navMenu) {
+            const closeMenu = () => {
+                navMenu.classList.remove('open');
+                toggleBtn.setAttribute('aria-expanded', 'false');
+                bodyEl.classList.remove('menu-open');
+            };
+
+            const openMenu = () => {
+                navMenu.classList.add('open');
+                toggleBtn.setAttribute('aria-expanded', 'true');
+                bodyEl.classList.add('menu-open');
+            };
+
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (navMenu.classList.contains('open')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            // Close menu when clicking on a nav link (smooth navigation)
+            const navLinks = navMenu.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navMenu.classList.contains('open')) {
+                        closeMenu();
+                    }
+                });
+            });
+
+            // Close menu when clicking on backdrop (click outside)
+            document.addEventListener('click', (event) => {
+                if (navMenu.classList.contains('open')) {
+                    const isClickInside = navMenu.contains(event.target) || toggleBtn.contains(event.target);
+                    if (!isClickInside) {
+                        closeMenu();
+                    }
+                }
+            });
+
+            // Handle window resize: if resizing to desktop while menu open, close it
+            window.addEventListener('resize', () => {
+                if (window.innerWidth > 860 && navMenu.classList.contains('open')) {
+                    closeMenu();
+                }
+            });
+        }
+    })();
+</script>
+
+<!-- ============================================================ -->
+<!-- DEMO CONTENT - Shows header in action (replace with your actual page content) -->
+<!-- ============================================================ -->
+<main class="demo-content">
+    <div class="demo-card">
+        <h2>⚡ thenepal.io Converters</h2>
+        <p>Professional header built for 2026 — ultra-fast, fully responsive, glass morphism design.<br>
+        Seamlessly works across all pages. Mobile menu with smooth animations and scroll effects.</p>
+        <p style="margin-top: 24px; font-size: 0.9rem; color: #6c757d;">
+            ✅ Sticky navigation · ✅ Backdrop blur · ✅ Accessible · ✅ Lightweight · ✅ No external deps
+        </p>
+    </div>
+</main>
+
+<!-- 
+    INSTRUCTIONS FOR USE:
+    =====================
+    1. Copy the entire code from <header class="site-header"> to the closing </header> tag.
+    2. Include the <style> block (all CSS) in your global stylesheet or in each page's <head>.
+    3. Include the <script> block (JavaScript) at the end of your body or in a separate file.
+    4. The header will automatically work on all pages with sticky behavior and responsive menu.
+    
+    For a clean component setup on GitHub:
+    - Save header.html (just the header part) and include via PHP/SSI or copy-paste across pages.
+    - Or use GitHub Pages with includes (Jekyll): {% include header.html %}
+-->
