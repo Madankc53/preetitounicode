@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>जग्गा रूपान्तरण - Land Converter</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); width: 100%; max-width: 400px; border-top: 5px solid #800000; }
+        h2 { color: #800000; text-align: center; margin-bottom: 20px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #333; }
+        input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        .result { background: #fff8e1; padding: 15px; border-radius: 6px; margin-top: 20px; text-align: center; font-weight: bold; color: #d32f2f; border: 1px dashed #ffa000; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>जग्गा रूपान्तरण (परीक्षण)</h2>
+    
+    <div class="input-group">
+        <label>रोपनी (Ropani):</label>
+        <input type="number" id="ropani" placeholder="0" oninput="convert()">
+    </div>
+
+    <div class="input-group">
+        <label>आना (Aana):</label>
+        <input type="number" id="aana" placeholder="0" oninput="convert()">
+    </div>
+
+    <div class="result" id="sqftResult">
+        कुल वर्ग फिट: ०
+    </div>
+</div>
+
+<script>
+    function convert() {
+        const ropani = parseFloat(document.getElementById('ropani').value) || 0;
+        const aana = parseFloat(document.getElementById('aana').value) || 0;
+        
+        // 1 Ropani = 5476 sq ft, 1 Aana = 342.25 sq ft
+        const totalSqft = (ropani * 5476) + (aana * 342.25);
+        
+        document.getElementById('sqftResult').innerText = "कुल वर्ग फिट: " + totalSqft.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
