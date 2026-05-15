@@ -1,189 +1,27 @@
-<!-- ============================================================ -->
-<!-- PROFESSIONAL HEADER 2026 - Fully Working Mobile Menu         -->
-<!-- ============================================================ -->
+<!-- header.html -->
 <header class="site-header">
-    <div class="header-container">
-        <div class="header-top">
-            <!-- Logo -->
-            <div class="logo">
-                <a href="https://converter.thenepal.io">
-                    <span class="flag">🇳🇵</span>
-                    <span class="logo-text">thenepal.io</span>
-                </a>
-            </div>
-
-            <!-- Desktop Navigation -->
-            <nav class="main-nav">
-                <a href="https://converter.thenepal.io" class="nav-link">Home</a>
-                <a href="#" class="nav-link active">जग्गा कन्वर्टर</a>
-                <a href="#" class="nav-link">Unit Converter</a>
-                <a href="https://gpatopercentage.thenepal.io" class="nav-link">GPA Calculator</a>
-                <a href="https://thenepal.io" target="_blank" class="nav-link">Blog</a>
-            </nav>
-
-            <!-- Right Side -->
-            <div class="header-right">
-                <button class="btn-primary" onclick="window.location.href='https://thenepal.io/contact'">
-                    Contact Us
-                </button>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Menu">
-                ☰
-            </button>
+    <div class="header-content container">
+        <div class="logo">
+            <a href="https://converter.thenepal.io">
+                <span class="logo-icon">🇳🇵</span>
+                <span class="logo-text">thenepal.io <small>Converter</small></span>
+            </a>
         </div>
 
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <nav class="mobile-nav">
-                <a href="https://converter.thenepal.io" class="mobile-nav-link">Home</a>
-                <a href="#" class="mobile-nav-link active">जग्गा कन्वर्टर</a>
-                <a href="#" class="mobile-nav-link">Unit Converter</a>
-                <a href="https://gpatopercentage.thenepal.io" class="mobile-nav-link">GPA Calculator</a>
-                <a href="https://thenepal.io" target="_blank" class="mobile-nav-link">Blog</a>
-                <a href="https://thenepal.io/contact" class="mobile-nav-link">Contact Us</a>
-            </nav>
-        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="https://converter.thenepal.io">Home</a></li>
+                <li><a href="#" class="active">जग्गा कन्वर्टर</a></li>
+                <li><a href="#">Unit Converter</a></li>
+                <li><a href="https://gpatopercentage.thenepal.io">GPA Calculator</a></li>
+                <li><a href="https://thenepal.io">Blog</a></li>
+            </ul>
+        </nav>
+
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
     </div>
 </header>
-
-<style>
-    .site-header {
-        background: rgba(15, 23, 42, 0.98);
-        backdrop-filter: blur(12px);
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .header-container {
-        max-width: 1280px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    .header-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 0;
-    }
-
-    .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        text-decoration: none;
-        color: white;
-    }
-
-    .flag { font-size: 28px; }
-    .logo-text {
-        font-size: 1.65rem;
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        background: linear-gradient(90deg, #f1f5f9, #cbd5e1);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    .main-nav {
-        display: flex;
-        gap: 26px;
-        align-items: center;
-    }
-
-    .nav-link {
-        color: #cbd5e1;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.3s;
-    }
-
-    .nav-link:hover, .nav-link.active {
-        color: #60a5fa;
-    }
-
-    .header-right { display: flex; align-items: center; }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-        color: white;
-        border: none;
-        padding: 10px 22px;
-        border-radius: 10px;
-        font-weight: 600;
-        cursor: pointer;
-    }
-
-    .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 28px;
-        cursor: pointer;
-        padding: 5px;
-    }
-
-    /* Mobile Menu */
-    .mobile-menu {
-        display: none;
-        background: #0f172a;
-        padding: 20px 0;
-        border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .mobile-nav {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .mobile-nav-link {
-        color: #cbd5e1;
-        text-decoration: none;
-        padding: 14px 20px;
-        font-size: 1.1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .mobile-nav-link:hover,
-    .mobile-nav-link.active {
-        background: rgba(96, 165, 250, 0.15);
-        color: #60a5fa;
-    }
-
-    /* Responsive */
-    @media (max-width: 992px) {
-        .main-nav, .header-right { display: none; }
-        .mobile-menu-btn { display: block; }
-    }
-</style>
-
-<script>
-    // Mobile Menu Toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const mobileBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileBtn.addEventListener('click', function() {
-            if (mobileMenu.style.display === 'block') {
-                mobileMenu.style.display = 'none';
-                this.textContent = '☰';
-            } else {
-                mobileMenu.style.display = 'block';
-                this.textContent = '✕';
-            }
-        });
-
-        // Close menu when clicking a link
-        document.querySelectorAll('.mobile-nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.style.display = 'none';
-                mobileBtn.textContent = '☰';
-            });
-        });
-    });
-</script>
