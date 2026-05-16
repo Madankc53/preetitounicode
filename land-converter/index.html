@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="description" content="नेपालको सबैभन्दा सटीक र छिटो जग्गा नापजाँच कन्वर्टर। रोपनी, आना, पैसा, दाम, बिघा, कठ्ठा, धुर, वर्ग फिट, वर्ग मिटर तुरुन्त रूपान्तरण। मोबाइल र डेस्कटपमा सहज।">
-    <meta name="keywords" content="जग्गा कन्वर्टर, रोपनी आना क्याल्कुलेटर, बिघा कठ्ठा धुर, नेपाली जग्गा नाप, ropani to sqft, aana to square feet, nepali land converter">
+    <meta name="keywords" content="जग्गा कन्वर्टर, रोपनी आना क्याल्कुलेटर, बिघा कठ्ठा धुर, नेपाली जग्गा नाप, ropani to sqft, aana to square feet">
     <meta name="author" content="Nepal Land Tools">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://www.yourdomain.com/land-converter">
-    <title>जग्गा रूपान्तरण कन्वर्टर | Ropani Aana Bigha Converter | नेपालको भरपर्दो उपकरण</title>
+    <title>जग्गा रूपान्तरण कन्वर्टर | Ropani Aana Bigha Converter</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -20,52 +20,57 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --primary: #7a1f1f;
             --primary-dark: #5a1616;
             --accent: #d97706;
             --accent-soft: #fef3c7;
-            --gray-bg: #f8fafc;
             --border-light: #e2e8f0;
             --text-dark: #1e293b;
             --text-soft: #334155;
-            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
-            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.1);
+            --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05);
+            --shadow-md: 0 20px 25px -12px rgba(0,0,0,0.1);
         }
-
         body {
-            font-family: 'Inter', 'Noto Sans Devanagari', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
             background: linear-gradient(145deg, #f1f5f9 0%, #eef2f6 100%);
             color: var(--text-dark);
             line-height: 1.5;
-            padding: 0;
-            margin: 0;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-
-        /* Header (automatic, no external JS) */
-        .site-header {
+        /* Header styles (applied automatically) */
+        .auto-header {
             background: var(--primary);
             color: white;
             padding: 1rem 1.5rem;
             text-align: center;
             box-shadow: var(--shadow-sm);
         }
-        .site-header h2 {
+        .auto-header h2 {
             font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: -0.3px;
         }
-        .site-header p {
+        .auto-header p {
             font-size: 0.85rem;
             opacity: 0.9;
             margin-top: 0.25rem;
         }
-
-        /* Main container */
+        /* Footer styles */
+        .auto-footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+        .auto-footer a {
+            color: #fcd34d;
+            text-decoration: none;
+        }
+        /* Main converter card */
         .converter-card {
             max-width: 1000px;
             margin: 2rem auto;
@@ -74,18 +79,14 @@
             box-shadow: var(--shadow-md);
             overflow: hidden;
             flex: 1;
+            width: 95%;
         }
-
         .inner-padding {
             padding: 1.75rem;
         }
-
         @media (min-width: 768px) {
-            .inner-padding {
-                padding: 2.2rem 2.5rem;
-            }
+            .inner-padding { padding: 2.2rem 2.5rem; }
         }
-
         h1 {
             font-size: 1.9rem;
             font-weight: 700;
@@ -94,10 +95,7 @@
             -webkit-background-clip: text;
             color: transparent;
             text-align: center;
-            letter-spacing: -0.3px;
-            margin-bottom: 0.4rem;
         }
-
         .subhead {
             text-align: center;
             color: var(--text-soft);
@@ -108,7 +106,6 @@
             padding-bottom: 0.6rem;
             font-weight: 500;
         }
-
         .mode-tabs {
             display: flex;
             gap: 1rem;
@@ -124,7 +121,7 @@
             font-weight: 700;
             border-radius: 2rem;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: 0.2s;
             background: transparent;
             color: #475569;
         }
@@ -134,7 +131,6 @@
             box-shadow: var(--shadow-sm);
             border: 1px solid var(--border-light);
         }
-
         .conversion-grid {
             display: flex;
             flex-direction: column;
@@ -150,51 +146,33 @@
             font-weight: 700;
             color: var(--text-dark);
             font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
         }
         select, input {
             width: 100%;
-            padding: 1rem 1rem;
+            padding: 1rem;
             font-size: 1.05rem;
             border: 2px solid var(--border-light);
             border-radius: 1.2rem;
-            background: white;
             font-family: inherit;
             transition: 0.2s;
-            font-weight: 500;
         }
         select:focus, input:focus {
-            outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.2);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(217,119,6,0.2);
         }
-        input {
-            font-weight: 600;
-        }
-
         .result-area {
             background: linear-gradient(120deg, var(--accent-soft), #fff3e0);
             padding: 1.8rem;
             border-radius: 1.5rem;
             text-align: center;
             margin: 1.5rem 0 2rem;
-            border: 2px solid #ffe2b5;
         }
         .result-text {
             font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary-dark);
-            word-break: break-word;
         }
-        .result-label {
-            font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            color: #92400e;
-        }
-
         .quick-buttons {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -209,22 +187,17 @@
             font-weight: 600;
             text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
-            font-size: 0.9rem;
+            transition: 0.2s;
         }
         .quick-btn:hover {
             background: var(--primary);
             color: white;
-            border-color: var(--primary);
-            transform: translateY(-2px);
         }
-
         .table-wrapper {
             overflow-x: auto;
-            margin: 2rem 0 1rem;
+            margin: 2rem 0;
             border-radius: 1.2rem;
             border: 1px solid var(--border-light);
-            background: white;
         }
         table {
             width: 100%;
@@ -240,12 +213,7 @@
         th {
             background: #f1f5f9;
             color: var(--primary);
-            font-weight: 700;
         }
-        tr:last-child td {
-            border-bottom: none;
-        }
-
         .seo-content {
             background: #fefce8;
             padding: 1.5rem;
@@ -253,52 +221,18 @@
             margin-top: 2rem;
             font-size: 0.95rem;
         }
-        .seo-content h3 {
-            color: var(--primary);
-            margin-bottom: 0.7rem;
-            font-size: 1.3rem;
-        }
-        .seo-content ul {
-            margin-left: 1.2rem;
-            margin-top: 0.6rem;
-        }
-
-        /* Footer (automatic) */
-        .site-footer {
-            background: #1e293b;
-            color: #cbd5e1;
-            text-align: center;
-            padding: 1.2rem;
-            font-size: 0.8rem;
-            margin-top: 2rem;
-        }
-        .site-footer a {
-            color: #fcd34d;
-            text-decoration: none;
-        }
-
         @media (max-width: 560px) {
-            .inner-padding {
-                padding: 1.25rem;
-            }
-            .result-text {
-                font-size: 1.2rem;
-            }
-            .quick-btn {
-                font-size: 0.8rem;
-                padding: 0.6rem;
-            }
+            .inner-padding { padding: 1.25rem; }
+            .result-text { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- ✅ Automatic Header (no external file) -->
-<header class="site-header">
-    <h2>🇳🇵 नेपाल जग्गा नापी उपकरण</h2>
-    <p>आधिकारिक रूपान्तरण • विश्वसनीय • निःशुल्क</p>
-</header>
+<!-- ========== AUTOMATIC HEADER (populated by script) ========== -->
+<div id="header"></div>
 
+<!-- MAIN CONVERTER CONTENT -->
 <main class="converter-card">
     <div class="inner-padding">
         <h1>जग्गा रूपान्तरण कन्वर्टर</h1>
@@ -314,15 +248,15 @@
         <div class="conversion-grid">
             <div class="field">
                 <label>📌 बाट (From Unit):</label>
-                <select id="fromUnit" aria-label="मापन एकाई बाट"></select>
+                <select id="fromUnit"></select>
             </div>
             <div class="field">
                 <label>🔢 मूल्य (Value):</label>
-                <input type="number" id="inputValue" value="1" step="any" placeholder="जग्गाको परिमाण लेख्नुहोस्">
+                <input type="number" id="inputValue" value="1" step="any">
             </div>
             <div class="field">
                 <label>🎯 लाई (To Unit):</label>
-                <select id="toUnit" aria-label="मापन एकाई लाई"></select>
+                <select id="toUnit"></select>
             </div>
         </div>
 
@@ -335,33 +269,56 @@
 
         <div class="table-wrapper">
             <table id="referenceTable">
-                <thead>
-                    <tr><th>युनिट</th><th>समतुल्य</th><th>वर्ग फिट (sq ft)</th><th>वर्ग मिटर (sq m)</th></tr>
-                </thead>
+                <thead><tr><th>युनिट</th><th>समतुल्य</th><th>वर्ग फिट</th><th>वर्ग मिटर</th></tr></thead>
                 <tbody></tbody>
             </table>
         </div>
 
         <div class="seo-content">
-            <h3>🇳🇵 नेपाली जग्गा नाप्ने प्रणाली (Land Measurement in Nepal)</h3>
-            <p>यो कन्वर्टरले <strong>पहाडी क्षेत्र (रोपनी, आना, पैसा, दाम)</strong> र <strong>तराई क्षेत्र (बिघा, कठ्ठा, धुर)</strong> दुवै प्रणालीबाट एकै ठाउँमा रूपान्तरण गर्छ। साथै अन्तर्राष्ट्रिय एकाई वर्ग फिट (sq ft) र वर्ग मिटर (sq m) मा पनि सजिलै परिवर्तन गर्न सकिन्छ।</p>
+            <h3>🇳🇵 नेपाली जग्गा नाप्ने प्रणाली</h3>
+            <p>यो कन्वर्टरले <strong>पहाडी (रोपनी, आना, पैसा, दाम)</strong> र <strong>तराई (बिघा, कठ्ठा, धुर)</strong> दुवै प्रणाली रूपान्तरण गर्छ। अन्तर्राष्ट्रिय एकाई वर्ग फिट (sq ft) र वर्ग मिटर (sq m) मा पनि सहज छ।</p>
             <ul>
-                <li>✅ <strong>१ रोपनी</strong> = ५४७६ वर्ग फिट = १६ आना = ६४ पैसा = २५६ दाम</li>
-                <li>✅ <strong>१ बिघा</strong> = ७२९०० वर्ग फिट = २० कठ्ठा = ४०० धुर ≈ १३.३१ रोपनी</li>
-                <li>✅ सटीकता: सबै रूपान्तरण गणितीय रुपले प्रमाणित मान (standard conversion factors) मा आधारित छन्।</li>
+                <li>✅ <strong>१ रोपनी</strong> = ५४७६ वर्ग फिट = १६ आना = ६४ पैसा</li>
+                <li>✅ <strong>१ बिघा</strong> = ७२९०० वर्ग फिट = २० कठ्ठा = ४०० धुर</li>
+                <li>✅ शतप्रतिशत सटीक (standard conversion factors)</li>
             </ul>
         </div>
     </div>
 </main>
 
-<!-- ✅ Automatic Footer (no external script) -->
-<footer class="site-footer">
-    <p>🔁 शतप्रतिशत सटीक रूपान्तरण | डाटा तपाईंको ब्राउजरमा प्रशोधन हुन्छ | निःशुल्क प्रयोग गर्नुहोस्</p>
-    <p>© 2025 नेपाल ल्याण्ड कन्भर्टर | सही नापीको लागि आधिकारिक स्रोत प्रयोग गर्नुहोस्</p>
-</footer>
+<!-- ========== AUTOMATIC FOOTER (populated by script) ========== -->
+<div id="footer"></div>
 
 <script>
-    // ---------- सटीक रूपान्तरण गुणांक (Standard to sq ft) ----------
+    // ------------------------------------------------------------------
+    // 1. AUTOMATIC HEADER & FOOTER GENERATION (no external file needed)
+    // ------------------------------------------------------------------
+    function loadHeaderFooter() {
+        const headerDiv = document.getElementById('header');
+        const footerDiv = document.getElementById('footer');
+        
+        if (headerDiv) {
+            headerDiv.innerHTML = `
+                <div class="auto-header">
+                    <h2>🇳🇵 नेपाल जग्गा नापी उपकरण</h2>
+                    <p>आधिकारिक रूपान्तरण • विश्वसनीय • निःशुल्क</p>
+                </div>
+            `;
+        }
+        
+        if (footerDiv) {
+            footerDiv.innerHTML = `
+                <div class="auto-footer">
+                    <p>🔁 शतप्रतिशत सटीक रूपान्तरण | डाटा तपाईंको ब्राउजरमा प्रशोधन हुन्छ | निःशुल्क प्रयोग गर्नुहोस्</p>
+                    <p>© 2025 नेपाल ल्यान्ड कन्भर्टर | सही नापीको लागि आधिकारिक स्रोत प्रयोग गर्नुहोस्</p>
+                </div>
+            `;
+        }
+    }
+    
+    // ------------------------------------------------------------------
+    // 2. LAND CONVERSION LOGIC (ACCURATE)
+    // ------------------------------------------------------------------
     const UNIT_DB = {
         ropani: { name: "रोपनी (Ropani)", sqftBase: 5476, group: "hill" },
         aana: { name: "आना (Aana)", sqftBase: 342.25, group: "hill" },
@@ -373,73 +330,52 @@
         sqft: { name: "वर्ग फिट (sq ft)", sqftBase: 1, group: "both" },
         sqm: { name: "वर्ग मिटर (sq m)", sqftBase: 10.76391041671, group: "both" }
     };
-
+    
     let currentMode = "hill";
     let fromSelect, toSelect, inputField, resultDiv;
-
+    
     function getUnitsForMode() {
         const all = Object.keys(UNIT_DB);
         if (currentMode === "hill") {
-            return all.filter(key => UNIT_DB[key].group === "hill" || UNIT_DB[key].group === "both");
+            return all.filter(k => UNIT_DB[k].group === "hill" || UNIT_DB[k].group === "both");
         } else {
-            return all.filter(key => UNIT_DB[key].group === "terai" || UNIT_DB[key].group === "both");
+            return all.filter(k => UNIT_DB[k].group === "terai" || UNIT_DB[k].group === "both");
         }
     }
-
+    
     function populateUnitSelectors() {
-        const availableUnits = getUnitsForMode();
-        const fromCurrentVal = fromSelect.value;
-        const toCurrentVal = toSelect.value;
-        
+        const available = getUnitsForMode();
+        const fromOld = fromSelect.value;
+        const toOld = toSelect.value;
         fromSelect.innerHTML = "";
         toSelect.innerHTML = "";
-        
-        availableUnits.forEach(unitKey => {
-            const opt1 = document.createElement("option");
-            opt1.value = unitKey;
-            opt1.textContent = UNIT_DB[unitKey].name;
+        available.forEach(uk => {
+            let opt1 = document.createElement("option");
+            opt1.value = uk;
+            opt1.textContent = UNIT_DB[uk].name;
             fromSelect.appendChild(opt1);
-            
-            const opt2 = document.createElement("option");
-            opt2.value = unitKey;
-            opt2.textContent = UNIT_DB[unitKey].name;
+            let opt2 = document.createElement("option");
+            opt2.value = uk;
+            opt2.textContent = UNIT_DB[uk].name;
             toSelect.appendChild(opt2);
         });
-        
-        if (availableUnits.includes(fromCurrentVal)) fromSelect.value = fromCurrentVal;
-        else fromSelect.value = currentMode === "hill" ? "ropani" : "bigha";
-        
-        if (availableUnits.includes(toCurrentVal)) toSelect.value = toCurrentVal;
-        else toSelect.value = "sqft";
+        fromSelect.value = available.includes(fromOld) ? fromOld : (currentMode === "hill" ? "ropani" : "bigha");
+        toSelect.value = available.includes(toOld) ? toOld : "sqft";
     }
-
-    function performConversion() {
-        let rawValue = parseFloat(inputField.value);
-        if (isNaN(rawValue)) rawValue = 0;
-        if (rawValue < 0) rawValue = 0;
-        
+    
+    function convert() {
+        let val = parseFloat(inputField.value);
+        if (isNaN(val)) val = 0;
+        if (val < 0) val = 0;
         const fromKey = fromSelect.value;
         const toKey = toSelect.value;
-        if (!UNIT_DB[fromKey] || !UNIT_DB[toKey]) {
-            resultDiv.innerHTML = "⚠️ कृपया मान्य एकाई चयन गर्नुहोस्";
-            return;
-        }
-        
-        const fromSqft = UNIT_DB[fromKey].sqftBase;
-        const toSqft = UNIT_DB[toKey].sqftBase;
-        const valueInSqFt = rawValue * fromSqft;
-        let resultValue = valueInSqFt / toSqft;
-        
-        let formatted;
-        if (Math.abs(resultValue) < 0.0001 && resultValue !== 0) {
-            formatted = resultValue.toExponential(6);
-        } else {
-            formatted = resultValue.toLocaleString('ne-NP', { minimumFractionDigits: 2, maximumFractionDigits: 6 });
-        }
-        
-        resultDiv.innerHTML = `${rawValue.toLocaleString('ne-NP')} ${UNIT_DB[fromKey].name} = <strong style="font-size:1.7rem;">${formatted}</strong> ${UNIT_DB[toKey].name}`;
+        if (!UNIT_DB[fromKey] || !UNIT_DB[toKey]) return;
+        const resultSqft = val * UNIT_DB[fromKey].sqftBase / UNIT_DB[toKey].sqftBase;
+        let formatted = resultSqft.toLocaleString('ne-NP', { minimumFractionDigits: 2, maximumFractionDigits: 6 });
+        if (Math.abs(resultSqft) < 0.0001 && resultSqft !== 0) formatted = resultSqft.toExponential(6);
+        resultDiv.innerHTML = `${val.toLocaleString('ne-NP')} ${UNIT_DB[fromKey].name} = <strong style="font-size:1.7rem;">${formatted}</strong> ${UNIT_DB[toKey].name}`;
     }
-
+    
     function renderQuickButtons() {
         const container = document.getElementById("quickButtonsContainer");
         if (!container) return;
@@ -465,59 +401,52 @@
         }
         container.innerHTML = "";
         btns.forEach(btn => {
-            const btnDiv = document.createElement("div");
-            btnDiv.classList.add("quick-btn");
-            btnDiv.textContent = btn.label;
-            btnDiv.addEventListener("click", () => {
+            const btnEl = document.createElement("div");
+            btnEl.className = "quick-btn";
+            btnEl.textContent = btn.label;
+            btnEl.onclick = () => {
                 fromSelect.value = btn.from;
                 toSelect.value = btn.to;
                 inputField.value = "1";
-                performConversion();
-                document.querySelectorAll(".quick-btn").forEach(el => el.style.background = "");
-                btnDiv.style.background = "#7a1f1f";
-                btnDiv.style.color = "white";
-                setTimeout(() => {
-                    btnDiv.style.background = "";
-                    btnDiv.style.color = "";
-                }, 200);
-            });
-            container.appendChild(btnDiv);
+                convert();
+            };
+            container.appendChild(btnEl);
         });
     }
-
+    
     function updateReferenceTable() {
         const tbody = document.querySelector("#referenceTable tbody");
         if (!tbody) return;
         if (currentMode === "hill") {
             tbody.innerHTML = `
-                <tr><td>१ रोपनी</td><td>१६ आना, ६४ पैसा</td><td>५,४७६ वर्ग फिट</td><td>५०८.७२ वर्ग मिटर</td></tr>
-                <tr><td>१ आना</td><td>४ पैसा, १६ दाम</td><td>३४२.२५ वर्ग फिट</td><td>३१.८० वर्ग मिटर</td></tr>
-                <tr><td>१ पैसा</td><td>४ दाम</td><td>८५.५६२५ वर्ग फिट</td><td>७.९५ वर्ग मिटर</td></tr>
-                <tr><td>१ दाम</td><td>१/४ पैसा</td><td>२१.३९ वर्ग फिट</td><td>१.९९ वर्ग मिटर</td></tr>
+                <tr><td>१ रोपनी</td><td>१६ आना, ६४ पैसा</td><td>५,४७६</td><td>५०८.७२</td></tr>
+                <tr><td>१ आना</td><td>४ पैसा, १६ दाम</td><td>३४२.२५</td><td>३१.८०</td></tr>
+                <tr><td>१ पैसा</td><td>४ दाम</td><td>८५.५६२५</td><td>७.९५</td></tr>
+                <tr><td>१ दाम</td><td>१/४ पैसा</td><td>२१.३९</td><td>१.९९</td></tr>
             `;
         } else {
             tbody.innerHTML = `
-                <tr><td>१ बिघा</td><td>२० कठ्ठा, ४०० धुर</td><td>७२,९०० वर्ग फिट</td><td>६,७७२.६३ वर्ग मिटर</td></tr>
-                <tr><td>१ कठ्ठा</td><td>२० धुर</td><td>३,६४५ वर्ग फिट</td><td>३३८.६३ वर्ग मिटर</td></tr>
-                <tr><td>१ धुर</td><td>१/२० कठ्ठा</td><td>१८२.२५ वर्ग फिट</td><td>१६.९३ वर्ग मिटर</td></tr>
+                <tr><td>१ बिघा</td><td>२० कठ्ठा, ४०० धुर</td><td>७२,९००</td><td>६,७७२.६३</td></tr>
+                <tr><td>१ कठ्ठा</td><td>२० धुर</td><td>३,६४५</td><td>३३८.६३</td></tr>
+                <tr><td>१ धुर</td><td>१/२० कठ्ठा</td><td>१८२.२५</td><td>१६.९३</td></tr>
                 <tr><td>१ बिघा (रोपनीमा)</td><td>≈१३.३१ रोपनी</td><td>७२,९००</td><td>६,७७२.६३</td></tr>
             `;
         }
     }
-
+    
     function switchMode(mode) {
         currentMode = mode;
         populateUnitSelectors();
         renderQuickButtons();
         updateReferenceTable();
-        performConversion();
+        convert();
     }
-
-    function initModeTabs() {
+    
+    function initTabs() {
         const tabs = document.querySelectorAll(".mode-tab");
         tabs.forEach(tab => {
             tab.addEventListener("click", () => {
-                const mode = tab.getAttribute("data-mode");
+                const mode = tab.dataset.mode;
                 if (mode === currentMode) return;
                 tabs.forEach(t => t.classList.remove("active"));
                 tab.classList.add("active");
@@ -525,48 +454,44 @@
             });
         });
     }
-
-    function sanitizeInput() {
-        if (inputField.value === "") inputField.value = "0";
-        let v = parseFloat(inputField.value);
-        if (isNaN(v)) inputField.value = "0";
-        if (v < 0) inputField.value = "0";
-        performConversion();
-    }
-
-    function injectStructuredData() {
-        const schema = document.createElement('script');
-        schema.type = 'application/ld+json';
-        schema.textContent = JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "WebApplication",
-            "name": "नेपाली जग्गा रूपान्तरण कन्वर्टर",
-            "description": "रोपनी, आना, बिघा, कठ्ठा, धुर, वर्ग फिट/मिटर तुरुन्त रूपान्तरण गर्ने नेपाली उपकरण",
-            "applicationCategory": "UtilityApplication",
-            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" }
-        });
-        document.head.appendChild(schema);
-    }
-
+    
+    // ------------------------------------------------------------------
+    // 3. INITIALIZE EVERYTHING
+    // ------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
+        // First inject header & footer
+        loadHeaderFooter();
+        
+        // Get DOM elements
         fromSelect = document.getElementById("fromUnit");
         toSelect = document.getElementById("toUnit");
         inputField = document.getElementById("inputValue");
         resultDiv = document.getElementById("conversionResult");
         
-        currentMode = "hill";
+        // Setup converter
         populateUnitSelectors();
         renderQuickButtons();
         updateReferenceTable();
-        initModeTabs();
-        performConversion();
+        initTabs();
+        convert();
         
-        inputField.addEventListener("input", performConversion);
-        fromSelect.addEventListener("change", performConversion);
-        toSelect.addEventListener("change", performConversion);
-        inputField.addEventListener("blur", sanitizeInput);
+        // Event listeners
+        inputField.addEventListener("input", convert);
+        fromSelect.addEventListener("change", convert);
+        toSelect.addEventListener("change", convert);
         
-        injectStructuredData();
+        // SEO schema
+        const schema = document.createElement('script');
+        schema.type = 'application/ld+json';
+        schema.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "जग्गा रूपान्तरण कन्वर्टर",
+            "description": "नेपाली जग्गा नापी एकाई रूपान्तरण",
+            "applicationCategory": "UtilityApplication",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" }
+        });
+        document.head.appendChild(schema);
     });
 </script>
 </body>
