@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="ne-NP">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="सबै एकाईहरूको सजिलो रूपान्तरण: लम्बाइ, तौल, तापक्रम, क्षेत्रफल, भोल्युम। तुरुन्त, सटीक, निःशुल्क।">
+    <meta name="keywords" content="unit converter, length converter, weight converter, temperature converter, area converter, volume converter, एकाई रूपान्तरण, लम्बाइ, तौल, तापक्रम">
+    <meta name="author" content="Nepal Land Tools">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.yourdomain.com/unit-converter">
+    <title>एकाई रूपान्तरण कन्वर्टर | Unit Converter - लम्बाइ, तौल, तापक्रम, क्षेत्रफल, भोल्युम</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #1e4a6b;
+            --primary-dark: #0f2c3f;
+            --accent: #f59e0b;
+            --light-bg: #f8fafc;
+            --border: #e2e8f0;
+            --text: #1e293b;
+            --text-light: #64748b;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+        }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(145deg, #f1f5f9 0%, #eef2f6 100%);
+            color: var(--text);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        /* Header styles (applied automatically) */
+        .auto-header {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .auto-header h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .auto-header p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+            margin-top: 0.25rem;
+        }
+        /* Footer styles */
+        .auto-footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            text-align: center;
+            padding: 1.2rem;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+        .auto-footer a {
+            color: #fcd34d;
+            text-decoration: none;
+        }
+        /* Main converter card */
+        .converter-container {
+            max-width: 900px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 2rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            flex: 1;
+            width: 95%;
+        }
+        .inner {
+            padding: 1.75rem;
+        }
+        @media (min-width: 640px) {
+            .inner { padding: 2rem 2.5rem; }
+        }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), #0f766e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            text-align: center;
+            margin-bottom: 0.25rem;
+        }
+        .sub {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1.8rem;
+        }
+        /* Category tabs */
+        .cat-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            padding: 0.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .cat-btn {
+            flex: 1 0 auto;
+            text-align: center;
+            padding: 0.7rem 0.5rem;
+            font-weight: 600;
+            border-radius: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            color: #475569;
+            font-size: 0.9rem;
+        }
+        .cat-btn.active {
+            background: white;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.2rem;
+        }
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        select, input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 1.2rem;
+            font-family: inherit;
+            background: white;
+            transition: 0.2s;
+        }
+        select:focus, input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(245,158,11,0.2);
+        }
+        .result-card {
+            background: linear-gradient(120deg, #fef9e6, #fff7ed);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            text-align: center;
+            margin: 1.8rem 0;
+            border: 2px solid #ffe4b5;
+        }
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            word-break: break-word;
+        }
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 0.7rem;
+            margin: 1.8rem 0;
+        }
+        .quick-btn {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            padding: 0.7rem 0.3rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.2s;
+        }
+        .quick-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        .info-note {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-top: 1rem;
+        }
+        @media (max-width: 500px) {
+            .cat-btn { font-size: 0.75rem; padding: 0.5rem; }
+            .result-value { font-size: 1.3rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========== AUTOMATIC HEADER ========== -->
+<div id="header"></div>
+
+<!-- MAIN CONVERTER CONTENT -->
+<div class="converter-container">
+    <div class="inner">
+        <h1>📐 एकाई रूपान्तरण कन्वर्टर</h1>
+        <div class="sub">लम्बाइ · तौल · तापक्रम · क्षेत्रफल · भोल्युम — तुरुन्त रूपान्तरण</div>
+        
+        <!-- Category Tabs -->
+        <div class="cat-tabs" id="catTabs">
+            <div class="cat-btn active" data-cat="length">📏 लम्बाइ</div>
+            <div class="cat-btn" data-cat="weight">⚖️ तौल</div>
+            <div class="cat-btn" data-cat="temp">🌡️ तापक्रम</div>
+            <div class="cat-btn" data-cat="area">🗺️ क्षेत्रफल</div>
+            <div class="cat-btn" data-cat="volume">🧴 भोल्युम</div>
+        </div>
+
+        <!-- Dynamic conversion panel -->
+        <div id="converterPanel"></div>
+
+        <div class="quick-grid" id="quickPresets"></div>
+        <div class="info-note">
+            🔁 सटीक रूपान्तरण • रियल-टाइम • पूर्ण रूपमा निःशुल्क
+        </div>
+    </div>
+</div>
+
+<!-- ========== AUTOMATIC FOOTER ========== -->
+<div id="footer"></div>
+
+<script>
+    // ------------------------------------------------------------------
+    // 1. AUTOMATIC HEADER & FOOTER (inline, no external file)
+    // ------------------------------------------------------------------
+    function loadHeaderFooter() {
+        const headerDiv = document.getElementById('header');
+        const footerDiv = document.getElementById('footer');
+        
+        if (headerDiv) {
+            headerDiv.innerHTML = `
+                <div class="auto-header">
+                    <h2>🇳🇵 नेपाल युनिट कन्भर्टर</h2>
+                    <p>सबै एकाईहरूको सही र छिटो रूपान्तरण • निःशुल्क</p>
+                </div>
+            `;
+        }
+        
+        if (footerDiv) {
+            footerDiv.innerHTML = `
+                <div class="auto-footer">
+                    <p>🔁 शतप्रतिशत सटीक रूपान्तरण | डाटा तपाईंको ब्राउजरमा प्रशोधन हुन्छ | निःशुल्क प्रयोग गर्नुहोस्</p>
+                    <p>© 2025 युनिट कन्भर्टर | सही मापनको लागि आधिकारिक मान प्रयोग गरिएको</p>
+                </div>
+            `;
+        }
+    }
+    
+    // ------------------------------------------------------------------
+    // 2. UNIT CONVERSION LOGIC
+    // ------------------------------------------------------------------
+    const categories = {
+        length: {
+            name: "लम्बाइ",
+            baseUnit: "meter",
+            units: {
+                meter: { name: "मिटर (m)", toBase: 1 },
+                kilometer: { name: "किलोमिटर (km)", toBase: 1000 },
+                centimeter: { name: "सेन्टिमिटर (cm)", toBase: 0.01 },
+                millimeter: { name: "मिलिमिटर (mm)", toBase: 0.001 },
+                mile: { name: "माइल (mile)", toBase: 1609.344 },
+                yard: { name: "यार्ड (yd)", toBase: 0.9144 },
+                foot: { name: "फुट (ft)", toBase: 0.3048 },
+                inch: { name: "इन्च (in)", toBase: 0.0254 }
+            }
+        },
+        weight: {
+            name: "तौल",
+            baseUnit: "kilogram",
+            units: {
+                kilogram: { name: "किलोग्राम (kg)", toBase: 1 },
+                gram: { name: "ग्राम (g)", toBase: 0.001 },
+                milligram: { name: "मिलिग्राम (mg)", toBase: 0.000001 },
+                ton: { name: "टन (metric ton)", toBase: 1000 },
+                pound: { name: "पाउण्ड (lb)", toBase: 0.45359237 },
+                ounce: { name: "औंस (oz)", toBase: 0.028349523125 }
+            }
+        },
+        temp: {
+            name: "तापक्रम",
+            unitsList: [
+                { id: "celsius", name: "सेल्सियस (°C)" },
+                { id: "fahrenheit", name: "फारेनहाइट (°F)" },
+                { id: "kelvin", name: "केल्भिन (K)" }
+            ],
+            convertTemp: (val, from, to) => {
+                let celsius;
+                if (from === "celsius") celsius = val;
+                else if (from === "fahrenheit") celsius = (val - 32) * 5/9;
+                else if (from === "kelvin") celsius = val - 273.15;
+                
+                if (to === "celsius") return celsius;
+                if (to === "fahrenheit") return (celsius * 9/5) + 32;
+                if (to === "kelvin") return celsius + 273.15;
+                return val;
+            }
+        },
+        area: {
+            name: "क्षेत्रफल",
+            baseUnit: "sqmeter",
+            units: {
+                sqmeter: { name: "वर्ग मिटर (m²)", toBase: 1 },
+                sqkilometer: { name: "वर्ग किलोमिटर (km²)", toBase: 1e6 },
+                sqfoot: { name: "वर्ग फिट (ft²)", toBase: 0.09290304 },
+                sqyard: { name: "वर्ग यार्ड (yd²)", toBase: 0.83612736 },
+                acre: { name: "एकर (acre)", toBase: 4046.8564224 },
+                hectare: { name: "हेक्टर (ha)", toBase: 10000 }
+            }
+        },
+        volume: {
+            name: "भोल्युम",
+            baseUnit: "liter",
+            units: {
+                liter: { name: "लिटर (L)", toBase: 1 },
+                milliliter: { name: "मिलिलिटर (mL)", toBase: 0.001 },
+                cubicmeter: { name: "घन मिटर (m³)", toBase: 1000 },
+                gallon_us: { name: "ग्यालन (US)", toBase: 3.785411784 },
+                quart_us: { name: "क्वार्ट (US)", toBase: 0.946352946 },
+                pint_us: { name: "पाइन्ट (US)", toBase: 0.473176473 },
+                cup: { name: "कप (cup)", toBase: 0.2365882365 }
+            }
+        }
+    };
+    
+    let currentCategory = "length";
+    let fromUnit = "meter";
+    let toUnit = "foot";
+    let currentValue = 1;
+    
+    const panelDiv = document.getElementById("converterPanel");
+    const quickDiv = document.getElementById("quickPresets");
+    
+    function renderConverterUI() {
+        const cat = categories[currentCategory];
+        if (!cat) return;
+        
+        let unitsHtml = "";
+        if (currentCategory === "temp") {
+            unitsHtml = `
+                <div class="field-group">
+                    <label>🌡️ बाट (From):</label>
+                    <select id="fromUnitSelect">
+                        ${cat.unitsList.map(u => `<option value="${u.id}" ${fromUnit === u.id ? 'selected' : ''}>${u.name}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>🔢 मूल्य:</label>
+                    <input type="number" id="valueInput" value="${currentValue}" step="any">
+                </div>
+                <div class="field-group">
+                    <label>🎯 लाई (To):</label>
+                    <select id="toUnitSelect">
+                        ${cat.unitsList.map(u => `<option value="${u.id}" ${toUnit === u.id ? 'selected' : ''}>${u.name}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        } else {
+            const unitKeys = Object.keys(cat.units);
+            unitsHtml = `
+                <div class="field-group">
+                    <label>📌 बाट (From):</label>
+                    <select id="fromUnitSelect">
+                        ${unitKeys.map(k => `<option value="${k}" ${fromUnit === k ? 'selected' : ''}>${cat.units[k].name}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label>🔢 मूल्य:</label>
+                    <input type="number" id="valueInput" value="${currentValue}" step="any">
+                </div>
+                <div class="field-group">
+                    <label>🎯 लाई (To):</label>
+                    <select id="toUnitSelect">
+                        ${unitKeys.map(k => `<option value="${k}" ${toUnit === k ? 'selected' : ''}>${cat.units[k].name}</option>`).join('')}
+                    </select>
+                </div>
+            `;
+        }
+        
+        panelDiv.innerHTML = `
+            ${unitsHtml}
+            <div class="result-card">
+                <div class="result-value" id="resultDisplay">—</div>
+            </div>
+        `;
+        
+        const fromSel = document.getElementById("fromUnitSelect");
+        const toSel = document.getElementById("toUnitSelect");
+        const valInput = document.getElementById("valueInput");
+        
+        if (fromSel) fromSel.addEventListener("change", () => { fromUnit = fromSel.value; performConversion(); });
+        if (toSel) toSel.addEventListener("change", () => { toUnit = toSel.value; performConversion(); });
+        if (valInput) valInput.addEventListener("input", () => { currentValue = parseFloat(valInput.value) || 0; performConversion(); });
+        
+        performConversion();
+        renderQuickButtons();
+    }
+    
+    function performConversion() {
+        const cat = categories[currentCategory];
+        let val = currentValue;
+        if (isNaN(val)) val = 0;
+        
+        let result;
+        if (currentCategory === "temp") {
+            result = cat.convertTemp(val, fromUnit, toUnit);
+        } else {
+            const fromFactor = cat.units[fromUnit]?.toBase;
+            const toFactor = cat.units[toUnit]?.toBase;
+            if (!fromFactor || !toFactor) return;
+            const valueInBase = val * fromFactor;
+            result = valueInBase / toFactor;
+        }
+        
+        let formatted;
+        if (Math.abs(result) < 0.000001 && result !== 0) formatted = result.toExponential(8);
+        else formatted = result.toLocaleString('ne-NP', { minimumFractionDigits: 2, maximumFractionDigits: 8 });
+        
+        const fromName = currentCategory === "temp" 
+            ? categories.temp.unitsList.find(u => u.id === fromUnit)?.name || fromUnit
+            : categories[currentCategory].units[fromUnit]?.name || fromUnit;
+        const toName = currentCategory === "temp"
+            ? categories.temp.unitsList.find(u => u.id === toUnit)?.name || toUnit
+            : categories[currentCategory].units[toUnit]?.name || toUnit;
+        
+        const resultDiv = document.getElementById("resultDisplay");
+        if (resultDiv) {
+            resultDiv.innerHTML = `${val.toLocaleString('ne-NP')} ${fromName} = <strong style="font-size:1.3rem;">${formatted}</strong> ${toName}`;
+        }
+    }
+    
+    function renderQuickButtons() {
+        const cat = currentCategory;
+        let presets = [];
+        
+        if (cat === "length") {
+            presets = [
+                { from: "meter", to: "foot", label: "मिटर → फुट" },
+                { from: "kilometer", to: "mile", label: "किमी → माइल" },
+                { from: "foot", to: "meter", label: "फुट → मिटर" },
+                { from: "inch", to: "centimeter", label: "इन्च → सेमी" }
+            ];
+        } else if (cat === "weight") {
+            presets = [
+                { from: "kilogram", to: "pound", label: "किलो → पाउण्ड" },
+                { from: "gram", to: "ounce", label: "ग्राम → औंस" },
+                { from: "pound", to: "kilogram", label: "पाउण्ड → किलो" }
+            ];
+        } else if (cat === "temp") {
+            presets = [
+                { from: "celsius", to: "fahrenheit", label: "°C → °F" },
+                { from: "fahrenheit", to: "celsius", label: "°F → °C" },
+                { from: "celsius", to: "kelvin", label: "°C → K" }
+            ];
+        } else if (cat === "area") {
+            presets = [
+                { from: "sqmeter", to: "sqfoot", label: "m² → ft²" },
+                { from: "acre", to: "sqmeter", label: "एकर → m²" },
+                { from: "hectare", to: "acre", label: "हेक्टर → एकर" }
+            ];
+        } else if (cat === "volume") {
+            presets = [
+                { from: "liter", to: "gallon_us", label: "लिटर → ग्यालन" },
+                { from: "milliliter", to: "cup", label: "mL → कप" },
+                { from: "gallon_us", to: "liter", label: "ग्यालन → लिटर" }
+            ];
+        }
+        
+        quickDiv.innerHTML = "";
+        presets.forEach(p => {
+            const btn = document.createElement("div");
+            btn.className = "quick-btn";
+            btn.textContent = p.label;
+            btn.onclick = () => {
+                fromUnit = p.from;
+                toUnit = p.to;
+                currentValue = 1;
+                renderConverterUI();
+            };
+            quickDiv.appendChild(btn);
+        });
+    }
+    
+    function switchCategory(catId) {
+        currentCategory = catId;
+        if (catId === "length") { fromUnit = "meter"; toUnit = "foot"; }
+        else if (catId === "weight") { fromUnit = "kilogram"; toUnit = "pound"; }
+        else if (catId === "temp") { fromUnit = "celsius"; toUnit = "fahrenheit"; }
+        else if (catId === "area") { fromUnit = "sqmeter"; toUnit = "sqfoot"; }
+        else if (catId === "volume") { fromUnit = "liter"; toUnit = "gallon_us"; }
+        currentValue = 1;
+        renderConverterUI();
+    }
+    
+    function initCategoryTabs() {
+        const tabs = document.querySelectorAll(".cat-btn");
+        tabs.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const cat = btn.dataset.cat;
+                if (cat === currentCategory) return;
+                tabs.forEach(t => t.classList.remove("active"));
+                btn.classList.add("active");
+                switchCategory(cat);
+            });
+        });
+    }
+    
+    function addSchema() {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "एकाई रूपान्तरण कन्वर्टर",
+            "description": "लम्बाइ, तौल, तापक्रम, क्षेत्रफल र भोल्युमको तुरुन्त रूपान्तरण",
+            "applicationCategory": "UtilityApplication",
+            "offers": { "@type": "Offer", "price": "0", "priceCurrency": "NPR" }
+        });
+        document.head.appendChild(script);
+    }
+    
+    // ------------------------------------------------------------------
+    // 3. INITIALIZE EVERYTHING
+    // ------------------------------------------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+        loadHeaderFooter();   // injects header and footer
+        initCategoryTabs();
+        renderConverterUI();
+        addSchema();
+    });
+</script>
+</body>
+</html>
