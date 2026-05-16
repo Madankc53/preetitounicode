@@ -1,0 +1,39 @@
+# =============================================
+# robots.txt for thenepal.io
+# Static Site - GitHub + Cloudflare Pages
+# =============================================
+
+User-agent: *
+Allow: /
+
+# Block unnecessary paths
+Disallow: /admin/
+Disallow: /login/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /test/
+Disallow: /draft/
+
+# Allow main tools explicitly (good practice)
+Allow: /date-converter/
+Allow: /land-converter/
+Allow: /gpa-calculator/
+Allow: /unit-converter/
+
+# Sitemap
+Sitemap: https://converter.thenepal.io/sitemap.xml
+
+# Polite crawling
+Crawl-delay: 1
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Yandex
+Allow: /
