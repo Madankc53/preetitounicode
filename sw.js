@@ -89,3 +89,13 @@ self.addEventListener('fetch', event => {
       })
   );
 });
+// In your sw.js urlsToCache array
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/offline.html',
+  '/manifest.json',
+  '/assets/css/main.css',
+  '/assets/css/components.css',
+  '/assets/css/animations.css'
+];
