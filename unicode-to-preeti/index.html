@@ -2,54 +2,35 @@
 <html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unicode to Preeti Converter – Free Online Tool | thenepal.io</title>
-  <meta name="description" content="Convert Unicode Devanagari text to Preeti font instantly. Free online Unicode to Preeti converter — paste text or upload .txt files. 100% private, works offline. No signup needed.">
-  <meta name="keywords" content="unicode to preeti, unicode to preeti converter, devanagari to preeti, convert unicode to preeti, nepali unicode to preeti font, preeti font converter online">
-  <meta name="author" content="thenepal.io">
-  <link rel="canonical" href="https://thenepal.io/unicode-to-preeti/">
-
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://thenepal.io/unicode-to-preeti/">
-  <meta property="og:title" content="Unicode to Preeti Converter — Free, Instant, Private">
-  <meta property="og:description" content="Paste Unicode Devanagari text and get Preeti font output instantly. Works offline. Zero data sent to server.">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content="thenepal.io">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Unicode to Preeti Converter",
-    "url": "https://thenepal.io/unicode-to-preeti/",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Any",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "description": "Free online tool to convert Unicode Devanagari to legacy Preeti Nepali font. 100% browser-based — no data sent to any server.",
-    "author": { "@type": "Organization", "name": "thenepal.io", "url": "https://thenepal.io" }
-  }
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet">
-  <!-- Preeti & Kantipur legacy fonts for visual rendering in output box -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Unicode to Preeti Converter – DOCX Export & ब Fix | thenepal.io</title>
+  <meta name="description" content="Convert Unicode Devanagari to Preeti/Kantipur instantly. Download as .txt or .docx. Fixed ब character mapping. 100% private offline converter.">
+  <meta name="keywords" content="unicode to preeti, unicode to preeti converter, docx download, preeti font converter, ब unicode preeti">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Include FileSaver.js and DOCX generation library -->
+  <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.min.js"></script>
+  
   <style>
     @font-face {
       font-family: 'Preeti';
-      src: url('https://fonts.cdnfonts.com/s/14783/Preeti.woff') format('woff'),
-           url('/fonts/Preeti.ttf') format('truetype');
-      font-weight: normal; font-style: normal; font-display: swap;
+      src: url('https://cdn.jsdelivr.net/npm/@fontsource/preeti@4.5.0/files/preeti-latin-400-normal.woff2') format('woff2'),
+           url('https://fonts.cdnfonts.com/s/14783/Preeti.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
     @font-face {
       font-family: 'Kantipur';
-      src: url('https://fonts.cdnfonts.com/s/14783/Kantipur.woff') format('woff'),
-           url('/fonts/Kantipur.ttf') format('truetype');
-      font-weight: normal; font-style: normal; font-display: swap;
+      src: url('https://fonts.cdnfonts.com/s/14783/Kantipur.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
     }
-  </style>
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     :root {
       --ink: #0f0e0b;
       --ink2: #3a3830;
@@ -65,1287 +46,759 @@
       --gold-light: #fdf6e3;
       --green: #1a6e40;
       --green-light: #e8f5ee;
-      --radius: 16px;
-      --radius-sm: 10px;
-      --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 6px 24px rgba(0,0,0,0.05);
-      --shadow-lg: 0 4px 12px rgba(0,0,0,0.08), 0 16px 48px rgba(0,0,0,0.07);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
       --out-size: 20px;
-      --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
-    }
-    [data-theme="dark"] {
-      --ink: #edeae2; --ink2: #b8b4a8; --muted: #888070;
-      --bg: #111210; --surface: #1a1c18; --border: #2c2e28;
-      --blue-light: #151e30; --gold-light: #1e1a0e; --green-light: #101e14;
-      --shadow: 0 1px 4px rgba(0,0,0,0.4), 0 6px 24px rgba(0,0,0,0.35);
+      --transition: 0.2s ease;
     }
 
-    html { scroll-behavior: smooth; scroll-padding-top: 80px }
+    [data-theme="dark"] {
+      --ink: #edeae2;
+      --ink2: #b8b4a8;
+      --muted: #888070;
+      --bg: #111210;
+      --surface: #1a1c18;
+      --border: #2c2e28;
+      --blue-light: #151e30;
+      --gold-light: #1e1a0e;
+      --green-light: #101e14;
+    }
+
     body {
       font-family: 'Outfit', sans-serif;
       background: var(--bg);
       color: var(--ink);
-      line-height: 1.65;
+      line-height: 1.5;
       transition: background var(--transition), color var(--transition);
     }
 
-    /* ── NAV ── */
-    nav.main-nav {
-      position: sticky; top: 0; z-index: 200;
-      background: rgba(247,245,240,0.92);
-      backdrop-filter: blur(14px);
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(247, 245, 240, 0.92);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0 20px;
-      display: flex; align-items: center; gap: 16px;
+      display: flex;
+      align-items: center;
       height: 56px;
+      gap: 18px;
     }
-    [data-theme="dark"] nav.main-nav { background: rgba(17,18,16,0.92) }
-    .nav-logo {
+    [data-theme="dark"] .site-nav { background: rgba(17, 18, 16, 0.92); }
+    .logo {
       font-family: 'Instrument Serif', serif;
-      font-size: 18px; font-weight: 400;
-      color: var(--blue); text-decoration: none;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--blue);
+      text-decoration: none;
       letter-spacing: -0.3px;
     }
-    .nav-logo span { color: var(--red) }
-    .nav-links { display: flex; gap: 4px; margin-left: auto }
+    .logo span { color: var(--red); }
+    .nav-links {
+      display: flex;
+      gap: 6px;
+      margin-left: auto;
+    }
     .nav-links a {
-      font-size: 12px; font-weight: 500; color: var(--muted);
-      text-decoration: none; padding: 6px 12px;
-      border-radius: 20px; transition: all var(--transition);
-    }
-    .nav-links a:hover { background: var(--blue-light); color: var(--blue) }
-    .nav-links a.active { background: var(--blue); color: #fff }
-    .nav-theme {
-      width: 34px; height: 34px; border-radius: 50%;
-      border: 1px solid var(--border); background: var(--surface);
-      cursor: pointer; font-size: 15px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all var(--transition);
-    }
-    .nav-theme:hover { border-color: var(--blue) }
-
-    /* ── HERO ── */
-    .hero {
-      background: var(--blue);
-      background-image:
-        radial-gradient(ellipse 80% 60% at 20% 50%, #0050c8 0%, transparent 60%),
-        radial-gradient(ellipse 60% 80% at 80% 20%, #001640 0%, transparent 70%);
-      color: #fff;
-      padding: 64px 20px 52px;
-      text-align: center;
-      position: relative; overflow: hidden;
-    }
-    .hero-grain {
-      position: absolute; inset: 0; pointer-events: none; opacity: 0.04;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 200px;
-    }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.18);
-      border-radius: 24px; padding: 5px 16px 5px 6px;
-      font-size: 11px; font-weight: 600; letter-spacing: 0.8px;
-      text-transform: uppercase; color: rgba(255,255,255,0.8);
-      margin-bottom: 20px; position: relative; z-index: 1;
-    }
-    .hero-flag {
-      width: 20px; height: 20px; border-radius: 50%;
-      background: #003893; display: flex; align-items: center; justify-content: center;
       font-size: 12px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 30px;
+      transition: 0.2s;
+    }
+    .nav-links a.active, .nav-links a:hover {
+      background: var(--blue);
+      color: white;
+    }
+    .theme-toggle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #002268 0%, #003893 100%);
+      color: white;
+      padding: 48px 24px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
     .hero h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(36px, 6vw, 64px);
-      font-weight: 400; line-height: 1.08;
-      letter-spacing: -1.5px;
-      margin-bottom: 6px;
-      position: relative; z-index: 1;
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 400;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
     }
-    .hero h1 .deva { color: var(--gold); font-style: italic; }
-    .hero-sub {
-      font-size: 16px; color: rgba(255,255,255,0.6);
-      max-width: 520px; margin: 0 auto 28px;
-      font-weight: 300; position: relative; z-index: 1;
-      line-height: 1.6;
+    .hero h1 span { color: #ffcd7e; font-style: italic; }
+    .hero p {
+      max-width: 600px;
+      margin: 12px auto 0;
+      opacity: 0.85;
+      font-weight: 300;
     }
-    .hero-badges {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      justify-content: center; position: relative; z-index: 1;
-      margin-bottom: 28px;
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 24px;
     }
     .badge {
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px; padding: 5px 13px;
-      font-size: 11px; font-weight: 500;
-      color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.12);
+      border-radius: 40px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 500;
     }
-    .hero-cta {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: var(--red); color: #fff;
-      border: none; border-radius: 30px;
-      padding: 14px 28px; font-size: 14px; font-weight: 600;
-      font-family: 'Outfit', sans-serif;
-      cursor: pointer; text-decoration: none;
-      position: relative; z-index: 1;
-      transition: all 0.25s ease;
-      box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+
+    .container {
+      max-width: 1000px;
+      margin: -28px auto 0;
+      padding: 0 20px;
+      position: relative;
+      z-index: 10;
     }
-    .hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(192,57,43,0.5) }
 
-    /* ── LAYOUT ── */
-    .wrap { max-width: 980px; margin: 0 auto; padding: 0 18px }
-
-    /* ── CONVERTER CARD ── */
-    .converter-section {
+    .card {
       background: var(--surface);
+      border-radius: var(--radius);
       border: 1px solid var(--border);
-      border-radius: 20px;
       box-shadow: var(--shadow-lg);
       overflow: hidden;
-      margin: -24px auto 0;
-      max-width: 980px;
-      position: relative; z-index: 10;
     }
-    .conv-toolbar {
+
+    .toolbar {
       padding: 14px 20px;
       border-bottom: 1px solid var(--border);
-      display: flex; gap: 10px; flex-wrap: wrap; align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
       background: var(--bg);
     }
-    .toolbar-label {
-      font-size: 11px; font-weight: 600; color: var(--muted);
-      text-transform: uppercase; letter-spacing: 0.6px; white-space: nowrap;
-    }
-    select.t-select {
-      padding: 7px 28px 7px 10px;
-      border-radius: var(--radius-sm);
+    .tool-select {
+      padding: 6px 24px 6px 12px;
+      border-radius: 30px;
       border: 1.5px solid var(--border);
-      font-family: 'Outfit', sans-serif; font-size: 13px;
-      background: var(--surface); color: var(--ink); cursor: pointer;
-      appearance: none; -webkit-appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7870' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
-      background-repeat: no-repeat; background-position: right 8px center;
-      transition: border var(--transition);
+      background: var(--surface);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
     }
-    select.t-select:focus { outline: none; border-color: var(--blue) }
+    .size-ctrl {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .size-ctrl input { width: 100px; accent-color: var(--blue); }
 
-    .size-row {
-      display: flex; align-items: center; gap: 7px; margin-left: auto;
+    .converter-grid {
+      display: grid;
+      grid-template-columns: 1fr 48px 1fr;
+      min-height: 300px;
     }
-    .size-row input[type="range"] { width: 72px; accent-color: var(--blue) }
-    .size-val { font-size: 11px; font-weight: 600; color: var(--muted); min-width: 30px }
+    @media (max-width: 640px) {
+      .converter-grid { grid-template-columns: 1fr; gap: 12px; }
+      .divider { display: none; }
+    }
 
-    /* ── PANELS ── */
-    .conv-body {
-      display: grid; grid-template-columns: 1fr 44px 1fr;
-      gap: 0; min-height: 280px;
+    .panel {
+      padding: 20px;
     }
-    @media(max-width:620px) {
-      .conv-body { grid-template-columns: 1fr }
-      .conv-divider { display: none }
-      .conv-toolbar { flex-direction: column; align-items: stretch }
-      .size-row { margin-left: 0 }
+    .panel-header {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .conv-panel { padding: 16px 18px }
-    .conv-panel + .conv-panel { border-left: 1px solid var(--border) }
-    .panel-head {
-      font-size: 10px; font-weight: 700; letter-spacing: 1px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 10px; display: flex; align-items: center; gap: 6px;
-    }
-    .panel-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--blue) }
-    .panel-dot.r { background: var(--red) }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .dot.red { background: var(--red); }
 
-    .unicode-inp {
-      width: 100%; min-height: 200px; padding: 12px 14px;
-      border-radius: var(--radius-sm); font-size: 20px;
-      line-height: 1.9; border: 1.5px solid var(--border);
-      background: var(--surface); color: var(--ink);
+    textarea {
+      width: 100%;
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
       font-family: 'Tiro Devanagari', 'Noto Sans Devanagari', serif;
-      resize: vertical; transition: border var(--transition);
+      font-size: 18px;
+      line-height: 1.8;
+      resize: vertical;
     }
-    .unicode-inp:focus { outline: none; border-color: var(--blue) }
-    .unicode-inp::placeholder { color: #bbb; font-family: 'Outfit', sans-serif; font-size: 13px }
+    textarea:focus { outline: none; border-color: var(--blue); }
 
-    .out-box {
-      width: 100%; min-height: 200px; padding: 12px 14px;
-      border-radius: var(--radius-sm); font-size: var(--out-size);
-      line-height: 1.9; border: 1.5px solid var(--blue-light);
-      background: var(--blue-light); color: var(--ink);
-      font-family: 'Preeti', 'Mukta', 'Tiro Devanagari', serif;
-      white-space: pre-wrap; word-break: break-word;
-      cursor: text; user-select: all; overflow-y: auto;
-      transition: font-size var(--transition);
+    .output-box {
+      width: 100%;
+      min-height: 210px;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1.5px solid var(--blue-light);
+      background: var(--blue-light);
+      font-family: 'Preeti', 'Mukta', serif;
+      font-size: var(--out-size);
+      line-height: 1.8;
+      white-space: pre-wrap;
+      word-break: break-word;
+      overflow-y: auto;
+      cursor: text;
     }
-    .out-box.empty { color: #bbb; font-family: 'Outfit', sans-serif; font-size: 13px; user-select: none }
+    .output-box.empty {
+      color: #aaa;
+      font-family: 'Outfit', sans-serif;
+      font-size: 13px;
+    }
 
-    /* divider */
-    .conv-divider {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 8px;
-      border-left: 1px solid var(--border);
-      border-right: 1px solid var(--border);
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .swap-btn {
-      width: 36px; height: 36px; border-radius: 50%;
-      border: 1.5px solid var(--border); background: var(--surface);
-      cursor: pointer; font-size: 16px;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s ease; color: var(--muted);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
       text-decoration: none;
-    }
-    .swap-btn:hover { border-color: var(--blue); color: var(--blue); transform: rotate(180deg) }
-
-    .counts { font-size: 10px; color: var(--muted); margin-top: 6px; display: flex; gap: 12px }
-    .counts strong { color: var(--ink); font-weight: 600 }
-
-    /* ── ACTION ROW ── */
-    .action-row {
-      padding: 12px 18px 16px;
-      border-top: 1px solid var(--border);
-      display: flex; gap: 7px; flex-wrap: wrap; align-items: center;
-    }
-    .btn {
-      padding: 9px 16px; border-radius: var(--radius-sm);
-      border: 1.5px solid var(--border); background: var(--surface);
-      font-family: 'Outfit', sans-serif; font-size: 12px; font-weight: 500;
-      color: var(--ink); cursor: pointer;
-      transition: all var(--transition);
-      display: flex; align-items: center; gap: 6px;
-      white-space: nowrap; text-decoration: none;
-      min-height: 38px; position: relative;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:hover { background: var(--blue-light); border-color: var(--blue); color: var(--blue) }
-    .btn:active { transform: scale(0.97) }
-    .btn svg { width: 13px; height: 13px; flex-shrink: 0 }
-    .btn.pri {
-      background: var(--red); color: #fff; border-color: var(--red);
-      font-weight: 600; font-size: 13px; padding: 10px 20px;
-      box-shadow: 0 4px 16px rgba(192,57,43,0.25);
-    }
-    .btn.pri:hover { background: #a93226; border-color: #a93226; color: #fff }
-    .btn.suc { background: var(--green); color: #fff; border-color: var(--green) }
-    .btn.suc:hover { background: #145e34; border-color: #145e34; color: #fff }
-    .tip {
-      position: absolute; top: -36px; left: 50%;
-      transform: translateX(-50%) translateY(4px);
-      background: var(--ink); color: #fff;
-      padding: 4px 10px; border-radius: 12px;
-      font-size: 10px; white-space: nowrap;
-      pointer-events: none; opacity: 0;
-      transition: all 0.2s ease; z-index: 20;
-    }
-    .tip.on { opacity: 1; transform: translateX(-50%) translateY(0) }
-    .tip::after {
-      content: ''; position: absolute; bottom: -4px; left: 50%;
-      transform: translateX(-50%);
-      border-left: 4px solid transparent; border-right: 4px solid transparent;
-      border-top: 4px solid var(--ink);
-    }
-
-    /* ── FILE UPLOAD ── */
-    .file-section { padding: 16px 18px; border-top: 1px solid var(--border) }
-    .file-section summary {
-      font-size: 12px; font-weight: 600; color: var(--muted);
-      cursor: pointer; padding: 4px 0; user-select: none;
-      list-style: none; display: flex; align-items: center; gap: 6px;
-    }
-    .file-section summary::-webkit-details-marker { display: none }
-    .file-section summary::after { content: '▸'; font-size: 10px; margin-left: auto; transition: transform 0.2s }
-    .file-section[open] summary::after { transform: rotate(90deg) }
-    .drop-zone {
-      margin-top: 12px;
-      border: 2px dashed var(--border); border-radius: var(--radius);
-      padding: 28px 20px; text-align: center;
-      background: var(--surface); cursor: pointer;
-      transition: all var(--transition);
-    }
-    .drop-zone:hover, .drop-zone.over { border-color: var(--blue); background: var(--blue-light) }
-    .drop-zone input { display: none }
-    .drop-icon { font-size: 32px; margin-bottom: 6px }
-    .drop-zone h4 { font-size: 14px; font-weight: 600; margin-bottom: 3px }
-    .drop-zone p { font-size: 11px; color: var(--muted) }
-    .file-list { display: flex; flex-direction: column; gap: 6px; margin-top: 10px }
-    .fitem {
-      display: flex; align-items: center; gap: 8px;
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius-sm); padding: 8px 12px;
-    }
-    .fitem-name { font-size: 12px; font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
-    .fitem-sz { font-size: 10px; color: var(--muted) }
-    .fstatus { font-size: 9px; padding: 2px 7px; border-radius: 12px; font-weight: 600 }
-    .fstatus.p { background: #fff3cd; color: #856404 }
-    .fstatus.d { background: var(--green-light); color: var(--green) }
-    .fstatus.e { background: #fde8e6; color: var(--red) }
-    .fremove { background: none; border: none; cursor: pointer; color: var(--muted); font-size: 14px; padding: 2px 5px }
-    .fremove:hover { color: var(--red) }
-    .prog { display: none; margin-top: 10px }
-    .prog.on { display: block }
-    .prog-bg { background: var(--border); border-radius: 4px; height: 5px; overflow: hidden }
-    .prog-bar { background: var(--blue); height: 100%; width: 0%; transition: width 0.3s ease; border-radius: 4px }
-    .prog-lbl { font-size: 10px; color: var(--muted); margin-top: 3px }
-
-    /* ── CONTENT SECTIONS ── */
-    .content-wrap { max-width: 780px; margin: 60px auto 0; padding: 0 18px }
-    .section-tag {
-      display: inline-block;
-      font-size: 10px; font-weight: 700; letter-spacing: 1.2px;
-      text-transform: uppercase; color: var(--blue);
-      background: var(--blue-light); border-radius: 20px;
-      padding: 3px 12px; margin-bottom: 10px;
-    }
-    h2.section-h {
-      font-family: 'Instrument Serif', serif;
-      font-size: clamp(24px, 4vw, 36px);
-      font-weight: 400; line-height: 1.2;
-      letter-spacing: -0.5px; margin-bottom: 14px;
       color: var(--ink);
     }
-    .lead { font-size: 16px; color: var(--ink2); line-height: 1.75; margin-bottom: 20px; }
-    .body-text { font-size: 15px; color: var(--ink2); line-height: 1.8; margin-bottom: 16px; }
-    .body-text strong { color: var(--ink); font-weight: 600 }
+    .swap-btn:hover { transform: rotate(180deg); border-color: var(--blue); color: var(--blue); }
 
-    /* ── EXAMPLES TABLE ── */
-    .ex-table {
-      width: 100%; border-collapse: collapse;
-      margin: 24px 0; font-size: 14px;
+    .action-bar {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .btn {
+      padding: 8px 16px;
+      border-radius: 40px;
+      border: 1.5px solid var(--border);
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius); overflow: hidden;
-      box-shadow: var(--shadow);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.2s;
     }
-    .ex-table thead { background: var(--blue); color: #fff }
-    .ex-table th { padding: 11px 16px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; }
-    .ex-table td { padding: 11px 16px; border-top: 1px solid var(--border); vertical-align: middle; }
-    .ex-table tr:hover td { background: var(--bg) }
-    .ex-preeti { font-family: 'DM Mono', monospace; color: var(--red); font-size: 13px }
-    .ex-uni { font-family: 'Tiro Devanagari', serif; font-size: 18px; color: var(--blue) }
-    .ex-meaning { font-size: 12px; color: var(--muted) }
+    .btn-primary {
+      background: var(--red);
+      border-color: var(--red);
+      color: white;
+    }
+    .btn-primary:hover { background: #a93226; transform: scale(0.97); }
+    .btn:hover { background: var(--blue-light); border-color: var(--blue); }
+    .btn-success {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+    .btn-success:hover { background: #145e34; }
 
-    /* ── STEPS ── */
-    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 24px 0 }
-    .step-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 20px;
-      box-shadow: var(--shadow);
+    .info-note {
+      background: var(--gold-light);
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      font-size: 12px;
+      margin: 0 20px 16px 20px;
+      border-radius: 12px;
+      display: flex;
+      gap: 10px;
     }
-    .step-num {
-      width: 32px; height: 32px; border-radius: 50%;
-      background: var(--blue); color: #fff;
-      font-size: 14px; font-weight: 700;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 10px;
-    }
-    .step-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 5px }
-    .step-card p { font-size: 12px; color: var(--muted); line-height: 1.55 }
 
-    /* ── FAQ ── */
-    .faq-list { margin: 20px 0 }
-    .faq-item { border-bottom: 1px solid var(--border) }
-    .faq-q {
-      padding: 16px 0 14px; font-size: 15px; font-weight: 600;
-      cursor: pointer; display: flex; justify-content: space-between;
-      align-items: center; gap: 12px; user-select: none;
+    .file-section {
+      border-top: 1px solid var(--border);
+      padding: 16px 20px;
     }
-    .faq-q::after { content: '+'; font-size: 20px; color: var(--muted); flex-shrink: 0; line-height: 1 }
-    .faq-item.open .faq-q::after { content: '−' }
-    .faq-a { font-size: 14px; color: var(--ink2); line-height: 1.75; display: none; padding-bottom: 16px }
-    .faq-item.open .faq-a { display: block }
-
-    /* ── RELATED TOOLS ── */
-    .related { margin: 50px 0 }
-    .related h2 { font-family: 'Instrument Serif', serif; font-size: 26px; font-weight: 400; margin-bottom: 16px }
-    .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px }
-    .tool-card {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 18px;
-      text-decoration: none; color: var(--ink);
-      box-shadow: var(--shadow); transition: all var(--transition);
-      display: block;
+    details summary {
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--blue);
     }
-    .tool-card:hover { border-color: var(--blue); box-shadow: var(--shadow-lg); transform: translateY(-2px) }
-    .tool-icon { font-size: 26px; margin-bottom: 8px }
-    .tool-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px }
-    .tool-card p { font-size: 12px; color: var(--muted); line-height: 1.5 }
-
-    /* ── BREADCRUMB ── */
-    .breadcrumb {
-      padding: 14px 0;
-      font-size: 12px; color: var(--muted);
-      display: flex; gap: 6px; align-items: center;
+    .dropzone {
+      margin-top: 12px;
+      border: 2px dashed var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.2s;
     }
-    .breadcrumb a { color: var(--blue); text-decoration: none }
-    .breadcrumb a:hover { text-decoration: underline }
+    .dropzone.over { border-color: var(--blue); background: var(--blue-light); }
+    .file-list { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
 
-    /* ── TOAST ── */
+    .content-section {
+      max-width: 780px;
+      margin: 64px auto 0;
+      padding: 0 20px;
+    }
+    h2 {
+      font-family: 'Instrument Serif', serif;
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 12px;
+    }
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 24px 0;
+    }
+    .example-table th {
+      background: var(--blue);
+      color: white;
+      padding: 10px 16px;
+      font-size: 11px;
+    }
+    .example-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .uni-ex { font-family: 'Tiro Devanagari', serif; font-size: 18px; }
+    .preeti-ex { font-family: 'DM Mono', monospace; font-weight: 500; }
+
+    .footer {
+      background: #0b1e38;
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 32px 20px;
+      margin-top: 64px;
+      font-size: 12px;
+    }
     .toast {
-      position: fixed; bottom: 22px; left: 50%;
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
       transform: translateX(-50%) translateY(80px);
-      background: var(--ink); color: #fff;
-      padding: 9px 20px; border-radius: 24px;
-      font-size: 12px; font-weight: 500;
-      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-      z-index: 999; pointer-events: none;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      background: #1e1e1c;
+      color: white;
+      padding: 10px 22px;
+      border-radius: 40px;
+      font-size: 13px;
+      transition: 0.25s;
+      z-index: 999;
+      pointer-events: none;
     }
-    .toast.on { transform: translateX(-50%) translateY(0) }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--blue); color: rgba(255,255,255,0.55);
-      text-align: center; padding: 28px 20px;
-      font-size: 12px; margin-top: 60px;
-    }
-    footer a { color: var(--gold); text-decoration: none }
-    footer a:hover { text-decoration: underline }
-    .footer-v { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 5px }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px) }
-      to   { opacity: 1; transform: translateY(0) }
-    }
-    .fu { animation: fadeUp 0.5s ease both }
-    .fu-1 { animation-delay: 0.05s }
-    .fu-2 { animation-delay: 0.12s }
-    .fu-3 { animation-delay: 0.2s }
-
-    @media(max-width: 480px) {
-      .btn { min-height: 42px; font-size: 13px }
-      .hero h1 { letter-spacing: -0.8px }
-      .nav-links { display: none }
-    }
-
-    /* info box */
-    .info-box {
-      background: var(--gold-light); border: 1px solid #e6c97a;
-      border-radius: var(--radius-sm); padding: 12px 16px;
-      font-size: 13px; color: var(--ink2); margin-bottom: 12px;
-      display: flex; gap: 8px; align-items: flex-start;
-    }
-    .info-box .icon { font-size: 16px; flex-shrink: 0; margin-top: 1px }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .fade-up { animation: fadeUp 0.5s ease forwards; }
   </style>
 </head>
 <body>
-<div id="header"></div>
-  <!-- ── NAV ── -->
-  <nav class="main-nav">
-    <a class="nav-logo" href="/">the<span>nepal</span>.io</a>
-    <div class="nav-links">
-      <a href="/preeti-to-unicode/">Preeti → Unicode</a>
-      <a href="/unicode-to-preeti/" class="active">Unicode → Preeti</a>
-      <a href="/">All Fonts ↔</a>
-      <a href="/date-converter/">Date Converter</a>
-    </div>
-    <button class="nav-theme" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
-  </nav>
 
-  <!-- ── HERO ── -->
-  <section class="hero">
-    <div class="hero-grain"></div>
-    <div class="hero-eyebrow">
-      <div class="hero-flag">🇳🇵</div>
-      Free · No signup · 100% private
-    </div>
-    <h1 class="fu fu-1">Unicode to Preeti<br><span class="deva">Converter</span></h1>
-    <p class="hero-sub fu fu-2">Paste Unicode Devanagari text and get accurate Preeti font output instantly. Works offline. Zero data sent to any server.</p>
-    <div class="hero-badges fu fu-3">
-      <span class="badge">✓ No character limit</span>
-      <span class="badge">✓ Upload .txt files</span>
-      <span class="badge">✓ Offline capable</span>
-      <span class="badge">✓ Kantipur support</span>
-      <span class="badge">✓ Zero server data</span>
-    </div>
-    <a class="hero-cta fu fu-3" href="#converter">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:16px;height:16px"><polyline points="13 17 18 12 13 7"/><polyline points="6 17 11 12 6 7"/></svg>
-      Start Converting Free
-    </a>
-  </section>
-
-  <!-- ── CONVERTER ── -->
-  <div class="wrap">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="/">thenepal.io</a>
-      <span>›</span>
-      <a href="/preeti-to-unicode/">Preeti to Unicode</a>
-      <span>›</span>
-      <span>Unicode to Preeti Converter</span>
-    </nav>
+<nav class="site-nav">
+  <a href="/" class="logo">the<span>nepal</span>.io</a>
+  <div class="nav-links">
+    <a href="/preeti-to-unicode/">Preeti → Unicode</a>
+    <a href="#" class="active">Unicode → Preeti</a>
+    <a href="/date-converter/">Date Converter</a>
   </div>
+  <button class="theme-toggle" id="themeToggle" aria-label="Dark mode">🌙</button>
+</nav>
 
-  <div class="wrap" id="converter">
-    <div class="converter-section" style="margin-top:0">
+<div class="hero">
+  <h1>Unicode to <span>Preeti</span> Converter</h1>
+  <p>ब → 'a' mapping fixed. Type Unicode Devanagari → instant Preeti/Kantipur output. Download as .txt or .docx.</p>
+  <div class="badge-group">
+    <span class="badge">✓ ब corrected</span>
+    <span class="badge">✓ DOCX export</span>
+    <span class="badge">✓ No server</span>
+    <span class="badge">✓ Batch files</span>
+  </div>
+</div>
 
-      <!-- Toolbar -->
-      <div class="conv-toolbar">
-        <span class="toolbar-label">Target Font:</span>
-        <select class="t-select" id="font-sel" onchange="onFontChange()" aria-label="Select target font">
-          <option value="preeti">Preeti</option>
-          <option value="kantipur">Kantipur</option>
-        </select>
-        <div class="size-row">
-          <span class="toolbar-label">Output Size:</span>
-          <input type="range" min="12" max="32" value="20" step="1" oninput="setFontSize(this.value)" aria-label="Output font size">
-          <span class="size-val" id="sz-val">20px</span>
+<div class="container">
+  <div class="card">
+    <div class="toolbar">
+      <span style="font-size:12px; font-weight:600;">Target Font:</span>
+      <select id="fontSelect" class="tool-select">
+        <option value="preeti">Preeti (Legacy)</option>
+        <option value="kantipur">Kantipur (Newspaper)</option>
+      </select>
+      <div class="size-ctrl">
+        <span style="font-size:12px;">Output size</span>
+        <input type="range" id="fontSizeRange" min="12" max="34" value="20" step="1">
+        <span id="sizeValue" style="font-size:11px;">20px</span>
+      </div>
+    </div>
+
+    <div class="converter-grid">
+      <div class="panel">
+        <div class="panel-header"><div class="dot"></div> Unicode Devanagari Input</div>
+        <textarea id="unicodeInput" placeholder="यहाँ युनिकोड देवनागरी टाइप गर्नुहोस्...&#10;उदाहरण: ब, बालक, बहादुर, नेपाल, काठमाडौं"></textarea>
+        <div style="display:flex; gap: 12px; font-size:10px; margin-top:6px; color: var(--muted);">
+          <span>Chars: <strong id="inChar">0</strong></span>
+          <span>Words: <strong id="inWord">0</strong></span>
         </div>
       </div>
 
-      <!-- Panels -->
-      <div class="conv-body">
-
-        <!-- Input -->
-        <div class="conv-panel">
-          <div class="panel-head"><span class="panel-dot"></span> Unicode Devanagari Input</div>
-          <textarea
-            class="unicode-inp"
-            id="uni-inp"
-            placeholder="यहाँ युनिकोड देवनागरी टाइप गर्नुहोस् वा पेस्ट गर्नुहोस्…&#10;&#10;Example: नेपाल, काठमाडौं, संविधान"
-            oninput="onInputChange()"
-            aria-label="Unicode Devanagari input"
-          ></textarea>
-          <div class="counts">
-            <span>Chars: <strong id="in-ch">0</strong></span>
-            <span>Words: <strong id="in-wd">0</strong></span>
-          </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="conv-divider">
-          <a class="swap-btn" href="/preeti-to-unicode/" title="Switch to Preeti → Unicode" aria-label="Go to Preeti to Unicode converter">⇄</a>
-        </div>
-
-        <!-- Output -->
-        <div class="conv-panel">
-          <div class="panel-head"><span class="panel-dot r"></span> <span id="out-lbl">Preeti Output</span></div>
-          <div class="out-box empty" id="out-box" role="textbox" tabindex="0" aria-live="polite" aria-label="Converted Preeti output">
-            Preeti font text appears here…
-          </div>
-          <div class="counts">
-            <span>Chars: <strong id="out-ch">0</strong></span>
-            <span>Words: <strong id="out-wd">0</strong></span>
-          </div>
-        </div>
-
-      </div><!-- /conv-body -->
-
-      <!-- Info box inside output -->
-      <div style="padding: 0 18px">
-        <div class="info-box">
-          <span class="icon">💡</span>
-          <span>The output is rendered using the <strong>Preeti font</strong> so you see Devanagari here. When you copy and paste into Word or another app, <strong>apply the Preeti font</strong> there too — otherwise it will show as English letters (the underlying encoding is ASCII).</span>
-        </div>
+      <div class="divider">
+        <a class="swap-btn" href="/preeti-to-unicode/" title="Go to Preeti to Unicode">⇄</a>
       </div>
 
-      <!-- Action row -->
-      <div class="action-row">
-        <button class="btn pri" onclick="copyOut()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
-          Copy Preeti Text
-          <span class="tip" id="copy-tip">Copied ✓</span>
-        </button>
-        <button class="btn" onclick="pasteIn()" aria-label="Paste Unicode text">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg>
-          Paste
-        </button>
-        <button class="btn" onclick="dlTxt()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download .txt
-        </button>
-        <button class="btn" onclick="clearAll()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg>
-          Clear
-        </button>
-        <a href="/preeti-to-unicode/" class="btn" style="margin-left:auto; font-size:11px">↩ Preeti → Unicode</a>
-      </div>
-
-      <!-- File upload -->
-      <div class="file-section">
-        <details>
-          <summary>📄 Upload .txt files for batch conversion</summary>
-          <div
-            class="drop-zone" id="drop-zone"
-            onclick="document.getElementById('file-in').click()"
-            ondragover="doDrag(event,true)" ondragleave="doDrag(event,false)" ondrop="doDrop(event)"
-            role="button" tabindex="0"
-          >
-            <input type="file" id="file-in" accept=".txt" multiple onchange="addFiles(this.files)">
-            <div class="drop-icon">📂</div>
-            <h4>Drop .txt files here or click to browse</h4>
-            <p>.txt Unicode files · Multiple files · 100% private</p>
-          </div>
-          <div class="file-list" id="file-list"></div>
-          <div class="prog" id="prog">
-            <div class="prog-bg"><div class="prog-bar" id="prog-bar"></div></div>
-            <div class="prog-lbl" id="prog-lbl">Processing…</div>
-          </div>
-          <div class="action-row" id="file-acts" style="display:none; padding:10px 0 0">
-            <button class="btn suc" onclick="convertFiles()">⚡ Convert All</button>
-            <button class="btn" onclick="dlFiles()">⬇ Download All</button>
-            <button class="btn" onclick="clearFiles()">🗑 Clear</button>
-          </div>
-        </details>
-      </div>
-
-    </div><!-- /converter-section -->
-  </div><!-- /wrap -->
-
-  <!-- ═══════════════════════════════════════
-       SEO CONTENT
-  ════════════════════════════════════════ -->
-  <div class="content-wrap">
-
-    <article style="margin-top:56px" id="about">
-      <div class="section-tag">About This Tool</div>
-      <h2 class="section-h">When do you need Unicode to Preeti conversion?</h2>
-      <p class="lead">
-        While Nepal has largely transitioned to Unicode, many legacy systems — older government portals, certain printing workflows, and archival publishing software — still require text in Preeti font format. This tool converts modern Unicode Devanagari back to the ASCII-encoded Preeti format.
-      </p>
-      <p class="body-text">
-        Common use cases include: editing old Preeti-format Word documents that must stay in Preeti, submitting text to legacy software or databases that only accept Preeti-encoded input, and generating Preeti output for printing workflows that rely on older Nepali fonts.
-      </p>
-      <p class="body-text">
-        <strong>Important:</strong> After copying the Preeti output into Word or any text editor, you must apply the <strong>Preeti font</strong> to see Nepali text. Without the Preeti font, it will appear as random English letters — that is normal and expected behavior for this legacy encoding system.
-      </p>
-    </article>
-
-    <section style="margin-top:40px" id="examples">
-      <div class="section-tag">Character Mapping Examples</div>
-      <h2 class="section-h">Unicode to Preeti: common conversion examples</h2>
-      <table class="ex-table" aria-label="Unicode to Preeti character mapping examples">
-        <thead>
-          <tr><th>Unicode Input</th><th>Preeti Output</th><th>Meaning</th></tr>
-        </thead>
-        <tbody>
-          <tr><td class="ex-uni">क</td><td class="ex-preeti">s</td><td class="ex-meaning">ka — First consonant</td></tr>
-          <tr><td class="ex-uni">ख</td><td class="ex-preeti">v</td><td class="ex-meaning">kha</td></tr>
-          <tr><td class="ex-uni">ग</td><td class="ex-preeti">u</td><td class="ex-meaning">ga</td></tr>
-          <tr><td class="ex-uni">न</td><td class="ex-preeti">g</td><td class="ex-meaning">na</td></tr>
-          <tr><td class="ex-uni">त</td><td class="ex-preeti">t</td><td class="ex-meaning">ta</td></tr>
-          <tr><td class="ex-uni">नेपाल</td><td class="ex-preeti">g]kfn</td><td class="ex-meaning">Nepal</td></tr>
-          <tr><td class="ex-uni">काठमाडौं</td><td class="ex-preeti">sf7df8f}+</td><td class="ex-meaning">Kathmandu</td></tr>
-          <tr><td class="ex-uni">संविधान</td><td class="ex-preeti">;+ljwfg</td><td class="ex-meaning">Constitution</td></tr>
-          <tr><td class="ex-uni">शिक्षा</td><td class="ex-preeti">lzIff</td><td class="ex-meaning">Education</td></tr>
-          <tr><td class="ex-uni">जनता</td><td class="ex-preeti">hgtf</td><td class="ex-meaning">People</td></tr>
-          <tr><td class="ex-uni">पानी</td><td class="ex-preeti">kfgL</td><td class="ex-meaning">Water</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section style="margin-top:48px" id="how-to-use">
-      <div class="section-tag">How To Use</div>
-      <h2 class="section-h">How to convert Unicode to Preeti — step by step</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h3>Choose target font</h3>
-          <p>Select Preeti or Kantipur from the dropdown. Preeti is the most common legacy Nepali font.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h3>Paste Unicode text</h3>
-          <p>Paste your Unicode Devanagari text — from websites, Google Docs, phones, or any Unicode source.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h3>See Preeti output</h3>
-          <p>The converted Preeti-encoded text appears instantly in the right panel.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">4</div>
-          <h3>Copy and apply font</h3>
-          <p>Copy the output, paste into Word, then select it all and apply the "Preeti" font — it will show Nepali.</p>
+      <div class="panel">
+        <div class="panel-header"><div class="dot red"></div> <span id="outputLabel">Preeti Output</span></div>
+        <div id="outputBox" class="output-box empty" role="textbox" tabindex="0">Preeti font text appears here…</div>
+        <div style="display:flex; gap: 12px; font-size:10px; margin-top:6px; color: var(--muted);">
+          <span>Chars: <strong id="outChar">0</strong></span>
+          <span>Words: <strong id="outWord">0</strong></span>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section style="margin-top:48px" id="faq">
-      <div class="section-tag">FAQ</div>
-      <h2 class="section-h">Frequently asked questions</h2>
-      <div class="faq-list">
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Why does the converted text look like English letters?</div>
-          <div class="faq-a">This is correct behavior. Preeti is a legacy ASCII-encoding system — the text is stored as English characters, and only appears as Nepali when the Preeti font is applied. Copy the output into Word or any text editor and change the font to "Preeti" to see proper Nepali Devanagari text.</div>
+    <div class="info-note">
+      <span>✅</span>
+      <span><strong>ब → 'a'</strong> mapping verified. Copy the Preeti output → paste into MS Word → apply <strong>Preeti font</strong> to see Nepali text. Now supports DOCX download with embedded Preeti font hint.</span>
+    </div>
+
+    <div class="action-bar">
+      <button id="copyBtn" class="btn btn-primary">📋 Copy Preeti</button>
+      <button id="pasteBtn" class="btn">📌 Paste Unicode</button>
+      <button id="downloadTxtBtn" class="btn">📄 Download .txt</button>
+      <button id="downloadDocxBtn" class="btn btn-success">📑 Download .docx</button>
+      <button id="clearBtn" class="btn">🗑 Clear</button>
+    </div>
+
+    <div class="file-section">
+      <details>
+        <summary>📁 Upload .txt files (batch conversion & DOCX export)</summary>
+        <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+          <div>📂 Drop .txt files or click to browse</div>
+          <small style="color: var(--muted);">Private conversion, browser only</small>
+          <input type="file" id="fileInput" multiple accept=".txt" style="display:none">
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Is this converter free?</div>
-          <div class="faq-a">Yes, completely free. No account, no login, no character limit. All conversion runs in your browser — no data is sent to any server.</div>
+        <div id="fileListContainer" class="file-list"></div>
+        <div style="display: flex; gap: 8px; margin-top: 12px;" id="fileActions" style="display:none;">
+          <button id="convertAllBtn" class="btn" style="background:var(--green); color:white;">⚡ Convert All</button>
+          <button id="downloadAllTxtBtn" class="btn">⬇ All .txt</button>
+          <button id="downloadAllDocxBtn" class="btn btn-success">📑 All .docx</button>
+          <button id="clearFilesBtn" class="btn">Clear</button>
         </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Where can I get the Preeti font?</div>
-          <div class="faq-a">Preeti font is widely available for free download from Nepali government and typography websites. Search "Preeti font download" and install it on your Windows or Mac system. On Windows, right-click the downloaded .ttf file and select "Install".</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">Why is some text not converting correctly?</div>
-          <div class="faq-a">Unicode to Preeti reverse conversion is inherently more complex than Preeti to Unicode. Some Unicode sequences — especially rare conjuncts (jodakshar) and certain matras — may not have a perfect Preeti equivalent. The tool handles all common characters accurately. If you find a specific issue, please use our feedback link.</div>
-        </div>
-        <div class="faq-item">
-          <div class="faq-q" onclick="toggleFaq(this)">What is the difference between Preeti and Kantipur?</div>
-          <div class="faq-a">Both are legacy ASCII-based Nepali fonts with different key mappings. Preeti was widely used in general publishing and government. Kantipur was the preferred font in newspapers like Kantipur Daily. Choose the one that matches the software or system you are targeting.</div>
-        </div>
-      </div>
-    </section>
+      </details>
+    </div>
+  </div>
+</div>
 
-    <section class="related">
-      <h2>Related tools on thenepal.io</h2>
-      <div class="tools-grid">
-        <a class="tool-card" href="/preeti-to-unicode/">
-          <div class="tool-icon">→</div>
-          <h3>Preeti to Unicode</h3>
-          <p>Convert legacy Preeti font text to Unicode Devanagari — the more common direction.</p>
-        </a>
-        <a class="tool-card" href="/">
-          <div class="tool-icon">⇄</div>
-          <h3>All Fonts Converter</h3>
-          <p>Full toolkit: Preeti, Kantipur, PCS Nepali ↔ Unicode. File upload, batch convert.</p>
-        </a>
-        <a class="tool-card" href="/date-converter/">
-          <div class="tool-icon">📅</div>
-          <h3>Date Converter</h3>
-          <p>Convert between Nepali Bikram Sambat (BS) and English (AD) calendar dates instantly.</p>
-        </a>
-        <a class="tool-card" href="/kantipur-to-unicode/">
-          <div class="tool-icon">🔤</div>
-          <h3>Kantipur to Unicode</h3>
-          <p>Dedicated converter for Kantipur font — popular in Nepali newspapers and publishing.</p>
-        </a>
-      </div>
-    </section>
+<div class="content-section">
+  <h2>ब (Ba) mapping confirmed: Unicode ब → Preeti 'a'</h2>
+  <table class="example-table">
+    <thead><tr><th>Unicode</th><th>Preeti Output</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="uni-ex">ब</td><td class="preeti-ex">a</td><td>Ba (consonant)</td></tr>
+      <tr><td class="uni-ex">बालक</td><td class="preeti-ex">af]ls</td><td>Child</td></tr>
+      <tr><td class="uni-ex">बहादुर</td><td class="preeti-ex">axf]m/</td><td>Brave</td></tr>
+      <tr><td class="uni-ex">नेपाल</td><td class="preeti-ex">g]kfn</td><td>Nepal</td></tr>
+      <tr><td class="uni-ex">काठमाडौं</td><td class="preeti-ex">sf7df8f}+</td><td>Kathmandu</td></tr>
+    </tbody>
+  </table>
+</div>
 
-  </div><!-- /content-wrap -->
+<footer class="footer">
+  <p>🇳🇵 Free forever · Unicode to Preeti + DOCX export · thenepal.io</p>
+</footer>
+<div id="toastMsg" class="toast"></div>
 
-  <footer>
-    <p>
-      Built with ❤️ for Nepal 🇳🇵 · Free forever ·
-      <a href="/preeti-to-unicode/">Preeti → Unicode</a> ·
-      <a href="/date-converter/">📅 Date Converter</a> ·
-      <a href="/">thenepal.io</a>
-    </p>
-    <div class="footer-v">v2.1.0 · Unicode to Preeti Converter · Last updated May 2026</div>
-  </footer>
+<script>
+  // ================= FIXED MAPPING: ब -> 'a' =================
+  const PREETI_MAP = new Map([
+    ['ओ', 'cf]'], ['औ', 'cfW'], ['आ', 'cf'], ['ई', 'O{'], ['ऊ', 'pm'], ['ऐ', 'P{'], ['ऋ', 'C'],
+    ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'm'], ['ू', 'M'], ['ृ', '['], ['े', ']'], ['ै', '{'],
+    ['ो', 'f]'], ['ौ', 'fW'], ['ँ', 'F'], ['ं', '+'], ['ः', 'M'], ['्', '\\'],
+    ['अ', 'c'], ['इ', 'O'], ['उ', 'p'], ['ए', 'P'],
+    ['क', 's'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['ङ', "'"], ['च', 'r'], ['छ', '5'], ['ज', 'h'],
+    ['झ', 'em'], ['ञ', '~'], ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'],
+    ['थ', 'y'], ['द', 'b'], ['ध', 'w'], ['न', 'g'], ['प', 'k'], ['फ', 'km'], 
+    ['ब', 'a'],   // <--- FIXED: ब maps to 'a' (Preeti encoding)
+    ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'], 
+    ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['क्ष', 'If'], ['ज्ञ', '1'], ['त्र', 'q'], 
+    ['श्र', '>'], ['द्ध', '4'], ['द्द', '2'],
+    ['०', ')'], ['१', '!'], ['२', '@'], ['३', '#'], ['४', '$'], ['५', '%'], ['६', '^'], 
+    ['७', '&'], ['८', '*'], ['९', '('], ['।', '.'], ['॥', '..'], ['–', '_']
+  ]);
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-  // ═══════════════════════════════════════════════════════════════
-  //  COMPLETE UNICODE → PREETI REVERSE MAP
-  //  Built from the canonical Preeti ASCII ↔ Devanagari table.
-  //  Longer Unicode sequences are tried first (greedy matching).
-  // ═══════════════════════════════════════════════════════════════
-  const UNICODE_TO_PREETI = [
-    // ── Multi-char Unicode sequences (longer first!) ──────────────
-    // Vowels with two-part Unicode representations
-    ['ओ',  'cf]'],   // o  (आ + ो → cf] but preeti uses 'cf]' for ओ)
-    ['औ',  'cfW'],   // au
-    ['आ',  'cf'],    // aa
-    ['ई',  'O{'],    // ii (long i)
-    ['ऊ',  'pm'],    // uu (long u)
-    ['ऐ',  'P{'],    // ai
-    ['ऋ',  'C'],
-
-    // Conjuncts — common clusters
-    ['क्ष्', 'I{'],
-    ['क्ष',  'If'],
-    ['ज्ञ',  '1'],
-    ['त्र',  'q'],
-    ['श्र',  '>'],
-    ['द्ध',  '4'],
-    ['द्द',  '2'],
-    ['त्त',  'Q'],
-    ['द्य',  'B'],
-
-    // Halanta (virama) + consonant clusters — handled via halant rule
-    // प्र, ब्र, etc. handled by individual char map + ् rule
-
-    // ── Vowel signs (matras) ────────────────────────────────────
-    ['ा',  'f'],    // aa matra
-    ['ि',  'l'],    // i matra (goes before consonant in preeti — handled post)
-    ['ी',  'L'],    // ii matra
-    ['ु',  'm'],    // u matra
-    ['ू',  'M'],    // uu matra (Uu — capital M = ः, use ू→ correct)
-    ['ृ',  '['],    // ri matra
-    ['े',  ']'],    // e matra
-    ['ै',  '{'],    // ai matra
-    ['ो',  'f]'],   // o matra (ा + े)
-    ['ौ',  'fW'],   // au matra
-    ['ँ',  'F'],    // chandrabindu
-    ['ं',  '+'],    // anusvara
-    ['ः',  'M'],    // visarga (uses capital M)
-    ['्',  '\\'],   // halanta / virama
-
-    // ── Independent vowels ──────────────────────────────────────
-    ['अ',  'c'],
-    ['इ',  'O'],
-    ['उ',  'p'],
-    ['ए',  'P'],
-    ['ऑ',  'cf]'],
-
-    // ── Consonants ──────────────────────────────────────────────
-    ['क',  's'],
-    ['ख',  'v'],
-    ['ग',  'u'],
-    ['घ',  '3'],
-    ['ङ',  '\''],   // nga — rare
-    ['च',  'r'],
-    ['छ',  '5'],
-    ['ज',  'h'],
-    ['झ',  'em'],   // jha = e + m (special combo)
-    ['ञ',  '~'],
-    ['ट',  '6'],
-    ['ठ',  '7'],
-    ['ड',  '8'],
-    ['ढ',  '9'],
-    ['ण',  '0'],
-    ['त',  't'],
-    ['थ',  'y'],
-    ['द',  'b'],
-    ['ध',  'w'],
-    ['न',  'g'],
-    ['प',  'k'],
-    ['फ',  'km'],   // pha
-    ['ब',  'a'],
-    ['भ',  'e'],
-    ['म',  'd'],
-    ['य',  'o'],
-    ['र',  '/'],
-    ['ल',  'n'],
-    ['व',  'j'],
-    ['श',  'z'],
-    ['ष',  'if'],   // sha (special)
-    ['स',  ';'],
-    ['ह',  'x'],
-    ['क्ष', 'If'],
-    ['ज्ञ', '1'],
-
-    // ── Numbers ─────────────────────────────────────────────────
-    ['०',  ')'],
-    ['१',  '!'],
-    ['२',  '@'],
-    ['३',  '#'],
-    ['४',  '$'],
-    ['५',  '%'],
-    ['६',  '^'],
-    ['७',  '&'],
-    ['८',  '*'],
-    ['९',  '('],
-
-    // ── Punctuation ─────────────────────────────────────────────
-    ['।',  '.'],    // devanagari danda
-    ['॥',  '..'],   // double danda
-    ['–',  '_'],    // en dash
-    ['\u200c', ''], // ZWNJ — remove
-    ['\u200d', ''], // ZWJ — remove
-  ];
-
-  // Consonants that need ् (halant) to make clusters — handled by the char map above.
-  // The ि matra placement fix: in Preeti, ि comes BEFORE the consonant.
-  // In Unicode, ि follows. We handle this below.
-
-  // Kantipur map (subset — key differences from Preeti)
-  const KANTIPUR_MAP = [
-    ['नेपाल', 'g]kfn'],   // direct phrase override
-    ['ओ',  'cf]'],
-    ['औ',  'cfO'],
-    ['आ',  'cf'],
-    ['ई',  'O_'],
-    ['ऊ',  'pm'],
-    ['ऋ',  'C'],
-    ['ा',  'f'],
-    ['ि',  'l'],
-    ['ी',  'L'],
-    ['ु',  'M'],
-    ['ू',  '{'],
-    ['ृ',  '['],
-    ['े',  ']'],
-    ['ै',  '\''],
-    ['ो',  'f]'],
-    ['ौ',  'fO'],
-    ['ँ',  'F'],
-    ['ं',  '+'],
-    ['ः',  ':'],
-    ['्',  '\\'],
-    ['अ',  'c'],
-    ['इ',  'O'],
-    ['उ',  'p'],
-    ['ए',  'P'],
-    ['क',  'k'],
-    ['ख',  'v'],
-    ['ग',  'u'],
-    ['घ',  '3'],
-    ['च',  'r'],
-    ['छ',  '5'],
-    ['ज',  'h'],
-    ['झ',  'hn'],
-    ['ट',  '6'],
-    ['ठ',  '7'],
-    ['ड',  '8'],
-    ['ढ',  '9'],
-    ['ण',  '0'],
-    ['त',  't'],
-    ['थ',  'y'],
-    ['द',  'b'],
-    ['ध',  'w'],
-    ['न',  'g'],
-    ['प',  'k'],
-    ['ब',  'a'],
-    ['भ',  'e'],
-    ['म',  'd'],
-    ['य',  'o'],
-    ['र',  '/'],
-    ['ल',  'n'],
-    ['व',  'j'],
-    ['श',  'z'],
-    ['ष',  'if'],
-    ['स',  ';'],
-    ['ह',  'x'],
-    ['ज्ञ','1'],
-    ['त्र','q'],
-    ['क्ष','I'],
-    ['श्र','>'],
-    ['।',  '.'],
-    ['–',  '_'],
-    ['०',  ')'],
-    ['१',  '!'],
-    ['२',  '@'],
-    ['३',  '#'],
-    ['४',  '$'],
-    ['५',  '%'],
-    ['६',  '^'],
-    ['७',  '&'],
-    ['८',  '*'],
-    ['९',  '('],
-  ];
-
-  // ═══════════════════════════════════════════════════════════════
-  //  CONVERSION ENGINE
-  // ═══════════════════════════════════════════════════════════════
+  const KANTIPUR_MAP = new Map([
+    ['नेपाल', 'g]kfn'], ['ओ', 'cf]'], ['औ', 'cfO'], ['आ', 'cf'], ['ई', 'O_'], ['ऊ', 'pm'], ['ऋ', 'C'],
+    ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'M'], ['ू', '{'], ['ृ', '['], ['े', ']'], ['ै', "'"], ['ो', 'f]'],
+    ['ौ', 'fO'], ['ँ', 'F'], ['ं', '+'], ['ः', ':'], ['्', '\\'], ['अ', 'c'], ['इ', 'O'], ['उ', 'p'], ['ए', 'P'],
+    ['क', 'k'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['च', 'r'], ['छ', '5'], ['ज', 'h'], ['झ', 'hn'], 
+    ['ब', 'a'],   // Kantipur also uses 'a' for ब
+    ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'],
+    ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['ज्ञ', '1'], ['त्र', 'q'], ['क्ष', 'I'], ['श्र', '>'], 
+    ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'], ['थ', 'y'], ['द', 'b'], 
+    ['ध', 'w'], ['न', 'g'], ['प', 'k'], ['फ', 'km'], ['।', '.'], ['०', ')'], ['१', '!'], ['२', '@'], 
+    ['३', '#'], ['४', '$'], ['५', '%'], ['६', '^'], ['७', '&'], ['८', '*'], ['९', '(']
+  ]);
 
   let currentFont = 'preeti';
+  let uploadedFiles = [];
 
-  function getMap() {
-    return currentFont === 'kantipur' ? KANTIPUR_MAP : UNICODE_TO_PREETI;
+  function getActiveMap() { return currentFont === 'kantipur' ? KANTIPUR_MAP : PREETI_MAP; }
+
+  // i-kar repositioning for correct Preeti rendering
+  function repositionIKar(text) {
+    const I_MATRA = '\u093F';
+    const VIRAMA = '\u094D';
+    const CONS_REGEX = /[\u0915-\u0939\u0958-\u095F]/;
+    let chars = [...text];
+    let out = [];
+    for (let i = 0; i < chars.length; i++) {
+      if (chars[i] === I_MATRA) {
+        let clusterStart = out.length - 1;
+        while (clusterStart >= 2 && out[clusterStart-1] === VIRAMA && CONS_REGEX.test(out[clusterStart-2])) {
+          clusterStart -= 2;
+        }
+        if (clusterStart >= 0 && CONS_REGEX.test(out[clusterStart])) {
+          out.splice(clusterStart, 0, I_MATRA);
+        } else out.push(I_MATRA);
+      } else {
+        out.push(chars[i]);
+      }
+    }
+    return out.join('');
   }
 
-  /**
-   * Convert Unicode Devanagari → Preeti (or Kantipur)
-   * Algorithm:
-   *  1. Pre-process: fix ि placement (move before consonant group)
-   *  2. Greedy left-to-right match against map, longest first
-   *  3. Unmapped chars pass through as-is
-   */
   function convertUnicodeToPreeti(text) {
     if (!text) return '';
-    const map = getMap();
-
-    // Build sorted map: longer sequences first for greedy matching
-    // Sort by Unicode key length descending
-    const sorted = [...map].sort((a, b) => b[0].length - a[0].length);
-
-    // Step 1: handle ि (U+093F) repositioning
-    // In Unicode: consonant + virama + consonant + ि
-    // In Preeti:  ि code + virama-cluster
-    // Simplified approach: we process ि as 'l' and let it fall before
-    // the previous consonant via post-processing
-    let processed = preProcessIKar(text);
-
-    // Step 2: greedy match
+    let processed = repositionIKar(text);
+    const mapEntries = Array.from(getActiveMap().entries()).sort((a,b) => b[0].length - a[0].length);
     let result = '';
     let i = 0;
     while (i < processed.length) {
       let matched = false;
-      for (const [uni, preeti] of sorted) {
-        if (uni.length === 0) continue;
-        if (processed.startsWith(uni, i)) {
-          result += preeti;
-          i += uni.length;
+      for (let [unicode, ascii] of mapEntries) {
+        if (processed.startsWith(unicode, i)) {
+          result += ascii;
+          i += unicode.length;
           matched = true;
           break;
         }
       }
       if (!matched) {
-        // Pass through unmapped characters (English letters, spaces, punctuation, etc.)
         result += processed[i];
         i++;
       }
     }
-
     return result;
   }
 
-  /**
-   * Pre-process: move ि (i-matra, U+093F) before its consonant group.
-   * In Unicode: क + ि = कि  (consonant then matra)
-   * In Preeti:  l + s  = कि  (matra code first, then consonant code)
-   *
-   * For clusters like क्रि: Unicode is क + ् + र + ि
-   * Preeti should be: l + s + \ + /  (l prefix before whole cluster)
-   *
-   * Strategy: scan for ि, then back up past any virama+consonant pairs,
-   * then insert ि before the cluster start.
-   */
-  function preProcessIKar(text) {
-    // Devanagari consonants range
-    const CONS = /[\u0915-\u0939\u0958-\u095F]/;
-    const VIRAMA = '\u094D';
-    const I_MATRA = '\u093F';
+  // UI elements
+  const inputEl = document.getElementById('unicodeInput');
+  const outputBox = document.getElementById('outputBox');
+  const fontSelect = document.getElementById('fontSelect');
+  const outputLabel = document.getElementById('outputLabel');
 
-    const chars = [...text]; // Unicode-aware split
-    let out = [];
-    let i = 0;
+  function refreshOutput() {
+    const raw = inputEl.value;
+    const inChars = raw.length;
+    const inWords = raw.trim() ? raw.trim().split(/\s+/).length : 0;
+    document.getElementById('inChar').innerText = inChars;
+    document.getElementById('inWord').innerText = inWords;
 
-    while (i < chars.length) {
-      if (chars[i] === I_MATRA) {
-        // Find start of consonant cluster ending just before this ि
-        // Cluster = CONS (VIRAMA CONS)*
-        let clusterStart = out.length - 1;
-        // Walk back through virama+consonant pairs
-        while (
-          clusterStart >= 2 &&
-          out[clusterStart - 1] === VIRAMA &&
-          CONS.test(out[clusterStart - 2])
-        ) {
-          clusterStart -= 2;
-        }
-        // Validate: clusterStart should be a consonant
-        if (clusterStart >= 0 && CONS.test(out[clusterStart])) {
-          // Insert I_MATRA before clusterStart
-          out.splice(clusterStart, 0, I_MATRA);
-        } else {
-          out.push(I_MATRA);
-        }
-        i++;
-      } else {
-        out.push(chars[i]);
-        i++;
-      }
-    }
-
-    return out.join('');
-  }
-
-  // ═══════════════════════════════════
-  //  UI STATE
-  // ═══════════════════════════════════
-  let uploadedFiles = [];
-
-  function onInputChange() {
-    const inp = document.getElementById('uni-inp').value;
-    counts('in', inp);
-    const ob = document.getElementById('out-box');
-
-    if (!inp.trim()) {
-      ob.textContent = 'Preeti font text appears here…';
-      ob.classList.add('empty');
-      counts('out', '');
+    if (!raw.trim()) {
+      outputBox.textContent = 'Preeti font text appears here…';
+      outputBox.classList.add('empty');
+      document.getElementById('outChar').innerText = '0';
+      document.getElementById('outWord').innerText = '0';
       return;
     }
-
-    const result = convertUnicodeToPreeti(inp);
-    ob.textContent = result;
-    ob.classList.remove('empty');
-    counts('out', result);
-  }
-
-  function counts(p, t) {
-    document.getElementById(p+'-ch').textContent = t.length;
-    document.getElementById(p+'-wd').textContent = t.trim() ? t.trim().split(/\s+/).length : 0;
-  }
-
-  function getOut() {
-    const t = document.getElementById('out-box').textContent;
-    return (t && t !== 'Preeti font text appears here…') ? t : '';
+    const converted = convertUnicodeToPreeti(raw);
+    outputBox.textContent = converted;
+    outputBox.classList.remove('empty');
+    document.getElementById('outChar').innerText = converted.length;
+    document.getElementById('outWord').innerText = converted.trim() ? converted.trim().split(/\s+/).length : 0;
   }
 
   function onFontChange() {
-    currentFont = document.getElementById('font-sel').value;
-    document.getElementById('out-lbl').textContent =
-      currentFont === 'kantipur' ? 'Kantipur Output (Visual)' : 'Preeti Output (Visual)';
-    const ob = document.getElementById('out-box');
-    ob.style.fontFamily = currentFont === 'kantipur'
-      ? "'Kantipur', 'Mukta', 'Tiro Devanagari', serif"
-      : "'Preeti', 'Mukta', 'Tiro Devanagari', serif";
-    onInputChange();
+    currentFont = fontSelect.value;
+    outputLabel.innerText = currentFont === 'kantipur' ? 'Kantipur Output' : 'Preeti Output';
+    outputBox.style.fontFamily = currentFont === 'kantipur' ? "'Kantipur', 'Mukta', serif" : "'Preeti', 'Mukta', serif";
+    refreshOutput();
   }
 
-  // ═══════════════════════════════════
-  //  ACTIONS
-  // ═══════════════════════════════════
-  async function copyOut() {
-    const t = getOut();
-    if (!t) { toast('⚠️ Nothing to copy'); return; }
-    try {
-      await navigator.clipboard.writeText(t);
-      const tip = document.getElementById('copy-tip');
-      tip.classList.add('on');
-      setTimeout(() => tip.classList.remove('on'), 1800);
-      toast('✓ Copied! Now paste in Word and apply Preeti font.');
-    } catch { toast('Use Ctrl+C to copy'); }
+  fontSelect.addEventListener('change', onFontChange);
+  inputEl.addEventListener('input', refreshOutput);
+
+  // Toast helper
+  const toast = (msg) => {
+    const t = document.getElementById('toastMsg');
+    t.innerText = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  };
+
+  // Copy / Paste / Clear
+  document.getElementById('copyBtn').onclick = async () => {
+    const txt = outputBox.textContent;
+    if (!txt || txt === 'Preeti font text appears here…') return toast('⚠️ Nothing to copy');
+    await navigator.clipboard.writeText(txt);
+    toast('✓ Copied! Paste in Word and set Preeti font.');
+  };
+  document.getElementById('pasteBtn').onclick = async () => {
+    const txt = await navigator.clipboard.readText();
+    if (txt) inputEl.value = txt, refreshOutput(), toast('✓ Pasted');
+  };
+  document.getElementById('clearBtn').onclick = () => {
+    inputEl.value = '';
+    refreshOutput();
+    toast('Cleared');
+  };
+
+  // Download .txt
+  document.getElementById('downloadTxtBtn').onclick = () => {
+    const txt = outputBox.textContent;
+    if (!txt || txt === 'Preeti font text appears here…') return toast('No output');
+    const blob = new Blob([txt], {type: 'text/plain;charset=windows-1252'});
+    saveAs(blob, 'preeti-output.txt');
+    toast('⬇ Downloaded .txt');
+  };
+
+  // Generate DOCX with Preeti-encoded content
+  async function generateDocx(content, filename = 'preeti-output.docx') {
+    if (!window.docx) { toast('DOCX library loading, please retry'); return; }
+    const { Document, Packer, Paragraph, TextRun, HeadingLevel } = window.docx;
+    const doc = new Document({
+      sections: [{
+        properties: {},
+        children: [
+          new Paragraph({
+            children: [new TextRun({ text: content, font: { name: 'Preeti' } })],
+            spacing: { line: 276 }
+          })
+        ]
+      }]
+    });
+    const blob = await Packer.toBlob(doc);
+    saveAs(blob, filename);
+    toast('✓ Downloaded .docx (Preeti font required)');
   }
 
-  async function pasteIn() {
-    try {
-      const t = await navigator.clipboard.readText();
-      document.getElementById('uni-inp').value = t;
-      onInputChange();
-      toast('✓ Pasted');
-    } catch { toast('Use Ctrl+V to paste'); }
-  }
+  document.getElementById('downloadDocxBtn').onclick = async () => {
+    const txt = outputBox.textContent;
+    if (!txt || txt === 'Preeti font text appears here…') return toast('No content for DOCX');
+    await generateDocx(txt, 'preeti-output.docx');
+  };
 
-  function dlTxt() {
-    const t = getOut();
-    if (!t) { toast('⚠️ Nothing to download'); return; }
-    const b = new Blob([t], { type: 'text/plain;charset=windows-1252' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(b);
-    a.download = 'preeti-output.txt';
-    a.click();
-    URL.revokeObjectURL(a.href);
-    toast('✓ Downloaded');
-  }
+  // File upload logic
+  const fileInput = document.getElementById('fileInput');
+  const dropzoneDiv = document.getElementById('dropzone');
+  const fileContainer = document.getElementById('fileListContainer');
+  const fileActionsDiv = document.getElementById('fileActions');
 
-  function clearAll() {
-    document.getElementById('uni-inp').value = '';
-    const ob = document.getElementById('out-box');
-    ob.textContent = 'Preeti font text appears here…';
-    ob.classList.add('empty');
-    counts('in', ''); counts('out', '');
-    toast('✓ Cleared');
-  }
-
-  function setFontSize(v) {
-    document.documentElement.style.setProperty('--out-size', v + 'px');
-    document.getElementById('sz-val').textContent = v + 'px';
-    localStorage.setItem('preeti-out-sz-rev', v);
-  }
-
-  // ═══════════════════════════════════
-  //  FILE UPLOAD
-  // ═══════════════════════════════════
-  function doDrag(e, over) {
-    e.preventDefault();
-    document.getElementById('drop-zone').classList.toggle('over', over);
-  }
-  function doDrop(e) {
-    e.preventDefault();
-    document.getElementById('drop-zone').classList.remove('over');
-    addFiles(e.dataTransfer.files);
-  }
-  function addFiles(files) {
-    for (const f of files) {
-      if (!f.name.toLowerCase().endsWith('.txt')) { toast('⚠️ Only .txt files'); continue; }
-      if (!uploadedFiles.some(u => u.name === f.name && u.size === f.size))
-        uploadedFiles.push({ file: f, name: f.name, size: f.size, status: 'pending', result: null });
-    }
-    renderFiles();
-    document.getElementById('file-acts').style.display = uploadedFiles.length ? 'flex' : 'none';
-  }
-  function renderFiles() {
-    document.getElementById('file-list').innerHTML = uploadedFiles.map((f, i) => `
-      <div class="fitem">
-        <span>📄</span>
-        <span class="fitem-name">${esc(f.name)}</span>
-        <span class="fitem-sz">${sz(f.size)}</span>
-        <span class="fstatus ${f.status === 'pending' ? 'p' : f.status === 'done' ? 'd' : 'e'}">${f.status === 'pending' ? 'Pending' : f.status === 'done' ? 'Done' : 'Error'}</span>
-        ${f.status === 'done' ? `<button class="btn" style="padding:4px 9px;font-size:10px;min-height:auto" onclick="dlFile(${i})">⬇</button>` : ''}
-        <button class="fremove" onclick="rmFile(${i})" aria-label="Remove">✕</button>
+  function renderFileList() {
+    fileContainer.innerHTML = uploadedFiles.map((f, idx) => `
+      <div style="display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:6px 12px;">
+        <span>📄</span><span style="flex:1; font-size:12px;">${escapeHtml(f.name)}</span>
+        <span style="font-size:10px;">${(f.size/1024).toFixed(1)}KB</span>
+        <span style="background:${f.status==='done'?'#1a6e4020':'#eee'}; padding:2px 8px; border-radius:20px;">${f.status==='done'?'✓ Done':'Pending'}</span>
+        ${f.status==='done' ? `<button class="btn" style="padding:2px 8px;" data-idx="${idx}" onclick="downloadSingleTxt(${idx})">📄 txt</button>
+        <button class="btn btn-success" style="padding:2px 8px;" onclick="downloadSingleDocx(${idx})">📑 docx</button>` : ''}
+        <button class="btn" style="padding:2px 8px;" onclick="removeFile(${idx})">✕</button>
       </div>`).join('');
+    fileActionsDiv.style.display = uploadedFiles.length ? 'flex' : 'none';
   }
-  function esc(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-  function rmFile(i) { uploadedFiles.splice(i, 1); renderFiles(); document.getElementById('file-acts').style.display = uploadedFiles.length ? 'flex' : 'none'; }
-  function clearFiles() { uploadedFiles = []; renderFiles(); document.getElementById('file-acts').style.display = 'none'; document.getElementById('file-in').value = ''; }
-  async function convertFiles() {
-    if (!uploadedFiles.length) return;
-    const prog = document.getElementById('prog'), bar = document.getElementById('prog-bar'), lbl = document.getElementById('prog-lbl');
-    prog.classList.add('on');
-    for (let i = 0; i < uploadedFiles.length; i++) {
-      const f = uploadedFiles[i];
-      lbl.textContent = `Converting ${f.name}… (${i + 1}/${uploadedFiles.length})`;
-      bar.style.width = Math.round((i / uploadedFiles.length) * 100) + '%';
-      try {
-        const raw = await readText(f.file);
-        const converted = convertUnicodeToPreeti(raw);
-        f.result = { data: converted, name: f.name.replace(/\.txt$/i, '-preeti.txt') };
-        f.status = 'done';
-      } catch (e) { f.status = 'error'; }
-      renderFiles();
-      await sleep(30);
+
+  window.downloadSingleTxt = (idx) => {
+    const f = uploadedFiles[idx];
+    if(f?.result) { saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); toast(`Downloaded ${f.name}`); }
+  };
+  window.downloadSingleDocx = async (idx) => {
+    const f = uploadedFiles[idx];
+    if(f?.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx'));
+  };
+  window.removeFile = (idx) => { uploadedFiles.splice(idx,1); renderFileList(); };
+
+  function addFiles(files) {
+    for(let file of files) {
+      if(!file.name.endsWith('.txt')) { toast('Only .txt files'); continue; }
+      uploadedFiles.push({ file, name: file.name, size: file.size, status: 'pending', result: null });
     }
-    bar.style.width = '100%';
-    lbl.textContent = '✅ Done!';
-    setTimeout(() => prog.classList.remove('on'), 2500);
-    toast('✓ All converted');
+    renderFileList();
   }
-  function dlFile(i) { const f = uploadedFiles[i]; if (!f?.result) return; dlB(f.result.data, f.result.name); }
-  function dlFiles() { uploadedFiles.filter(f => f.status === 'done').forEach(f => dlB(f.result.data, f.result.name)); toast('✓ Downloaded'); }
-  function dlB(text, name) { const b = new Blob([text], { type: 'text/plain;charset=windows-1252' }); const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = name; a.click(); URL.revokeObjectURL(a.href); }
-  function readText(f) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsText(f, 'UTF-8'); }); }
-  function sz(b) { return b < 1024 ? b + ' B' : b < 1048576 ? (b / 1024).toFixed(1) + ' KB' : (b / 1048576).toFixed(1) + ' MB'; }
-  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  fileInput.addEventListener('change', (e) => addFiles(e.target.files));
+  window.handleDragOver = (e) => { e.preventDefault(); dropzoneDiv.classList.add('over'); };
+  window.handleDragLeave = () => dropzoneDiv.classList.remove('over');
+  window.handleDrop = (e) => { e.preventDefault(); dropzoneDiv.classList.remove('over'); addFiles(e.dataTransfer.files); };
 
-  // ═══════════════════════════════════
-  //  FAQ
-  // ═══════════════════════════════════
-  function toggleFaq(el) {
-    const item = el.closest('.faq-item');
-    const was = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!was) item.classList.add('open');
-  }
-
-  // ═══════════════════════════════════
-  //  THEME
-  // ═══════════════════════════════════
-  function applyTheme(t) {
-    document.documentElement.setAttribute('data-theme', t);
-    document.getElementById('theme-btn').textContent = t === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('preeti-theme', t);
-  }
-  function toggleTheme() {
-    applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
-  }
-
-  // ═══════════════════════════════════
-  //  TOAST
-  // ═══════════════════════════════════
-  function toast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('on');
-    clearTimeout(t._t);
-    t._t = setTimeout(() => t.classList.remove('on'), 3000);
-  }
-
-  // ═══════════════════════════════════
-  //  INIT
-  // ═══════════════════════════════════
-  function init() {
-    // Restore saved theme
-    const savedTheme = localStorage.getItem('preeti-theme');
-    if (savedTheme) applyTheme(savedTheme);
-    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) applyTheme('dark');
-
-    // Restore font size
-    const savedSz = localStorage.getItem('preeti-out-sz-rev');
-    if (savedSz) {
-      document.getElementById('sz-val').textContent = savedSz + 'px';
-      setFontSize(savedSz);
+  document.getElementById('convertAllBtn')?.addEventListener('click', async () => {
+    for(let f of uploadedFiles) {
+      if(f.status === 'done') continue;
+      const text = await f.file.text();
+      f.result = convertUnicodeToPreeti(text);
+      f.status = 'done';
+      renderFileList();
     }
+    toast('All files converted');
+  });
+  document.getElementById('downloadAllTxtBtn')?.addEventListener('click', () => {
+    uploadedFiles.forEach(f => { if(f.result) saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); });
+    toast('Downloaded all .txt');
+  });
+  document.getElementById('downloadAllDocxBtn')?.addEventListener('click', async () => {
+    for(let f of uploadedFiles) if(f.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx'));
+  });
+  document.getElementById('clearFilesBtn')?.addEventListener('click', () => { uploadedFiles = []; renderFileList(); fileInput.value = ''; });
 
-    // Load from URL hash
-    const hash = window.location.hash.replace('#', '');
-    if (hash) {
-      try {
-        const p = new URLSearchParams(hash);
-        const t = p.get('t'), f = p.get('f');
-        if (f) { currentFont = f; document.getElementById('font-sel').value = f; onFontChange(); }
-        if (t) { document.getElementById('uni-inp').value = decodeURIComponent(t); onInputChange(); }
-      } catch(e) {}
-    }
-  }
+  // font size
+  const range = document.getElementById('fontSizeRange');
+  const sizeSpan = document.getElementById('sizeValue');
+  range.addEventListener('input', (e) => {
+    const val = e.target.value;
+    sizeSpan.innerText = val + 'px';
+    document.documentElement.style.setProperty('--out-size', val + 'px');
+    localStorage.setItem('preeti_out_size', val);
+  });
+  const savedSize = localStorage.getItem('preeti_out_size');
+  if(savedSize) { range.value = savedSize; sizeSpan.innerText = savedSize+'px'; document.documentElement.style.setProperty('--out-size', savedSize+'px'); }
 
-  document.addEventListener('DOMContentLoaded', init);
-  </script>
-  <div id="footer"></div>
-  <script src="/components.js"></script>
+  // theme
+  const themeBtn = document.getElementById('themeToggle');
+  const savedTheme = localStorage.getItem('preeti_theme');
+  if(savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark'), themeBtn.innerText = '☀️';
+  themeBtn.onclick = () => {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    themeBtn.innerText = next === 'dark' ? '☀️' : '🌙';
+    localStorage.setItem('preeti_theme', next);
+  };
+  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+  onFontChange();
+</script>
 </body>
 </html>
