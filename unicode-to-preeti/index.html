@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Unicode to Preeti Converter – DOCX Export & ब Fix | thenepal.io</title>
-  <meta name="description" content="Convert Unicode Devanagari to Preeti/Kantipur instantly. Download as .txt or .docx. Fixed ब character mapping. 100% private offline converter.">
+  <title>Unicode to Preeti Converter – Full Page Tool | thenepal.io</title>
+  <meta name="description" content="Convert Unicode Devanagari to Preeti/Kantipur font instantly. Download as .txt or .docx. 100% private, offline. ब mapping fixed.">
   <meta name="keywords" content="unicode to preeti, unicode to preeti converter, docx download, preeti font converter, ब unicode preeti">
   
   <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Include FileSaver.js and DOCX generation library -->
   <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.min.js"></script>
   
@@ -29,7 +28,11 @@
       font-display: swap;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
     :root {
       --ink: #0f0e0b;
@@ -46,11 +49,11 @@
       --gold-light: #fdf6e3;
       --green: #1a6e40;
       --green-light: #e8f5ee;
-      --radius: 20px;
-      --radius-sm: 12px;
-      --shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.05);
-      --shadow-lg: 0 12px 32px rgba(0,0,0,0.08);
-      --out-size: 20px;
+      --radius: 24px;
+      --radius-sm: 14px;
+      --shadow: 0 4px 16px rgba(0,0,0,0.06);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.1);
+      --out-size: 22px;
       --transition: 0.2s ease;
     }
 
@@ -72,194 +75,184 @@
       color: var(--ink);
       line-height: 1.5;
       transition: background var(--transition), color var(--transition);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
-    .site-nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 245, 240, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      height: 56px;
-      gap: 18px;
-    }
-    [data-theme="dark"] .site-nav { background: rgba(17, 18, 16, 0.92); }
-    .logo {
-      font-family: 'Instrument Serif', serif;
-      font-size: 20px;
-      font-weight: 400;
-      color: var(--blue);
-      text-decoration: none;
-      letter-spacing: -0.3px;
-    }
-    .logo span { color: var(--red); }
-    .nav-links {
-      display: flex;
-      gap: 6px;
-      margin-left: auto;
-    }
-    .nav-links a {
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--muted);
-      text-decoration: none;
-      padding: 6px 12px;
-      border-radius: 30px;
-      transition: 0.2s;
-    }
-    .nav-links a.active, .nav-links a:hover {
-      background: var(--blue);
-      color: white;
-    }
-    .theme-toggle {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
+    /* MAIN CONTAINER - FULL PAGE CONVERTER */
+    .converter-fullpage {
+      flex: 1;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+      width: 100%;
     }
 
-    .hero {
-      background: linear-gradient(135deg, #002268 0%, #003893 100%);
-      color: white;
-      padding: 48px 24px 56px;
+    /* Hero section inside converter */
+    .hero-mini {
       text-align: center;
-      position: relative;
-      overflow: hidden;
+      margin-bottom: 28px;
     }
-    .hero h1 {
+    .hero-mini h1 {
       font-family: 'Instrument Serif', serif;
-      font-size: clamp(32px, 6vw, 56px);
+      font-size: clamp(32px, 6vw, 52px);
       font-weight: 400;
       letter-spacing: -1px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--red) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
       margin-bottom: 8px;
     }
-    .hero h1 span { color: #ffcd7e; font-style: italic; }
-    .hero p {
-      max-width: 600px;
-      margin: 12px auto 0;
-      opacity: 0.85;
-      font-weight: 300;
+    .hero-mini p {
+      color: var(--muted);
+      font-size: 16px;
     }
-    .badge-group {
+    .badge-strip {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-      margin-top: 24px;
+      gap: 8px;
+      margin-top: 14px;
     }
-    .badge {
-      background: rgba(255,255,255,0.12);
+    .badge-strip span {
+      background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: 40px;
       padding: 5px 14px;
-      font-size: 11px;
+      font-size: 12px;
       font-weight: 500;
+      color: var(--ink2);
     }
 
-    .container {
-      max-width: 1000px;
-      margin: -28px auto 0;
-      padding: 0 20px;
-      position: relative;
-      z-index: 10;
-    }
-
+    /* MAIN CARD */
     .card {
       background: var(--surface);
       border-radius: var(--radius);
       border: 1px solid var(--border);
       box-shadow: var(--shadow-lg);
       overflow: hidden;
+      margin-top: 12px;
     }
 
+    /* Toolbar */
     .toolbar {
-      padding: 14px 20px;
+      padding: 18px 24px;
       border-bottom: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 16px;
       align-items: center;
       background: var(--bg);
     }
-    .tool-select {
-      padding: 6px 24px 6px 12px;
-      border-radius: 30px;
-      border: 1.5px solid var(--border);
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       background: var(--surface);
-      font-family: inherit;
+      padding: 4px 12px;
+      border-radius: 40px;
+      border: 1px solid var(--border);
+    }
+    .tool-group label {
       font-size: 13px;
+      font-weight: 600;
+      color: var(--ink2);
+    }
+    .tool-select {
+      padding: 8px 24px 8px 12px;
+      border-radius: 30px;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
       font-weight: 500;
       cursor: pointer;
+      color: var(--ink);
     }
     .size-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       margin-left: auto;
+    }
+    .size-ctrl span { font-size: 13px; font-weight: 500; }
+    .size-ctrl input { width: 130px; accent-color: var(--blue); }
+
+    /* Grid 2 columns */
+    .converter-grid {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      min-height: 380px;
+    }
+    @media (max-width: 720px) {
+      .converter-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .divider-col {
+        display: none;
+      }
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .size-ctrl {
+        margin-left: 0;
+        justify-content: space-between;
+      }
+    }
+
+    .panel {
+      padding: 24px;
+    }
+    .panel-header {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--muted);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .size-ctrl input { width: 100px; accent-color: var(--blue); }
-
-    .converter-grid {
-      display: grid;
-      grid-template-columns: 1fr 48px 1fr;
-      min-height: 300px;
-    }
-    @media (max-width: 640px) {
-      .converter-grid { grid-template-columns: 1fr; gap: 12px; }
-      .divider { display: none; }
-    }
-
-    .panel {
-      padding: 20px;
-    }
-    .panel-header {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--muted);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--blue); }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--blue); }
     .dot.red { background: var(--red); }
 
+    /* Larger fonts for better readability */
     textarea {
       width: 100%;
-      min-height: 210px;
-      padding: 14px;
-      border-radius: 16px;
-      border: 1.5px solid var(--border);
+      min-height: 280px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 2px solid var(--border);
       background: var(--surface);
       color: var(--ink);
       font-family: 'Tiro Devanagari', 'Noto Sans Devanagari', serif;
-      font-size: 18px;
+      font-size: 22px;
       line-height: 1.8;
       resize: vertical;
+      transition: 0.2s;
     }
-    textarea:focus { outline: none; border-color: var(--blue); }
+    textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0,56,147,0.1);
+    }
 
     .output-box {
       width: 100%;
-      min-height: 210px;
-      padding: 14px;
-      border-radius: 16px;
-      border: 1.5px solid var(--blue-light);
+      min-height: 280px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 2px solid var(--blue-light);
       background: var(--blue-light);
       font-family: 'Preeti', 'Mukta', serif;
       font-size: var(--out-size);
-      line-height: 1.8;
+      line-height: 1.9;
       white-space: pre-wrap;
       word-break: break-word;
       overflow-y: auto;
@@ -268,50 +261,76 @@
     .output-box.empty {
       color: #aaa;
       font-family: 'Outfit', sans-serif;
-      font-size: 13px;
+      font-size: 15px;
     }
 
-    .divider {
+    .divider-col {
       display: flex;
       align-items: center;
       justify-content: center;
     }
     .swap-btn {
-      width: 40px;
-      height: 40px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      border: 1.5px solid var(--border);
+      border: 2px solid var(--border);
       background: var(--surface);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 22px;
       cursor: pointer;
       transition: 0.2s;
       text-decoration: none;
       color: var(--ink);
     }
-    .swap-btn:hover { transform: rotate(180deg); border-color: var(--blue); color: var(--blue); }
+    .swap-btn:hover {
+      transform: rotate(180deg);
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    .count-row {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      margin-top: 10px;
+      color: var(--muted);
+    }
+    .count-row strong { color: var(--ink); font-weight: 600; }
+
+    .info-note {
+      background: var(--gold-light);
+      border-left: 5px solid var(--gold);
+      padding: 14px 20px;
+      font-size: 13px;
+      margin: 0 20px 20px 20px;
+      border-radius: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
 
     .action-bar {
-      padding: 14px 20px;
+      padding: 16px 24px;
       border-top: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 12px;
     }
     .btn {
-      padding: 8px 16px;
-      border-radius: 40px;
+      padding: 10px 20px;
+      border-radius: 48px;
       border: 1.5px solid var(--border);
       background: var(--surface);
-      font-size: 12px;
-      font-weight: 500;
+      font-size: 13px;
+      font-weight: 600;
       font-family: inherit;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       transition: 0.2s;
     }
     .btn-primary {
@@ -320,222 +339,172 @@
       color: white;
     }
     .btn-primary:hover { background: #a93226; transform: scale(0.97); }
-    .btn:hover { background: var(--blue-light); border-color: var(--blue); }
     .btn-success {
       background: var(--green);
       border-color: var(--green);
       color: white;
     }
     .btn-success:hover { background: #145e34; }
-
-    .info-note {
-      background: var(--gold-light);
-      border-left: 4px solid var(--gold);
-      padding: 12px 16px;
-      font-size: 12px;
-      margin: 0 20px 16px 20px;
-      border-radius: 12px;
-      display: flex;
-      gap: 10px;
-    }
+    .btn:hover { background: var(--blue-light); border-color: var(--blue); }
 
     .file-section {
       border-top: 1px solid var(--border);
-      padding: 16px 20px;
+      padding: 20px 24px;
     }
     details summary {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 700;
       cursor: pointer;
       color: var(--blue);
+      padding: 6px 0;
     }
     .dropzone {
-      margin-top: 12px;
+      margin-top: 14px;
       border: 2px dashed var(--border);
-      border-radius: 20px;
-      padding: 28px;
+      border-radius: 24px;
+      padding: 32px;
       text-align: center;
       cursor: pointer;
       transition: 0.2s;
     }
     .dropzone.over { border-color: var(--blue); background: var(--blue-light); }
-    .file-list { margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+    .file-list { margin-top: 16px; display: flex; flex-direction: column; gap: 8px; }
 
-    .content-section {
-      max-width: 780px;
-      margin: 64px auto 0;
-      padding: 0 20px;
+    /* responsive adjustments */
+    @media (max-width: 480px) {
+      .converter-fullpage { padding: 16px; }
+      .panel { padding: 16px; }
+      textarea, .output-box { min-height: 200px; font-size: 18px; }
+      .btn { padding: 8px 14px; font-size: 12px; }
     }
-    h2 {
-      font-family: 'Instrument Serif', serif;
-      font-size: 28px;
-      font-weight: 400;
-      margin-bottom: 12px;
-    }
-    .example-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: var(--surface);
-      border-radius: 16px;
-      overflow: hidden;
-      margin: 24px 0;
-    }
-    .example-table th {
-      background: var(--blue);
-      color: white;
-      padding: 10px 16px;
-      font-size: 11px;
-    }
-    .example-table td {
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--border);
-    }
-    .uni-ex { font-family: 'Tiro Devanagari', serif; font-size: 18px; }
-    .preeti-ex { font-family: 'DM Mono', monospace; font-weight: 500; }
 
-    .footer {
-      background: #0b1e38;
-      color: rgba(255,255,255,0.6);
-      text-align: center;
-      padding: 32px 20px;
-      margin-top: 64px;
-      font-size: 12px;
+    .footer-space {
+      margin-top: auto;
     }
     .toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 28px;
       left: 50%;
       transform: translateX(-50%) translateY(80px);
       background: #1e1e1c;
       color: white;
-      padding: 10px 22px;
-      border-radius: 40px;
-      font-size: 13px;
-      transition: 0.25s;
-      z-index: 999;
+      padding: 12px 26px;
+      border-radius: 60px;
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.25s cubic-bezier(0.2,0.9,0.4,1.1);
+      z-index: 1000;
       pointer-events: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
-    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
-    .fade-up { animation: fadeUp 0.5s ease forwards; }
   </style>
 </head>
 <body>
 
-<nav class="site-nav">
-  <a href="/" class="logo">the<span>nepal</span>.io</a>
-  <div class="nav-links">
-    <a href="/preeti-to-unicode/">Preeti → Unicode</a>
-    <a href="#" class="active">Unicode → Preeti</a>
-    <a href="/date-converter/">Date Converter</a>
-  </div>
-  <button class="theme-toggle" id="themeToggle" aria-label="Dark mode">🌙</button>
-</nav>
+<!-- === AUTOMATIC HEADER (components.js will populate) === -->
+<div id="header"></div>
 
-<div class="hero">
-  <h1>Unicode to <span>Preeti</span> Converter</h1>
-  <p>ब → 'a' mapping fixed. Type Unicode Devanagari → instant Preeti/Kantipur output. Download as .txt or .docx.</p>
-  <div class="badge-group">
-    <span class="badge">✓ ब corrected</span>
-    <span class="badge">✓ DOCX export</span>
-    <span class="badge">✓ No server</span>
-    <span class="badge">✓ Batch files</span>
+<!-- MAIN FULL-PAGE CONVERTER CONTENT -->
+<main class="converter-fullpage">
+  <div class="hero-mini">
+    <h1>Unicode → Preeti <span style="color: var(--red);">Converter</span></h1>
+    <p>Type Unicode Devanagari · Instant Preeti/Kantipur output · DOCX & TXT export · ब mapping fixed</p>
+    <div class="badge-strip">
+      <span>⚡ 100% Private</span>
+      <span>📄 .txt / .docx</span>
+      <span>📁 Upload files</span>
+      <span>🔁 ब → 'a' fixed</span>
+    </div>
   </div>
-</div>
 
-<div class="container">
   <div class="card">
     <div class="toolbar">
-      <span style="font-size:12px; font-weight:600;">Target Font:</span>
-      <select id="fontSelect" class="tool-select">
-        <option value="preeti">Preeti (Legacy)</option>
-        <option value="kantipur">Kantipur (Newspaper)</option>
-      </select>
+      <div class="tool-group">
+        <label>📝 Font:</label>
+        <select id="fontSelect" class="tool-select">
+          <option value="preeti">Preeti (Legacy)</option>
+          <option value="kantipur">Kantipur (Newspaper)</option>
+        </select>
+      </div>
       <div class="size-ctrl">
-        <span style="font-size:12px;">Output size</span>
-        <input type="range" id="fontSizeRange" min="12" max="34" value="20" step="1">
-        <span id="sizeValue" style="font-size:11px;">20px</span>
+        <span>🔤 Output Size</span>
+        <input type="range" id="fontSizeRange" min="14" max="38" value="22" step="1">
+        <span id="sizeValue" style="min-width: 42px;">22px</span>
       </div>
     </div>
 
     <div class="converter-grid">
+      <!-- INPUT PANEL -->
       <div class="panel">
         <div class="panel-header"><div class="dot"></div> Unicode Devanagari Input</div>
-        <textarea id="unicodeInput" placeholder="यहाँ युनिकोड देवनागरी टाइप गर्नुहोस्...&#10;उदाहरण: ब, बालक, बहादुर, नेपाल, काठमाडौं"></textarea>
-        <div style="display:flex; gap: 12px; font-size:10px; margin-top:6px; color: var(--muted);">
-          <span>Chars: <strong id="inChar">0</strong></span>
-          <span>Words: <strong id="inWord">0</strong></span>
+        <textarea id="unicodeInput" placeholder="यहाँ युनिकोड देवनागरी टाइप गर्नुहोस्...&#10;उदाहरण: ब, बालक, बहादुर, नेपाल, काठमाडौं, संविधान"></textarea>
+        <div class="count-row">
+          <span>📖 चरित्र (Chars): <strong id="inChar">0</strong></span>
+          <span>📝 शब्द (Words): <strong id="inWord">0</strong></span>
         </div>
       </div>
 
-      <div class="divider">
-        <a class="swap-btn" href="/preeti-to-unicode/" title="Go to Preeti to Unicode">⇄</a>
+      <!-- DIVIDER / SWAP BUTTON -->
+      <div class="divider-col">
+        <a class="swap-btn" href="#" id="swapDirectionBtn" title="Switch to Preeti → Unicode">⇄</a>
       </div>
 
+      <!-- OUTPUT PANEL -->
       <div class="panel">
-        <div class="panel-header"><div class="dot red"></div> <span id="outputLabel">Preeti Output</span></div>
-        <div id="outputBox" class="output-box empty" role="textbox" tabindex="0">Preeti font text appears here…</div>
-        <div style="display:flex; gap: 12px; font-size:10px; margin-top:6px; color: var(--muted);">
-          <span>Chars: <strong id="outChar">0</strong></span>
-          <span>Words: <strong id="outWord">0</strong></span>
+        <div class="panel-header"><div class="dot red"></div> <span id="outputLabel">Preeti Output (Visual)</span></div>
+        <div id="outputBox" class="output-box empty" role="textbox" tabindex="0">✨ Preeti font text appears here…</div>
+        <div class="count-row">
+          <span>📖 चरित्र: <strong id="outChar">0</strong></span>
+          <span>📝 शब्द: <strong id="outWord">0</strong></span>
         </div>
       </div>
     </div>
 
     <div class="info-note">
       <span>✅</span>
-      <span><strong>ब → 'a'</strong> mapping verified. Copy the Preeti output → paste into MS Word → apply <strong>Preeti font</strong> to see Nepali text. Now supports DOCX download with embedded Preeti font hint.</span>
+      <span><strong>ब → 'a'</strong> mapping verified. Copy output → paste in MS Word → apply <strong>Preeti font</strong> to see Nepali. Download DOCX with embedded Preeti font hint.</span>
     </div>
 
     <div class="action-bar">
-      <button id="copyBtn" class="btn btn-primary">📋 Copy Preeti</button>
+      <button id="copyBtn" class="btn btn-primary">📋 Copy Preeti Text</button>
       <button id="pasteBtn" class="btn">📌 Paste Unicode</button>
       <button id="downloadTxtBtn" class="btn">📄 Download .txt</button>
       <button id="downloadDocxBtn" class="btn btn-success">📑 Download .docx</button>
-      <button id="clearBtn" class="btn">🗑 Clear</button>
+      <button id="clearBtn" class="btn">🗑 Clear All</button>
     </div>
 
+    <!-- FILE UPLOAD SECTION -->
     <div class="file-section">
       <details>
-        <summary>📁 Upload .txt files (batch conversion & DOCX export)</summary>
+        <summary>📁 Upload .txt files (Batch conversion & DOCX export)</summary>
         <div id="dropzone" class="dropzone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
-          <div>📂 Drop .txt files or click to browse</div>
-          <small style="color: var(--muted);">Private conversion, browser only</small>
+          <div style="font-size: 32px; margin-bottom: 8px;">📂</div>
+          <div>Drop .txt files or click to browse</div>
+          <small style="color: var(--muted);">100% private · All conversion in your browser</small>
           <input type="file" id="fileInput" multiple accept=".txt" style="display:none">
         </div>
         <div id="fileListContainer" class="file-list"></div>
-        <div style="display: flex; gap: 8px; margin-top: 12px;" id="fileActions" style="display:none;">
+        <div style="display: flex; gap: 12px; margin-top: 16px; flex-wrap: wrap;" id="fileActions" style="display:none;">
           <button id="convertAllBtn" class="btn" style="background:var(--green); color:white;">⚡ Convert All</button>
-          <button id="downloadAllTxtBtn" class="btn">⬇ All .txt</button>
+          <button id="downloadAllTxtBtn" class="btn">📥 All .txt</button>
           <button id="downloadAllDocxBtn" class="btn btn-success">📑 All .docx</button>
-          <button id="clearFilesBtn" class="btn">Clear</button>
+          <button id="clearFilesBtn" class="btn">🗑 Clear Files</button>
         </div>
       </details>
     </div>
   </div>
-</div>
+</main>
 
-<div class="content-section">
-  <h2>ब (Ba) mapping confirmed: Unicode ब → Preeti 'a'</h2>
-  <table class="example-table">
-    <thead><tr><th>Unicode</th><th>Preeti Output</th><th>Meaning</th></tr></thead>
-    <tbody>
-      <tr><td class="uni-ex">ब</td><td class="preeti-ex">a</td><td>Ba (consonant)</td></tr>
-      <tr><td class="uni-ex">बालक</td><td class="preeti-ex">af]ls</td><td>Child</td></tr>
-      <tr><td class="uni-ex">बहादुर</td><td class="preeti-ex">axf]m/</td><td>Brave</td></tr>
-      <tr><td class="uni-ex">नेपाल</td><td class="preeti-ex">g]kfn</td><td>Nepal</td></tr>
-      <tr><td class="uni-ex">काठमाडौं</td><td class="preeti-ex">sf7df8f}+</td><td>Kathmandu</td></tr>
-    </tbody>
-  </table>
-</div>
+<!-- === AUTOMATIC FOOTER === -->
+<div id="footer"></div>
+<script src="/components.js"></script>
 
-<footer class="footer">
-  <p>🇳🇵 Free forever · Unicode to Preeti + DOCX export · thenepal.io</p>
-</footer>
+<!-- TOAST MESSAGE -->
 <div id="toastMsg" class="toast"></div>
 
 <script>
-  // ================= FIXED MAPPING: ब -> 'a' =================
+  // ====================== FULL MAPPING (ब -> 'a' fixed) ======================
   const PREETI_MAP = new Map([
     ['ओ', 'cf]'], ['औ', 'cfW'], ['आ', 'cf'], ['ई', 'O{'], ['ऊ', 'pm'], ['ऐ', 'P{'], ['ऋ', 'C'],
     ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'm'], ['ू', 'M'], ['ृ', '['], ['े', ']'], ['ै', '{'],
@@ -544,12 +513,11 @@
     ['क', 's'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['ङ', "'"], ['च', 'r'], ['छ', '5'], ['ज', 'h'],
     ['झ', 'em'], ['ञ', '~'], ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'],
     ['थ', 'y'], ['द', 'b'], ['ध', 'w'], ['न', 'g'], ['प', 'k'], ['फ', 'km'], 
-    ['ब', 'a'],   // <--- FIXED: ब maps to 'a' (Preeti encoding)
+    ['ब', 'a'],   // FIXED: ब maps to 'a'
     ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'], 
     ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['क्ष', 'If'], ['ज्ञ', '1'], ['त्र', 'q'], 
-    ['श्र', '>'], ['द्ध', '4'], ['द्द', '2'],
-    ['०', ')'], ['१', '!'], ['२', '@'], ['३', '#'], ['४', '$'], ['५', '%'], ['६', '^'], 
-    ['७', '&'], ['८', '*'], ['९', '('], ['।', '.'], ['॥', '..'], ['–', '_']
+    ['श्र', '>'], ['द्ध', '4'], ['द्द', '2'], ['०', ')'], ['१', '!'], ['२', '@'], ['३', '#'], 
+    ['४', '$'], ['५', '%'], ['६', '^'], ['७', '&'], ['८', '*'], ['९', '('], ['।', '.'], ['॥', '..'], ['–', '_']
   ]);
 
   const KANTIPUR_MAP = new Map([
@@ -557,7 +525,7 @@
     ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'M'], ['ू', '{'], ['ृ', '['], ['े', ']'], ['ै', "'"], ['ो', 'f]'],
     ['ौ', 'fO'], ['ँ', 'F'], ['ं', '+'], ['ः', ':'], ['्', '\\'], ['अ', 'c'], ['इ', 'O'], ['उ', 'p'], ['ए', 'P'],
     ['क', 'k'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['च', 'r'], ['छ', '5'], ['ज', 'h'], ['झ', 'hn'], 
-    ['ब', 'a'],   // Kantipur also uses 'a' for ब
+    ['ब', 'a'],   // Kantipur fix
     ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'],
     ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['ज्ञ', '1'], ['त्र', 'q'], ['क्ष', 'I'], ['श्र', '>'], 
     ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'], ['थ', 'y'], ['द', 'b'], 
@@ -570,7 +538,7 @@
 
   function getActiveMap() { return currentFont === 'kantipur' ? KANTIPUR_MAP : PREETI_MAP; }
 
-  // i-kar repositioning for correct Preeti rendering
+  // i-kar repositioning (ि before consonant cluster)
   function repositionIKar(text) {
     const I_MATRA = '\u093F';
     const VIRAMA = '\u094D';
@@ -617,7 +585,7 @@
     return result;
   }
 
-  // UI elements
+  // DOM elements
   const inputEl = document.getElementById('unicodeInput');
   const outputBox = document.getElementById('outputBox');
   const fontSelect = document.getElementById('fontSelect');
@@ -631,7 +599,7 @@
     document.getElementById('inWord').innerText = inWords;
 
     if (!raw.trim()) {
-      outputBox.textContent = 'Preeti font text appears here…';
+      outputBox.textContent = '✨ Preeti font text appears here…';
       outputBox.classList.add('empty');
       document.getElementById('outChar').innerText = '0';
       document.getElementById('outWord').innerText = '0';
@@ -646,7 +614,7 @@
 
   function onFontChange() {
     currentFont = fontSelect.value;
-    outputLabel.innerText = currentFont === 'kantipur' ? 'Kantipur Output' : 'Preeti Output';
+    outputLabel.innerText = currentFont === 'kantipur' ? 'Kantipur Output (Visual)' : 'Preeti Output (Visual)';
     outputBox.style.fontFamily = currentFont === 'kantipur' ? "'Kantipur', 'Mukta', serif" : "'Preeti', 'Mukta', serif";
     refreshOutput();
   }
@@ -659,58 +627,46 @@
     const t = document.getElementById('toastMsg');
     t.innerText = msg;
     t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2200);
+    setTimeout(() => t.classList.remove('show'), 2400);
   };
 
-  // Copy / Paste / Clear
+  // Actions
   document.getElementById('copyBtn').onclick = async () => {
     const txt = outputBox.textContent;
-    if (!txt || txt === 'Preeti font text appears here…') return toast('⚠️ Nothing to copy');
+    if (!txt || txt.includes('Preeti font text appears')) return toast('⚠️ Nothing to copy');
     await navigator.clipboard.writeText(txt);
-    toast('✓ Copied! Paste in Word and set Preeti font.');
+    toast('✓ Copied! Paste in Word and apply Preeti font.');
   };
   document.getElementById('pasteBtn').onclick = async () => {
     const txt = await navigator.clipboard.readText();
-    if (txt) inputEl.value = txt, refreshOutput(), toast('✓ Pasted');
+    if (txt) inputEl.value = txt, refreshOutput(), toast('✓ Pasted Unicode');
   };
-  document.getElementById('clearBtn').onclick = () => {
-    inputEl.value = '';
-    refreshOutput();
-    toast('Cleared');
-  };
-
-  // Download .txt
+  document.getElementById('clearBtn').onclick = () => { inputEl.value = ''; refreshOutput(); toast('Cleared'); };
   document.getElementById('downloadTxtBtn').onclick = () => {
     const txt = outputBox.textContent;
-    if (!txt || txt === 'Preeti font text appears here…') return toast('No output');
+    if (!txt || txt.includes('Preeti font text appears')) return toast('No output');
     const blob = new Blob([txt], {type: 'text/plain;charset=windows-1252'});
     saveAs(blob, 'preeti-output.txt');
     toast('⬇ Downloaded .txt');
   };
 
-  // Generate DOCX with Preeti-encoded content
+  // DOCX generation
   async function generateDocx(content, filename = 'preeti-output.docx') {
     if (!window.docx) { toast('DOCX library loading, please retry'); return; }
-    const { Document, Packer, Paragraph, TextRun, HeadingLevel } = window.docx;
+    const { Document, Packer, Paragraph, TextRun } = window.docx;
     const doc = new Document({
       sections: [{
-        properties: {},
-        children: [
-          new Paragraph({
-            children: [new TextRun({ text: content, font: { name: 'Preeti' } })],
-            spacing: { line: 276 }
-          })
-        ]
+        children: [new Paragraph({ children: [new TextRun({ text: content, font: { name: 'Preeti' } })] })]
       }]
     });
     const blob = await Packer.toBlob(doc);
     saveAs(blob, filename);
-    toast('✓ Downloaded .docx (Preeti font required)');
+    toast('✓ Downloaded .docx (apply Preeti font to view)');
   }
 
   document.getElementById('downloadDocxBtn').onclick = async () => {
     const txt = outputBox.textContent;
-    if (!txt || txt === 'Preeti font text appears here…') return toast('No content for DOCX');
+    if (!txt || txt.includes('Preeti font text appears')) return toast('No content');
     await generateDocx(txt, 'preeti-output.docx');
   };
 
@@ -720,84 +676,41 @@
   const fileContainer = document.getElementById('fileListContainer');
   const fileActionsDiv = document.getElementById('fileActions');
 
+  function escapeHtml(s) { return s.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
   function renderFileList() {
     fileContainer.innerHTML = uploadedFiles.map((f, idx) => `
-      <div style="display:flex; align-items:center; gap:10px; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:6px 12px;">
-        <span>📄</span><span style="flex:1; font-size:12px;">${escapeHtml(f.name)}</span>
-        <span style="font-size:10px;">${(f.size/1024).toFixed(1)}KB</span>
-        <span style="background:${f.status==='done'?'#1a6e4020':'#eee'}; padding:2px 8px; border-radius:20px;">${f.status==='done'?'✓ Done':'Pending'}</span>
-        ${f.status==='done' ? `<button class="btn" style="padding:2px 8px;" data-idx="${idx}" onclick="downloadSingleTxt(${idx})">📄 txt</button>
-        <button class="btn btn-success" style="padding:2px 8px;" onclick="downloadSingleDocx(${idx})">📑 docx</button>` : ''}
-        <button class="btn" style="padding:2px 8px;" onclick="removeFile(${idx})">✕</button>
+      <div style="display:flex; align-items:center; gap:12px; background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:10px 16px;">
+        <span>📄</span>
+        <span style="flex:1; font-size:13px; font-weight:500;">${escapeHtml(f.name)}</span>
+        <span style="font-size:11px;">${(f.size/1024).toFixed(1)}KB</span>
+        <span style="background:${f.status==='done'?'#1a6e4020':'#eee'}; padding:4px 12px; border-radius:30px; font-size:11px;">${f.status==='done'?'✓ Done':'Pending'}</span>
+        ${f.status==='done' ? `<button class="btn" style="padding:4px 12px;" onclick="downloadSingleTxt(${idx})">📄 txt</button>
+        <button class="btn btn-success" style="padding:4px 12px;" onclick="downloadSingleDocx(${idx})">📑 docx</button>` : ''}
+        <button class="btn" style="padding:4px 12px;" onclick="removeFile(${idx})">✕</button>
       </div>`).join('');
     fileActionsDiv.style.display = uploadedFiles.length ? 'flex' : 'none';
   }
-
-  window.downloadSingleTxt = (idx) => {
-    const f = uploadedFiles[idx];
-    if(f?.result) { saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); toast(`Downloaded ${f.name}`); }
-  };
-  window.downloadSingleDocx = async (idx) => {
-    const f = uploadedFiles[idx];
-    if(f?.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx'));
-  };
+  window.downloadSingleTxt = (idx) => { const f = uploadedFiles[idx]; if(f?.result) saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); toast('Downloaded .txt'); };
+  window.downloadSingleDocx = async (idx) => { const f = uploadedFiles[idx]; if(f?.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx')); };
   window.removeFile = (idx) => { uploadedFiles.splice(idx,1); renderFileList(); };
-
-  function addFiles(files) {
-    for(let file of files) {
-      if(!file.name.endsWith('.txt')) { toast('Only .txt files'); continue; }
-      uploadedFiles.push({ file, name: file.name, size: file.size, status: 'pending', result: null });
-    }
-    renderFileList();
-  }
+  function addFiles(files) { for(let file of files) { if(!file.name.endsWith('.txt')) { toast('Only .txt files'); continue; } uploadedFiles.push({ file, name: file.name, size: file.size, status: 'pending', result: null }); } renderFileList(); }
   fileInput.addEventListener('change', (e) => addFiles(e.target.files));
   window.handleDragOver = (e) => { e.preventDefault(); dropzoneDiv.classList.add('over'); };
   window.handleDragLeave = () => dropzoneDiv.classList.remove('over');
   window.handleDrop = (e) => { e.preventDefault(); dropzoneDiv.classList.remove('over'); addFiles(e.dataTransfer.files); };
+  document.getElementById('convertAllBtn')?.addEventListener('click', async () => { for(let f of uploadedFiles) { if(f.status !== 'done') { const text = await f.file.text(); f.result = convertUnicodeToPreeti(text); f.status = 'done'; } } renderFileList(); toast('All files converted'); });
+  document.getElementById('downloadAllTxtBtn')?.addEventListener('click', () => { uploadedFiles.forEach(f => { if(f.result) saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); }); toast('Downloaded all .txt'); });
+  document.getElementById('downloadAllDocxBtn')?.addEventListener('click', async () => { for(let f of uploadedFiles) if(f.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx')); });
+  document.getElementById('clearFilesBtn')?.addEventListener('click', () => { uploadedFiles = []; renderFileList(); fileInput.value = ''; toast('Files cleared'); });
 
-  document.getElementById('convertAllBtn')?.addEventListener('click', async () => {
-    for(let f of uploadedFiles) {
-      if(f.status === 'done') continue;
-      const text = await f.file.text();
-      f.result = convertUnicodeToPreeti(text);
-      f.status = 'done';
-      renderFileList();
-    }
-    toast('All files converted');
-  });
-  document.getElementById('downloadAllTxtBtn')?.addEventListener('click', () => {
-    uploadedFiles.forEach(f => { if(f.result) saveAs(new Blob([f.result], {type:'text/plain'}), f.name.replace(/\.txt$/i,'-preeti.txt')); });
-    toast('Downloaded all .txt');
-  });
-  document.getElementById('downloadAllDocxBtn')?.addEventListener('click', async () => {
-    for(let f of uploadedFiles) if(f.result) await generateDocx(f.result, f.name.replace(/\.txt$/i,'-preeti.docx'));
-  });
-  document.getElementById('clearFilesBtn')?.addEventListener('click', () => { uploadedFiles = []; renderFileList(); fileInput.value = ''; });
-
-  // font size
+  // Font size & theme
   const range = document.getElementById('fontSizeRange');
   const sizeSpan = document.getElementById('sizeValue');
-  range.addEventListener('input', (e) => {
-    const val = e.target.value;
-    sizeSpan.innerText = val + 'px';
-    document.documentElement.style.setProperty('--out-size', val + 'px');
-    localStorage.setItem('preeti_out_size', val);
-  });
-  const savedSize = localStorage.getItem('preeti_out_size');
-  if(savedSize) { range.value = savedSize; sizeSpan.innerText = savedSize+'px'; document.documentElement.style.setProperty('--out-size', savedSize+'px'); }
-
-  // theme
-  const themeBtn = document.getElementById('themeToggle');
-  const savedTheme = localStorage.getItem('preeti_theme');
-  if(savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark'), themeBtn.innerText = '☀️';
-  themeBtn.onclick = () => {
-    const cur = document.documentElement.getAttribute('data-theme');
-    const next = cur === 'dark' ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    themeBtn.innerText = next === 'dark' ? '☀️' : '🌙';
-    localStorage.setItem('preeti_theme', next);
-  };
-  function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+  range.addEventListener('input', (e) => { const v = e.target.value; sizeSpan.innerText = v+'px'; document.documentElement.style.setProperty('--out-size', v+'px'); localStorage.setItem('preeti_out_size', v); });
+  const savedSize = localStorage.getItem('preeti_out_size'); if(savedSize) { range.value = savedSize; sizeSpan.innerText = savedSize+'px'; document.documentElement.style.setProperty('--out-size', savedSize+'px'); }
+  const savedTheme = localStorage.getItem('preeti_theme'); if(savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
+  document.getElementById('swapDirectionBtn').href = '/preeti-to-unicode/';
+  
   onFontChange();
 </script>
 </body>
