@@ -1,0 +1,40 @@
+/* Preeti Font for Nepali Language Support */
+@font-face {
+    font-family: 'Preeti';
+    src: url('/assets/fonts/Preeti.woff2') format('woff2'),
+         url('/assets/fonts/Preeti.woff') format('woff'),
+         url('/assets/fonts/Preeti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Improves perceived performance */
+}
+
+/* Nepali text styling */
+.nepali-text,
+[lang="ne"] {
+    font-family: 'Preeti', 'Traditional Nepali', 'Mangal', 'Arial', sans-serif;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+/* Specific classes for Preeti font */
+.preeti-font {
+    font-family: 'Preeti', sans-serif;
+}
+
+/* For better rendering on different devices */
+@media screen and (min-resolution: 2dppx) {
+    .nepali-text {
+        font-weight: normal;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Fallback for older browsers */
+@supports not (font-display: swap) {
+    @font-face {
+        font-family: 'Preeti';
+        src: url('/assets/fonts/Preeti.woff2') format('woff2');
+    }
+}
