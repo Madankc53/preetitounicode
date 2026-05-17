@@ -455,3 +455,24 @@ if (typeof module !== 'undefined' && module.exports) {
         copyToClipboard
     };
 }
+// Add to your common.js
+function loadPreetiFont() {
+    const fontLink = document.createElement('link');
+    fontLink.rel = 'stylesheet';
+    fontLink.href = '/assets/css/fonts.css';
+    document.head.appendChild(fontLink);
+    
+    // Check if font loaded
+    document.fonts.ready.then(() => {
+        console.log('Preeti font loaded successfully');
+        showToast('Nepali font loaded', 'success');
+    }).catch(error => {
+        console.error('Font loading error:', error);
+    });
+}
+
+// Load font if page has Nepali content
+if (document.documentElement.lang === 'ne' || 
+    document.querySelector('[lang="ne"], .nepali-text, .preeti-font')) {
+    loadPreetiFont();
+}
