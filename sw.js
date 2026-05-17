@@ -99,3 +99,16 @@ const urlsToCache = [
   '/assets/css/components.css',
   '/assets/css/animations.css'
 ];
+// In your sw.js urlsToCache array
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/offline.html',
+  '/manifest.json',
+  '/assets/css/main.css',
+  '/assets/css/fonts.css',
+  '/assets/js/common.js',
+  '/assets/fonts/Preeti.woff2',  // Add your font
+  '/assets/fonts/Preeti.woff',    // Fallback format
+  '/assets/fonts/Preeti.ttf'      // Fallback format
+];
