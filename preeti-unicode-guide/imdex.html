@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preeti to Unicode — सजिलो तरिका | converter.thenepal.io</title>
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Hindi:ital@0;1&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #c0392b;
+    --red-light: #e74c3c;
+    --blue: #1a3a5c;
+    --blue-mid: #2563a8;
+    --cream: #fdf8f0;
+    --warm: #f5ede0;
+    --text: #1c1c1c;
+    --muted: #6b6b6b;
+    --white: #ffffff;
+    --border: #ddd0bb;
+    --success: #27ae60;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--blue);
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .nav-logo span { color: #f4c94e; }
+  .nav-badge {
+    background: var(--red);
+    color: white;
+    font-size: 0.7rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, #1e4d7b 60%, #2563a8 100%);
+    color: white;
+    padding: 72px 32px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    background: rgba(192,57,43,0.12);
+  }
+
+  .flag-stripe {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .flag-stripe span {
+    display: block;
+    height: 4px;
+    border-radius: 2px;
+  }
+  .flag-stripe .r { width: 40px; background: var(--red); }
+  .flag-stripe .w { width: 40px; background: white; }
+  .flag-stripe .b { width: 40px; background: #003f8a; }
+
+  .hero-tag {
+    display: inline-block;
+    background: rgba(244,201,78,0.18);
+    border: 1px solid rgba(244,201,78,0.35);
+    color: #f4c94e;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .hero h1 .ne {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    color: #f4c94e;
+  }
+
+  .hero-sub {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.78);
+    margin: 16px auto 32px;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 18px rgba(192,57,43,0.4);
+  }
+  .hero-cta:hover { background: var(--red-light); transform: translateY(-2px); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px 36px;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+  .trust-item .icon { font-size: 1rem; }
+
+  /* PROBLEM SECTION */
+  .section { padding: 60px 20px; max-width: 780px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 10px;
+  }
+
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  .section h2 .ne {
+    font-family: 'Tiro Devanagari Hindi', serif;
+  }
+
+  .section p {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 14px;
+  }
+
+  /* PROBLEM CARDS */
+  .problem-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 28px;
+  }
+  @media(max-width: 520px) { .problem-cards { grid-template-columns: 1fr; } }
+
+  .problem-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px; height: 100%;
+    background: var(--red);
+    border-radius: 4px 0 0 4px;
+  }
+  .problem-card .emoji { font-size: 1.5rem; margin-bottom: 8px; display: block; }
+  .problem-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+  .problem-card p { font-size: 0.83rem; color: var(--muted); line-height: 1.55; margin: 0; }
+
+  /* DIVIDER */
+  .divider {
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .divider span { background: var(--cream); padding: 0 12px; position: relative; }
+  .divider::before {
+    content: '';
+    display: block;
+    height: 1px;
+    background: var(--border);
+    margin-bottom: -10px;
+  }
+
+  /* STEPS */
+  .steps-bg {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 28px;
+  }
+
+  .step {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px dashed var(--border);
+    animation: fadeUp 0.5s ease both;
+  }
+  .step:last-child { border-bottom: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .step:nth-child(1) { animation-delay: 0.05s; }
+  .step:nth-child(2) { animation-delay: 0.15s; }
+  .step:nth-child(3) { animation-delay: 0.25s; }
+  .step:nth-child(4) { animation-delay: 0.35s; }
+
+  .step-num {
+    min-width: 42px;
+    height: 42px;
+    background: var(--blue);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .step-body h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--blue);
+    margin-bottom: 4px;
+  }
+  .step-body h3 .ne { font-family: 'Tiro Devanagari Hindi', serif; }
+  .step-body p { font-size: 0.87rem; color: var(--muted); line-height: 1.6; margin: 0; }
+
+  /* VISUAL CONVERTER DEMO */
+  .demo-box {
+    background: var(--warm);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .demo-side {
+    flex: 1;
+    min-width: 130px;
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+  }
+  .demo-side label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 6px;
+  }
+  .demo-side .demo-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text);
+    font-family: monospace;
+  }
+  .demo-side .demo-text.unicode {
+    font-family: 'Tiro Devanagari Hindi', serif;
+    font-size: 1.3rem;
+    color: var(--blue);
+  }
+  .arrow-box {
+    font-size: 1.8rem;
+    color: var(--red);
+    text-align: center;
+  }
+
+  /* BENEFITS */
+  .benefits {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 28px;
+  }
+  .benefit {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 18px;
+    text-align: center;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .benefit:hover { box-shadow: 0 6px 20px rgba(26,58,92,0.1); transform: translateY(-3px); }
+  .benefit .icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+  .benefit h3 { font-size: 0.92rem; font-weight: 700; color: var(--blue); margin-bottom: 4px; }
+  .benefit h3 .ne { font-family: 'Tiro Devanagari Hindi', serif; }
+  .benefit p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+  /* FAQ */
+  .faq { margin-top: 28px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 18px 0;
+  }
+  .faq-item summary {
+    font-weight: 700;
+    font-size: 0.97rem;
+    color: var(--blue);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary .ne { font-family: 'Tiro Devanagari Hindi', serif; }
+  .faq-item summary::after { content: '+'; font-size: 1.3rem; color: var(--red); }
+  details[open] summary::after { content: '−'; }
+  .faq-item p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  /* CTA BOTTOM */
+  .cta-bottom {
+    background: linear-gradient(135deg, var(--blue), #2563a8);
+    color: white;
+    padding: 60px 24px;
+    text-align: center;
+  }
+  .cta-bottom h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 900;
+    margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .cta-bottom h2 .ne { font-family: 'Tiro Devanagari Hindi', serif; color: #f4c94e; }
+  .cta-bottom p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    margin-bottom: 28px;
+  }
+  .cta-bottom a {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 14px 36px;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 18px rgba(192,57,43,0.45);
+    transition: background 0.2s, transform 0.15s;
+  }
+  .cta-bottom a:hover { background: var(--red-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    padding: 20px;
+    font-size: 0.78rem;
+  }
+  footer a { color: rgba(255,255,255,0.55); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">converter.<span>thenepal.io</span></div>
+  <div class="nav-badge">🇳🇵 Free Tool</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="flag-stripe">
+    <span class="r"></span><span class="w"></span><span class="b"></span>
+  </div>
+  <div class="hero-tag">सरकारी कार्यालयका लागि · For Government Offices</div>
+  <h1>Preeti to Unicode<br><span class="ne">Convert गर्ने सजिलो तरिका</span></h1>
+  <p class="hero-sub">
+    Word File (.docx) समेत upload गर्नुस् — एकै click मा Unicode मा बदल्नुस्।<br>
+    <strong style="color:white;">100% Free · No signup · Works offline</strong>
+  </p>
+  <a href="https://converter.thenepal.io" class="hero-cta">⚡ अहिलै Convert गर्नुस्</a>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><span class="icon">🔒</span> No data saved</div>
+  <div class="trust-item"><span class="icon">📄</span> .docx & .txt support</div>
+  <div class="trust-item"><span class="icon">🖥️</span> Works offline (PWA)</div>
+  <div class="trust-item"><span class="icon">✅</span> Preeti, Kantipur & PCS</div>
+  <div class="trust-item"><span class="icon">∞</span> No character limit</div>
+</div>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702"
+     crossorigin="anonymous"></script>
+<!-- Top Ad -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1239173186536702"
+     data-ad-slot="1642070334"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<!-- PROBLEM -->
+<div style="background: var(--cream);">
+  <div class="section">
+    <div class="section-label">समस्या के हो? · The Problem</div>
+    <h2><span class="ne">सरकारी कागजात</span> — अझै Preeti मा?</h2>
+    <p>
+      Nepal का धेरै सरकारी कार्यालयमा अझै पनि <strong>Preeti, Kantipur वा PCS Nepali</strong> font मा documents बनाइन्छ। यी files अरू computer मा खोल्दा <strong>gibberish</strong> देखिन्छ — किनभने ती fonts install नभएसम्म text सही देखिँदैन।
+    </p>
+    <p>
+      Unicode मा convert गरेपछि — text <strong>सबै device, website र app</strong> मा सही देखिन्छ। Email, website, portal — सबैतिर।
+    </p>
+
+    <div class="problem-cards">
+      <div class="problem-card">
+        <span class="emoji">😕</span>
+        <h3>Font install नभए गाह्रो</h3>
+        <p>Preeti font नभएको computer मा document पठाउँदा text बिग्रिन्छ।</p>
+      </div>
+      <div class="problem-card">
+        <span class="emoji">🌐</span>
+        <h3>Online portal मा काम गर्दैन</h3>
+        <p>Preeti text website वा government portal मा paste गर्दा error आउँछ।</p>
+      </div>
+      <div class="problem-card">
+        <span class="emoji">📱</span>
+        <h3>Mobile मा देखिँदैन</h3>
+        <p>Phone मा legacy font नहुँदा WhatsApp वा email मा text बिग्रिन्छ।</p>
+      </div>
+      <div class="problem-card">
+        <span class="emoji">⏱️</span>
+        <h3>हातले type गर्न समय लाग्छ</h3>
+        <p>पुरानो document फेरि टाइप गर्न घण्टौं समय जान्छ — अनावश्यक काम।</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- VISUAL DEMO -->
+<div style="max-width: 780px; margin: 0 auto; padding: 0 20px 40px;">
+  <div class="demo-box">
+    <div class="demo-side">
+      <label>Preeti Input</label>
+      <div class="demo-text">g]kfn ;/sf/</div>
+    </div>
+    <div class="arrow-box">→</div>
+    <div class="demo-side">
+      <label>Unicode Output</label>
+      <div class="demo-text unicode">नेपाल सरकार</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW TO USE -->
+<div class="steps-bg">
+  <div class="section">
+    <div class="section-label">Step by Step · कसरी गर्ने?</div>
+    <h2>Convert गर्न <span class="ne">मात्र ४ कदम</span></h2>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3><span class="ne">Font छान्नुस्</span> — Select Your Font</h3>
+          <p>Preeti, Kantipur वा PCS Nepali — जुन font मा document छ, त्यही छान्नुस्।</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3><span class="ne">Text Paste वा File Upload</span></h3>
+          <p>Text box मा paste गर्नुस् — वा सिधै <strong>.docx / .txt file drag & drop</strong> गर्नुस्। Multiple files एकैपटक हुन्छ।</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3><span class="ne">एकै Click मा Convert</span></h3>
+          <p>Real-time मा Unicode text तयार हुन्छ। "Clean Text" button ले common errors पनि fix गर्छ।</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3><span class="ne">Copy वा Download</span> गर्नुस्</h3>
+          <p>Unicode text copy गर्नुस् — वा .txt file download गर्नुस्। काम सकियो! 🎉</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BENEFITS -->
+<div style="background: var(--cream);">
+  <div class="section">
+    <div class="section-label">फाइदा · Why Use This?</div>
+    <h2>किन <span class="ne">यही tool</span> राम्रो?</h2>
+
+    <div class="benefits">
+      <div class="benefit">
+        <span class="icon">🔒</span>
+        <h3><span class="ne">पूर्ण सुरक्षित</span></h3>
+        <p>सबै processing तपाईंको browser मा हुन्छ। कुनै data server मा जाँदैन।</p>
+      </div>
+      <div class="benefit">
+        <span class="icon">📁</span>
+        <h3>.docx Support</h3>
+        <p>Word document सिधै upload गर्नुस् — फेरि type गर्नु पर्दैन।</p>
+      </div>
+      <div class="benefit">
+        <span class="icon">⚡</span>
+        <h3><span class="ne">Real-time</span></h3>
+        <p>Type गर्दा गर्दै Unicode देखिन्छ — wait गर्नु पर्दैन।</p>
+      </div>
+      <div class="benefit">
+        <span class="icon">📱</span>
+        <h3>Offline Works</h3>
+        <p>Internet नभए पनि हुन्छ। PWA install गर्नुस् — phone वा PC मा।</p>
+      </div>
+      <div class="benefit">
+        <span class="icon">🆓</span>
+        <h3><span class="ne">पूर्ण नि:शुल्क</span></h3>
+        <p>कुनै charge छैन, signup छैन, limit छैन।</p>
+      </div>
+      <div class="benefit">
+        <span class="icon">📅</span>
+        <h3>Date Converter</h3>
+        <p>BS ↔ AD मिति पनि convert गर्न सकिन्छ — सबै एकै ठाउँमा।</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div style="background: var(--white); border-top: 1px solid var(--border);">
+  <div class="section">
+    <div class="section-label">प्रश्नहरू · FAQ</div>
+    <h2>सामान्य <span class="ne">जिज्ञासाहरू</span></h2>
+
+    <div class="faq">
+      <details class="faq-item">
+        <summary><span class="ne">Preeti font</span> भनेको के हो?</summary>
+        <p>Preeti एउटा पुरानो ASCII-based Nepali font हो। Unicode standard आउनुअघि Nepal मा यही font सबैभन्दा बढी प्रयोग हुन्थ्यो। अहिले पनि धेरै सरकारी कार्यालय र newspaper मा प्रयोगमा छ।</p>
+      </details>
+      <details class="faq-item">
+        <summary><span class="ne">मेरो document कहीं save हुन्छ?</span></summary>
+        <p>हुँदैन। सबै processing तपाईंको आफ्नै browser मा हुन्छ। कुनै पनि text वा file हाम्रो server मा जाँदैन। पूर्ण रूपमा private।</p>
+      </details>
+      <details class="faq-item">
+        <summary>Kantipur र PCS Nepali पनि support गर्छ?</summary>
+        <p>हो। यो tool ले Preeti, Kantipur र PCS Nepali — तीनवटै legacy fonts support गर्छ। dropdown बाट सही font छान्नुस्।</p>
+      </details>
+      <details class="faq-item">
+        <summary><span class="ne">एकैपटक धेरै files convert गर्न मिल्छ?</span></summary>
+        <p>मिल्छ। File Upload section मा multiple .docx वा .txt files drag & drop गर्नुस् — एकैपटक सबै convert हुन्छ।</p>
+      </details>
+      <details class="faq-item">
+        <summary>Internet नभए पनि काम गर्छ?</summary>
+        <p>गर्छ। browser मा एकपटक site खोलेपछि PWA install गर्नुस् — त्यसपछि offline पनि सबै features काम गर्छन्।</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+<!-- CTA BOTTOM -->
+<div class="cta-bottom">
+  <h2>अब गाह्रो छैन —<br><span class="ne">अहिलै convert गर्नुस्!</span></h2>
+  <p>Free · No signup · No limit · 100% Private</p>
+  <a href="https://converter.thenepal.io">⚡ converter.thenepal.io मा जानुस्</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Built with ❤️ for Nepal 🇳🇵 &nbsp;·&nbsp;
+  <a href="https://converter.thenepal.io">converter.thenepal.io</a> &nbsp;·&nbsp;
+  Free forever
+</footer>
+
+</body>
+</html>
