@@ -1,179 +1,379 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Preeti ⇄ Unicode | Ultimate Nepali Converter | Drag & Drop + History</title>
-    <meta name="description" content="Bidirectional Preeti↔Unicode converter with real-time stats, keyboard shortcuts, 50-item history, drag & drop, PWA offline, Nepali date & romanized tools. Ultimate SEO & UX.">
-    <meta name="keywords" content="Preeti to Unicode, Unicode to Preeti, Kantipur font, Nepali converter, Preeti font, bidirectional, drag drop, offline">
-    <link rel="canonical" href="https://thenepal.io/ultimate-preeti-unicode">
-    <!-- hreflang + multilingual -->
-    <link rel="alternate" hreflang="en" href="https://thenepal.io/ultimate-preeti-unicode">
-    <link rel="alternate" hreflang="ne" href="https://thenepal.io/ultimate-preeti-unicode?lang=ne">
-    <meta property="og:title" content="Preeti ↔ Unicode Ultimate Tool">
-    <meta property="og:description" content="Switch directions, drag & drop files, 50-item history, and offline-ready. Best Nepali converter.">
-    <meta property="og:type" content="website">
-    <meta name="theme-color" content="#0f172a">
-    <link rel="manifest" id="dynamic-manifest">
-    <!-- html2canvas for OG image generation -->
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <style>
-        * { box-sizing: border-box; transition: background 0.2s, color 0.2s; }
-        :root { --bg:#f1f5f9; --card:#ffffff; --text:#0f172a; --border:#e2e8f0; --primary:#3b82f6; --accent:#8b5cf6; }
-        body.dark { --bg:#0f172a; --card:#1e293b; --text:#f1f5f9; --border:#334155; --primary:#60a5fa; }
-        body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; padding: 1.5rem; margin:0; }
-        .container { max-width: 1400px; margin: 0 auto; }
-        header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
-        h1 { background: linear-gradient(135deg, var(--primary), var(--accent)); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .toolbar { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem; align-items: center; }
-        button, .btn { background: var(--primary); border: none; padding: 0.4rem 1rem; border-radius: 2rem; color: white; cursor: pointer; font-weight: 500; }
-        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
-        textarea { width: 100%; min-height: 200px; padding: 1rem; border-radius: 1.5rem; border: 1px solid var(--border); background: var(--card); color: var(--text); font-size: 1rem; resize: vertical; font-family: monospace; }
-        .stats { display: flex; gap: 1rem; font-size: 0.75rem; margin-top: 0.4rem; color: var(--text-secondary, #64748b); }
-        .panel { background: var(--card); border-radius: 1.5rem; padding: 1rem; border: 1px solid var(--border); box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
-        .history-panel { max-height: 280px; overflow-y: auto; }
-        .history-item { background: var(--bg); margin: 6px 0; padding: 6px 10px; border-radius: 1rem; cursor: pointer; font-size: 0.8rem; border-left: 3px solid var(--primary); }
-        .history-search { width: 100%; padding: 6px; border-radius: 2rem; border: 1px solid var(--border); background: var(--card); margin-bottom: 8px; }
-        .toast { position: fixed; bottom: 20px; left: 20px; background: var(--primary); color: white; padding: 8px 16px; border-radius: 40px; z-index: 1000; animation: fadeOut 3s forwards; }
-        @keyframes fadeOut { 0% { opacity: 1; } 70% { opacity: 1; } 100% { opacity: 0; visibility: hidden; } }
-        .drop-zone { border: 2px dashed var(--primary); background: rgba(59,130,246,0.05); transition: 0.1s; }
-        .tabs { display: flex; gap: 6px; border-bottom: 1px solid var(--border); margin-bottom: 1rem; flex-wrap: wrap; }
-        .tab-btn { background: none; border: none; padding: 0.5rem 1rem; border-radius: 2rem 2rem 0 0; color: var(--text); cursor: pointer; }
-        .tab-btn.active { background: var(--primary); color: white; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        footer { margin-top: 2rem; text-align: center; font-size: 0.75rem; }
-        @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kantipur to Unicode Converter | Free Nepali Font Tool</title>
+  <meta name="description" content="Convert Kantipur legacy font to Unicode Devanagari instantly. Free, offline-capable, with file upload (.docx/.txt), history, and shareable links. 100% private.">
+  <meta name="keywords" content="kantipur to unicode, kantipur font converter, nepali unicode, convert kantipur, preeti to unicode, nepali font">
+  <link rel="canonical" href="https://thenepal.io/kantipur-to-unicode/">
+  <meta property="og:title" content="Kantipur to Unicode Converter — Free & Instant">
+  <meta property="og:description" content="Convert Kantipur font text to Unicode Devanagari. Upload files, save history, share links. Works offline.">
+  <meta property="og:image" content="https://thenepal.io/assets/kantipur-og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="manifest" id="dynamic-manifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari&family=Instrument+Serif&family=DM+Mono&family=Outfit:wght@300;400;500;600;700&family=Mukta&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <style>
+    * { margin:0; padding:0; box-sizing: border-box; }
+    :root {
+      --ink: #0f0e0b; --ink2: #3a3830; --muted: #7a7870;
+      --bg: #f7f5f0; --surface: #ffffff; --border: #e4e1d8;
+      --blue: #003893; --blue-dark: #002268; --blue-light: #e8eef8;
+      --red: #C0392B; --gold: #c8920a; --green: #1a6e40;
+      --radius: 16px; --radius-sm: 10px; --shadow: 0 1px 4px rgba(0,0,0,0.06), 0 6px 24px rgba(0,0,0,0.05);
+      --transition: 0.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    [data-theme="dark"] {
+      --ink: #edeae2; --ink2: #b8b4a8; --muted: #888070;
+      --bg: #111210; --surface: #1a1c18; --border: #2c2e28;
+      --blue-light: #151e30; --shadow: 0 1px 4px rgba(0,0,0,0.4);
+    }
+    body { background: var(--bg); color: var(--ink); font-family: 'Outfit', sans-serif; line-height: 1.6; transition: background var(--transition), color var(--transition); }
+    nav { position: sticky; top:0; z-index:200; background: rgba(247,245,240,0.92); backdrop-filter: blur(14px); border-bottom:1px solid var(--border); display:flex; align-items:center; padding:0 20px; height:56px; gap:16px; }
+    [data-theme="dark"] nav { background: rgba(17,18,16,0.92); }
+    .nav-logo { font-family:'Instrument Serif',serif; font-size:18px; color:var(--blue); text-decoration:none; }
+    .nav-logo span { color:var(--red); }
+    .nav-links { display:flex; gap:4px; margin-left:auto; }
+    .nav-links a { font-size:12px; font-weight:500; color:var(--muted); text-decoration:none; padding:6px 12px; border-radius:20px; }
+    .nav-links a:hover { background:var(--blue-light); color:var(--blue); }
+    .nav-theme, .install-btn { width:34px; height:34px; border-radius:50%; border:1px solid var(--border); background:var(--surface); cursor:pointer; font-size:15px; display:inline-flex; align-items:center; justify-content:center; }
+    .install-btn { width:auto; border-radius:30px; padding:0 14px; gap:6px; font-size:12px; font-weight:500; color:var(--blue); }
+    .hero { background: var(--blue); padding:48px 20px; text-align:center; color:#fff; position:relative; }
+    .hero h1 { font-family:'Instrument Serif',serif; font-size:clamp(32px,6vw,56px); font-weight:400; letter-spacing:-1px; }
+    .hero-sub { font-size:16px; opacity:0.85; max-width:600px; margin:12px auto 0; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 18px; }
+    .converter-card { background: var(--surface); border:1px solid var(--border); border-radius:24px; box-shadow:var(--shadow); margin: -32px auto 24px; overflow: hidden; }
+    .toolbar { padding: 12px 20px; border-bottom:1px solid var(--border); display: flex; flex-wrap:wrap; gap:12px; align-items:center; background:var(--bg); }
+    .mode-pills { display:flex; gap:4px; background:var(--border); border-radius:30px; padding:3px; }
+    .mode-pill { padding:6px 18px; border:none; border-radius:30px; background:transparent; font-weight:500; cursor:pointer; }
+    .mode-pill.on { background:var(--blue); color:#fff; }
+    select, .btn { padding:8px 16px; border-radius:40px; border:1px solid var(--border); background:var(--surface); font-family:inherit; font-size:13px; cursor:pointer; transition:0.2s; }
+    .btn-primary { background:var(--red); border-color:var(--red); color:#fff; font-weight:600; }
+    .btn-primary:hover { background:#a93226; }
+    .grid-2 { display:grid; grid-template-columns:1fr 48px 1fr; gap:0; }
+    @media (max-width:680px) { .grid-2 { grid-template-columns:1fr; } .conv-divider { display:none; } }
+    .panel { padding:18px; }
+    .panel-head { font-size:11px; font-weight:600; text-transform:uppercase; color:var(--muted); margin-bottom:8px; display:flex; gap:6px; }
+    .preeti-display, .unicode-input, .out-box {
+      width:100%; min-height:220px; padding:14px; border-radius:14px; border:1.5px solid var(--border);
+      background:var(--surface); font-size:18px; line-height:1.8; resize:vertical;
+      font-family:'Tiro Devanagari','Mukta',monospace;
+    }
+    .preeti-display:focus, .unicode-input:focus { border-color:var(--blue); outline:none; }
+    .out-box { background:var(--blue-light); border-color:var(--blue-light); font-family:'Tiro Devanagari','Mukta',serif; overflow-y:auto; white-space:pre-wrap; }
+    .out-box.empty { color:var(--muted); }
+    .conv-divider { display:flex; align-items:center; justify-content:center; }
+    .swap-btn { width:40px; height:40px; border-radius:50%; border:1px solid var(--border); background:var(--surface); cursor:pointer; font-size:18px; transition:0.2s; }
+    .counts { font-size:10px; color:var(--muted); margin-top:6px; display:flex; gap:16px; }
+    .action-row { padding:12px 18px; border-top:1px solid var(--border); display:flex; flex-wrap:wrap; gap:8px; align-items:center; }
+    .file-section { padding:12px 18px 20px; border-top:1px solid var(--border); }
+    details summary { font-size:12px; font-weight:600; cursor:pointer; color:var(--blue); }
+    .drop-zone { border:2px dashed var(--border); border-radius:20px; padding:24px; text-align:center; margin-top:12px; cursor:pointer; background:var(--surface); transition:0.2s; }
+    .drop-zone.over { border-color:var(--blue); background:var(--blue-light); }
+    .history-panel { margin-top:24px; border-top:1px solid var(--border); padding-top:16px; }
+    .history-list { max-height:180px; overflow-y:auto; display:flex; flex-direction:column; gap:6px; margin-top:8px; }
+    .history-item { background:var(--bg); border-left:3px solid var(--blue); padding:8px 12px; border-radius:12px; font-size:12px; cursor:pointer; display:flex; justify-content:space-between; }
+    .history-item:hover { background:var(--border); }
+    .toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%) translateY(80px); background:var(--ink); color:#fff; padding:8px 18px; border-radius:40px; font-size:12px; transition:0.2s; z-index:1000; }
+    .toast.show { transform:translateX(-50%) translateY(0); }
+    footer { background:var(--blue); color:rgba(255,255,255,0.6); text-align:center; padding:24px; margin-top:40px; font-size:12px; }
+    .flex-between { display:flex; justify-content:space-between; align-items:center; }
+    @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    .animated { animation: fadeUp 0.4s ease; }
+  </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <h1>🕉️ Preeti ⇄ Unicode <span style="font-size:0.8rem;">(Bidirectional + History + DnD)</span></h1>
-        <div><button id="darkToggle" class="btn-outline">🌓 Dark</button>
-        <button id="installPWAbtn" class="btn-outline">📲 Install App</button>
-        <select id="langSwitcher"><option value="en">🇬🇧 English</option><option value="ne">🇳🇵 नेपाली</option></select></div>
-    </header>
-    <!-- main bidirectional -->
+
+<nav>
+  <a class="nav-logo" href="/">the<span>nepal</span>.io</a>
+  <div class="nav-links">
+    <a href="/kantipur-to-unicode/" class="active">Kantipur → Unicode</a>
+    <a href="/preeti-to-unicode/">Preeti Converter</a>
+    <a href="/date-converter/">Date Converter</a>
+  </div>
+  <button class="install-btn" id="installBtn">📲 Install App</button>
+  <button class="nav-theme" id="themeBtn" aria-label="Dark mode">🌙</button>
+</nav>
+
+<section class="hero">
+  <h1>Kantipur ⇄ Unicode<br><span style="font-size:0.7em; opacity:0.9;">Legacy Nepali Font Converter</span></h1>
+  <p class="hero-sub">Free, offline-ready, with file upload, conversion history & shareable links</p>
+</section>
+
+<div class="wrap">
+  <div class="converter-card">
     <div class="toolbar">
-        <div id="directionGroup"><span>Mode: </span><button id="modePreetiToUni" class="btn" style="background: var(--primary);">Preeti → Unicode</button>
-        <button id="modeUniToPreeti" class="btn-outline">Unicode → Preeti</button>
-        <button id="swapBtn" class="btn-outline">🔄 Swap & convert</button></div>
-        <div><span>⚡ Shortcuts: Ctrl+Enter (copy result) | Ctrl+K (clear) | Ctrl+Shift+H (history)</span></div>
+      <div class="mode-pills">
+        <button class="mode-pill on" id="modeK2U">Kantipur → Unicode</button>
+        <button class="mode-pill" id="modeU2K">Unicode → Kantipur</button>
+      </div>
+      <select id="fontSelect">
+        <option value="kantipur" selected>🎯 Kantipur Font</option>
+        <option value="preeti">📜 Preeti (alternative)</option>
+        <option value="pcs">📄 PCS Nepali</option>
+      </select>
+      <div style="margin-left:auto; display:flex; gap:6px;">
+        <span style="font-size:11px;">Size:</span>
+        <input type="range" id="sizeSlider" min="14" max="32" value="20" step="1">
+        <span id="sizeVal" style="font-size:11px;">20px</span>
+      </div>
     </div>
+
     <div class="grid-2">
-        <div class="panel drop-zone" id="sourcePanel">
-            <div class="flex-between"><strong id="srcLabel">📝 Input (Preeti)</strong> <label><input type="checkbox" id="previewFontToggle"> 🔤 Preview Preeti font</label></div>
-            <textarea id="sourceText" placeholder="Type or paste Preeti/Unicode... Drag & drop .txt files anywhere here"></textarea>
-            <div class="stats"><span id="srcChars">0 chars</span> <span id="srcWords">0 words</span> <span id="srcLines">0 lines</span></div>
+      <!-- left input -->
+      <div class="panel">
+        <div class="panel-head"><span>📝</span> <span id="inputLabel">Kantipur Input</span></div>
+        <div id="inputArea">
+          <div id="kantipurDisplay" class="preeti-display" contenteditable="true" data-ph='Type Kantipur text here e.g., "kantipur" → कान्तिपुर' oninput="onRawInput()" onkeydown="handleRawKeydown(event)" onpaste="handleRawPaste(event)"></div>
+          <textarea id="unicodeInputArea" class="unicode-input" placeholder="Type Unicode Devanagari here…" style="display:none" oninput="onRawInput()"></textarea>
         </div>
-        <div class="panel">
-            <strong id="targetLabel">✅ Output (Unicode)</strong>
-            <textarea id="targetText" readonly placeholder="Converted text appears here..."></textarea>
-            <div class="stats"><span id="tgtChars">0 chars</span> <span id="tgtWords">0 words</span></div>
-            <div style="display: flex; gap: 8px; margin-top: 8px;"><button id="copyResultBtn">📋 Copy</button><button id="shareImageBtn">🖼️ Share as Image</button><button id="genShareLinkBtn">🔗 Generate permalink</button></div>
+        <div class="counts"><span>Chars: <strong id="inChars">0</strong></span><span>Words: <strong id="inWords">0</strong></span></div>
+      </div>
+
+      <div class="conv-divider">
+        <button class="swap-btn" id="swapBtn" title="Swap direction">⇄</button>
+      </div>
+
+      <!-- right output -->
+      <div class="panel">
+        <div class="panel-head"><span>✅</span> <span id="outputLabel">Unicode Output</span></div>
+        <div id="outputBox" class="out-box empty" tabindex="0">Converted text appears here</div>
+        <div class="counts"><span>Chars: <strong id="outChars">0</strong></span><span>Words: <strong id="outWords">0</strong></span></div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button class="btn-primary" id="copyBtn">📋 Copy Output</button>
+      <button id="shareLinkBtn">🔗 Share Result Link</button>
+      <button id="clearBtn">🗑 Clear All</button>
+      <button id="downloadTxtBtn">💾 Download .txt</button>
+      <button id="pasteClipBtn">📌 Paste from clipboard</button>
+      <div style="margin-left:auto; font-size:11px; color:var(--muted);">Ctrl+Enter copy | Ctrl+K clear</div>
+    </div>
+
+    <!-- file upload lazy inside details -->
+    <div class="file-section">
+      <details>
+        <summary>📂 Upload .docx / .txt files (bulk conversion)</summary>
+        <div id="dropZone" class="drop-zone" onclick="document.getElementById('fileInput').click()" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dropFile(event)">
+          <input type="file" id="fileInput" multiple accept=".txt,.docx" style="display:none" onchange="handleFiles(this.files)">
+          <div style="font-size:28px;">📄</div>
+          <h4>Drag & drop files here</h4>
+          <p>.docx or .txt · 100% local processing</p>
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23003893' stroke-width='1.2'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E" alt="upload icon" loading="lazy" style="width:36px; margin-top:6px;">
         </div>
+        <div id="fileList" class="file-list" style="margin-top:8px;"></div>
+        <div id="fileProgress" style="display:none;"><div style="background:var(--border); height:4px; border-radius:2px;"><div id="progressBar" style="width:0%; height:100%; background:var(--blue); border-radius:2px;"></div></div><span id="progText" style="font-size:10px;"></span></div>
+      </details>
     </div>
-    <!-- tabs: History + Mini Tools (Date + Romanized) -->
-    <div class="tabs">
-        <button class="tab-btn active" data-tab="history">📜 History (50 last)</button>
-        <button class="tab-btn" data-tab="tools">🛠️ Mini Tools: BS↔AD + Romanized</button>
-        <button class="tab-btn" data-tab="seoContent">📖 About Preeti & Unicode (SEO)</button>
+
+    <!-- Recent conversions (IndexedDB history) -->
+    <div class="history-panel">
+      <div class="flex-between">
+        <strong>🕘 Recent conversions (last 30)</strong>
+        <button id="clearHistoryBtn" style="padding:4px 12px; font-size:11px;">Clear history</button>
+      </div>
+      <div id="historyList" class="history-list">— No conversions yet —</div>
     </div>
-    <div id="history" class="tab-content active"><div class="panel"><input type="text" id="historySearch" placeholder="🔍 Search in history..." class="history-search"><div id="historyList" class="history-panel">Loading history...</div><button id="clearHistoryBtn" class="btn-outline">Clear all history</button></div></div>
-    <div id="tools" class="tab-content"><div class="panel"><h4>🇳🇵 AD ↔ BS Date Converter</h4><input type="date" id="adDateInput"> <button id="adToBsBtn">AD → BS</button> <span id="bsResult"></span><br><br><h4>📝 Romanized to Unicode (Hajur style)</h4><input type="text" id="romanInput" placeholder="e.g., nepali, namaste" style="width:70%"> <button id="romanConvertBtn">Convert</button> <span id="romanOutput" style="font-weight:bold;"></span><br><small>Basic mapping: ka->क, kha->ख, etc. + vowels</small></div></div>
-    <div id="seoContent" class="tab-content"><div class="panel"><h3>What is Preeti font? Why convert to Unicode?</h3><p>Preeti is a legacy Nepali font widely used in the 90s and 2000s for digital documents, but it lacks standard encoding. Unicode (Devanagari) ensures text displays on any device, searchable, and indexable by Google. Converting Preeti to Unicode makes your content future-proof, accessible for web, and improves SEO rankings. Over 10 million Nepali speakers benefit from standard Unicode. Our bidirectional converter also supports Unicode→Preeti for backward compatibility with legacy systems.</p><h4>Comparison Table</h4><table border="1" style="width:100%; border-collapse:collapse"><tr><th>Feature</th><th>Preeti Font</th><th>Unicode</th></tr><tr><td>Web searchable</td><td>❌ No</td><td>✅ Yes</td></tr><tr><td>Mobile support</td><td>❌</td><td>✅</td></tr><tr><td>Cross-platform</td><td>Needs font</td><td>Universal</td></tr></table><p>Using this tool boosts dwell time, session length, and return visits. Our PWA install, offline mode, and smart history ensure you never lose your work.</p></div></div>
-    <footer>⚡ Offline ready | 50-item IndexedDB history | Drag & drop TXT | Keyboard shortcuts: Ctrl+Enter copy, Ctrl+K clear, Ctrl+Shift+H focus history</footer>
+  </div>
 </div>
+
+<footer>
+  <p>🇳🇵 Kantipur to Unicode · 100% browser-side · PWA offline · Your data never leaves your device</p>
+  <p style="font-size:10px; margin-top:6px;">thenepal.io – Preserving Nepali digital heritage</p>
+</footer>
+<div id="toastMessage" class="toast"></div>
+
 <script>
-// ------------------- BIDIRECTIONAL MAPPING (Preeti ↔ Unicode) ------------------
-const preetiMap = {
-    "kh":"ख","gh":"घ","ch":"छ","jh":"झ","Th":"ठ","Dh":"ढ","ph":"फ","bh":"भ","sh":"श","Sh":"ष","Ch":"छ","tr":"त्र","gy":"ज्ञ","ksh":"क्ष","ks":"क्ष",
-    "k":"क","K":"ख","g":"ग","G":"घ","z":"य","f":"ट","F":"ठ","d":"ड","D":"ढ","p":"प","P":"फ","b":"ब","B":"भ","t":"त","T":"थ","c":"च","C":"छ","j":"ज","J":"झ","q":"क्ष","x":"त्र","w":"व","h":"ह","n":"न","m":"म","y":"य","r":"र","l":"ल","s":"स","S":"श","v":"व","R":"ृ","Y":"ञ","ng":"ङ","nj":"ञ",
-    "A":"आ","a":"ा","i":"ि","I":"ी","u":"ु","U":"ू","e":"े","E":"ै","o":"ो","O":"ौ","M":"ं","H":"ः","~":"्","`":"्","0":"०","1":"१","2":"२","3":"३","4":"४","5":"५","6":"६","7":"७","8":"८","9":"९", "अ":"अ","आ":"आ","इ":"इ","ई":"ई","उ":"उ","ऊ":"ऊ","ऋ":"ऋ", ".":".",",":",","?":"?","!":"!",";":";",":":":"
-};
-const sortedPreetiKeys = Object.keys(preetiMap).sort((a,b)=>b.length-a.length);
-function preetiToUnicode(str){ let res="", i=0; while(i<str.length){ let match=false; for(let k of sortedPreetiKeys){ if(str.substr(i,k.length)===k){ res+=preetiMap[k]; i+=k.length; match=true; break; } } if(!match){ res+=str[i]; i++; } } return res; }
-// reverse mapping (Unicode -> Preeti) longest match
-const unicodeToPreetiMap = {};
-for(let [p,u] of Object.entries(preetiMap)){ if(!unicodeToPreetiMap[u]) unicodeToPreetiMap[u]=p; else if(p.length>unicodeToPreetiMap[u].length) unicodeToPreetiMap[u]=p; }
-const sortedUnicodeKeys = Object.keys(unicodeToPreetiMap).sort((a,b)=>b.length-a.length);
-function unicodeToPreeti(str){ let res="", i=0; while(i<str.length){ let found=false; for(let uk of sortedUnicodeKeys){ if(str.substr(i,uk.length)===uk){ res+=unicodeToPreetiMap[uk]; i+=uk.length; found=true; break; } } if(!found){ res+=str[i]; i++; } } return res; }
-// current mode: true = Preeti->Unicode, false = Unicode->Preeti
-let modePreetiToUnicode = true;
-const srcText = document.getElementById('sourceText');
-const targetText = document.getElementById('targetText');
-const srcLabel = document.getElementById('srcLabel');
-const targetLabel = document.getElementById('targetLabel');
-function updateLabels() { if(modePreetiToUnicode){ srcLabel.innerText = "📝 Input (Preeti)"; targetLabel.innerText = "✅ Output (Unicode)"; } else { srcLabel.innerText = "📝 Input (Unicode)"; targetLabel.innerText = "✅ Output (Preeti)"; } }
-function convert() { const input = srcText.value; const output = modePreetiToUnicode ? preetiToUnicode(input) : unicodeToPreeti(input); targetText.value = output; updateStats(); saveToHistory(input, output, modePreetiToUnicode ? "preeti→uni" : "uni→preeti"); }
-function updateStats() { for(let [id, text] of [[srcText,'src'],[targetText,'tgt']]){ const val=text.value; document.getElementById(`${id}Chars`).innerText = val.length + ' chars'; const words = val.trim()?val.trim().split(/\s+/).length:0; document.getElementById(`${id}Words`).innerText = words + ' words'; if(id==='src') document.getElementById('srcLines').innerText = val.split(/\n/).length + ' lines'; } }
-srcText.addEventListener('input', convert);
-document.getElementById('modePreetiToUni').onclick=()=>{ modePreetiToUnicode=true; updateLabels(); convert(); };
-document.getElementById('modeUniToPreeti').onclick=()=>{ modePreetiToUnicode=false; updateLabels(); convert(); };
-document.getElementById('swapBtn').onclick=()=>{ let temp=srcText.value; srcText.value=targetText.value; targetText.value=temp; if(modePreetiToUnicode) modePreetiToUnicode=false; else modePreetiToUnicode=true; updateLabels(); convert(); };
-// keyboard shortcuts
-window.addEventListener('keydown', (e) => { if(e.ctrlKey && e.key === 'Enter'){ e.preventDefault(); copyResult(); showToast("Copied result!"); } else if(e.ctrlKey && e.key === 'k'){ e.preventDefault(); srcText.value=''; convert(); showToast("Cleared"); } else if(e.ctrlKey && e.shiftKey && e.key === 'H'){ document.querySelector('[data-tab="history"]').click(); } });
-function copyResult(){ if(targetText.value) navigator.clipboard.writeText(targetText.value); }
-document.getElementById('copyResultBtn').onclick=copyResult;
-// ---------------- IndexedDB History (50 items) ----------------
-let db; const DB_NAME="preetiUniHistory", STORE="conversions";
-function openDB(){ return new Promise((resolve,reject)=>{ const req=indexedDB.open(DB_NAME,1); req.onupgradeneeded=(e)=>{ const db=e.target.result; if(!db.objectStoreNames.contains(STORE)) db.createObjectStore(STORE,{keyPath:'timestamp'}); }; req.onsuccess=()=>resolve(req.result); req.onerror=()=>reject(); }); }
-async function saveToHistory(src, target, direction){ const db=await openDB(); const tx=db.transaction(STORE,'readwrite'); const store=tx.objectStore(STORE); const item={timestamp:Date.now(), src, target, direction}; await store.add(item); const all=await getAllHistory(); if(all.length>50){ const oldest=all.sort((a,b)=>b.timestamp-a.timestamp).slice(50); for(let old of oldest) store.delete(old.timestamp); } db.close(); renderHistory(); }
-async function getAllHistory(){ const db=await openDB(); return new Promise((res,rej)=>{ const tx=db.transaction(STORE,'readonly'); const store=tx.objectStore(STORE); const req=store.getAll(); req.onsuccess=()=>res(req.result||[]); req.onerror=()=>res([]); }); }
-async function renderHistory(searchTerm=''){ let items=await getAllHistory(); if(searchTerm) items=items.filter(i=>i.src.includes(searchTerm)||i.target.includes(searchTerm)); const container=document.getElementById('historyList'); if(!items.length){ container.innerHTML='<div>No conversions yet. Convert some text!</div>'; return; } container.innerHTML=items.sort((a,b)=>b.timestamp-a.timestamp).map(item=>`<div class="history-item" data-src="${escapeHtml(item.src)}" data-dir="${item.direction}"><strong>${new Date(item.timestamp).toLocaleString()}</strong><br>${escapeHtml(item.src.substring(0,70))} → ${escapeHtml(item.target.substring(0,70))}</div>`).join(''); document.querySelectorAll('.history-item').forEach(el=>{ el.addEventListener('click',()=>{ const srcVal=el.getAttribute('data-src'); if(srcVal){ srcText.value=srcVal; if(el.getAttribute('data-dir')==='uni→preeti'){ modePreetiToUnicode=false; updateLabels(); } else { modePreetiToUnicode=true; updateLabels(); } convert(); } }); }); }
-function escapeHtml(str){ return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
-document.getElementById('clearHistoryBtn').onclick=async()=>{ const db=await openDB(); const tx=db.transaction(STORE,'readwrite'); tx.objectStore(STORE).clear(); await tx.done; renderHistory(); };
-document.getElementById('historySearch').addEventListener('input',(e)=>renderHistory(e.target.value));
-// clipboard detection
-async function detectClipboard(){ try{ const perm = await navigator.permissions.query({name:'clipboard-read'}); if(perm.state==='granted' || perm.state==='prompt'){ const text = await navigator.clipboard.readText(); const preetiPattern = /[kKgGzZfFdDpPbcCjJqQxXwWhHnNmyYrRlLsSvV]/; if(text && text.length>0 && preetiPattern.test(text) && !/[\u0900-\u097F]/.test(text)) showToast("📋 Clipboard contains Preeti text. Paste? Click input & Ctrl+V"); } } catch(e){} }
-function showToast(msg){ let t=document.createElement('div'); t.className='toast'; t.innerText=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),3000); }
-// drag & drop on source panel
-const sourcePanel=document.getElementById('sourcePanel');
-sourcePanel.addEventListener('dragover',(e)=>{e.preventDefault(); sourcePanel.classList.add('drop-zone');});
-sourcePanel.addEventListener('dragleave',()=>sourcePanel.classList.remove('drop-zone'));
-sourcePanel.addEventListener('drop',async(e)=>{e.preventDefault(); sourcePanel.classList.remove('drop-zone'); const file=e.dataTransfer.files[0]; if(file && file.type==='text/plain'){ const text=await file.text(); srcText.value=text; convert(); showToast(`Loaded ${file.name}`); } else showToast('Only .txt files supported'); });
-// Font preview toggle
-document.getElementById('previewFontToggle').addEventListener('change',(e)=>{ if(e.target.checked) srcText.style.fontFamily="'Preeti', 'Kantipur', 'Mangal', monospace"; else srcText.style.fontFamily="monospace"; });
-// Share as image (OG style)
-document.getElementById('shareImageBtn').onclick=async()=>{ const result=targetText.value; if(!result) return showToast("Nothing to share"); const canvasDiv=document.createElement('div'); canvasDiv.style.position='fixed'; canvasDiv.style.top='-1000px'; canvasDiv.style.background='white'; canvasDiv.style.padding='20px'; canvasDiv.style.borderRadius='24px'; canvasDiv.style.fontSize='24px'; canvasDiv.style.width='600px'; canvasDiv.innerText=result; document.body.appendChild(canvasDiv); const canvas=await html2canvas(canvasDiv); document.body.removeChild(canvasDiv); const link=document.createElement('a'); link.download='preeti-conversion.png'; link.href=canvas.toDataURL(); link.click(); showToast("Image saved! Share anywhere for viral reach."); };
-// generate permalink (dedicated URL) using path routing
-document.getElementById('genShareLinkBtn').onclick=()=>{ const out=targetText.value; if(!out) return; const slug = encodeURIComponent(out.substring(0,80)); const url = `${window.location.origin}${window.location.pathname}#c=${slug}`; navigator.clipboard.writeText(url); showToast("Permalink copied! Google can index when shared."); };
-// routing: load from hash #c=encodedText
-function loadFromHash(){ const hash=window.location.hash; if(hash.startsWith('#c=')){ const encoded=decodeURIComponent(hash.substring(3)); if(encoded) { srcText.value=encoded; modePreetiToUnicode=true; updateLabels(); convert(); showToast("Loaded from shareable link"); } } }
-window.addEventListener('hashchange',loadFromHash);
-// Mini Tools: AD to BS (simplified algorithm - just demo, realistic would need library)
-document.getElementById('adToBsBtn').onclick=()=>{ const ad=document.getElementById('adDateInput').value; if(ad){ const d=new Date(ad); const bsYear=d.getFullYear()+57; const bsMonth=d.getMonth()+1; const bsDay=d.getDate(); document.getElementById('bsResult').innerText=`BS ${bsYear}-${bsMonth}-${bsDay} (approx) +57 years`; } };
-// Romanized to Unicode basic map
-const romanMap={"ka":"क","kha":"ख","ga":"ग","gha":"घ","nga":"ङ","ca":"च","cha":"छ","ja":"ज","jha":"झ","nya":"ञ","ta":"ट","tha":"ठ","da":"ड","dha":"ढ","na":"ण","ta2":"त","tha2":"थ","da2":"द","dha2":"ध","na2":"न","pa":"प","pha":"फ","ba":"ब","bha":"भ","ma":"म","ya":"य","ra":"र","la":"ल","wa":"व","sha":"श","sha2":"ष","sa":"स","ha":"ह","a":"अ","i":"इ","u":"उ","e":"ए","o":"ओ"};
-function romanToUnicode(str){ let lower=str.toLowerCase(); let out=""; let i=0; while(i<lower.length){ let matched=false; for(let len=3; len>=1; len--){ let sub=lower.substr(i,len); if(romanMap[sub]){ out+=romanMap[sub]; i+=len; matched=true; break; } } if(!matched){ out+=lower[i]; i++; } } return out; }
-document.getElementById('romanConvertBtn').onclick=()=>{ const inp=document.getElementById('romanInput').value; const res=romanToUnicode(inp); document.getElementById('romanOutput').innerText=res||"(no match)"; };
-// tabs logic
-document.querySelectorAll('.tab-btn').forEach(btn=>{ btn.addEventListener('click',()=>{ const tabId=btn.getAttribute('data-tab'); document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active')); document.getElementById(tabId).classList.add('active'); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); }); });
-// Dark mode & language switcher (static UI demo)
-if(localStorage.getItem('dark')==='1') document.body.classList.add('dark');
-document.getElementById('darkToggle').onclick=()=>{ document.body.classList.toggle('dark'); localStorage.setItem('dark',document.body.classList.contains('dark')?'1':'0'); };
-document.getElementById('langSwitcher').onchange=(e)=>{ const lang=e.target.value; if(lang==='ne') alert("नेपाली अनुवाद प्रदर्शन: मुख्य शीर्षकहरू नेपालीमा देखाइनेछ ।"); else alert("English UI"); };
-// PWA install
-let deferredPrompt; window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById('installPWAbtn').style.display='inline-flex'; });
-document.getElementById('installPWAbtn').onclick=()=>{ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{deferredPrompt=null;}); } else alert("PWA install available in secure context"); };
-// Service Worker for offline caching
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('/sw.js').catch(console.log); } else {
-    // fallback inject service worker inline? we create a mock
-    const swCode = `self.addEventListener('fetch', e=>e.respondWith(fetch(e.request).catch(()=>new Response('Offline ready for converter'))));`;
-    const blob = new Blob([swCode], {type:'application/javascript'});
-    const url = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(url);
-}
-// dynamic manifest with share_target
-function updateManifest(){ const manifest={name:"Preeti Unicode Converter",short_name:"PreetiUni",start_url:"./",display:"standalone",theme_color:"#0f172a",share_target:{action:"/",method:"GET",params:{text:"text"}}}; const blob=new Blob([JSON.stringify(manifest)],{type:'application/json'}); document.getElementById('dynamic-manifest').setAttribute('href',URL.createObjectURL(blob)); }
-updateManifest();
-// final init
-openDB().then(()=>renderHistory());
-convert();
-detectClipboard();
-loadFromHash();
+  // --------------------------------------------------------------
+  //  MAPPINGS: Kantipur (primary), Preeti, PCS (fallback)
+  // --------------------------------------------------------------
+  const KANTIPUR_MAP = {
+    // consonants + vowels standard mapping (Kantipur)
+    "k":"क","K":"ख","g":"ग","G":"घ","c":"च","C":"छ","j":"ज","J":"झ","t":"ट","T":"ठ","d":"ड","D":"ढ",
+    "f":"त","F":"थ","p":"प","P":"फ","b":"ब","B":"भ","m":"म","y":"य","r":"र","l":"ल","w":"व","S":"श",
+    "s":"स","h":"ह","x":"क्ष","q":"त्र","z":"ज्ञ","ng":"ङ","nj":"ञ","a":"अ","A":"आ","i":"इ","I":"ई",
+    "u":"उ","U":"ऊ","e":"ए","E":"ऐ","o":"ओ","O":"औ","~":"ं", "H":"ः","M":"ँ", "\\":"्","`":"्",
+    "0":"०","1":"१","2":"२","3":"३","4":"४","5":"५","6":"६","7":"७","8":"८","9":"९",
+    ".":"।",",":",","?":"?","!":"!", " ":" ", "\n":"\n"
+  };
+  const PREETI_MAP = {
+    "s":"क","v":"ख","u":"ग","g":"न","c":"अ","j":"व","p":"प","l":"ि","m":"ु","n":"ल","o":"य","q":"त्र",
+    "r":"च","t":"त","h":"ज","d":"म","a":"ब","b":"द","e":"भ","f":"ा","k":"प","i":"ष्","w":"ध","x":"ह",
+    "y":"थ","z":"श","0":"ण्","1":"ज्ञ","2":"द्द","3":"घ","4":"द्ध","5":"छ","6":"ट","7":"ठ","8":"ड","9":"ढ",
+    ".":"।","A":"ब्","B":"द्य","C":"ऋ","D":"म्","E":"भ्","F":"ँ","G":"न्","H":"ज्","I":"क्ष्","J":"व्","K":"प्","L":"ी","M":"ः","N":"ल्","O":"इ","P":"ए","Q":"त्त","R":"च्","S":"क्","T":"त्","U":"ग्","V":"ख्","W":"ध्","X":"ह्","Y":"थ्","Z":"श्","!":"१","@":"२","#":"३","$":"४","%":"५","^":"६","&":"७","*":"८","(":"९",")":"०",":":"स्",'"':"ू","{":"ै","}":"ै","|":"्र","_":"–","+":"ं","?":"रु","<":"?",">":"श्र"
+  };
+  const PCS_MAP = Object.assign({}, PREETI_MAP); // similar to preeti
+  const MAPS = {
+    kantipur: KANTIPUR_MAP,
+    preeti: PREETI_MAP,
+    pcs: PCS_MAP
+  };
+  // build reverse maps
+  function buildReverse(map) { let rev = new Map(); for(let [k,v] of Object.entries(map)) { if(!rev.has(v)) rev.set(v,k); } return rev; }
+  let currentFont = "kantipur";
+  let currentMode = "k2u"; // k2u or u2k
+  let rawInput = ""; // stores raw text (kantipur ascii or unicode depending on mode)
+  let db = null;
+  const DB_NAME = "KantipurHistoryDB", STORE_NAME = "conversions";
+
+  // DOM refs
+  const kantipurDisplay = document.getElementById("kantipurDisplay");
+  const uniInputArea = document.getElementById("unicodeInputArea");
+  const outputBox = document.getElementById("outputBox");
+  const inputLabel = document.getElementById("inputLabel");
+  const outputLabel = document.getElementById("outputLabel");
+  const historyContainer = document.getElementById("historyList");
+
+  // helper: convert using current font & mode
+  function convertText(raw) {
+    if (!raw) return "";
+    let map = MAPS[currentFont];
+    if (currentMode === "k2u") {
+      // forward: kantipur ascii -> unicode
+      let result = "";
+      for (let ch of raw) result += map[ch] || ch;
+      // post: fix halant & vowel order
+      result = result.replace(/ि([क-ह])/g, "$1ि");
+      return result;
+    } else {
+      // reverse: unicode -> kantipur ascii
+      let revMap = buildReverse(map);
+      let keys = Array.from(revMap.keys()).sort((a,b)=>b.length-a.length);
+      let out = "", i=0;
+      while(i<raw.length) {
+        let matched=false;
+        for(let key of keys) {
+          if(raw.startsWith(key,i)) { out+=revMap.get(key); i+=key.length; matched=true; break; }
+        }
+        if(!matched) { out+=raw[i]; i++; }
+      }
+      return out;
+    }
+  }
+
+  function updateUIFromRaw() {
+    if (currentMode === "k2u") {
+      const disp = rawInput.split('').map(ch => MAPS[currentFont][ch] || ch).join('');
+      kantipurDisplay.innerText = disp;
+      kantipurDisplay.classList.toggle("ph", !disp);
+      kantipurDisplay.style.display = "block";
+      uniInputArea.style.display = "none";
+    } else {
+      uniInputArea.value = rawInput;
+      kantipurDisplay.style.display = "none";
+      uniInputArea.style.display = "block";
+    }
+    const converted = convertText(rawInput);
+    outputBox.innerText = converted || "Converted text appears here";
+    outputBox.classList.toggle("empty", !converted);
+    updateStats(rawInput, converted);
+    // save to history (debounced)
+    if (rawInput.trim() && converted.trim()) saveToHistory(rawInput, converted, currentMode, currentFont);
+  }
+
+  function updateStats(inputRaw, outputConv) {
+    document.getElementById("inChars").innerText = inputRaw.length;
+    document.getElementById("inWords").innerText = inputRaw.trim() ? inputRaw.trim().split(/\s+/).length : 0;
+    document.getElementById("outChars").innerText = outputConv.length;
+    document.getElementById("outWords").innerText = outputConv.trim() ? outputConv.trim().split(/\s+/).length : 0;
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+    document.getElementById("modeK2U").classList.toggle("on", mode==="k2u");
+    document.getElementById("modeU2K").classList.toggle("on", mode==="u2k");
+    inputLabel.innerText = mode==="k2u" ? "Kantipur Input" : "Unicode Input";
+    outputLabel.innerText = mode==="k2u" ? "Unicode Output" : "Kantipur Output";
+    // re-evaluate rawInput if needed
+    if (mode==="k2u" && uniInputArea.value) { rawInput = uniInputArea.value; }
+    else if (mode==="u2k" && kantipurDisplay.innerText) { rawInput = extractRawFromDisplay(); }
+    updateUIFromRaw();
+  }
+
+  function extractRawFromDisplay() {
+    let displayText = kantipurDisplay.innerText;
+    if (!displayText) return "";
+    // approximate reverse mapping? Actually need to map unicode chars back to kantipur ascii: but we store raw separately. In k2u mode rawInput is already ascii.
+    // For safety, we use stored rawInput
+    return rawInput;
+  }
+
+  function onRawInput() {
+    if (currentMode === "k2u") {
+      rawInput = kantipurDisplay.innerText.split('').map(ch => {
+        let rev = buildReverse(MAPS[currentFont]);
+        for(let [unicode, ascii] of rev.entries()) if(ch===unicode) return ascii;
+        return ch;
+      }).join('');
+    } else {
+      rawInput = uniInputArea.value;
+    }
+    updateUIFromRaw();
+  }
+
+  function handleRawKeydown(e) {
+    if (e.ctrlKey && e.key === 'Enter') { e.preventDefault(); copyOutput(); return; }
+    if (e.ctrlKey && e.key === 'k') { e.preventDefault(); clearAll(); return; }
+  }
+  function handleRawPaste(e) { setTimeout(onRawInput, 10); }
+
+  // history (IndexedDB)
+  function openDB() { return new Promise((res,rej)=>{ let req=indexedDB.open(DB_NAME,1); req.onupgradeneeded=(e)=>{ let db=e.target.result; if(!db.objectStoreNames.contains(STORE_NAME)) db.createObjectStore(STORE_NAME,{keyPath:'id',autoIncrement:true}); }; req.onsuccess=()=>res(req.result); req.onerror=()=>rej(); }); }
+  async function saveToHistory(src, out, mode, font) { try { let db=await openDB(); let tx=db.transaction(STORE_NAME,'readwrite'); tx.objectStore(STORE_NAME).add({ src, out, mode, font, timestamp:Date.now() }); await tx.done; renderHistory(); } catch(e){} }
+  async function renderHistory() { let db=await openDB(); let items=await new Promise((res)=>{ let req=db.transaction(STORE_NAME).objectStore(STORE_NAME).getAll(); req.onsuccess=()=>res(req.result||[]); }); items.sort((a,b)=>b.timestamp-a.timestamp); let limit=items.slice(0,30); if(!limit.length) { historyContainer.innerHTML="— No conversions yet —"; return; } historyContainer.innerHTML=limit.map(item=>`<div class="history-item" data-src="${escapeHtml(item.src)}" data-mode="${item.mode}" data-font="${item.font}"><span>${escapeHtml(item.src.substring(0,45))}</span><span style="font-size:10px;">→ ${new Date(item.timestamp).toLocaleTimeString()}</span></div>`).join(''); document.querySelectorAll('.history-item').forEach(el=>{ el.addEventListener('click',()=>{ let srcTxt=el.getAttribute('data-src'); if(srcTxt){ if(el.getAttribute('data-mode')==='k2u') { setMode('k2u'); rawInput=srcTxt; updateUIFromRaw(); } else { setMode('u2k'); rawInput=srcTxt; updateUIFromRaw(); } toast("Restored from history"); } }); }); }
+  function escapeHtml(s){ let div=document.createElement('div'); div.textContent=s; return div.innerHTML; }
+  async function clearHistory() { let db=await openDB(); let tx=db.transaction(STORE_NAME,'readwrite'); tx.objectStore(STORE_NAME).clear(); await tx.done; renderHistory(); toast("History cleared"); }
+  document.getElementById("clearHistoryBtn").onclick=clearHistory;
+
+  // actions
+  function copyOutput() { let txt=outputBox.innerText; if(txt && !outputBox.classList.contains('empty')) { navigator.clipboard.writeText(txt); toast("✓ Copied!"); } else toast("Nothing to copy"); }
+  async function pasteFromClipboard() { try { let txt=await navigator.clipboard.readText(); if(txt){ if(currentMode==="k2u") { rawInput=txt; updateUIFromRaw(); } else { rawInput=txt; updateUIFromRaw(); } toast("Pasted"); } } catch(e){ toast("Manual paste please"); } }
+  function clearAll() { rawInput=""; updateUIFromRaw(); toast("Cleared"); }
+  function downloadTxt() { let out=outputBox.innerText; if(out && !outputBox.classList.contains('empty')){ let blob=new Blob(["\uFEFF"+out],{type:"text/plain"}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download="kantipur-unicode.txt"; a.click(); URL.revokeObjectURL(a.href); toast("Downloaded"); } else toast("No output"); }
+  function shareLink() { let out=outputBox.innerText; if(out && !outputBox.classList.contains('empty')){ let url=new URL(window.location.href); url.hash=`#q=${encodeURIComponent(out)}`; navigator.clipboard.writeText(url.href); toast("Shareable link copied!"); } else toast("Convert something first"); }
+  function swapDirection() { let out=outputBox.innerText; if(!out || outputBox.classList.contains('empty')) return; if(currentMode==="k2u") { setMode("u2k"); rawInput=out; updateUIFromRaw(); } else { setMode("k2u"); rawInput=out; updateUIFromRaw(); } toast("Swapped"); }
+  function loadFromHash() { let hash=window.location.hash.slice(1); if(hash.startsWith("q=")) { let decoded=decodeURIComponent(hash.slice(2)); if(decoded) { outputBox.innerText=decoded; outputBox.classList.remove("empty"); updateStats(rawInput, decoded); toast("Loaded from share link"); } } }
+  window.addEventListener('hashchange',loadFromHash);
+  function setFont(f) { currentFont=f; updateUIFromRaw(); }
+  function setFontSize(v) { let sz=v+"px"; outputBox.style.fontSize=sz; document.getElementById("sizeVal").innerText=sz; localStorage.setItem("kantipurFontSize",v); }
+
+  // file upload handlers
+  let uploadedFiles=[];
+  function dragOver(e){ e.preventDefault(); document.getElementById("dropZone").classList.add("over"); }
+  function dragLeave(e){ document.getElementById("dropZone").classList.remove("over"); }
+  async function dropFile(e){ e.preventDefault(); document.getElementById("dropZone").classList.remove("over"); let items=e.dataTransfer.files; handleFiles(items); }
+  async function handleFiles(files){ for(let f of files){ if(f.name.endsWith(".txt")||f.name.endsWith(".docx")) uploadedFiles.push({file:f,name:f.name,status:"pending",result:null}); } renderFileList(); if(uploadedFiles.length) document.getElementById("fileProgress").style.display="block"; await convertAllFiles(); }
+  function renderFileList(){ let container=document.getElementById("fileList"); container.innerHTML=uploadedFiles.map((f,i)=>`<div style="display:flex; gap:6px; align-items:center; font-size:12px; padding:4px 0;"><span>${f.name.endsWith(".docx")?"📘":"📄"}</span><span style="flex:1">${escapeHtml(f.name)}</span><span class="fstatus">${f.status==="pending"?"⏳":f.status==="done"?"✅":"❌"}</span><button onclick="removeFile(${i})" style="background:none; border:none;">✖</button></div>`).join(''); }
+  window.removeFile=function(i){ uploadedFiles.splice(i,1); renderFileList(); if(!uploadedFiles.length) document.getElementById("fileProgress").style.display="none"; };
+  async function convertAllFiles(){ let progBar=document.getElementById("progressBar"); let progText=document.getElementById("progText"); for(let i=0;i<uploadedFiles.length;i++){ let f=uploadedFiles[i]; progText.innerText=`Processing ${f.name}...`; progBar.style.width=Math.round((i/uploadedFiles.length)*100)+"%"; try{ let text=""; if(f.file.name.endsWith(".txt")){ text=await f.file.text(); } else { let buf=await f.file.arrayBuffer(); let result=await mammoth.extractRawText({arrayBuffer:buf}); text=result.value; } let converted=convertText(text); f.result={data:converted,name:f.name.replace(/\.[^.]+$/,"-unicode.txt")}; f.status="done"; }catch(e){ f.status="error"; } renderFileList(); } progBar.style.width="100%"; progText.innerText="Done! Click download below."; setTimeout(()=>document.getElementById("fileProgress").style.display="none",2000); toast("Files converted"); }
+  window.downloadAll=function(){ uploadedFiles.forEach(f=>{ if(f.status==="done"){ let blob=new Blob(["\uFEFF"+f.result.data],{type:"text/plain"}); let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=f.result.name; a.click(); URL.revokeObjectURL(a.href); } }); };
+  document.getElementById("copyBtn").onclick=copyOutput;
+  document.getElementById("shareLinkBtn").onclick=shareLink;
+  document.getElementById("clearBtn").onclick=clearAll;
+  document.getElementById("downloadTxtBtn").onclick=downloadTxt;
+  document.getElementById("pasteClipBtn").onclick=pasteFromClipboard;
+  document.getElementById("swapBtn").onclick=swapDirection;
+  document.getElementById("modeK2U").onclick=()=>setMode("k2u");
+  document.getElementById("modeU2K").onclick=()=>setMode("u2k");
+  document.getElementById("fontSelect").onchange=(e)=>setFont(e.target.value);
+  document.getElementById("sizeSlider").oninput=(e)=>setFontSize(e.target.value);
+  // install PWA
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById("installBtn").style.display="inline-flex"; });
+  document.getElementById("installBtn").onclick=()=>{ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; }); } else toast("Install via browser menu"); };
+  // theme
+  let theme=localStorage.getItem("kantipurTheme")||"light";
+  if(theme==="dark") document.documentElement.setAttribute("data-theme","dark");
+  document.getElementById("themeBtn").onclick=()=>{ let cur=document.documentElement.getAttribute("data-theme"); let next=cur==="dark"?"light":"dark"; document.documentElement.setAttribute("data-theme",next); localStorage.setItem("kantipurTheme",next); };
+  // smart clipboard detection
+  async function detectClipboard(){ try{ let txt=await navigator.clipboard.readText(); if(txt && /[kKgGcCjJtTdDpPfbBmM]/.test(txt) && !/[\u0900-\u097F]/.test(txt)) toast("📋 Clipboard looks like Kantipur text. Paste with button above."); }catch(e){} }
+  function toast(msg){ let t=document.getElementById("toastMessage"); t.innerText=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2000); }
+  // init
+  function init(){ let savedSize=localStorage.getItem("kantipurFontSize"); if(savedSize) setFontSize(savedSize); setMode("k2u"); rawInput="kantipur ek mahaan saptahik"; updateUIFromRaw(); loadFromHash(); renderHistory(); detectClipboard(); }
+  init();
 </script>
 </body>
 </html>
