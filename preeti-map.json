@@ -1,10 +1,12 @@
 {
   "metadata": {
-    "title": "Universal Preeti to Unicode Mapping",
-    "version": "2.0",
-    "author": "thenepal.io",
-    "usage": "Designed for GitHub/Netlify web implementations"
+    "version": "2.1.0",
+    "font": "Preeti",
+    "description": "Complete Preeti legacy font to Unicode Devanagari mapping",
+    "updated": "2026-05",
+    "author": "thenepal.io"
   },
+
   "mappings": {
     "normal": {
       "a": "ब",
@@ -52,13 +54,13 @@
       "]": "े",
       "\\": "्",
       "-": "-",
-      " ": " ",
-      "\n": "\n",
-      "\t": "\t",
       "=": "=",
       "`": "ँ",
-      "~": "ँ"
+      " ": " ",
+      "\n": "\n",
+      "\t": "\t"
     },
+
     "shift": {
       "A": "ब्",
       "B": "द्य",
@@ -99,14 +101,16 @@
       ":": "स्",
       "\"": "ू",
       "{": "ै",
-      "}": "ै",
+      "}": "ौ",
       "|": "्र",
       "_": "–",
       "+": "ं",
       "?": "रु",
       "<": "?",
-      ">": "श्र"
+      ">": "श्र",
+      "~": "ँ"
     },
+
     "alt_codes": {
       "ª": "ङ्क",
       "¡": "ज्ञ्",
@@ -163,43 +167,166 @@
       "þ": "द्ब"
     }
   },
+
   "rules": [
-    { "find": "cf]", "replace": "ओ" },
-    { "find": "cfW", "replace": "औ" },
-    { "find": "cf", "replace": "आ" },
-    { "find": "O{", "replace": "ई" },
-    { "find": "pm", "replace": "ऊ" },
-    { "find": "P{", "replace": "ऐ" },
-    { "find": "if", "replace": "ष" },
-    { "find": "em", "replace": "झ" },
-    { "find": "f]", "replace": "ो" },
-    { "find": "fW", "replace": "ौ" }
+    { "find": "cf]",   "replace": "ओ"  },
+    { "find": "cfW",   "replace": "औ"  },
+    { "find": "cf",    "replace": "आ"  },
+    { "find": "O{",    "replace": "ई"  },
+    { "find": "pm",    "replace": "ऊ"  },
+    { "find": "P{",    "replace": "ऐ"  },
+    { "find": "Em",    "replace": "झ"  },
+    { "find": "if",    "replace": "षा" },
+    { "find": "f]",    "replace": "ो"  },
+    { "find": "fW",    "replace": "ौ"  },
+    { "find": "];",    "replace": "ेस" },
+    { "find": "]{",    "replace": "ै"  },
+    { "find": "]{",    "replace": "ै"  },
+    { "find": "d{",    "replace": "ुः" },
+    { "find": "If",    "replace": "क्षा"},
+    { "find": "If]",   "replace": "क्षो"},
+    { "find": "Iff",   "replace": "क्षा"},
+    { "find": "^",     "replace": "^"  }
   ],
+
   "post_rules": [
-    {
-      "find": "ि([\\u0900-\\u097F])",
-      "replace": "$1ि",
-      "note": "Swaps Harswa I to follow the consonant"
-    },
-    {
-      "find": "([\\u0900-\\u097F])\\{",
-      "replace": "र्$1",
-      "note": "Moves Reph to start of syllable"
-    },
-    {
-      "find": "ाे",
-      "replace": "ो",
-      "note": "Joins split O matra"
-    },
-    {
-      "find": "ाै",
-      "replace": "ौ",
-      "note": "Joins split AU matra"
-    },
-    {
-      "find": "ि([\\u0900-\\u097F])्([\\u0900-\\u097F])",
-      "replace": "$1्$2ि",
-      "note": "Handles Harswa I with half letters"
+    { "find": "ि([क-हक्षज्ञत्रश्र्])",  "replace": "$1ि"  },
+    { "find": "ाे",                       "replace": "ो"    },
+    { "find": "ाै",                       "replace": "ौ"    },
+    { "find": "([^\\s])।([^\\s\\n])",    "replace": "$1। $2"},
+    { "find": "  +",                      "replace": " "    },
+    { "find": "\\|",                      "replace": "।"    }
+  ],
+
+  "conjuncts": {
+    "description": "Multi-char Preeti sequences that produce common conjunct consonants",
+    "map": {
+      "Ts":  "त्क",
+      "Tv":  "त्ख",
+      "Tu":  "त्ग",
+      "Tt":  "त्त",
+      "Ty":  "त्थ",
+      "Tb":  "त्द",
+      "Tg":  "त्न",
+      "Tk":  "त्प",
+      "Tn":  "त्ल",
+      "Tj":  "त्व",
+      "Tr":  "त्च",
+      "Tx":  "त्ह",
+      "Ss":  "स्क",
+      "Sv":  "स्ख",
+      "Su":  "स्ग",
+      "Sg":  "स्न",
+      "Sk":  "स्प",
+      "Ss":  "स्स",
+      "St":  "स्त",
+      "Sj":  "स्व",
+      "Ks":  "क्क",
+      "Kv":  "क्ख",
+      "Ku":  "क्ग",
+      "Kt":  "क्त",
+      "Kn":  "क्ल",
+      "Ks":  "क्स",
+      "Gs":  "न्क",
+      "Gt":  "न्त",
+      "Gw":  "न्ध",
+      "Gb":  "न्द",
+      "Gj":  "न्व",
+      "Gn":  "न्ल",
+      "ds":  "मक",
+      "dt":  "मत",
+      "Ds":  "म्क",
+      "Dt":  "म्त",
+      "Dn":  "म्ल",
+      "Dj":  "म्व",
+      "Dv":  "म्ख",
+      "Dk":  "म्प",
+      "Xf":  "हा",
+      "Xs":  "ह्क",
+      "Xt":  "ह्त",
+      "xf":  "हा",
+      "Bs":  "द्क",
+      "Bt":  "द्त",
+      "Bj":  "द्व",
+      "Bg":  "द्न",
+      "Bn":  "द्ल",
+      "Ns":  "ल्क",
+      "Nt":  "ल्त",
+      "Nj":  "ल्व",
+      "Nn":  "ल्ल",
+      "ks":  "पक",
+      "Ks":  "प्क",
+      "Kt":  "प्त",
+      "Kj":  "प्व",
+      "Kn":  "प्ल",
+      "Js":  "व्क",
+      "Jt":  "व्त",
+      "Jj":  "व्व",
+      "Rs":  "च्क",
+      "Rt":  "च्त",
+      "Rr":  "च्च",
+      "Ys":  "थ्क",
+      "Yt":  "थ्त",
+      "Es":  "भ्क",
+      "Et":  "भ्त",
+      "As":  "ब्क",
+      "At":  "ब्त",
+      "Ws":  "ध्क",
+      "Wt":  "ध्त",
+      "Vs":  "ख्क",
+      "Vt":  "ख्त",
+      "Us":  "ग्क",
+      "Ut":  "ग्त",
+      "Hs":  "ज्क",
+      "Ht":  "ज्त"
     }
-  ]
+  },
+
+  "halanta_map": {
+    "description": "Preeti halanta (्) plus next char forms half-consonants",
+    "trigger": "\\"
+  },
+
+  "vowel_signs": {
+    "description": "Standalone vowel mappings in Preeti",
+    "map": {
+      "c":  "अ",
+      "cf": "आ",
+      "O":  "इ",
+      "O{": "ई",
+      "p":  "उ",
+      "pm": "ऊ",
+      "P":  "ए",
+      "P{": "ऐ",
+      "cf]":"ओ",
+      "cfW":"औ",
+      "C":  "ऋ"
+    }
+  },
+
+  "numbers": {
+    "description": "Nepali digits via Shift+number row",
+    "map": {
+      "!": "१",
+      "@": "२",
+      "#": "३",
+      "$": "४",
+      "%": "५",
+      "^": "६",
+      "&": "७",
+      "*": "८",
+      "(": "९",
+      ")": "०"
+    }
+  },
+
+  "punctuation": {
+    ".":  "।",
+    "..": "॥",
+    ",":  ",",
+    ";":  "स",
+    ":":  "स्",
+    "?":  "रु",
+    "\"": "ू"
+  }
 }
