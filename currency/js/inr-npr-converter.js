@@ -79,8 +79,6 @@
         updateFromINR(inrInput, nprInput, nprDisplay);
         updateFromNPR(inrInput, nprInput, inrDisplay);
         isUpdating = false;
-        // Optional: keep focus on the input that was active before swap?
-        // For better UX, we do nothing – the swap is quick and focus remains on the clicked button.
     }
 
     function resetValues(inrInput, nprInput, nprDisplay, inrDisplay) {
@@ -94,7 +92,7 @@
         showToast('↻ Reset to 1 INR = 1.60 NPR');
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    function initializeConverter() {
         const inrInput = document.getElementById('inrInput');
         const nprInput = document.getElementById('nprInput');
         const nprDisplay = document.getElementById('nprDisplay');
@@ -106,7 +104,7 @@
         inrInput.addEventListener('input', () => updateFromINR(inrInput, nprInput, nprDisplay));
         nprInput.addEventListener('input', () => updateFromNPR(inrInput, nprInput, inrDisplay));
 
-        // Buttons (all have type="button" in HTML)
+        // Buttons
         const swapBtn = document.getElementById('swapButton');
         if (swapBtn) swapBtn.addEventListener('click', () => swapValues(inrInput, nprInput, nprDisplay, inrDisplay));
 
@@ -123,11 +121,12 @@
         // Initial updates
         updateFromINR(inrInput, nprInput, nprDisplay);
         updateFromNPR(inrInput, nprInput, inrDisplay);
+    }
 
-        // Set today's date in the last-updated span
-        const today = new Date();
-        const formatted = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-        const dateSpan = document.getElementById('liveDate');
-        if (dateSpan) dateSpan.textContent = formatted;
-    });
+    // Only use DOMContentLoaded if document is not already loaded
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeConverter);
+    } else {
+        initializeConverter();
+    }
 })();
