@@ -2,189 +2,416 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>INR to NPR Converter - 1 INR to NPR Today (Live Rate)</title>
-    <meta name="description" content="Convert INR to NPR instantly with today's live exchange rate. 1 INR = 1.60 NPR. Accurate Indian Rupee to Nepalese Rupee converter with calculator, chart, history and quick conversion table.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>INR to NPR Converter: 1 INR = 1.60 NPR (Official Peg)</title>
+    <meta name="description" content="Instant INR to NPR conversion at the fixed official peg: 1 INR = 1.60 NPR. Bidirectional converter, swap, table, and FAQ. No fluctuations, always accurate.">
+    <meta name="keywords" content="INR to NPR, 1 INR to NPR, Indian Rupee to Nepalese Rupee, INR NPR peg, fixed exchange rate">
     <link rel="canonical" href="https://converter.thenepal.io/currency/inr-to-npr">
+    <link rel="alternate" hreflang="en" href="https://converter.thenepal.io/currency/inr-to-npr">
     
-    <meta name="keywords" content="INR to NPR, 1 INR to NPR, INR to NPR today, Indian Rupee to Nepalese Rupee, INR NPR exchange rate">
+    <!-- Open Graph / Twitter -->
+    <meta property="og:title" content="INR to NPR Converter - 1 INR = 1.60 NPR (Official Peg)">
+    <meta property="og:description" content="Convert Indian Rupee to Nepalese Rupee instantly at the fixed rate. Reverse converter, table, and FAQs.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://converter.thenepal.io/img/inr-npr-converter-social.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Preconnect & dns-prefetch for ads -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
     
     <style>
-        body{
-            font-family:Arial,sans-serif;
-            max-width:900px;
-            margin:auto;
-            padding:20px;
-            line-height:1.6;
-            background:#fafafa;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .card{
-            background:#fff;
-            padding:20px;
-            border-radius:12px;
-            box-shadow:0 2px 10px rgba(0,0,0,.08);
-            margin-bottom:20px;
+        @font-face {
+            font-family: system-ui;
+            font-display: swap;
         }
-        input{
-            width:100%;
-            padding:12px;
-            font-size:18px;
-            margin:10px 0;
-            border:1px solid #ddd;
-            border-radius:8px;
-            box-sizing:border-box;
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.5;
+            background: #f8fafc;
+            color: #1e293b;
         }
-        .result{
-            font-size:32px;
-            font-weight:bold;
-            color:#2563eb;
-            margin:15px 0;
+        .card {
+            background: #ffffff;
+            padding: 1.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 1.8rem;
         }
-        table{
-            width:100%;
-            border-collapse:collapse;
-            margin:20px 0;
+        .converter-row {
+            background: #f1f5f9;
+            border-radius: 20px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
         }
-        table th, table td{
-            padding:12px;
-            border:1px solid #ddd;
-            text-align:center;
+        .input-label {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
         }
-        table th{
-            background:#f8fafc;
+        .flag-icon {
+            font-size: 1.6rem;
         }
-        .related a{
-            display:inline-block;
-            padding:8px 14px;
-            background:#eef2ff;
-            margin:5px;
-            border-radius:20px;
-            text-decoration:none;
-            color:#1e40af;
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            font-size: 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            background: white;
+            transition: 0.2s;
         }
-        input:focus{
-            outline:none;
-            border-color:#2563eb;
-            box-shadow:0 0 0 3px rgba(37,99,235,0.2);
+        input:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
+        }
+        .result-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .result-value {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2563eb;
+            background: #eff6ff;
+            padding: 10px 16px;
+            border-radius: 40px;
+            flex: 1;
+            text-align: center;
+        }
+        button {
+            background: #e2e8f0;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 0.9rem;
+        }
+        button:hover {
+            background: #cbd5e1;
+            transform: scale(0.97);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin: 10px 0 5px;
+        }
+        .primary-btn {
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+        }
+        .primary-btn:hover {
+            background: #1d4ed8;
+        }
+        .rate-highlight {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 16px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .rate-highlight p {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+        th {
+            background: #f1f5f9;
+            font-weight: 600;
+        }
+        .related a {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #eef2ff;
+            margin: 6px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #1e40af;
+            font-weight: 500;
+        }
+        .toast {
+            visibility: hidden;
+            min-width: 180px;
+            background: #1e293b;
+            color: white;
+            text-align: center;
+            border-radius: 40px;
+            padding: 8px 16px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.85rem;
+            z-index: 1000;
+            opacity: 0;
+            transition: 0.2s;
+        }
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        .breadcrumb {
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: #475569;
+        }
+        .social-share {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+            flex-wrap: wrap;
+        }
+        .social-btn {
+            background: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            color: #1e293b;
+        }
+        .last-updated {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 12px;
+        }
+        @media (max-width: 640px) {
+            body { padding: 12px; }
+            .card { padding: 1rem; }
+            .result-value { font-size: 1.3rem; }
+            .rate-highlight p { font-size: 1.5rem; }
         }
     </style>
+    
+    <!-- JSON-LD Schemas with datePublished / dateModified and image -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "INR to NPR Converter - Live Exchange Rate",
+      "description": "Official peg converter: 1 INR = 1.60 NPR",
+      "url": "https://converter.thenepal.io/currency/inr-to-npr",
+      "datePublished": "2024-01-15",
+      "dateModified": "2026-05-23",
+      "image": "https://converter.thenepal.io/img/inr-npr-converter-screenshot.jpg",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://converter.thenepal.io" },
+          { "@type": "ListItem", "position": 2, "name": "Currency", "item": "https://converter.thenepal.io/currency" },
+          { "@type": "ListItem", "position": 3, "name": "INR to NPR" }
+        ]
+      },
+      "mainEntity": {
+        "@type": "CurrencyConversionService",
+        "name": "INR to NPR Converter",
+        "provider": { "@type": "Organization", "name": "TheNepal" },
+        "exchangeRate": "1.60",
+        "currencyFrom": "INR",
+        "currencyTo": "NPR"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question","name": "Is the INR to NPR exchange rate fixed?","acceptedAnswer": {"@type": "Answer","text": "Yes, the Nepalese Rupee is officially pegged to the Indian Rupee at 1 INR = 1.60 NPR by Nepal Rastra Bank."}},
+        {"@type": "Question","name": "Why is 1 INR equal to 1.60 NPR?","acceptedAnswer": {"@type": "Answer","text": "This peg dates back to a bilateral agreement between Nepal and India to stabilize trade and remittances."}},
+        {"@type": "Question","name": "How do I convert NPR to INR manually?","acceptedAnswer": {"@type": "Answer","text": "Divide the NPR amount by 1.60. Example: 160 NPR ÷ 1.60 = 100 INR."}},
+        {"@type": "Question","name": "Can the peg change in the future?","acceptedAnswer": {"@type": "Answer","text": "The peg has remained stable for decades. Any change would require a joint decision by Nepal Rastra Bank and the RBI."}},
+        {"@type": "Question","name": "Are there restrictions on using INR in Nepal?","acceptedAnswer": {"@type": "Answer","text": "Indian currency notes of ₹500 and ₹2000 are not accepted. Lower denominations up to ₹100 are widely used."}},
+        {"@type": "Question","name": "Is this converter accurate for large sums?","acceptedAnswer": {"@type": "Answer","text": "Yes, the multiplication factor of 1.60 works for any amount. Use our tool for 10,000+ INR."}}
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "How to Convert INR to NPR",
+      "description": "Simple steps to convert Indian Rupees to Nepalese Rupees using the official peg.",
+      "step": [
+        { "@type": "HowToStep", "text": "Enter the amount in Indian Rupees (INR) into the first field." },
+        { "@type": "HowToStep", "text": "The Nepalese Rupee (NPR) value appears instantly." },
+        { "@type": "HowToStep", "text": "Alternatively, enter NPR to see the INR equivalent." }
+      ]
+    }
+    </script>
 </head>
 <body>
-
     <div id="header"></div>
-
-    <h1>INR to NPR Converter - Live Exchange Rate</h1>
-
+    
+    <!-- Breadcrumb with microdata -->
+    <div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/" itemprop="item"><span itemprop="name">Home</span></a> ›
+            <meta itemprop="position" content="1">
+        </span>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <a href="/currency" itemprop="item"><span itemprop="name">Currency Converters</span></a> ›
+            <meta itemprop="position" content="2">
+        </span>
+        <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+            <span itemprop="name">INR to NPR</span>
+            <meta itemprop="position" content="3">
+        </span>
+    </div>
+    
+    <h1>🇮🇳 INR to NPR Converter — Official Peg: 1 INR = 1.60 NPR</h1>
+    
     <div class="card">
-        <p><strong>1 INR = 1.60 NPR</strong> (Fixed Official Rate)</p>
+        <div class="action-buttons">
+            <button type="button" id="swapButton" class="primary-btn" aria-label="Swap currencies">🔄 Swap INR ↔ NPR</button>
+            <button type="button" id="resetButton" aria-label="Reset to default values (1 INR = 1.60 NPR)">⟳ Reset</button>
+        </div>
         
-        <input id="inr" type="number" placeholder="Enter INR amount" value="1" step="any">
+        <!-- INR -> NPR -->
+        <div class="converter-row">
+            <label class="input-label" for="inrInput">
+                <span class="flag-icon">🇮🇳</span> Indian Rupee (INR)
+            </label>
+            <input type="number" id="inrInput" step="any" placeholder="Enter INR amount" value="1" inputmode="decimal">
+            <div class="result-area">
+                <span class="result-value" id="nprDisplay" aria-live="polite">1.60 NPR</span>
+                <button type="button" id="copyNprBtn" aria-label="Copy NPR result">📋 Copy</button>
+            </div>
+        </div>
         
-        <div class="result">
-            <span id="output">1.60 NPR</span>
+        <!-- NPR -> INR -->
+        <div class="converter-row">
+            <label class="input-label" for="nprInput">
+                <span class="flag-icon">🇳🇵</span> Nepalese Rupee (NPR)
+            </label>
+            <input type="number" id="nprInput" step="any" placeholder="Enter NPR amount" value="1.60" inputmode="decimal">
+            <div class="result-area">
+                <span class="result-value" id="inrDisplay" aria-live="polite">1.00 INR</span>
+                <button type="button" id="copyInrBtn" aria-label="Copy INR result">📋 Copy</button>
+            </div>
+        </div>
+        
+        <!-- Prominent fixed rate highlight -->
+        <div class="rate-highlight">
+            <p>🇮🇳 1 INR = 1.60 NPR 🇳🇵</p>
+            <div style="font-size: 0.9rem; opacity: 0.9;">Officially pegged by Nepal Rastra Bank</div>
+        </div>
+        
+        <div class="last-updated">
+            ✅ Last updated: <span id="liveDate"></span>
         </div>
     </div>
-<div class="ad-slot">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
-    <!-- Today's Rate Highlight -->
-    <div class="card">
-        <h2>Today's Exchange Rate (May 23, 2026)</h2>
-        <p style="font-size:28px; font-weight:bold; color:#2563eb;">
-            1 Indian Rupee = <strong>1.60 Nepalese Rupee</strong>
-        </p>
-        <p>The Nepalese Rupee is pegged to the Indian Rupee at a fixed rate of 1:1.60</p>
+    
+    <!-- Ad Slot 1 (lazy) -->
+    <div class="ad-slot" id="adSlot1">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
-
-    <!-- Quick Conversion Table -->
+    
     <div class="card">
-        <h2>INR to NPR Conversion Table</h2>
+        <h2>📊 Quick Conversion Table (INR → NPR)</h2>
         <table>
-            <thead>
-                <tr>
-                    <th>INR</th>
-                    <th>NPR</th>
-                </tr>
-            </thead>
-            <tbody id="rate-table"></tbody>
+            <thead><tr><th>Indian Rupee (INR)</th><th>Nepalese Rupee (NPR)</th></tr></thead>
+            <tbody id="conversionTableBody"></tbody>
         </table>
+        <p class="last-updated">Table includes common amounts up to 50,000 INR.</p>
     </div>
-
+    
     <div class="card">
-        <h2>Quick Examples</h2>
-        <ul>
-            <li>1 INR = 1.60 NPR</li>
-            <li>10 INR = 16.00 NPR</li>
-            <li>100 INR = 160.00 NPR</li>
-            <li>500 INR = 800.00 NPR</li>
-            <li>1000 INR = 1,600.00 NPR</li>
-            <li>5000 INR = 8,000.00 NPR</li>
-        </ul>
+        <h2>📚 About INR to NPR</h2>
+        <p>The Indian Rupee (INR) and Nepalese Rupee (NPR) share a unique fixed exchange rate of <strong>1 INR = 1.60 NPR</strong> by official agreement. This peg eliminates volatility and simplifies cross-border payments, travel, and trade between India and Nepal.</p>
+        <h3>⏳ Historical Context</h3>
+        <p>The peg has remained at 1.60 NPR since the early 1990s, making INR to NPR one of the world’s most stable currency pairs.</p>
     </div>
-
+    
     <div class="card">
-        <h2>About INR to NPR</h2>
-        <p>INR (Indian Rupee) is the currency of India and NPR (Nepalese Rupee) is the currency of Nepal. Due to the close economic relationship between the two countries, the Nepalese Rupee is officially <strong>pegged to the Indian Rupee</strong> at the fixed rate of <strong>1 INR = 1.60 NPR</strong>.</p>
+        <h2>❓ Frequently Asked Questions</h2>
+        <div role="region" aria-label="FAQ">
+            <h3>🔹 Is INR to NPR really fixed?</h3>
+            <p>Yes, official peg by Nepal Rastra Bank: 1 INR = 1.60 NPR.</p>
+            <h3>🔹 How to manually convert NPR to INR?</h3>
+            <p>Divide NPR by 1.60. Example: 500 NPR ÷ 1.60 = 312.50 INR.</p>
+            <h3>🔹 Can I exchange INR in Nepal?</h3>
+            <p>Yes, but notes of ₹500 and ₹2000 are restricted. Lower denominations are widely accepted.</p>
+            <h3>🔹 Will this rate change soon?</h3>
+            <p>The peg has been stable for decades; no immediate change expected.</p>
+            <h3>🔹 Is the converter accurate for large amounts?</h3>
+            <p>Absolutely. The factor 1.60 works for any amount, from 1 to millions.</p>
+        </div>
     </div>
-
-    <!-- FAQ Section -->
-    <div class="card">
-        <h2>Frequently Asked Questions</h2>
-        <h3>Is the INR to NPR rate fixed?</h3>
-        <p>Yes. Nepal maintains a fixed exchange rate with India at 1 INR = 1.60 NPR.</p>
-        
-        <h3>Where can I exchange INR to NPR?</h3>
-        <p>You can exchange at banks, authorized money changers, or border areas in Nepal.</p>
-        
-        <h3>Can the rate change?</h3>
-        <p>The official pegged rate usually remains stable, but market rates may slightly vary.</p>
-    </div>
-
+    
     <div class="card related">
-        <h3>Related Converters</h3>
+        <h3>🔄 Other Converters</h3>
         <a href="/currency/usd-to-npr">USD → NPR</a>
-        <a href="/currency/npr-to-inr">NPR → INR</a>
+        <a href="/currency/npr-to-inr">NPR → INR (Reverse)</a>
         <a href="/currency/aed-to-npr">AED → NPR</a>
-        <a href="/currency/qar-to-npr">QAR → NPR</a>
-        <a href="/currency/sar-to-npr">SAR → NPR</a>
+        <a href="/currency/gbp-to-npr">GBP → NPR</a>
+        <a href="/currency/eur-to-npr">EUR → NPR</a>
     </div>
-
+    
+    <!-- Ad Slot 2 (lazy) - REPLACE THE SLOT ID WITH YOUR OWN APPROVED ID -->
+    <div class="ad-slot" id="adSlot2">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="YOUR_APPROVED_SLOT_ID_HERE" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    </div>
+    
     <div id="footer"></div>
-
+    <div id="toastMessage" class="toast" role="status"></div>
+    
+    <!-- External JavaScript (deferred for performance) -->
+    <script src="/js/inr-npr-converter.js" defer></script>
+    
+    <!-- Lazy AdSense loader (requestIdleCallback) -->
     <script>
-        const RATE = 1.60;
-
-        function convertINRtoNPR() {
-            let inrAmount = parseFloat(document.getElementById('inr').value) || 0;
-            let nprAmount = inrAmount * RATE;
-            document.getElementById('output').innerHTML = nprAmount.toFixed(2) + ' NPR';
+        function loadAdsense() {
+            const script = document.createElement('script');
+            script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702";
+            script.crossOrigin = "anonymous";
+            script.async = true;
+            script.onload = () => {
+                try {
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                    if(document.querySelector('#adSlot1 ins')) (adsbygoogle = window.adsbygoogle || []).push({});
+                    if(document.querySelector('#adSlot2 ins')) (adsbygoogle = window.adsbygoogle || []).push({});
+                } catch(e) { console.warn(e); }
+            };
+            document.head.appendChild(script);
         }
-
-        // Populate conversion table
-        function populateTable() {
-            const amounts = [1, 10, 50, 100, 500, 1000, 5000, 10000];
-            let html = '';
-            amounts.forEach(amount => {
-                html += `<tr>
-                    <td>${amount} INR</td>
-                    <td>${(amount * RATE).toFixed(2)} NPR</td>
-                </tr>`;
-            });
-            document.getElementById('rate-table').innerHTML = html;
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(loadAdsense, { timeout: 2000 });
+        } else {
+            setTimeout(loadAdsense, 1000);
         }
-
-        // Event listeners
-        document.getElementById('inr').addEventListener('input', convertINRtoNPR);
-        
-        // Initialize
-        window.onload = function() {
-            convertINRtoNPR();
-            populateTable();
-        };
     </script>
-
-    <script src="/components.js"></script>
 </body>
 </html>
