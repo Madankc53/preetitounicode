@@ -1,183 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
-<title>INR to NPR Converter (Live Exchange Rate) | TheNepal</title>
-
-<meta name="description"
-content="Convert INR to NPR instantly with live exchange rate. Check Indian Rupee to Nepalese Rupee conversion, examples, history and related currencies.">
-
-<link rel="canonical"
-href="https://converter.thenepal.io/currency/inr-to-npr">
-
-<style>
-body{
-font-family:Arial,sans-serif;
-max-width:900px;
-margin:auto;
-padding:20px;
-line-height:1.6;
-background:#fafafa;
-}
-
-.card{
-background:#fff;
-padding:20px;
-border-radius:12px;
-box-shadow:0 2px 10px rgba(0,0,0,.08);
-margin-bottom:20px;
-}
-
-input{
-width:100%;
-padding:12px;
-font-size:18px;
-margin:10px 0;
-border:1px solid #ddd;
-border-radius:8px;
-box-sizing:border-box;
-}
-
-.result{
-font-size:28px;
-font-weight:bold;
-color:#2563eb;
-margin-top:8px;
-}
-
-.related a{
-display:inline-block;
-padding:8px 14px;
-background:#eef2ff;
-margin:5px;
-border-radius:20px;
-text-decoration:none;
-color:#1e40af;
-transition:background 0.2s;
-}
-
-.related a:hover{
-background:#d9e4ff;
-}
-
-input:focus{
-outline:none;
-border-color:#2563eb;
-box-shadow:0 0 0 2px rgba(37,99,235,0.2);
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>INR to NPR Converter - 1 INR to NPR Today (Live Rate)</title>
+    <meta name="description" content="Convert INR to NPR instantly with today's live exchange rate. 1 INR = 1.60 NPR. Accurate Indian Rupee to Nepalese Rupee converter with calculator, chart, history and quick conversion table.">
+    <link rel="canonical" href="https://converter.thenepal.io/currency/inr-to-npr">
+    
+    <meta name="keywords" content="INR to NPR, 1 INR to NPR, INR to NPR today, Indian Rupee to Nepalese Rupee, INR NPR exchange rate">
+    
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            max-width:900px;
+            margin:auto;
+            padding:20px;
+            line-height:1.6;
+            background:#fafafa;
+        }
+        .card{
+            background:#fff;
+            padding:20px;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,.08);
+            margin-bottom:20px;
+        }
+        input{
+            width:100%;
+            padding:12px;
+            font-size:18px;
+            margin:10px 0;
+            border:1px solid #ddd;
+            border-radius:8px;
+            box-sizing:border-box;
+        }
+        .result{
+            font-size:32px;
+            font-weight:bold;
+            color:#2563eb;
+            margin:15px 0;
+        }
+        table{
+            width:100%;
+            border-collapse:collapse;
+            margin:20px 0;
+        }
+        table th, table td{
+            padding:12px;
+            border:1px solid #ddd;
+            text-align:center;
+        }
+        table th{
+            background:#f8fafc;
+        }
+        .related a{
+            display:inline-block;
+            padding:8px 14px;
+            background:#eef2ff;
+            margin:5px;
+            border-radius:20px;
+            text-decoration:none;
+            color:#1e40af;
+        }
+        input:focus{
+            outline:none;
+            border-color:#2563eb;
+            box-shadow:0 0 0 3px rgba(37,99,235,0.2);
+        }
+    </style>
 </head>
-
 <body>
-<div id="header"></div>
-<h1>INR to NPR Converter</h1>
 
-<div class="card">
+    <div id="header"></div>
 
-<p>
-Convert Indian Rupee (INR) to Nepalese Rupee (NPR) 
-using live exchange rates. <strong>1 INR = 1.60 NPR</strong> (reference rate).
-</p>
+    <h1>INR to NPR Converter - Live Exchange Rate</h1>
 
-<input id="inr"
-type="number"
-placeholder="Enter INR amount"
-value="1"
-step="any">
+    <div class="card">
+        <p><strong>1 INR = 1.60 NPR</strong> (Fixed Official Rate)</p>
+        
+        <input id="inr" type="number" placeholder="Enter INR amount" value="1" step="any">
+        
+        <div class="result">
+            <span id="output">1.60 NPR</span>
+        </div>
+    </div>
 
-<div class="result">
-<span id="output">1.60 NPR</span>
-</div>
+    <!-- Today's Rate Highlight -->
+    <div class="card">
+        <h2>Today's Exchange Rate (May 23, 2026)</h2>
+        <p style="font-size:28px; font-weight:bold; color:#2563eb;">
+            1 Indian Rupee = <strong>1.60 Nepalese Rupee</strong>
+        </p>
+        <p>The Nepalese Rupee is pegged to the Indian Rupee at a fixed rate of 1:1.60</p>
+    </div>
 
-</div>
+    <!-- Quick Conversion Table -->
+    <div class="card">
+        <h2>INR to NPR Conversion Table</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>INR</th>
+                    <th>NPR</th>
+                </tr>
+            </thead>
+            <tbody id="rate-table"></tbody>
+        </table>
+    </div>
 
-<div class="card">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-<h2>Quick Examples</h2>
+    <div class="card">
+        <h2>Quick Examples</h2>
+        <ul>
+            <li>1 INR = 1.60 NPR</li>
+            <li>10 INR = 16.00 NPR</li>
+            <li>100 INR = 160.00 NPR</li>
+            <li>500 INR = 800.00 NPR</li>
+            <li>1000 INR = 1,600.00 NPR</li>
+            <li>5000 INR = 8,000.00 NPR</li>
+        </ul>
+    </div>
 
-<ul>
-<li>1 INR = 1.60 NPR</li>
-<li>10 INR = 16.00 NPR</li>
-<li>100 INR = 160.00 NPR</li>
-<li>1000 INR = 1600.00 NPR</li>
-</ul>
+    <div class="card">
+        <h2>About INR to NPR</h2>
+        <p>INR (Indian Rupee) is the currency of India and NPR (Nepalese Rupee) is the currency of Nepal. Due to the close economic relationship between the two countries, the Nepalese Rupee is officially <strong>pegged to the Indian Rupee</strong> at the fixed rate of <strong>1 INR = 1.60 NPR</strong>.</p>
+    </div>
 
-</div>
+    <!-- FAQ Section -->
+    <div class="card">
+        <h2>Frequently Asked Questions</h2>
+        <h3>Is the INR to NPR rate fixed?</h3>
+        <p>Yes. Nepal maintains a fixed exchange rate with India at 1 INR = 1.60 NPR.</p>
+        
+        <h3>Where can I exchange INR to NPR?</h3>
+        <p>You can exchange at banks, authorized money changers, or border areas in Nepal.</p>
+        
+        <h3>Can the rate change?</h3>
+        <p>The official pegged rate usually remains stable, but market rates may slightly vary.</p>
+    </div>
 
-<div class="card">
+    <div class="card related">
+        <h3>Related Converters</h3>
+        <a href="/currency/usd-to-npr">USD → NPR</a>
+        <a href="/currency/npr-to-inr">NPR → INR</a>
+        <a href="/currency/aed-to-npr">AED → NPR</a>
+        <a href="/currency/qar-to-npr">QAR → NPR</a>
+        <a href="/currency/sar-to-npr">SAR → NPR</a>
+    </div>
 
-<h2>About INR to NPR</h2>
+    <div id="footer"></div>
 
-<p>
-INR (Indian Rupee) is the official currency of India, while NPR (Nepalese Rupee) is the currency of Nepal.
-Both currencies are widely used in cross-border trade, travel, and remittances between the two neighboring nations.
-This converter provides an instant estimate based on the current market reference rate.
-</p>
+    <script>
+        const RATE = 1.60;
 
-<p>
-<strong>Exchange rate note:</strong> The Nepalese Rupee is pegged to the Indian Rupee at a fixed ratio of 
-1 INR = 1.60 NPR under the Nepal-India currency arrangement, making conversion straightforward and stable.
-</p>
+        function convertINRtoNPR() {
+            let inrAmount = parseFloat(document.getElementById('inr').value) || 0;
+            let nprAmount = inrAmount * RATE;
+            document.getElementById('output').innerHTML = nprAmount.toFixed(2) + ' NPR';
+        }
 
-</div>
+        // Populate conversion table
+        function populateTable() {
+            const amounts = [1, 10, 50, 100, 500, 1000, 5000, 10000];
+            let html = '';
+            amounts.forEach(amount => {
+                html += `<tr>
+                    <td>${amount} INR</td>
+                    <td>${(amount * RATE).toFixed(2)} NPR</td>
+                </tr>`;
+            });
+            document.getElementById('rate-table').innerHTML = html;
+        }
 
-<div class="card related">
+        // Event listeners
+        document.getElementById('inr').addEventListener('input', convertINRtoNPR);
+        
+        // Initialize
+        window.onload = function() {
+            convertINRtoNPR();
+            populateTable();
+        };
+    </script>
 
-<h3>Related Converters</h3>
-
-<a href="/currency/usd-to-npr">
-USD → NPR
-</a>
-
-<a href="/currency/aed-to-npr">
-AED → NPR
-</a>
-
-<a href="/currency/qar-to-npr">
-QAR → NPR
-</a>
-
-<a href="/currency/sar-to-npr">
-SAR → NPR
-</a>
-
-</div>
-
-<script>
-// Standard exchange rate: 1 Indian Rupee = 1.60 Nepalese Rupee
-// (fixed under Nepal's currency peg to INR)
-const RATE = 1.60;
-
-function convertINRtoNPR() {
-    let inrInput = document.getElementById('inr');
-    let rawValue = inrInput.value;
-    
-    // Convert to number, default to 0 if empty or invalid
-    let inrAmount = parseFloat(rawValue);
-    if (isNaN(inrAmount)) {
-        inrAmount = 0;
-    }
-    
-    let nprAmount = inrAmount * RATE;
-    let outputSpan = document.getElementById('output');
-    outputSpan.innerHTML = nprAmount.toFixed(2) + ' NPR';
-}
-
-// Attach event listener to the INR input field
-const inrField = document.getElementById('inr');
-if (inrField) {
-    inrField.addEventListener('input', convertINRtoNPR);
-}
-
-// Perform initial conversion on page load to display default value (1 INR)
-convertINRtoNPR();
-</script>
-
-<div id="footer"></div>
-<script src="/components.js"></script>
+    <script src="/components.js"></script>
 </body>
 </html>
