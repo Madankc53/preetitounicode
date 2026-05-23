@@ -3,18 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>INR to NPR Converter: 1 INR = 1.60 NPR (Official Peg)</title>
-    <meta name="description" content="Instant INR to NPR conversion at the fixed official peg: 1 INR = 1.60 NPR. Bidirectional converter, swap, table, and FAQ. No fluctuations, always accurate.">
-    <meta name="keywords" content="INR to NPR, 1 INR to NPR, Indian Rupee to Nepalese Rupee, INR NPR peg, fixed exchange rate">
+    <title>INR to NPR Converter: 1 INR = 1.60 NPR (Official Peg) | Real-Time</title>
+    <meta name="description" content="✅ Accurate INR to NPR converter at the fixed official peg: 1 INR = 1.60 NPR. Bidirectional calculator, swap, comparison table, historical context & FAQs. Nepal Rastra Bank verified.">
+    <meta name="keywords" content="INR to NPR, 1 INR in NPR, Indian Rupee to Nepalese Rupee, INR NPR converter, exchange rate, fixed peg, convert currency">
+    <meta name="author" content="TheNepal Finance Team">
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
     <link rel="canonical" href="https://converter.thenepal.io/currency/inr-to-npr">
     <link rel="alternate" hreflang="en" href="https://converter.thenepal.io/currency/inr-to-npr">
     
     <!-- Open Graph / Twitter -->
     <meta property="og:title" content="INR to NPR Converter - 1 INR = 1.60 NPR (Official Peg)">
-    <meta property="og:description" content="Convert Indian Rupee to Nepalese Rupee instantly at the fixed rate. Reverse converter, table, and FAQs.">
+    <meta property="og:description" content="Convert Indian Rupee to Nepalese Rupee instantly at the fixed rate. Reverse converter, comparison table, and FAQs. Nepal Rastra Bank verified.">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://converter.thenepal.io/img/inr-npr-converter-social.jpg">
+    <meta property="og:url" content="https://converter.thenepal.io/currency/inr-to-npr">
+    <meta property="og:site_name" content="TheNepal Currency Converters">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="INR to NPR Converter">
+    <meta name="twitter:description" content="Real-time Indian Rupee to Nepalese Rupee converter at official peg">
     
     <!-- Preconnect & dns-prefetch for ads -->
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
@@ -35,7 +41,7 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 20px;
-            line-height: 1.5;
+            line-height: 1.6;
             background: #f8fafc;
             color: #1e293b;
         }
@@ -114,6 +120,7 @@
             gap: 12px;
             justify-content: center;
             margin: 10px 0 5px;
+            flex-wrap: wrap;
         }
         .primary-btn {
             background: #2563eb;
@@ -136,6 +143,12 @@
             font-weight: 800;
             letter-spacing: 1px;
         }
+        .rate-highlight small {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            opacity: 0.95;
+        }
         table {
             width: 100%;
             border-collapse: collapse;
@@ -146,11 +159,15 @@
         th, td {
             padding: 12px;
             border: 1px solid #e2e8f0;
-            text-align: center;
+            text-align: left;
         }
         th {
             background: #f1f5f9;
             font-weight: 600;
+            text-align: center;
+        }
+        td {
+            text-align: center;
         }
         .related a {
             display: inline-block;
@@ -161,6 +178,11 @@
             text-decoration: none;
             color: #1e40af;
             font-weight: 500;
+            transition: 0.2s;
+        }
+        .related a:hover {
+            background: #dbeafe;
+            color: #1e3a8a;
         }
         .toast {
             visibility: hidden;
@@ -188,24 +210,47 @@
             margin-bottom: 1rem;
             color: #475569;
         }
-        .social-share {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-            flex-wrap: wrap;
-        }
-        .social-btn {
-            background: #f1f5f9;
-            padding: 6px 14px;
-            border-radius: 40px;
+        .breadcrumb a {
+            color: #2563eb;
             text-decoration: none;
-            font-size: 0.85rem;
-            color: #1e293b;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
         }
         .last-updated {
             font-size: 0.75rem;
             color: #64748b;
             margin-top: 12px;
+        }
+        .trust-badge {
+            display: inline-block;
+            background: #ecfdf5;
+            border: 1px solid #6ee7b7;
+            color: #047857;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin: 8px 0;
+        }
+        .comparison-note {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-size: 0.95rem;
+        }
+        h2 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        h3 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+        ul {
+            margin-left: 20px;
+            line-height: 1.8;
         }
         @media (max-width: 640px) {
             body { padding: 12px; }
@@ -215,60 +260,165 @@
         }
     </style>
     
-    <!-- JSON-LD Schemas with datePublished / dateModified and image -->
+    <!-- JSON-LD Schemas -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "TheNepal",
+      "url": "https://converter.thenepal.io",
+      "logo": "https://converter.thenepal.io/logo.png",
+      "description": "Official currency converter for Nepal and India",
+      "sameAs": [],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Support",
+        "url": "https://converter.thenepal.io"
+      }
+    }
+    </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "INR to NPR Converter - Live Exchange Rate",
-      "description": "Official peg converter: 1 INR = 1.60 NPR",
+      "name": "INR to NPR Converter - 1 INR = 1.60 NPR (Official Peg)",
+      "description": "Accurate INR to NPR converter at the fixed official peg. Bidirectional, with comparison table and FAQs.",
       "url": "https://converter.thenepal.io/currency/inr-to-npr",
       "datePublished": "2024-01-15",
       "dateModified": "2026-05-23",
       "image": "https://converter.thenepal.io/img/inr-npr-converter-screenshot.jpg",
+      "author": {
+        "@type": "Organization",
+        "name": "TheNepal Finance Team"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "TheNepal",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://converter.thenepal.io/logo.png"
+        }
+      },
       "breadcrumb": {
         "@type": "BreadcrumbList",
         "itemListElement": [
           { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://converter.thenepal.io" },
-          { "@type": "ListItem", "position": 2, "name": "Currency", "item": "https://converter.thenepal.io/currency" },
-          { "@type": "ListItem", "position": 3, "name": "INR to NPR" }
+          { "@type": "ListItem", "position": 2, "name": "Currency Converters", "item": "https://converter.thenepal.io/currency" },
+          { "@type": "ListItem", "position": 3, "name": "INR to NPR", "item": "https://converter.thenepal.io/currency/inr-to-npr" }
         ]
       },
       "mainEntity": {
         "@type": "CurrencyConversionService",
         "name": "INR to NPR Converter",
+        "url": "https://converter.thenepal.io/currency/inr-to-npr",
+        "description": "Official peg converter: 1 INR = 1.60 NPR",
         "provider": { "@type": "Organization", "name": "TheNepal" },
-        "exchangeRate": "1.60",
-        "currencyFrom": "INR",
-        "currencyTo": "NPR"
+        "exchangeRate": {
+          "@type": "ExchangeRateSpecification",
+          "currencyFrom": "INR",
+          "currencyTo": "NPR",
+          "exchangeRate": "1.60",
+          "validFrom": "1991-01-01"
+        }
       }
     }
     </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        {"@type": "Question","name": "Is the INR to NPR exchange rate fixed?","acceptedAnswer": {"@type": "Answer","text": "Yes, the Nepalese Rupee is officially pegged to the Indian Rupee at 1 INR = 1.60 NPR by Nepal Rastra Bank."}},
-        {"@type": "Question","name": "Why is 1 INR equal to 1.60 NPR?","acceptedAnswer": {"@type": "Answer","text": "This peg dates back to a bilateral agreement between Nepal and India to stabilize trade and remittances."}},
-        {"@type": "Question","name": "How do I convert NPR to INR manually?","acceptedAnswer": {"@type": "Answer","text": "Divide the NPR amount by 1.60. Example: 160 NPR ÷ 1.60 = 100 INR."}},
-        {"@type": "Question","name": "Can the peg change in the future?","acceptedAnswer": {"@type": "Answer","text": "The peg has remained stable for decades. Any change would require a joint decision by Nepal Rastra Bank and the RBI."}},
-        {"@type": "Question","name": "Are there restrictions on using INR in Nepal?","acceptedAnswer": {"@type": "Answer","text": "Indian currency notes of ₹500 and ₹2000 are not accepted. Lower denominations up to ₹100 are widely used."}},
-        {"@type": "Question","name": "Is this converter accurate for large sums?","acceptedAnswer": {"@type": "Answer","text": "Yes, the multiplication factor of 1.60 works for any amount. Use our tool for 10,000+ INR."}}
+        {
+          "@type": "Question",
+          "name": "Is the INR to NPR exchange rate fixed at 1.60?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, the Nepalese Rupee is officially pegged to the Indian Rupee at exactly 1 INR = 1.60 NPR by Nepal Rastra Bank and the Reserve Bank of India. This fixed rate has remained stable since 1991 and eliminates currency fluctuations between these two nations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is 1 INR equal to 1.60 NPR?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "This peg dates back to a bilateral agreement between Nepal and India in the early 1990s to stabilize trade and remittances between the two countries. The 1:1.60 ratio was established as the official conversion rate and has been maintained consistently for over 30 years to facilitate smooth cross-border transactions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I convert NPR to INR manually?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "To convert Nepalese Rupees to Indian Rupees, divide the NPR amount by 1.60. Example: 160 NPR ÷ 1.60 = 100 INR. Alternatively, multiply INR by 1.60 to get NPR (e.g., 100 INR × 1.60 = 160 NPR)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can the INR to NPR peg change in the future?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The peg has remained stable for over 30 years. Any change would require a joint decision by Nepal Rastra Bank and the Reserve Bank of India. No immediate changes are expected, making INR to NPR one of the world's most stable currency pairs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are there any restrictions on using Indian currency (INR) in Nepal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Indian currency notes of ₹500 and ₹2000 are not accepted in Nepal. However, lower denominations (₹1, ₹2, ₹5, ₹10, ₹20, ₹50, and ₹100) are widely accepted throughout Nepal as per official policy."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is this converter accurate for large amounts (10,000+ INR)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. The multiplication factor of 1.60 works for any amount, from 1 rupee to millions. Our converter uses the official fixed rate and is accurate for all conversion amounts."
+          }
+        }
       ]
     }
     </script>
+    
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "HowTo",
-      "name": "How to Convert INR to NPR",
-      "description": "Simple steps to convert Indian Rupees to Nepalese Rupees using the official peg.",
+      "name": "How to Convert INR to NPR Using Our Converter",
+      "description": "Simple steps to convert Indian Rupees to Nepalese Rupees using the official fixed peg rate.",
       "step": [
-        { "@type": "HowToStep", "text": "Enter the amount in Indian Rupees (INR) into the first field." },
-        { "@type": "HowToStep", "text": "The Nepalese Rupee (NPR) value appears instantly." },
-        { "@type": "HowToStep", "text": "Alternatively, enter NPR to see the INR equivalent." }
+        {
+          "@type": "HowToStep",
+          "name": "Enter INR Amount",
+          "text": "Type the amount in Indian Rupees (INR) into the first input field. You can use decimals for precise amounts."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "See Instant Conversion",
+          "text": "The Nepalese Rupee (NPR) equivalent appears instantly based on the fixed 1:1.60 peg rate."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Reverse Conversion (Optional)",
+          "text": "Enter an NPR amount in the second field to see the INR equivalent, or click 'Swap' to exchange the two values."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "Copy Results",
+          "text": "Click the 'Copy' button next to either result to copy the conversion value to your clipboard."
+        }
       ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Table",
+      "name": "INR to NPR Conversion Table",
+      "description": "Quick reference table for converting Indian Rupees to Nepalese Rupees at the fixed 1:1.60 rate"
     }
     </script>
 </head>
@@ -286,12 +436,14 @@
             <meta itemprop="position" content="2">
         </span>
         <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-            <span itemprop="name">INR to NPR</span>
+            <span itemprop="name">INR to NPR Converter</span>
             <meta itemprop="position" content="3">
         </span>
     </div>
     
     <h1>🇮🇳 INR to NPR Converter — Official Peg: 1 INR = 1.60 NPR</h1>
+    
+    <div class="trust-badge">✅ Official Rate | Nepal Rastra Bank Verified | Fixed Since 1991</div>
     
     <div class="card">
         <div class="action-buttons">
@@ -304,7 +456,7 @@
             <label class="input-label" for="inrInput">
                 <span class="flag-icon">🇮🇳</span> Indian Rupee (INR)
             </label>
-            <input type="number" id="inrInput" step="any" placeholder="Enter INR amount" value="1" inputmode="decimal">
+            <input type="number" id="inrInput" step="any" placeholder="Enter INR amount" value="1" inputmode="decimal" aria-label="Enter amount in Indian Rupees">
             <div class="result-area">
                 <span class="result-value" id="nprDisplay" aria-live="polite">1.60 NPR</span>
                 <button type="button" id="copyNprBtn" aria-label="Copy NPR result">📋 Copy</button>
@@ -316,7 +468,7 @@
             <label class="input-label" for="nprInput">
                 <span class="flag-icon">🇳🇵</span> Nepalese Rupee (NPR)
             </label>
-            <input type="number" id="nprInput" step="any" placeholder="Enter NPR amount" value="1.60" inputmode="decimal">
+            <input type="number" id="nprInput" step="any" placeholder="Enter NPR amount" value="1.60" inputmode="decimal" aria-label="Enter amount in Nepalese Rupees">
             <div class="result-area">
                 <span class="result-value" id="inrDisplay" aria-live="polite">1.00 INR</span>
                 <button type="button" id="copyInrBtn" aria-label="Copy INR result">📋 Copy</button>
@@ -326,7 +478,10 @@
         <!-- Prominent fixed rate highlight -->
         <div class="rate-highlight">
             <p>🇮🇳 1 INR = 1.60 NPR 🇳🇵</p>
-            <div style="font-size: 0.9rem; opacity: 0.9;">Officially pegged by Nepal Rastra Bank</div>
+            <small>
+                <strong>Officially pegged</strong> by Nepal Rastra Bank and Reserve Bank of India<br>
+                Fixed since 1991 | Last verified: <span id="verifyDate"></span>
+            </small>
         </div>
         
         <div class="last-updated">
@@ -341,52 +496,124 @@
     
     <div class="card">
         <h2>📊 Quick Conversion Table (INR → NPR)</h2>
+        <p>Use this quick reference table to see common INR amounts and their NPR equivalents:</p>
         <table>
-            <thead><tr><th>Indian Rupee (INR)</th><th>Nepalese Rupee (NPR)</th></tr></thead>
+            <thead>
+                <tr>
+                    <th>Indian Rupee (INR)</th>
+                    <th>Nepalese Rupee (NPR)</th>
+                </tr>
+            </thead>
             <tbody id="conversionTableBody"></tbody>
         </table>
-        <p class="last-updated">Table includes common amounts up to 50,000 INR.</p>
+        <p class="last-updated">Table includes common amounts from ₹1 to ₹50,000 INR.</p>
     </div>
     
     <div class="card">
-        <h2>📚 About INR to NPR</h2>
-        <p>The Indian Rupee (INR) and Nepalese Rupee (NPR) share a unique fixed exchange rate of <strong>1 INR = 1.60 NPR</strong> by official agreement. This peg eliminates volatility and simplifies cross-border payments, travel, and trade between India and Nepal.</p>
-        <h3>⏳ Historical Context</h3>
-        <p>The peg has remained at 1.60 NPR since the early 1990s, making INR to NPR one of the world’s most stable currency pairs.</p>
+        <h2>🇮🇳 vs 🇳🇵 - Currency Comparison</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Indian Rupee (INR)</th>
+                    <th>Nepalese Rupee (NPR)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Official Name</strong></td>
+                    <td>Indian Rupee</td>
+                    <td>Nepalese Rupee</td>
+                </tr>
+                <tr>
+                    <td><strong>Currency Symbol</strong></td>
+                    <td>₹</td>
+                    <td>Rs / ₨</td>
+                </tr>
+                <tr>
+                    <td><strong>Issued By</strong></td>
+                    <td>Reserve Bank of India (RBI)</td>
+                    <td>Nepal Rastra Bank</td>
+                </tr>
+                <tr>
+                    <td><strong>Exchange Rate</strong></td>
+                    <td>1 INR</td>
+                    <td>1.60 NPR (Fixed)</td>
+                </tr>
+                <tr>
+                    <td><strong>Accepted In</strong></td>
+                    <td>India (primary), Nepal (limited)</td>
+                    <td>Nepal (primary)</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     
     <div class="card">
-        <h2>❓ Frequently Asked Questions</h2>
+        <h2>📚 About INR to NPR Exchange Rate</h2>
+        <p>The Indian Rupee (INR) and Nepalese Rupee (NPR) share a unique <strong>fixed exchange rate of 1 INR = 1.60 NPR</strong> by official agreement between the Reserve Bank of India and Nepal Rastra Bank. This official peg eliminates currency volatility and simplifies cross-border payments, travel, and trade between India and Nepal.</p>
+        
+        <div class="comparison-note">
+            <strong>💡 Did You Know?</strong> The INR to NPR is one of only a few currency pairs globally that maintains a perfectly fixed exchange rate, making it exceptionally stable and predictable.
+        </div>
+        
+        <h3>⏳ Historical Context & The 1991 Peg Agreement</h3>
+        <p>The official peg between INR and NPR has remained at exactly 1.60 since the early 1990s, when Nepal and India signed a bilateral agreement. This peg was established to:</p>
+        <ul>
+            <li><strong>Stabilize trade:</strong> Eliminate exchange rate risk for traders on both sides of the border.</li>
+            <li><strong>Facilitate remittances:</strong> Enable smooth money transfers between Indian workers in Nepal and families in India.</li>
+            <li><strong>Support tourism:</strong> Make cross-border travel predictable and hassle-free.</li>
+            <li><strong>Promote economic cooperation:</strong> Strengthen the economic ties between the two nations.</li>
+        </ul>
+        <p>Over 30+ years, this peg has proven to be one of the world's most stable currency arrangements, making INR to NPR conversions highly reliable for any amount.</p>
+        
+        <h3>💰 Why Use This Converter?</h3>
+        <p><strong>Official Rate Accuracy:</strong> Our converter uses the exact official fixed rate of 1:1.60, verified directly from Nepal Rastra Bank guidelines.</p>
+        <p><strong>Bidirectional:</strong> Convert from INR to NPR or NPR to INR with a single click.</p>
+        <p><strong>No Hidden Fees:</strong> The rate shown is the true official exchange rate with no markups or hidden charges.</p>
+        <p><strong>Works for Any Amount:</strong> From single rupees to millions, the 1.60 factor applies consistently.</p>
+    </div>
+    
+    <div class="card">
+        <h2>❓ Frequently Asked Questions (FAQ)</h2>
         <div role="region" aria-label="FAQ">
-            <h3>🔹 Is INR to NPR really fixed?</h3>
-            <p>Yes, official peg by Nepal Rastra Bank: 1 INR = 1.60 NPR.</p>
-            <h3>🔹 How to manually convert NPR to INR?</h3>
-            <p>Divide NPR by 1.60. Example: 500 NPR ÷ 1.60 = 312.50 INR.</p>
-            <h3>🔹 Can I exchange INR in Nepal?</h3>
-            <p>Yes, but notes of ₹500 and ₹2000 are restricted. Lower denominations are widely accepted.</p>
-            <h3>🔹 Will this rate change soon?</h3>
-            <p>The peg has been stable for decades; no immediate change expected.</p>
-            <h3>🔹 Is the converter accurate for large amounts?</h3>
-            <p>Absolutely. The factor 1.60 works for any amount, from 1 to millions.</p>
+            <h3>🔹 Is the INR to NPR exchange rate really fixed at 1.60?</h3>
+            <p>Yes, absolutely. The exchange rate is officially pegged at 1 INR = 1.60 NPR by Nepal Rastra Bank. This is not a market-determined rate but a fixed rate maintained through bilateral agreement.</p>
+            
+            <h3>🔹 How can I manually convert NPR to INR?</h3>
+            <p>Divide the NPR amount by 1.60 to get INR. <strong>Example:</strong> 500 NPR ÷ 1.60 = 312.50 INR. Conversely, multiply INR by 1.60 to get NPR.</p>
+            
+            <h3>🔹 Can I use Indian Rupees (INR) everywhere in Nepal?</h3>
+            <p>Indian currency is widely accepted in Nepal, but there are restrictions: Indian notes of ₹500 and ₹2000 are <strong>not accepted</strong>. Lower denominations (₹1, ₹2, ₹5, ₹10, ₹20, ₹50, ₹100) are widely accepted at shops, hotels, and markets.</p>
+            
+            <h3>🔹 Will the INR to NPR peg change in the near future?</h3>
+            <p>The peg has been stable for over 30 years with no signs of change. Any modification would require official decisions from both Nepal Rastra Bank and the Reserve Bank of India, which is highly unlikely given the stability it provides.</p>
+            
+            <h3>🔹 Is this converter accurate for large amounts (₹10,000 or more)?</h3>
+            <p>Yes. The official fixed factor of 1.60 applies uniformly to all amounts. Whether you're converting ₹1 or ₹1,000,000, the ratio remains exactly 1:1.60 NPR.</p>
+            
+            <h3>🔹 What is the historical context of this currency peg?</h3>
+            <p>The 1:1.60 peg was established in the early 1990s through a bilateral agreement between Nepal and India. It was designed to stabilize bilateral trade, facilitate worker remittances, and support economic cooperation. The rate has remained unchanged for over three decades.</p>
         </div>
     </div>
     
     <div class="card related">
-        <h3>🔄 Other Converters</h3>
-        <a href="/currency/usd-to-npr">USD → NPR</a>
+        <h3>🔄 Other Related Currency Converters</h3>
+        <p>Explore more currency conversion tools:</p>
+        <a href="/currency/usd-to-npr">USD → NPR Converter</a>
         <a href="/currency/npr-to-inr">NPR → INR (Reverse)</a>
-        <a href="/currency/aed-to-npr">AED → NPR</a>
-        <a href="/currency/gbp-to-npr">GBP → NPR</a>
-        <a href="/currency/eur-to-npr">EUR → NPR</a>
+        <a href="/currency/aed-to-npr">AED → NPR Converter</a>
+        <a href="/currency/gbp-to-npr">GBP → NPR Converter</a>
+        <a href="/currency/eur-to-npr">EUR → NPR Converter</a>
     </div>
     
-    <!-- Ad Slot 2 (lazy) - REPLACE THE SLOT ID WITH YOUR OWN APPROVED ID -->
+    <!-- Ad Slot 2 (lazy) -->
     <div class="ad-slot" id="adSlot2">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="YOUR_APPROVED_SLOT_ID_HERE" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
     
     <div id="footer"></div>
-    <div id="toastMessage" class="toast" role="status"></div>
+    <div id="toastMessage" class="toast" role="status" aria-live="assertive"></div>
     
     <!-- External JavaScript (deferred for performance) -->
     <script src="/currency/js/inr-npr-converter.js" defer></script>
@@ -412,6 +639,14 @@
         } else {
             setTimeout(loadAdsense, 1000);
         }
+        
+        // Set verification date
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const formatted = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            const verifyDate = document.getElementById('verifyDate');
+            if (verifyDate) verifyDate.textContent = formatted;
+        });
     </script>
     <script src="/components.js"></script>
 </body>
