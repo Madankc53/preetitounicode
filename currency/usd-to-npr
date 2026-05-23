@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>USD to NPR Converter (Live Exchange Rate) | TheNepal</title>
+
+<meta name="description"
+content="Convert USD to NPR instantly with live exchange rate. Check US Dollar to Nepalese Rupee conversion, examples, history and related currencies.">
+
+<link rel="canonical"
+href="https://converter.thenepal.io/currency/usd-to-npr">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+max-width:900px;
+margin:auto;
+padding:20px;
+line-height:1.6;
+background:#fafafa;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:12px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+font-size:18px;
+margin:10px 0;
+}
+
+.result{
+font-size:28px;
+font-weight:bold;
+color:#2563eb;
+}
+
+.related a{
+display:inline-block;
+padding:8px 14px;
+background:#eef2ff;
+margin:5px;
+border-radius:20px;
+text-decoration:none;
+}
+</style>
+</head>
+
+<body>
+<div id="header"></div>
+<h1>USD to NPR Converter</h1>
+
+<div class="card">
+
+<p>
+Convert United States Dollar (USD) to Nepalese Rupee (NPR)
+using live exchange rates.
+</p>
+
+<input id="usd"
+type="number"
+placeholder="Enter USD"
+value="1">
+
+<div class="result">
+<span id="output">133.20 NPR</span>
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Quick Examples</h2>
+
+<ul>
+<li>1 USD = 133.20 NPR</li>
+<li>10 USD = 1332 NPR</li>
+<li>100 USD = 13320 NPR</li>
+<li>1000 USD = 133200 NPR</li>
+</ul>
+
+</div>
+
+<div class="card">
+
+<h2>About USD to NPR</h2>
+
+<p>
+USD means United States Dollar and NPR means Nepalese Rupee.
+This converter helps convert US currency into Nepal currency.
+</p>
+
+</div>
+
+<div class="card related">
+
+<h3>Related Converters</h3>
+
+<a href="/currency/inr-to-npr">
+INR → NPR
+</a>
+
+<a href="/currency/aed-to-npr">
+AED → NPR
+</a>
+
+<a href="/currency/qAR-to-npr">
+QAR → NPR
+</a>
+
+<a href="/currency/sar-to-npr">
+SAR → NPR
+</a>
+
+</div>
+
+<script>
+
+const rate=133.20;
+
+function convert(){
+
+let usd=
+document.getElementById(
+'usd'
+).value || 0;
+
+document.getElementById(
+'output'
+).innerHTML=
+(usd*rate).toFixed(2)
++' NPR';
+
+}
+
+document
+.getElementById('usd')
+.addEventListener(
+'input',
+convert
+);
+
+convert();
+
+</script>
+  <div id="footer"></div>
+<script src="/components.js"></script>
+</body>
+</html>
