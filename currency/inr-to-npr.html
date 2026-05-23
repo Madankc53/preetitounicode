@@ -26,239 +26,8 @@
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
     <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
     
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        @font-face {
-            font-family: system-ui;
-            font-display: swap;
-        }
-        body {
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            line-height: 1.6;
-            background: #f8fafc;
-            color: #1e293b;
-        }
-        .card {
-            background: #ffffff;
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 1.8rem;
-        }
-        .converter-row {
-            background: #f1f5f9;
-            border-radius: 20px;
-            padding: 1rem;
-            margin-bottom: 1.2rem;
-        }
-        .input-label {
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-        }
-        .flag-icon {
-            font-size: 1.6rem;
-        }
-        input {
-            width: 100%;
-            padding: 14px 16px;
-            font-size: 1.2rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 16px;
-            background: white;
-            transition: 0.2s;
-        }
-        input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
-        }
-        .result-area {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 8px;
-        }
-        .result-value {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #2563eb;
-            background: #eff6ff;
-            padding: 10px 16px;
-            border-radius: 40px;
-            flex: 1;
-            text-align: center;
-        }
-        button {
-            background: #e2e8f0;
-            border: none;
-            padding: 8px 18px;
-            border-radius: 40px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.15s;
-            font-size: 0.9rem;
-        }
-        button:hover {
-            background: #cbd5e1;
-            transform: scale(0.97);
-        }
-        .action-buttons {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin: 10px 0 5px;
-            flex-wrap: wrap;
-        }
-        .primary-btn {
-            background: #2563eb;
-            color: white;
-            font-weight: bold;
-        }
-        .primary-btn:hover {
-            background: #1d4ed8;
-        }
-        .rate-highlight {
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
-            color: white;
-            padding: 16px;
-            border-radius: 20px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .rate-highlight p {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-        .rate-highlight small {
-            display: block;
-            margin-top: 8px;
-            font-size: 0.85rem;
-            opacity: 0.95;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #e2e8f0;
-            text-align: left;
-        }
-        th {
-            background: #f1f5f9;
-            font-weight: 600;
-            text-align: center;
-        }
-        td {
-            text-align: center;
-        }
-        .related a {
-            display: inline-block;
-            padding: 8px 16px;
-            background: #eef2ff;
-            margin: 6px;
-            border-radius: 40px;
-            text-decoration: none;
-            color: #1e40af;
-            font-weight: 500;
-            transition: 0.2s;
-        }
-        .related a:hover {
-            background: #dbeafe;
-            color: #1e3a8a;
-        }
-        .toast {
-            visibility: hidden;
-            min-width: 180px;
-            background: #1e293b;
-            color: white;
-            text-align: center;
-            border-radius: 40px;
-            padding: 8px 16px;
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 0.85rem;
-            z-index: 1000;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .toast.show {
-            visibility: visible;
-            opacity: 1;
-        }
-        .breadcrumb {
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
-            color: #475569;
-        }
-        .breadcrumb a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        .last-updated {
-            font-size: 0.75rem;
-            color: #64748b;
-            margin-top: 12px;
-        }
-        .trust-badge {
-            display: inline-block;
-            background: #ecfdf5;
-            border: 1px solid #6ee7b7;
-            color: #047857;
-            padding: 8px 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            margin: 8px 0;
-        }
-        .comparison-note {
-            background: #fef3c7;
-            border-left: 4px solid #f59e0b;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 16px 0;
-            font-size: 0.95rem;
-        }
-        h2 {
-            margin-top: 1.5rem;
-            margin-bottom: 0.8rem;
-        }
-        h3 {
-            margin-top: 1.2rem;
-            margin-bottom: 0.6rem;
-        }
-        ul {
-            margin-left: 20px;
-            line-height: 1.8;
-        }
-        @media (max-width: 640px) {
-            body { padding: 12px; }
-            .card { padding: 1rem; }
-            .result-value { font-size: 1.3rem; }
-            .rate-highlight p { font-size: 1.5rem; }
-        }
-    </style>
+    <!-- External CSS for better caching -->
+    <link rel="stylesheet" href="/currency/css/style.css">
     
     <!-- JSON-LD Schemas -->
     <script type="application/ld+json">
@@ -269,7 +38,6 @@
       "url": "https://converter.thenepal.io",
       "logo": "https://converter.thenepal.io/logo.png",
       "description": "Official currency converter for Nepal and India",
-      "sameAs": [],
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "Customer Support",
@@ -299,6 +67,10 @@
           "@type": "ImageObject",
           "url": "https://converter.thenepal.io/logo.png"
         }
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://converter.thenepal.io/currency/inr-to-npr"
       },
       "breadcrumb": {
         "@type": "BreadcrumbList",
@@ -412,15 +184,6 @@
       ]
     }
     </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Table",
-      "name": "INR to NPR Conversion Table",
-      "description": "Quick reference table for converting Indian Rupees to Nepalese Rupees at the fixed 1:1.60 rate"
-    }
-    </script>
 </head>
 <body>
     <div id="header"></div>
@@ -489,7 +252,7 @@
         </div>
     </div>
     
-    <!-- Ad Slot 1 (lazy) -->
+    <!-- Ad Slot 1 -->
     <div class="ad-slot" id="adSlot1">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
@@ -607,7 +370,7 @@
         <a href="/currency/eur-to-npr">EUR → NPR Converter</a>
     </div>
     
-    <!-- Ad Slot 2 (lazy) -->
+    <!-- Ad Slot 2 -->
     <div class="ad-slot" id="adSlot2">
         <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
     </div>
@@ -641,12 +404,23 @@
         }
         
         // Set verification date
-        document.addEventListener('DOMContentLoaded', () => {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                const today = new Date();
+                const formatted = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                const verifyDate = document.getElementById('verifyDate');
+                if (verifyDate) verifyDate.textContent = formatted;
+                const liveDate = document.getElementById('liveDate');
+                if (liveDate) liveDate.textContent = formatted;
+            });
+        } else {
             const today = new Date();
             const formatted = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             const verifyDate = document.getElementById('verifyDate');
             if (verifyDate) verifyDate.textContent = formatted;
-        });
+            const liveDate = document.getElementById('liveDate');
+            if (liveDate) liveDate.textContent = formatted;
+        }
     </script>
     <script src="/components.js"></script>
 </body>
