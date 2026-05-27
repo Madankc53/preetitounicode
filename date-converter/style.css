@@ -376,14 +376,14 @@ select:focus, input:focus {
 
 /* ── In-content Ad ──────────────────────────────── */
 .ad-inline {
-  background: transparent;
+  background: #f9f9f9;
+  border: 1px dashed #ddd;
   border-radius: var(--radius-md);
+  padding: 8px;
   text-align: center;
   margin: 16px 0;
-  /* No min-height — prevents blank gap if ad blocked */
-  overflow: hidden;
+  min-height: 100px;
 }
-.ad-inline:empty { margin: 0; }
 
 /* ── Content / SEO section ──────────────────────── */
 .content-section {
