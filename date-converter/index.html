@@ -152,6 +152,19 @@
 </header>
 
 <!-- ══════════════════════════════════
+     TOP AD BANNER
+════════════════════════════════════ -->
+<div class="ad-container" aria-hidden="true">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1239173186536702"
+       data-ad-slot="1642070334"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+
+<!-- ══════════════════════════════════
      MAIN CONTENT
 ════════════════════════════════════ -->
 <main class="container" id="main-content">
@@ -270,10 +283,17 @@
   </section><!-- /converter-card -->
 
   <!-- ══════════════════════════════════
-       AD — BELOW CONVERTER (1 ad only)
-       Loaded after page is interactive
+       IN-CONTENT AD
   ════════════════════════════════════ -->
-  <div class="ad-inline" id="ad-below-converter" aria-hidden="true" style="min-height:0"></div>
+  <div class="ad-inline" aria-hidden="true">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1239173186536702"
+         data-ad-slot="1642070334"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
 
   <!-- ══════════════════════════════════
        ABOUT / SEO CONTENT
@@ -303,7 +323,7 @@
       </div>
       <div class="info-box">
         <div class="ib-label">Last Updated</div>
-        <div class="ib-val" id="last-updated">2083 BS / 2026 AD</div>
+        <div class="ib-val" id="last-updated">2082 BS / 2025 AD</div>
       </div>
     </div>
 
@@ -438,7 +458,18 @@
   </div>
 </footer>
 
-<!-- Sticky mobile ad removed to prevent CLS and DNS blocking -->
+<!-- ══════════════════════════════════
+     STICKY BOTTOM MOBILE AD
+════════════════════════════════════ -->
+<div class="ad-sticky-mobile" aria-hidden="true">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-1239173186536702"
+       data-ad-slot="1642070334"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
 
 <!-- ══════════════════════════════════
      SCRIPTS
@@ -459,27 +490,6 @@
     }
     q.addEventListener("click", toggle);
     q.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" ") { e.preventDefault(); toggle(); } });
-  });
-
-  // ── Lazy-load AdSense AFTER page is interactive ──
-  // This prevents the doubleclick DNS error from blocking page render.
-  // One ad only, placed below the converter.
-  window.addEventListener("load", function() {
-    var adSlot = document.getElementById("ad-below-converter");
-    if (!adSlot) return;
-    // Small delay so converter renders first
-    setTimeout(function() {
-      try {
-        adSlot.innerHTML =
-          '<ins class="adsbygoogle"' +
-          ' style="display:block"' +
-          ' data-ad-client="ca-pub-1239173186536702"' +
-          ' data-ad-slot="1642070334"' +
-          ' data-ad-format="auto"' +
-          ' data-full-width-responsive="true"></ins>';
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      } catch(e) { /* AdSense not available */ }
-    }, 1200);
   });
 </script>
 
