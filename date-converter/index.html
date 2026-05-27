@@ -309,15 +309,30 @@ footer a{color:#f39c12;}
 #toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
 
 /* ── Responsive ── */
-@media(max-width:460px){
-  .input-row{grid-template-columns:1fr 1fr;}
-  .input-row .sel-wrap{grid-column:1/-1;}
-  .info-grid,.rel-grid{grid-template-columns:1fr;}
-  .hdr-badge{display:none;}
+@media(max-width:520px){
+  /* Month full-width first, then Year + Day side by side */
+  .input-row{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "month month"
+      "year  day";
+  }
+  .input-row .sel-wrap{ grid-area:month; }
+  .input-row .yr-wrap{ grid-area:year; }
+  .input-row .dy-wrap{ grid-area:day; }
+
+  /* Bigger touch targets */
+  input[type=number],select{ padding:13px 10px; font-size:.92rem; }
+  .btn{ padding:11px 14px; font-size:.84rem; }
+  .act{ gap:6px; }
+
+  .info-grid,.rel-grid{ grid-template-columns:1fr; }
+  .hdr-badge{ display:none; }
+  .today{ grid-template-columns:1fr; }
 }
 @media(min-width:580px){
-  .tab-pane{padding:20px 20px;}
-  .wrap{padding:0 20px;}
+  .tab-pane{ padding:20px 20px; }
+  .wrap{ padding:0 20px; }
 }
 </style>
 </head>
@@ -393,7 +408,7 @@ footer a{color:#f39c12;}
     <div class="tab-pane active" id="pane-bs" role="tabpanel" aria-labelledby="tab-bs">
       <label class="f-label" for="bs-year">Enter Bikram Sambat (BS) Date</label>
       <div class="input-row">
-        <div>
+        <div class="yr-wrap">
           <input type="number" id="bs-year" min="2000" max="2090"
                  placeholder="Year" aria-label="BS Year" inputmode="numeric">
         </div>
@@ -402,7 +417,7 @@ footer a{color:#f39c12;}
             <option value="">Month</option>
           </select>
         </div>
-        <div>
+        <div class="dy-wrap">
           <input type="number" id="bs-day" min="1" max="32"
                  placeholder="Day" aria-label="BS Day" inputmode="numeric">
           <div class="day-hint" id="bs-day-hint"></div>
