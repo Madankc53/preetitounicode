@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Nepali Months Guide: 12 BS Months, Days, Festivals & Seasons</title>
+  <meta name="description" content="Complete guide to Nepali months (Bikram Sambat): names in Nepali and English, day ranges, Gregorian equivalents, festivals, and seasons. Your ultimate BS calendar reference.">
+  <meta name="keywords" content="Nepali months guide, Nepali months name, BS months, Bikram Sambat months, Nepali calendar months, Baishakh to Chaitra, Nepali Patro, months in Nepal">
+  <meta name="author" content="Nepal Tools">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://converter.thenepal.io/blog/nepali-months-guide">
+  
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Nepali Months Guide: Complete List of 12 BS Months">
+  <meta property="og:description" content="Learn all about the 12 months of Bikram Sambat: Nepali names, English transliteration, seasonal festivals, and how they map to Gregorian calendar.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://converter.thenepal.io/blog/nepali-months-guide">
+  <meta property="og:image" content="https://converter.thenepal.io/assets/nepali-months-guide.jpg">
+  
+  <!-- Schema: Article + FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Nepali Months Guide: 12 Months of Bikram Sambat",
+    "description": "Complete guide to Nepali calendar months: name, duration, Gregorian mapping, festivals and seasonal significance.",
+    "author": { "@type": "Organization", "name": "Nepal Tools" },
+    "publisher": { "@type": "Organization", "name": "Nepal Tools", "logo": { "@type": "ImageObject", "url": "https://converter.thenepal.io/logo.png" } },
+    "datePublished": "2025-03-01",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://converter.thenepal.io/blog/nepali-months-guide" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question", "name": "What are the 12 Nepali months?",
+        "acceptedAnswer": { "@type": "Answer", "text": "The 12 months of Bikram Sambat are: Baishakh, Jestha, Ashadh, Shrawan, Bhadra, Ashwin, Kartik, Mangsir, Poush, Magh, Falgun, and Chaitra." }
+      },
+      {
+        "@type": "Question", "name": "Which Nepali month has the most days?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Jestha and Ashadh typically have 31-32 days, making them the longest Nepali months." }
+      },
+      {
+        "@type": "Question", "name": "When does Nepali New Year start?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nepali New Year (Navavarsha) begins on the first day of Baishakh, which usually falls in mid-April (around April 13 or 14 in Gregorian calendar)." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+      background: #fefaf5;
+      color: #1e2a2e;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+    .blog-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      border-bottom: 2px solid #e2c7a2;
+      padding-bottom: 1.5rem;
+    }
+    .blog-header h1 {
+      font-size: 2.2rem;
+      background: linear-gradient(135deg, #b4652c, #df9a4b);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .blog-header p {
+      color: #5a4a3a;
+      font-size: 1.1rem;
+    }
+    .info-badge {
+      background: #f0e6d8;
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      margin-bottom: 1rem;
+      color: #8b5a2b;
+    }
+    .card {
+      background: white;
+      border-radius: 28px;
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03), 0 2px 6px rgba(0, 0, 0, 0.05);
+      border: 1px solid #ffe6ce;
+    }
+    h2 {
+      font-size: 1.8rem;
+      margin-top: 0.5rem;
+      margin-bottom: 1.2rem;
+      color: #b4652c;
+      border-left: 5px solid #df9a4b;
+      padding-left: 1rem;
+    }
+    h3 {
+      font-size: 1.4rem;
+      margin: 1.2rem 0 0.8rem;
+      color: #3b2a1f;
+    }
+    .months-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+    .months-table th, .months-table td {
+      border: 1px solid #f0dbc8;
+      padding: 12px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .months-table th {
+      background: #fef0e4;
+      color: #6b3f1a;
+      font-weight: 700;
+    }
+    .month-highlight {
+      background: #fffbf0;
+    }
+    .season-badge {
+      display: inline-block;
+      background: #e6d5b8;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 0.3rem;
+    }
+    .festival-list {
+      font-size: 0.85rem;
+      color: #5a4a3a;
+    }
+    .big-btn {
+      display: inline-block;
+      background: #b4652c;
+      color: white;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      margin: 1rem 0 0.5rem;
+      transition: 0.2s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .big-btn:hover {
+      background: #9b5323;
+      transform: scale(0.98);
+      text-decoration: none;
+    }
+    .related-tools {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      justify-content: center;
+    }
+    .tool-link {
+      background: white;
+      border: 1px solid #e0c7ac;
+      border-radius: 60px;
+      padding: 10px 20px;
+      text-decoration: none;
+      font-weight: 500;
+      color: #b4652c;
+      transition: all 0.2s;
+    }
+    .tool-link:hover {
+      background: #b4652c;
+      color: white;
+      border-color: #b4652c;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #e9cfb0;
+      font-size: 0.85rem;
+      color: #836e56;
+    }
+    @media (max-width: 680px) {
+      .container { padding: 1rem; }
+      .blog-header h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.5rem; }
+      .months-table th, .months-table td { padding: 8px 5px; font-size: 0.85rem; }
+    }
+    a { color: #b4652c; text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    .fun-fact {
+      background: #fcf8ef;
+      border-radius: 20px;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-left: 4px solid #df9a4b;
+    }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+<div class="container">
+  <div class="blog-header">
+    <div class="info-badge">📅 Bikram Sambat • 12 Months • Nepali Calendar</div>
+    <h1>Nepali Months Guide: Complete List of 12 BS Months</h1>
+    <p>Names in Nepali & English, day ranges, Gregorian equivalents, seasonal festivals, and cultural significance</p>
+  </div>
+
+  <!-- Introduction with primary keyword -->
+  <div class="card">
+    <p><strong>Nepali months</strong> form the backbone of the Bikram Sambat (BS) calendar, the official lunisolar calendar of Nepal. Unlike the fixed 30/31-day months of the Gregorian system, each <strong>Nepali month name</strong> carries its own seasonal rhythm, ranging from 29 to 32 days. Whether you're planning a festival, understanding Nepali Patro, or converting BS to AD, knowing the 12 months is essential.</p>
+    <p>This guide covers every month — from Baishakh (the Nepali New Year) to Chaitra (the last month) — including typical weather, festivals like Dashain and Tihar, and helpful conversion tools.</p>
+  </div>
+
+  <!-- Main table: month by month (comprehensive) -->
+  <div class="card">
+    <h2>📆 The 12 Nepali Months (Bikram Sambat)</h2>
+    <p>Below is the complete list of Nepali months with their English transliteration, approximate Gregorian dates, typical day range, seasons, and major festivals.</p>
+    <table class="months-table">
+      <thead>
+        <tr><th>#</th><th>Nepali Month (नेपाली महिना)</th><th>English Name</th><th>Gregorian (approx.)</th><th>Days</th><th>Season & Festivals</th></tr>
+      </thead>
+      <tbody>
+        <tr class="month-highlight"><td>1</td><td>बैशाख</td><td><strong>Baishakh</strong></td><td>Mid-Apr to Mid-May</td><td>30–31</td><td>🌱 <strong>Nepali New Year (Navavarsha)</strong>, Bisket Jatra, farming begins</td></tr>
+        <tr><td>2</td><td>जेठ</td><td><strong>Jestha</strong></td><td>Mid-May to Mid-Jun</td><td>31–32</td><td>☀️ Pre-monsoon heat, Rato Machhindranath chariot festival</td></tr>
+        <tr><td>3</td><td>असार</td><td><strong>Ashadh</strong></td><td>Mid-Jun to Mid-Jul</td><td>31–32</td><td>🌧️ Start of monsoon, rice planting (Ashadh 15 – Dahi Chiura)</td></tr>
+        <tr><td>4</td><td>श्रावण</td><td><strong>Shrawan</strong></td><td>Mid-Jul to Mid-Aug</td><td>31–32</td><td>🕉️ Holy month of Shiva, Janai Purnima, Nag Panchami, Teej begins</td></tr>
+        <tr><td>5</td><td>भाद्र</td><td><strong>Bhadra</strong></td><td>Mid-Aug to Mid-Sep</td><td>31–32</td><td>🙏 Gokarna Aunsi (Father's Day), Kushe Aunsi, Teej (late Bhadra)</td></tr>
+        <tr><td>6</td><td>असोज</td><td><strong>Ashwin</strong></td><td>Mid-Sep to Mid-Oct</td><td>30–31</td><td>🏹 <strong>Dashain (Bada Dashain)</strong> – the biggest Nepali festival, Fulpati, Maha Ashtami, Vijayadashami</td></tr>
+        <tr><td>7</td><td>कार्तिक</td><td><strong>Kartik</strong></td><td>Mid-Oct to Mid-Nov</td><td>29–30</td><td>🪔 <strong>Tihar (Deepawali)</strong>, Bhai Tika, Chhath (in Terai), Nepal Sambat New Year</td></tr>
+        <tr><td>8</td><td>मंसिर</td><td><strong>Mangsir</strong></td><td>Mid-Nov to Mid-Dec</td><td>29–30</td><td>❄️ Harvest season (rice harvest), Udhauli festival (Kirat community)</td></tr>
+        <tr><td>9</td><td>पौष</td><td><strong>Poush</strong></td><td>Mid-Dec to Mid-Jan</td><td>29–30</td><td>🥶 Cold winter, Maghe Sankranti (late Poush), Ghode Jatra</td></tr>
+        <tr><td>10</td><td>माघ</td><td><strong>Magh</strong></td><td>Mid-Jan to Mid-Feb</td><td>29–30</td><td>🌸 <strong>Maghe Sankranti</strong>, Swasthani Brata Katha, start of longer days</td></tr>
+        <tr><td>11</td><td>फाल्गुन</td><td><strong>Falgun</strong></td><td>Mid-Feb to Mid-Mar</td><td>29–30</td><td>🎨 Holi (Fagu Purnima), Shivaratri, spring colors</td></tr>
+        <tr><td>12</td><td>चैत्र</td><td><strong>Chaitra</strong></td><td>Mid-Mar to Mid-Apr</td><td>30–31</td><td>🌾 End of fiscal year, Chaite Dashain, Ram Navami, preparation for New Year</td></tr>
+      </tbody>
+    </table>
+    <div class="fun-fact">
+      💡 <strong>Fun fact:</strong> The Nepali calendar adds an extra month (Adhik Maas) approximately every 3 years to realign lunar cycles with seasons. That month is inserted between certain months.
+    </div>
+  </div>
+
+  <!-- Seasonal breakdown with H3s -->
+  <div class="card">
+    <h2>🌿 Nepali Months and Seasonal Divisions (Ritu)</h2>
+    <p>Nepal traditionally recognizes six seasons (Ritu), each spanning two Bikram Sambat months. This ancient classification is still used in astrology and farming.</p>
+    <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+      <li><strong>Vasant (Spring):</strong> Chaitra – Baishakh (mid-Mar to mid-May) – Nepali New Year, flowers bloom</li>
+      <li><strong>Grishma (Summer):</strong> Jestha – Ashadh (mid-May to mid-Jul) – pre-monsoon heat, monsoon start</li>
+      <li><strong>Varsha (Monsoon):</strong> Shrawan – Bhadra (mid-Jul to mid-Sep) – heavy rains, festival of Teej</li>
+      <li><strong>Sharad (Autumn):</strong> Ashwin – Kartik (mid-Sep to mid-Nov) – Dashain, Tihar, clear skies</li>
+      <li><strong>Hemanta (Pre-winter):</strong> Mangsir – Poush (mid-Nov to mid-Jan) – harvest, cold starts</li>
+      <li><strong>Shishir (Winter):</strong> Magh – Falgun (mid-Jan to mid-Mar) – coldest, then Holi signals end</li>
+    </ul>
+  </div>
+
+  <!-- Day variation explanation & Adhik Maas -->
+  <div class="card">
+    <h2>📅 Why Do Nepali Months Have Variable Days?</h2>
+    <p>The Bikram Sambat is a <strong>lunisolar calendar</strong> – months follow the moon’s phases (new moon to new moon), while the year stays aligned with the solar cycle. A lunar month is about 29.53 days, so BS months alternate between 29 and 32 days. To prevent seasonal drift, an <strong>intercalary month (Adhik Maas)</strong> is added every 32–33 months. This extra month (also called “Mala Maas”) does not have any festivals and is considered spiritually significant for donations and prayers.</p>
+    <p>For accurate date conversion between BS and AD, relying on a trusted tool is essential because of these complex adjustments.</p>
+  </div>
+
+  <!-- Conversion call-to-action (internal linking to date converter) -->
+  <div class="card">
+    <h2>🔄 Need to Convert Nepali Months to Gregorian Dates?</h2>
+    <p>Whether you want to know your Nepali birthday in AD, or verify a festival date for travel, our free <strong>BS to AD Converter</strong> gives instant, accurate results. It's built on official Nepali calendar data and handles Adhik Maas automatically.</p>
+    <div style="text-align: center;">
+      <a href="https://converter.thenepal.io/date-converter/" class="big-btn" target="_blank" rel="noopener">📆 Convert BS to AD Now →</a>
+    </div>
+  </div>
+
+  <!-- FAQ for extra SEO & rich snippets -->
+  <div class="card">
+    <h2>❓ Frequently Asked Questions About Nepali Months</h2>
+    <div style="margin-bottom: 1.2rem;">
+      <h3 style="font-size:1.2rem;">How many months are in the Nepali calendar?</h3>
+      <p>There are 12 standard months in Bikram Sambat, plus an occasional extra month (Adhik Maas) every 2–3 years.</p>
+    </div>
+    <div style="margin-bottom: 1.2rem;">
+      <h3 style="font-size:1.2rem;">Which Nepali month is Dashain in?</h3>
+      <p>Dashain falls in <strong>Ashwin</strong> (also called Ashoj) – typically from late Ashwin to early Kartik.</p>
+    </div>
+    <div style="margin-bottom: 1.2rem;">
+      <h3 style="font-size:1.2rem;">What is the Nepali month for Tihar?</h3>
+      <p>Tihar (Deepawali) is celebrated in <strong>Kartik</strong>, the seventh month of the BS calendar.</p>
+    </div>
+    <div>
+      <h3 style="font-size:1.2rem;">What is the first Nepali month?</h3>
+      <p>Baishakh is the first month of Bikram Sambat. The Nepali New Year starts on Baishakh 1.</p>
+    </div>
+  </div>
+
+  <!-- Related Tools (internal links to other converters) -->
+  <div class="card">
+    <h2>🛠️ More Nepali Tools You Might Find Useful</h2>
+    <p>Complete your Nepali digital toolkit with these fast, free converters.</p>
+    <div class="related-tools">
+      <a href="https://converter.thenepal.io/date-converter/" class="tool-link" target="_blank" rel="noopener">📅 BS/AD Date Converter</a>
+      <a href="https://converter.thenepal.io/currency/usd-to-npr" class="tool-link" target="_blank" rel="noopener">💱 USD to NPR</a>
+      <a href="https://converter.thenepal.io/preeti-to-unicode-converter/" class="tool-link" target="_blank" rel="noopener">✍️ Preeti → Unicode</a>
+      <a href="https://converter.thenepal.io/unicode-to-preeti-converter/" class="tool-link" target="_blank" rel="noopener">🔄 Unicode → Preeti</a>
+    </div>
+    <p style="margin-top: 1rem;">✨ Bookmark these tools — they’re designed for accuracy and speed, used by students, writers, travelers, and professionals across Nepal and beyond.</p>
+  </div>
+
+  <!-- Author/E-E-A-T note -->
+  <footer>
+    <p>© 2025 Nepal Tools — Authoritative guide to <strong>Nepali months</strong> and the Bikram Sambat calendar. Written with consultation of Nepali Patro Panchanga and Nepal Panchanga Nirnayak Samiti.</p>
+    <p>📖 References: Nepali calendar data, Malla period chronicles, and astronomical tables from the official BS/AD conversion standard.</p>
+    <p>🔗 Explore more: <a href="https://converter.thenepal.io/date-converter/">BS/AD Converter</a> | <a href="https://converter.thenepal.io/currency/usd-to-npr">USD/NPR</a> | <a href="https://converter.thenepal.io/preeti-to-unicode-converter/">Preeti to Unicode</a></p>
+  </footer>
+</div>
+</body>
+  <div id="footer"></div>
+  <script src="/components.js"></script>
+</html>
