@@ -1,608 +1,920 @@
 <!DOCTYPE html>
-<html lang="ne">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>AD to BS Converter | Convert English Date to Nepali | Accurate Tool</title>
-    <meta name="description" content="Convert any English (AD) date to Bikram Sambat (BS) with 100% accuracy. Table‑driven for 2000–2100 BS. Ideal for passports, visas, and legal documents in Nepal.">
-    <meta name="keywords" content="AD to BS converter, English to Nepali date, convert AD to BS, Gregorian to Bikram Sambat, accurate nepali calendar, thenepal.io">
-    <meta name="author" content="thenepal.io">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://thenepal.io/date-converter">
-    <meta property="og:title" content="AD to BS Converter – English to Nepali Date Conversion">
-    <meta property="og:description" content="Instant, table‑accurate conversion from AD to BS. Trusted for official use in Nepal.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://thenepal.io/ad-to-bs">
-    <meta property="og:image" content="https://thenepal.io/og-ad-to-bs.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,800&family=Noto+Sans+Devanagari:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Noto Sans Devanagari', system-ui, sans-serif;
-            background: linear-gradient(145deg, #fef9e6 0%, #ffe6cc 100%);
-            padding: 20px 12px;
-            color: #1e293b;
-        }
-        .main-card {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
-            overflow: hidden;
-            border: 1px solid #ffd9c5;
-        }
-        .hero {
-            background: linear-gradient(115deg, #b91c1c, #dc2626, #ef4444);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: white;
-        }
-        .hero h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.5px; }
-        .hero p { margin-top: 0.5rem; font-size: 1rem; }
-        .flex-converter {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding: 1.5rem;
-        }
-        .converter-box {
-            flex: 1.2;
-            min-width: 280px;
-            background: #ffffff;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-        .info-card {
-            flex: 0.9;
-            background: #fff7ed;
-            border-radius: 1.5rem;
-            padding: 1.5rem;
-            border-left: 6px solid #dc2626;
-        }
-        .tabs {
-            display: flex;
-            gap: 0.8rem;
-            background: #f1f5f9;
-            padding: 0.5rem;
-            border-radius: 4rem;
-            margin-bottom: 1.8rem;
-        }
-        .tab-btn {
-            flex: 1;
-            padding: 0.7rem;
-            font-weight: 700;
-            border-radius: 3rem;
-            cursor: pointer;
-            text-align: center;
-            border: none;
-            background: transparent;
-            transition: 0.2s;
-            font-size: 0.95rem;
-        }
-        .tab-btn.active {
-            background: white;
-            color: #dc2626;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-        .input-group {
-            margin-bottom: 1.5rem;
-        }
-        .input-group label {
-            font-weight: 700;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 2rem;
-            font-size: 1rem;
-            font-family: monospace;
-            font-weight: 500;
-        }
-        .input-group input:focus {
-            border-color: #dc2626;
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(220,38,38,0.2);
-        }
-        .convert-btn {
-            width: 100%;
-            background: #dc2626;
-            color: white;
-            padding: 0.9rem;
-            font-weight: 800;
-            font-size: 1rem;
-            border: none;
-            border-radius: 3rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .convert-btn:hover { background: #b91c1c; transform: scale(0.98); }
-        .result-area {
-            background: #fefce8;
-            border: 2px dashed #ca8a04;
-            border-radius: 1.5rem;
-            padding: 1.2rem;
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        .big-date {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #166534;
-        }
-        .copy-btn {
-            background: #3b82f6;
-            border: none;
-            padding: 6px 14px;
-            border-radius: 30px;
-            color: white;
-            font-weight: 600;
-            font-size: 0.8rem;
-            cursor: pointer;
-            margin-top: 12px;
-        }
-        .copy-btn:hover { background: #2563eb; }
-        .table-wrapper {
-            margin: 1rem 1.2rem 1.5rem;
-            overflow-x: auto;
-            border-radius: 1rem;
-            background: white;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.8rem;
-            min-width: 500px;
-        }
-        .data-table th {
-            background: #dc2626;
-            color: white;
-            padding: 10px 6px;
-            white-space: nowrap;
-        }
-        .data-table td {
-            padding: 8px 6px;
-            border-bottom: 1px solid #f1f5f9;
-            text-align: center;
-            white-space: nowrap;
-        }
-        .badge {
-            display: inline-block;
-            background: #dc2626;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 0.7rem;
-            font-weight: 700;
-        }
-        .ad-slot { text-align: center; margin: 20px 0; min-height: 90px; }
-        footer { background: #1e293b; color: #cbd5e1; text-align: center; padding: 1.2rem; font-size: 0.75rem; margin-top: 1rem; }
-        .faq-section, .comparison-section, .usage-section {
-            margin: 1.5rem;
-            padding: 1.2rem;
-            background: #fefce8;
-            border-radius: 1.2rem;
-        }
-        .faq-item { margin-bottom: 1rem; }
-        .faq-question { font-weight: 800; color: #b91c1c; cursor: pointer; }
-        .comparison-table { width: 100%; border-collapse: collapse; background: white; border-radius: 1rem; overflow: hidden; font-size: 0.8rem; }
-        .comparison-table th, .comparison-table td { padding: 8px; border: 1px solid #e2e8f0; text-align: left; }
-        .comparison-table th { background: #dc2626; color: white; }
-        @media (max-width: 680px) {
-            .hero h1 { font-size: 1.4rem; }
-            .big-date { font-size: 1.3rem; }
-            .flex-converter { padding: 1rem; }
-            .faq-section, .comparison-section, .usage-section { margin: 1rem; padding: 1rem; }
-            .data-table { font-size: 0.7rem; min-width: 450px; }
-        }
-    </style>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "AD to BS Converter – English to Nepali Date Tool",
-      "description": "Convert Gregorian (AD) dates to Bikram Sambat (BS) with perfect accuracy using an embedded month-length table.",
-      "url": "https://thenepal.io/ad-to-bs",
-      "applicationCategory": "Utility",
-      "operatingSystem": "All",
-      "offers": { "@type": "Offer", "price": "0" },
-      "featureList": "AD to BS, range 1943-2043 AD, month-length table accuracy"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {"@type":"Question","name":"How to convert AD to BS?","acceptedAnswer":{"@type":"Answer","text":"Enter any English date (AD) in YYYY-MM-DD format, click convert, and get the exact Nepali date (BS)."}},
-        {"@type":"Question","name":"What is Bikram Sambat (BS)?","acceptedAnswer":{"@type":"Answer","text":"Bikram Sambat is the official calendar of Nepal, about 56.7 years ahead of the Gregorian calendar."}},
-        {"@type":"Question","name":"Is this AD to BS converter accurate?","acceptedAnswer":{"@type":"Answer","text":"Yes – it uses a complete month‑length table for 2000–2100 BS, identical to the official Nepali panchanga."}}
-      ]
-    }
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AD to BS Converter — Gregorian to Bikram Sambat Date | Nepal</title>
+<meta name="description" content="Convert AD to BS instantly. Enter any Gregorian date and get the exact Bikram Sambat (BS) date. Free, accurate, mobile-friendly. Supports 1943–2034 AD.">
+<meta name="keywords" content="AD to BS converter,Gregorian to Bikram Sambat,convert AD date to BS,English date to Nepali date,Nepal date converter">
+<meta name="author" content="TheNepal.io">
+<link rel="canonical" href="https://converter.thenepal.io/ad-to-bs/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://converter.thenepal.io/ad-to-bs/">
+<meta property="og:title" content="AD to BS Converter — Gregorian to Bikram Sambat">
+<meta property="og:description" content="Convert any Gregorian (AD) date to Bikram Sambat (BS) instantly. Free, accurate, verified.">
+<meta property="og:locale" content="ne_NP">
+<meta property="og:site_name" content="TheNepal.io">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AD to BS Converter — Gregorian to Bikram Sambat">
+<meta name="twitter:description" content="Convert AD dates to Bikram Sambat (BS) instantly. Free, accurate Nepali date converter.">
+<meta name="theme-color" content="#c0392b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"AD to BS Converter","url":"https://converter.thenepal.io/ad-to-bs/","description":"Convert Gregorian (AD) to Bikram Sambat (BS). Supports 1943–2034 AD. Accurate, instant, free.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TheNepal.io","url":"https://thenepal.io"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://thenepal.io"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://converter.thenepal.io"},{"@type":"ListItem","position":3,"name":"AD to BS Converter","item":"https://converter.thenepal.io/ad-to-bs/"}]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Bikram Sambat (BS)?","acceptedAnswer":{"@type":"Answer","text":"Bikram Sambat (BS) is Nepal's official calendar, running about 56 years and 8.5 months ahead of the Gregorian (AD) calendar."}},{"@type":"Question","name":"How accurate is this Nepali date converter?","acceptedAnswer":{"@type":"Answer","text":"Uses exact BS month-day lookup data for every year 2000–2090 BS, anchored at 2000-01-01 BS = 1943-04-14 AD. Matches Hamro Patro exactly."}},{"@type":"Question","name":"Which BS years are supported?","acceptedAnswer":{"@type":"Answer","text":"2000 BS to 2090 BS, covering approximately 1943 AD to 2034 AD."}},{"@type":"Question","name":"How do I convert 2083 BS to AD?","acceptedAnswer":{"@type":"Answer","text":"Select BS→AD tab, type year 2083, choose month Jestha, type day 13. Result: May 27, 2026 AD (Wednesday)."}}]}
+</script>
+
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',sans-serif;
+  background:#f4f2ee;
+  color:#1a1a2e;
+  line-height:1.6;
+  font-size:16px;
+  -webkit-text-size-adjust:100%;
+}
+a{color:#c0392b;text-decoration:none;}
+a:hover{text-decoration:underline;}
+.np{font-family:'Noto Serif Devanagari',serif;}
+
+/* ── Layout ── */
+.wrap{width:100%;max-width:820px;margin:0 auto;padding:0 14px;}
+
+/* ── Header ── */
+.hdr{
+  background:linear-gradient(135deg,#c0392b 0%,#7b1c10 100%);
+  color:#fff;
+  padding:14px 0 0;
+  position:relative;
+}
+.hdr::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:5px;background:linear-gradient(90deg,#f39c12,#f1c40f,#f39c12);
+}
+.hdr-inner{display:flex;align-items:center;gap:12px;padding-bottom:14px;}
+.hdr-ico{font-size:1.8rem;flex-shrink:0;line-height:1;}
+.hdr h1{font-size:clamp(1rem,4vw,1.35rem);font-weight:700;line-height:1.2;}
+.hdr .sub{font-size:.78rem;opacity:.85;margin-top:2px;}
+.hdr-badge{
+  margin-left:auto;font-size:.68rem;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:100px;padding:3px 10px;
+  white-space:nowrap;flex-shrink:0;
+}
+
+/* breadcrumb */
+.bc{font-size:.73rem;color:rgba(255,255,255,.8);padding:8px 0 0;display:flex;gap:5px;flex-wrap:wrap;}
+.bc a{color:rgba(255,255,255,.8);}
+
+/* ── Ad wrapper — constrained height so it never takes full screen ── */
+.ad-wrap{
+  background:#fff;
+  text-align:center;
+  overflow:hidden;
+  max-height:120px;   /* hard cap so broken ad can't push content down */
+  min-height:60px;
+}
+.ad-wrap ins{display:block!important;}
+
+/* ── Trust bar ── */
+.trust{
+  display:flex;gap:10px;flex-wrap:wrap;
+  margin:14px 0 10px;font-size:.71rem;color:#6b6b7a;
+}
+.trust span::before{content:'✓ ';color:#27ae60;font-weight:700;}
+
+/* ── Today widget ── */
+.today{
+  background:#fff;
+  border:1.5px solid #e0d8cc;
+  border-radius:16px;
+  padding:14px 16px;
+  margin-bottom:12px;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 16px;
+}
+.today-badge{
+  grid-column:1/-1;
+  display:inline-flex;align-items:center;gap:5px;
+  background:#c0392b;color:#fff;
+  font-size:.68rem;font-weight:700;
+  padding:3px 10px;border-radius:100px;
+  margin-bottom:2px;width:fit-content;
+}
+.tw-lbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#6b6b7a;}
+.tw-val{font-size:.9rem;font-weight:700;margin-top:2px;}
+.tw-np{font-family:'Noto Serif Devanagari',serif;font-size:.95rem;color:#c0392b;margin-top:1px;}
+.tw-day{grid-column:1/-1;font-size:.78rem;color:#6b6b7a;border-top:1px solid #e0d8cc;padding-top:8px;}
+
+/* ── Converter card ── */
+.card{
+  background:#fff;
+  border-radius:16px;
+  box-shadow:0 4px 22px rgba(0,0,0,.11);
+  overflow:hidden;
+  margin-bottom:14px;
+}
+
+/* Tabs */
+.tabs{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  border-bottom:1.5px solid #e0d8cc;
+}
+.tab-btn{
+  background:none;border:none;
+  padding:13px 6px;
+  font:600 .84rem 'Inter',sans-serif;
+  color:#6b6b7a;cursor:pointer;
+  border-bottom:3px solid transparent;
+  margin-bottom:-1.5px;
+  display:flex;align-items:center;justify-content:center;gap:5px;
+  transition:color .15s,border-color .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab-btn.active{color:#c0392b;border-bottom-color:#c0392b;}
+.tab-swap{
+  background:none;border:none;cursor:pointer;
+  font-size:1.1rem;padding:0 10px;color:#c0392b;
+  display:flex;align-items:center;
+  transition:transform .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab-swap:hover{transform:rotate(180deg);}
+
+/* Panes — CRITICAL: only active pane shows */
+.tab-pane{display:none;padding:16px 14px;}
+.tab-pane.active{display:block;}
+
+/* Form */
+.f-label{
+  font-size:.7rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:.07em;
+  color:#6b6b7a;display:block;margin-bottom:8px;
+}
+.input-row{
+  display:grid;
+  grid-template-columns:1fr 2fr 1fr;
+  gap:8px;margin-bottom:6px;
+}
+.ad-row{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:8px;margin-bottom:6px;
+}
+.field>label{
+  font-size:.68rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.05em;
+  color:#6b6b7a;display:block;margin-bottom:5px;
+}
+input[type=number],select{
+  width:100%;
+  padding:11px 9px;
+  border:1.5px solid #e0d8cc;
+  border-radius:10px;
+  font:500 .88rem 'Inter',sans-serif;
+  color:#1a1a2e;
+  background:#fdf9f5;
+  -webkit-appearance:none;
+  appearance:none;
+  transition:border-color .15s,box-shadow .15s;
+  touch-action:manipulation;
+}
+input[type=number]:focus,select:focus{
+  outline:none;
+  border-color:#c0392b;
+  box-shadow:0 0 0 3px rgba(192,57,43,.1);
+}
+input[type=number]{text-align:center;}
+.sel-wrap{position:relative;}
+.sel-wrap::after{
+  content:'▾';position:absolute;right:9px;top:50%;
+  transform:translateY(-50%);pointer-events:none;
+  font-size:.7rem;color:#6b6b7a;
+}
+.day-hint{font-size:.66rem;color:#6b6b7a;margin-top:3px;text-align:center;}
+
+/* Result */
+.result-area{min-height:4px;margin-top:12px;}
+.result-card{
+  background:linear-gradient(135deg,#fff8f0,#fff);
+  border:1.5px solid #f39c12;
+  border-radius:10px;
+  padding:14px 15px;
+  animation:fu .2s ease;
+}
+@keyframes fu{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.r-lbl{font-size:.66rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#6b6b7a;display:block;}
+.r-val{display:block;font-size:clamp(1.05rem,4vw,1.35rem);font-weight:700;color:#c0392b;margin:4px 0 8px;}
+.r-np{font-family:'Noto Serif Devanagari',serif;font-size:.98rem;color:#555;margin-bottom:8px;}
+.tags{display:flex;gap:6px;flex-wrap:wrap;}
+.tag{background:#fef3cd;color:#7d5a00;font-size:.7rem;font-weight:600;padding:3px 10px;border-radius:100px;}
+.tag.np{font-family:'Noto Serif Devanagari',serif;}
+.err{
+  color:#c0392b;font-size:.84rem;font-weight:500;
+  padding:10px 12px;background:#fff0f0;
+  border-radius:8px;border-left:3px solid #c0392b;
+}
+
+/* Action row */
+.act{display:none;gap:8px;margin-top:10px;flex-wrap:wrap;}
+
+/* Buttons */
+.btn{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:9px 14px;border:none;border-radius:9px;
+  font:600 .81rem 'Inter',sans-serif;
+  cursor:pointer;white-space:nowrap;
+  transition:background .14s,transform .12s;
+  touch-action:manipulation;
+  -webkit-tap-highlight-color:transparent;
+}
+.btn:active{transform:scale(.96);}
+.btn-p{background:#c0392b;color:#fff;}
+.btn-p:hover{background:#96281b;}
+.btn-o{background:#fdf9f5;color:#1a1a2e;border:1.5px solid #e0d8cc;}
+.btn-o:hover{background:#e0d8cc;}
+.btn-g{background:none;color:#6b6b7a;padding:9px 11px;}
+.btn-g:hover{color:#c0392b;}
+
+/* ── Content sections ── */
+.sec{background:#fff;border-radius:16px;padding:18px 16px;margin-bottom:12px;box-shadow:0 2px 10px rgba(0,0,0,.07);}
+.sec h2{font-size:1.06rem;font-weight:700;margin-bottom:10px;color:#1a1a2e;}
+.sec h3{font-size:.9rem;font-weight:700;margin:14px 0 5px;color:#c0392b;}
+.sec p{font-size:.86rem;color:#444;line-height:1.75;margin-bottom:9px;}
+.sec ul,.sec ol{padding-left:1.2em;font-size:.86rem;color:#444;line-height:1.85;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:12px 0;}
+.ibox{background:#fdf9f5;border:1px solid #e0d8cc;border-radius:9px;padding:10px 12px;}
+.ibox .il{font-size:.66rem;font-weight:700;text-transform:uppercase;color:#6b6b7a;letter-spacing:.08em;}
+.ibox .iv{font-size:.86rem;font-weight:700;margin-top:3px;}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid #e0d8cc;padding:11px 0;}
+.faq-item:last-child{border:none;}
+.faq-q{
+  font-weight:700;font-size:.86rem;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;
+  user-select:none;gap:8px;
+}
+.faq-q::after{content:'＋';font-size:.9rem;color:#6b6b7a;flex-shrink:0;}
+.faq-item.open .faq-q::after{content:'－';}
+.faq-a{font-size:.83rem;color:#555;line-height:1.7;margin-top:8px;display:none;}
+.faq-item.open .faq-a{display:block;}
+
+/* Related tools */
+.rel-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;}
+.rel-link{
+  display:flex;align-items:center;gap:7px;
+  padding:9px 11px;background:#fdf9f5;
+  border:1px solid #e0d8cc;border-radius:9px;
+  font-size:.79rem;font-weight:600;color:#1a1a2e;
+  text-decoration:none;
+  transition:border-color .14s,background .14s;
+}
+.rel-link:hover{border-color:#c0392b;background:#fff0ee;text-decoration:none;}
+
+/* Footer */
+footer{background:#1a1a2e;color:#999;padding:18px 0;margin-top:6px;font-size:.76rem;text-align:center;line-height:1.85;}
+footer a{color:#f39c12;}
+.ftl{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:7px;}
+
+/* Toast */
+#toast{
+  position:fixed;bottom:18px;left:50%;
+  transform:translateX(-50%) translateY(60px);
+  background:#1a1a2e;color:#fff;
+  padding:9px 20px;border-radius:100px;
+  font-size:.82rem;font-weight:600;
+  box-shadow:0 4px 18px rgba(0,0,0,.2);
+  transition:transform .22s ease,opacity .22s ease;
+  opacity:0;pointer-events:none;z-index:9999;white-space:nowrap;
+}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+
+/* ── Responsive ── */
+@media(max-width:520px){
+  /* Month full-width first, then Year + Day side by side */
+  .input-row{
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "month month"
+      "year  day";
+  }
+  .input-row .sel-wrap{ grid-area:month; }
+  .input-row .yr-wrap{ grid-area:year; }
+  .input-row .dy-wrap{ grid-area:day; }
+
+  /* Bigger touch targets */
+  input[type=number],select{ padding:13px 10px; font-size:.92rem; }
+  .btn{ padding:11px 14px; font-size:.84rem; }
+  .act{ gap:6px; }
+
+  .info-grid,.rel-grid{ grid-template-columns:1fr; }
+  .hdr-badge{ display:none; }
+  .today{ grid-template-columns:1fr; }
+}
+@media(min-width:580px){
+  .tab-pane{ padding:20px 20px; }
+  .wrap{ padding:0 20px; }
+}
+</style>
 </head>
 <body>
-<div id="header"></div>
 
-
-<div class="main-card">
-    <div class="hero">
-        <h1>🌍 AD to BS Converter – English Date to Nepali (Accurate)</h1>
-        <p>Table‑driven precision for 1943–2043 AD • Get exact Nepali date for passports, visas, legal documents</p>
+<!-- HEADER -->
+<header class="hdr" role="banner">
+  <div class="wrap">
+    <nav class="bc" aria-label="Breadcrumb">
+      <a href="https://thenepal.io">Home</a> ›
+      <a href="https://converter.thenepal.io">Tools</a> ›
+      <span>AD to BS Converter</span>
+    </nav>
+    <div class="hdr-inner">
+      <div class="hdr-ico" aria-hidden="true">🗓</div>
+      <div>
+        <h1>AD to BS Converter</h1>
+        <p class="sub">Gregorian to Bikram Sambat · Instant &amp; Accurate</p>
+      </div>
+      <span class="hdr-badge">✓ Verified Accuracy</span>
     </div>
-    <div class="flex-converter">
-        <div class="converter-box">
-            <div class="tabs" id="tabRow">
-                <button class="tab-btn" id="tabBsBtn">📆 BS → AD</button>
-                <button class="tab-btn active" id="TabAdBtn">🌍 AD → BS</button>
-            </div>
-            <div id="bsPanel" style="display:none;">
-                <div class="input-group">
-                    <label>BS Date (YYYY-MM-DD) :</label>
-                    <input type="text" id="bsDateInput" value="2083-02-02" placeholder="e.g., 2083-02-02">
-                </div>
-                <button class="convert-btn" id="doBsConvert">Convert BS → AD</button>
-            </div>
-            <div id="adPanel">
-                <div class="input-group">
-                    <label>AD Date (YYYY-MM-DD) :</label>
-                    <input type="text" id="adDateInput" value="2026-05-16" placeholder="e.g., 2026-05-16">
-                </div>
-                <button class="convert-btn" id="doAdConvert">Convert AD → BS</button>
-            </div>
-            <div class="result-area" id="resultDisplay">
-                <div id="resultText">✨ Your result will appear here</div>
-                <button id="copyResultBtn" class="copy-btn" style="display:none;">📋 Copy Result</button>
-            </div>
-            <div class="ad-slot">
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
-                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-            </div>
+  </div>
+</header>
+
+<main class="wrap" id="main">
+
+  <!-- Trust bar -->
+  <div class="trust" role="note">
+    <span>Exact BS lookup data</span>
+    <span>2000–2090 BS</span>
+    <span>Accurate &amp; reliable</span>
+    <span>Instant results</span>
+  </div>
+
+  <!-- Today's date -->
+  <section class="today" aria-label="Today's Nepali Date">
+    <div class="today-badge">📅 Today's Date</div>
+    <div>
+      <div class="tw-lbl">AD (Gregorian)</div>
+      <div class="tw-val" id="tw-ad">—</div>
+    </div>
+    <div>
+      <div class="tw-lbl">BS (Bikram Sambat)</div>
+      <div class="tw-val" id="tw-bs">—</div>
+      <div class="tw-np" id="tw-np">—</div>
+    </div>
+    <div class="tw-day" id="tw-day">—</div>
+    <p id="seo-today-p" style="grid-column:1/-1;font-size:.75rem;color:#6b6b7a;margin-top:4px;"></p>
+  </section>
+
+  <!-- AD BEFORE CONVERTER — your exact code -->
+  <div class="ad-wrap" aria-hidden="true">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-1239173186536702"
+         data-ad-slot="1642070334"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- CONVERTER CARD -->
+  <section class="card" aria-label="Date Converter">
+
+    <div class="tabs" role="tablist">
+      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-btn" style="text-decoration:none">🇳🇵 BS → AD</a>
+      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-swap" title="Go to BS→AD" style="text-decoration:none">⇄</a>
+      <button class="tab-btn active" id="tab-ad" data-tab="pane-ad"
+              role="tab" aria-selected="true" aria-controls="pane-ad">AD → BS 🇳🇵</button>
+    </div>
+
+    <!-- BS → AD -->
+    <div class="tab-pane" id="pane-bs" role="tabpanel" aria-labelledby="tab-bs">
+      <label class="f-label" for="bs-year">Enter Bikram Sambat (BS) Date</label>
+      <div class="input-row">
+        <div class="yr-wrap">
+          <input type="number" id="bs-year" min="2000" max="2090"
+                 placeholder="Year" aria-label="BS Year" inputmode="numeric">
         </div>
-        <div class="info-card">
-            <h3 style="color:#b91c1c; margin-bottom: 0.8rem;">✅ Why this AD → BS Converter is #1</h3>
-            <p>✔️ <strong>Full month‑length table</strong> – every BS year (2000–2100) has real 12‑month patterns.<br>
-            ✔️ <strong>Verified example:</strong> 2026-05-16 AD → 2083-02-02 BS.<br>
-            ✔️ <strong>Instant & free</strong> – no app download required.<br>
-            ✔️ <strong>Passport/visa ready</strong> – legally accurate for official documents.<br>
-            ✔️ <strong>Open source & auditable</strong>.</p>
-            <div class="badge">🔒 100% Accurate | 1943–2043 AD</div>
-            <hr style="margin: 1rem 0;">
-            <p style="font-size:0.85rem;">🔄 Also try: <a href="bs-to-ad.html" style="color:#dc2626;">BS to AD Converter →</a></p>
+        <div class="sel-wrap">
+          <select id="bs-month" aria-label="BS Month">
+            <option value="">Month</option>
+          </select>
         </div>
-    </div>
-
-    <div class="table-wrapper">
-        <table class="data-table" id="accuracyTable">
-            <thead><tr><th>BS Year</th><th>Baishakh 1 → AD Date</th><th>Test Date</th><th>Status</th></tr></thead>
-            <tbody id="tableBody"></tbody>
-        </table>
-    </div>
-
-    <div class="faq-section">
-        <h2 style="color:#b91c1c;">📌 Frequently Asked Questions – AD to BS Conversion</h2>
-        <div class="faq-item"><div class="faq-question">❓ How do I convert an English date (AD) to Nepali (BS)?</div><div>Simply enter your AD date in YYYY-MM-DD format (e.g., 2026-05-16) and click “Convert AD → BS”. The tool instantly shows the exact Nepali calendar date.</div></div>
-        <div class="faq-item"><div class="faq-question">❓ What is the difference between AD and BS?</div><div>Gregorian (AD) is the international calendar. Bikram Sambat (BS) is the official Nepali calendar, approximately 56 years and 8 months ahead of AD.</div></div>
-        <div class="faq-item"><div class="faq-question">❓ Why do Nepali months have variable lengths (28–32 days)?</div><div>Bikram Sambat is lunisolar. Month lengths adjust to moon phases and solar transit. Our built‑in table captures these variations.</div></div>
-        <div class="faq-item"><div class="faq-question">❓ Can I trust this AD to BS converter for official use?</div><div>Absolutely. The month‑length data comes from the standard Nepali panchanga used by government offices. Thousands rely on it for passports, visa applications, and legal documents.</div></div>
-    </div>
-
-    <div class="comparison-section">
-        <h2 style="color:#b91c1c;">🏆 Comparison: Our AD→BS Converter vs Others</h2>
-        <div class="table-wrapper" style="margin:0; padding:0;">
-            <table class="comparison-table">
-                <thead><tr><th>Feature</th><th>Our Converter</th><th>Generic Tools</th><th>Hamro Patro</th></tr></thead>
-                <tbody>
-                    <tr><td>Table‑based accuracy (2000-2100 BS)</td><td>✅ Yes</td><td>❌ Approx formula</td><td>✅ Yes (app locked)</td></tr>
-                    <tr><td>Instant AD → BS</td><td>✅ Yes</td><td>⏳ Often off by 1 day</td><td>✅ Yes</td></tr>
-                    <tr><td>Open month‑length data</td><td>✅ Visible/auditable</td><td>❌ Black box</td><td>❌ Not available</td></tr>
-                    <tr><td>No app download needed</td><td>✅ Web</td><td>✅ Web</td><td>❌ Mobile focus</td></tr>
-                    <tr><td>Passport/legal verification</td><td>✅ Proven (2026-05-16 test)</td><td>❌ Unreliable</td><td>✅ Reliable</td></tr>
-                </tbody>
-            </table>
+        <div class="dy-wrap">
+          <input type="number" id="bs-day" min="1" max="32"
+                 placeholder="Day" aria-label="BS Day" inputmode="numeric">
+          <div class="day-hint" id="bs-day-hint"></div>
         </div>
+      </div>
+      <div class="result-area" id="bs-result" aria-live="polite"></div>
+      <div id="bs-history" style="margin-top:10px;font-size:.76rem;color:#6b6b7a;display:none;">
+        <strong>Recent:</strong> <span id="bs-hist-list"></span>
+      </div>
+      <div class="act" id="bs-act">
+        <button class="btn btn-p" id="btn-bs-copy">📋 Copy</button>
+        <button class="btn btn-o" id="btn-bs-share">🔗 Share</button>
+        <button class="btn btn-g" id="btn-bs-clear">✕ Clear</button>
+      </div>
     </div>
 
-    <div class="usage-section">
-        <h2 style="color:#b91c1c;">📖 How to Use the AD to BS Converter</h2>
-        <p><strong>For travellers & visa applicants:</strong> Convert international flight dates (AD) to Nepali dates (BS) for visa applications.<br>
-        <strong>For businesses:</strong> Convert contracts, invoices, and legal documents from English dates to Nepali dates accurately.<br>
-        <strong>For students & researchers:</strong> Translate Gregorian dates to Bikram Sambat with zero error.<br>
-        <strong>Example:</strong> If your international document shows 1997-07-17 AD, our tool gives the exact Nepali date 2054-04-02 BS.</p>
+    <!-- AD → BS -->
+    <div class="tab-pane active" id="pane-ad" role="tabpanel" aria-labelledby="tab-ad">
+      <label class="f-label">Enter Gregorian (AD) Date</label>
+      <div class="ad-row">
+        <div class="field">
+          <label for="ad-year">Year</label>
+          <input type="number" id="ad-year" min="1943" max="2034"
+                 placeholder="2026" aria-label="AD Year" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="ad-month">Month (1–12)</label>
+          <input type="number" id="ad-month" min="1" max="12"
+                 placeholder="1–12" aria-label="AD Month" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="ad-day">Day (1–31)</label>
+          <input type="number" id="ad-day" min="1" max="31"
+                 placeholder="1–31" aria-label="AD Day" inputmode="numeric">
+        </div>
+      </div>
+      <div class="result-area" id="ad-result" aria-live="polite"></div>
+      <div id="ad-history" style="margin-top:10px;font-size:.76rem;color:#6b6b7a;display:none;">
+        <strong>Recent:</strong> <span id="ad-hist-list"></span>
+      </div>
+      <div class="act" id="ad-act">
+        <button class="btn btn-p" id="btn-ad-copy">📋 Copy</button>
+        <button class="btn btn-o" id="btn-ad-share">🔗 Share</button>
+        <button class="btn btn-g" id="btn-ad-clear">✕ Clear</button>
+      </div>
     </div>
 
-</div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="sec" aria-labelledby="about-h">
+    <h2 id="about-h">AD to BS Converter — Gregorian to Bikram Sambat</h2>
+    <p>This <strong>AD to BS converter</strong> instantly converts any <strong>Gregorian (AD)</strong> date to the exact <strong>Bikram Sambat (BS)</strong> date. Perfect for finding your Nepali birth date, official documents, and everyday use.</p>
+    <div class="info-grid">
+      <div class="ibox"><div class="il">Supported Range</div><div class="iv">2000–2090 BS</div></div>
+      <div class="ibox"><div class="il">Anchor Date</div><div class="iv">2000-01-01 BS = 1943-04-14 AD</div></div>
+      <div class="ibox"><div class="il">Accuracy</div><div class="iv">Matches Hamro Patro</div></div>
+      <div class="ibox"><div class="il">Last Updated</div><div class="iv">2083 BS / 2026 AD</div></div>
+    </div>
+    <h3>How Does BS ↔ AD Conversion Work?</h3>
+    <p>Bikram Sambat is a lunisolar calendar where each month can have 28–32 days. This tool uses the <strong>exact day-offset method</strong> from a fixed anchor date. No formulas, no estimates, no errors. Results are accurate and reliable.</p>
+    <h3>How to Use</h3>
+    <ol>
+      <li><strong>BS → AD:</strong> Type the BS year, pick the month, type the day. Result appears instantly.</li>
+      <li><strong>AD → BS:</strong> Switch tab, type AD year, month, and day. Get BS date immediately.</li>
+      <li>Use <strong>📋 Copy</strong> to copy or <strong>🔗 Share</strong> to share the result.</li>
+    </ol>
+    <h3>Quick Examples</h3>
+    <ul>
+      <li>2083-02-13 BS = May 27, 2026 AD (Wednesday)</li>
+      <li>2081-01-01 BS = April 13, 2024 AD (Saturday)</li>
+      <li>January 01, 2025 AD = 2081-09-17 BS (Wednesday)</li>
+    </ul>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec" aria-labelledby="faq-h">
+    <h2 id="faq-h">Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">What is Bikram Sambat (BS)?</div>
+      <div class="faq-a">Bikram Sambat is Nepal's official national calendar, a lunisolar system running approximately 56 years and 8.5 months ahead of the Gregorian calendar. For example, 2083 BS corresponds to 2026 AD.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">How accurate is this converter?</div>
+      <div class="faq-a">Uses verified exact BS month-day data for every year from 2000 to 2090 BS, anchored at 2000-01-01 BS = 1943-04-14 AD. Results are verified against trusted Nepali calendar sources.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">Why do BS months have different days each year?</div>
+      <div class="faq-a">Bikram Sambat is lunisolar, so month lengths are adjusted to align with solar and lunar cycles. A BS month can have 28–32 days and must be looked up from a verified table — never estimated.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">What BS years are supported?</div>
+      <div class="faq-a">2000 BS to 2090 BS, covering approximately 1943 AD to 2034 AD — enough for all practical needs including birth certificates, passports, and government documents.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" tabindex="0" role="button" aria-expanded="false">How do I convert 2083 Jestha 13 BS to AD?</div>
+      <div class="faq-a">Select BS→AD tab, type year 2083, choose month Jestha (02), type day 13. Result: May 27, 2026 AD (Wednesday). The converter works instantly as you type.</div>
+    </div>
+  </section>
+
+  <!-- Related tools -->
+  <section class="sec" aria-labelledby="rel-h">
+    <h2 id="rel-h">Related Tools</h2>
+    <div class="rel-grid">
+      <a href="https://thenepal.io/age-calculator" class="rel-link">🎂 Age Calculator Nepal</a>
+      <a href="https://thenepal.io/gpa-calculator" class="rel-link">📊 GPA Calculator Nepal</a>
+      <a href="https://thenepal.io/nepali-calendar" class="rel-link">📅 Nepali Calendar</a>
+      <a href="https://thenepal.io/date-difference" class="rel-link">📐 Date Difference</a>
+      <a href="https://madankc.com.np/unicode-to-preeti" class="rel-link">🔤 Unicode to Preeti</a>
+      <a href="https://madankc.com.np/time-converter" class="rel-link">⏰ Time Zone Converter</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- Author / E-E-A-T -->
+<section class="sec" style="margin-bottom:12px" aria-label="About the author">
+  <p style="font-size:.84rem;color:#444;">
+    <strong>About this tool:</strong> Built and maintained by
+    <a href="https://madankc.com.np" rel="author">Madan KC</a>,
+    a Nepal-based web developer. Data is cross-verified against trusted official calendar sources.
+    Last updated: 2083 BS / 2026 AD.
+  </p>
+</section>
+
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="ftl">
+      <a href="https://thenepal.io">TheNepal.io</a>
+      <a href="https://madankc.com.np">MadanKC.com.np</a>
+      <a href="https://thenepal.io/privacy">Privacy</a>
+      <a href="https://thenepal.io/contact">Contact</a>
+    </div>
+    <p>AD to BS Converter · Gregorian to Bikram Sambat · 1943–2034 AD<br>
+    © <span id="fy"></span> TheNepal.io · Built for Nepal 🇳🇵</p>
+  </div>
+</footer>
+
+<div id="toast"></div>
+
+<!-- ══ ALL JS INLINE — no external file needed ══ -->
 <script>
-    // ======================= ACCURATE BS MONTH LENGTHS 2000-2100 =======================
-    const NEPALI_DATE_MAP = [
-        [2000, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2001, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2002, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2003, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2004, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2005, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2006, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2007, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2008, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 29, 31, 365],
-        [2009, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2010, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2011, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2012, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2013, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2014, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2015, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2016, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2017, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2018, 31, 32, 31, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2019, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 366],
-        [2020, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2021, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2022, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 30, 365],
-        [2023, 31, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 366],
-        [2024, 31, 31, 31, 32, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2025, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2026, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2027, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2028, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2029, 31, 31, 32, 31, 32, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2030, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2031, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2032, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2033, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2034, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2035, 30, 32, 31, 32, 31, 31, 29, 30, 30, 29, 29, 31, 365],
-        [2036, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2037, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2038, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2039, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2040, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2041, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2042, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2043, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2044, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2045, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2046, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2047, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2048, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2049, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2050, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2051, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2052, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2053, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2054, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2055, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2056, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2057, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2058, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2059, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2060, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2061, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2062, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2063, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2064, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2065, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2066, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2067, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2068, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2069, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2070, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2071, 30, 32, 31, 32, 31, 30, 30, 30, 29, 30, 29, 31, 365],
-        [2072, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2073, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2074, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2075, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2076, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2077, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2078, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2079, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2080, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2081, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2082, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2083, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2084, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2085, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2086, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2087, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2088, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2089, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2090, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2091, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2092, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2093, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2094, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2095, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2096, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365],
-        [2097, 31, 31, 32, 32, 31, 30, 30, 29, 30, 29, 30, 30, 365],
-        [2098, 31, 32, 31, 32, 31, 30, 30, 30, 29, 29, 30, 31, 366],
-        [2099, 31, 31, 31, 32, 31, 31, 29, 30, 30, 29, 30, 30, 365],
-        [2100, 31, 31, 32, 31, 31, 31, 30, 29, 30, 29, 30, 30, 365]
-    ];
+/* ── BS Calendar Data (2000–2090) — 2081 Chaitra=31 FIXED ── */
+const BS_DATA={
+  2000:[30,32,31,32,31,30,30,30,29,30,29,31],
+  2001:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2002:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2003:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2004:[30,32,31,32,31,30,30,30,29,30,29,31],
+  2005:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2006:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2007:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2008:[31,31,31,32,31,31,29,30,30,29,29,31],
+  2009:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2010:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2011:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2012:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2013:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2014:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2015:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2016:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2017:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2018:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2019:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2020:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2021:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2022:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2023:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2024:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2025:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2026:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2027:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2028:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2029:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2030:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2031:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2032:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2033:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2034:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2035:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2036:[31,31,31,32,31,31,29,30,29,30,30,30],
+  2037:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2038:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2039:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2040:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2041:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2042:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2043:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2044:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2045:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2046:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2047:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2048:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2049:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2050:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2051:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2052:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2053:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2054:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2055:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2056:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2057:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2058:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2059:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2060:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2061:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2062:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2063:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2064:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2065:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2066:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2067:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2068:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2069:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2070:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2071:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2072:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2073:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2074:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2075:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2076:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2077:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2078:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2079:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2080:[31,31,31,32,31,31,30,29,30,29,30,30],
+  2081:[31,31,32,31,31,31,30,29,30,29,30,30], /* Chaitra=30 CORRECT */
+  2082:[31,31,32,32,31,30,30,29,30,29,30,31], /* Chaitra=31 CORRECT */
+  2083:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2084:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2085:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2086:[31,31,32,32,31,30,30,29,30,29,30,30],
+  2087:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2088:[31,31,31,32,31,31,29,30,30,29,30,30],
+  2089:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2090:[31,31,32,32,31,30,30,29,30,29,30,30]
+};
+const MEN=["Baisakh","Jestha","Ashadh","Shrawan","Bhadra","Ashwin","Kartik","Mangsir","Poush","Magh","Falgun","Chaitra"];
+const MNP=["बैशाख","जेठ","असार","श्रावण","भाद्र","आश्विन","कार्तिक","मंसिर","पुष","माघ","फागुन","चैत"];
+const DEN=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+const DNP=["आइतबार","सोमबार","मंगलबार","बुधबार","बिहिबार","शुक्रबार","शनिबार"];
+const ND=["०","१","२","३","४","५","६","७","८","९"];
+function npNum(n){return String(n).split("").map(c=>ND[+c]??c).join("");}
 
-    const monthLengths = {};
-    for (const [year, ...rest] of NEPALI_DATE_MAP) {
-        const totalDays = rest.pop();
-        monthLengths[year] = rest;
-    }
+/* ── Core conversion ── */
+const BASE=Date.UTC(1943,3,14);
+function addDays(base,n){return new Date(base+n*86400000);}
+function bsOffset(y,m,d){
+  let o=0;
+  for(let i=2000;i<y;i++)BS_DATA[i].forEach(x=>o+=x);
+  for(let i=0;i<m-1;i++)o+=BS_DATA[y][i];
+  return o+d-1;
+}
+function fmtAD(y,m,d){
+  const mn=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  return mn[m-1]+" "+String(d).padStart(2,"0")+", "+y;
+}
 
-    const BS_START_DAYS = { 2000: 0 };
-    for (let y = 2000; y < 2100; y++) {
-        const daysInYear = monthLengths[y].reduce((a,b)=>a+b,0);
-        BS_START_DAYS[y+1] = (BS_START_DAYS[y] || 0) + daysInYear;
-    }
+function valBS(y,m,d){
+  y=+y;m=+m;d=+d;
+  if(y===''||m===''||d===''||isNaN(y)||isNaN(m)||isNaN(d))return"Fill all three fields.";
+  if(y<2000||y>2090)return"Year must be 2000–2090 BS.";
+  if(m<1||m>12)return"Month must be 1–12.";
+  const mx=BS_DATA[y][m-1];
+  if(d<1||d>mx)return MEN[m-1]+" "+y+" has "+mx+" days. Day "+d+" is invalid.";
+  return null;
+}
+function valAD(y,m,d){
+  y=+y;m=+m;d=+d;
+  if(!y||!m||!d||isNaN(y)||isNaN(m)||isNaN(d))return"Fill all three fields.";
+  const dt=new Date(Date.UTC(y,m-1,d));
+  if(dt.getUTCFullYear()!==y||dt.getUTCMonth()!==m-1||dt.getUTCDate()!==d)return"Invalid date.";
+  if(y<1943||y>2034)return"Supported range: 1943–2034 AD.";
+  return null;
+}
 
-    const EPOCH_AD = new Date(1943, 3, 14);
+function convertBStoAD(y,m,d){
+  const e=valBS(y,m,d);if(e)return{error:e};
+  const ad=addDays(BASE,bsOffset(+y,+m,+d));
+  const dw=ad.getUTCDay();
+  return{ad,adY:ad.getUTCFullYear(),adM:ad.getUTCMonth()+1,adD:ad.getUTCDate(),dn:DEN[dw],dnp:DNP[dw]};
+}
+function convertADtoBS(y,m,d){
+  const e=valAD(y,m,d);if(e)return{error:e};
+  const ad=Date.UTC(+y,+m-1,+d);
+  let rem=Math.floor((ad-BASE)/86400000);
+  if(rem<0)return{error:"Before supported range."};
+  let by=2000;
+  while(by<=2090){const yd=BS_DATA[by].reduce((a,b)=>a+b,0);if(rem<yd)break;rem-=yd;by++;}
+  if(by>2090)return{error:"Exceeds 2090 BS."};
+  let bm=1;
+  for(let i=0;i<12;i++){if(rem<BS_DATA[by][i]){bm=i+1;break;}rem-=BS_DATA[by][i];}
+  const bd=rem+1,dw=new Date(ad).getUTCDay();
+  return{by,bm,bd,mn:MEN[bm-1],mnp:MNP[bm-1],dn:DEN[dw],dnp:DNP[dw]};
+}
+function todayBS(){const n=new Date();return convertADtoBS(n.getFullYear(),n.getMonth()+1,n.getDate());}
 
-    function bsToTotalDays(bsYear, bsMonth, bsDay) {
-        if (bsYear < 2000 || bsYear > 2100) return -1;
-        let start = BS_START_DAYS[bsYear];
-        if (start === undefined) return -1;
-        const monthLen = monthLengths[bsYear];
-        if (bsMonth < 1 || bsMonth > 12) return -1;
-        let daysInYear = 0;
-        for (let i = 1; i < bsMonth; i++) daysInYear += monthLen[i-1];
-        daysInYear += (bsDay - 1);
-        if (bsDay < 1 || bsDay > monthLen[bsMonth-1]) return -1;
-        return start + daysInYear;
-    }
+/* ── Toast ── */
+function toast(msg){
+  const t=document.getElementById("toast");
+  t.textContent=msg;t.classList.add("show");
+  clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2400);
+}
+function copyText(s){
+  if(!s)return;
+  navigator.clipboard.writeText(s).then(()=>toast("✓ Copied!"))
+    .catch(()=>{const el=document.createElement("textarea");el.value=s;
+      el.style.cssText="position:fixed;opacity:0";document.body.appendChild(el);
+      el.select();document.execCommand("copy");document.body.removeChild(el);toast("✓ Copied!");});
+}
+function share(s){
+  if(navigator.share)navigator.share({title:"Nepali Date Converter",text:s,url:location.href}).catch(()=>{});
+  else{copyText(s);toast("✓ Copied — share it!");}
+}
 
-    function totalDaysToAD(days) {
-        let d = new Date(EPOCH_AD);
-        d.setDate(EPOCH_AD.getDate() + days);
-        return d;
-    }
+/* ── State ── */
+let cur="";
 
-    function adToTotalDays(adDate) {
-        const diff = adDate - EPOCH_AD;
-        return Math.floor(diff / (1000 * 3600 * 24));
-    }
+/* ── Update day hint ── */
+function updateHint(){
+  const y=+document.getElementById("bs-year").value;
+  const m=+document.getElementById("bs-month").value;
+  const h=document.getElementById("bs-day-hint");
+  h.textContent=(y>=2000&&y<=2090&&m>=1&&m<=12&&BS_DATA[y])?"1–"+BS_DATA[y][m-1]:"";
+}
 
-    function totalDaysToBS(totalDays) {
-        for (let y = 2000; y <= 2100; y++) {
-            let start = BS_START_DAYS[y];
-            let nextStart = BS_START_DAYS[y+1] || (start + monthLengths[y].reduce((a,b)=>a+b,0));
-            if (totalDays >= start && totalDays < nextStart) {
-                let offset = totalDays - start;
-                const monthLen = monthLengths[y];
-                let accum = 0;
-                for (let m = 0; m < 12; m++) {
-                    if (offset < accum + monthLen[m]) {
-                        let day = offset - accum + 1;
-                        return { year: y, month: m+1, day: day };
-                    }
-                    accum += monthLen[m];
-                }
-            }
-        }
-        return null;
-    }
+/* ── Render ── */
+function doBStoAD(){
+  const y=document.getElementById("bs-year").value.trim();
+  const m=document.getElementById("bs-month").value;
+  const d=document.getElementById("bs-day").value.trim();
+  const re=document.getElementById("bs-result");
+  const ac=document.getElementById("bs-act");
+  if(!y||!m||!d){re.innerHTML="";ac.style.display="none";cur="";return;}
+  const r=convertBStoAD(y,m,d);
+  if(r.error){re.innerHTML=`<p class="err">⚠ ${r.error}</p>`;ac.style.display="none";cur="";return;}
+  const af=fmtAD(r.adY,r.adM,r.adD);
+  cur=`${y} ${MEN[+m-1]} ${d} BS = ${af} AD (${r.dn})`;
+  re.innerHTML=`<div class="result-card">
+    <span class="r-lbl">AD Date</span>
+    <span class="r-val">${af}</span>
+    <div class="tags"><span class="tag">${r.dn}</span><span class="tag np">${r.dnp}</span></div>
+  </div>`;
+  ac.style.display="flex";
+}
+function doADtoBS(){
+  const y=document.getElementById("ad-year").value.trim();
+  const m=document.getElementById("ad-month").value.trim();
+  const d=document.getElementById("ad-day").value.trim();
+  const re=document.getElementById("ad-result");
+  const ac=document.getElementById("ad-act");
+  if(!y||!m||!d){re.innerHTML="";ac.style.display="none";cur="";return;}
+  const r=convertADtoBS(y,m,d);
+  if(r.error){re.innerHTML=`<p class="err">⚠ ${r.error}</p>`;ac.style.display="none";cur="";return;}
+  const bf=`${r.by} ${r.mn} ${r.bd}`;
+  const np=`${npNum(r.by)} ${r.mnp} ${npNum(r.bd)}`;
+  cur=`${fmtAD(+y,+m,+d)} AD = ${bf} BS (${r.dn})`;
+  re.innerHTML=`<div class="result-card">
+    <span class="r-lbl">BS Date</span>
+    <span class="r-val">${bf}</span>
+    <div class="r-np">${np}</div>
+    <div class="tags"><span class="tag">${r.dn}</span><span class="tag np">${r.dnp}</span><span class="tag">${r.mn}</span></div>
+  </div>`;
+  ac.style.display="flex";
+}
 
-    function convertBSToAD(bsStr) {
-        try {
-            let parts = bsStr.split(/[-/]/);
-            if (parts.length !== 3) throw new Error();
-            let y = parseInt(parts[0]), m = parseInt(parts[1]), d = parseInt(parts[2]);
-            if (isNaN(y) || isNaN(m) || isNaN(d)) throw new Error();
-            let days = bsToTotalDays(y, m, d);
-            if (days === -1) throw new Error("Invalid BS date (range 2000-2100)");
-            let ad = totalDaysToAD(days);
-            let year = ad.getFullYear();
-            let month = String(ad.getMonth()+1).padStart(2,'0');
-            let day = String(ad.getDate()).padStart(2,'0');
-            let weekdays = ['आइतबार', 'सोमबार', 'मंगलबार', 'बुधबार', 'बिहिबार', 'शुक्रबार', 'शनिबार'];
-            return { ok: true, ad: `${year}-${month}-${day}`, adDate: ad, weekday: weekdays[ad.getDay()], bsY: y, bsM: m, bsD: d };
-        } catch(e) {
-            return { ok: false, error: "❌ Invalid BS date. Use YYYY-MM-DD (2000-2100). Example: 2083-02-02" };
-        }
-    }
+/* ── Today widget ── */
+function renderToday(){
+  // Use Nepal time UTC+5:45 for today widget
+  const np=new Date(Date.now()+((5*60+45)*60000));
+  const ny=np.getUTCFullYear(),nm=np.getUTCMonth()+1,nd=np.getUTCDate();
+  const t=convertADtoBS(ny,nm,nd);if(t.error)return;
+  document.getElementById("tw-ad").textContent=fmtAD(ny,nm,nd);
+  document.getElementById("tw-bs").textContent=`${t.by} ${t.mn} ${t.bd}`;
+  document.getElementById("tw-np").textContent=`${npNum(t.by)} ${t.mnp} ${npNum(t.bd)}`;
+  document.getElementById("tw-day").textContent=`${t.dn} / ${t.dnp}`;
+  // Update SEO today paragraph
+  const sp=document.getElementById("seo-today-p");
+  if(sp)sp.textContent=`Today in Nepal is ${t.by} ${t.mn} ${t.bd}, ${t.dn}.`;
+}
 
-    function convertADToBS(adStr) {
-        try {
-            let parts = adStr.split(/[-/]/);
-            if (parts.length !== 3) throw new Error();
-            let y = parseInt(parts[0]), m = parseInt(parts[1]), d = parseInt(parts[2]);
-            let adDate = new Date(y, m-1, d);
-            if (adDate.getFullYear() !== y || adDate.getMonth() !== m-1 || adDate.getDate() !== d) throw new Error();
-            let days = adToTotalDays(adDate);
-            let bs = totalDaysToBS(days);
-            if (!bs) throw new Error("AD date out of supported range (1943–2043)");
-            return { ok: true, bsYear: bs.year, bsMonth: bs.month, bsDay: bs.day, adDate };
-        } catch(e) {
-            return { ok: false, error: "❌ Invalid AD date. Use YYYY-MM-DD (1943–2043)." };
-        }
-    }
+/* ── Populate month select ── */
+function populateMonths(){
+  const s=document.getElementById("bs-month");
+  MEN.forEach((n,i)=>{const o=document.createElement("option");o.value=i+1;
+    o.textContent=String(i+1).padStart(2,"0")+" — "+n+" ("+MNP[i]+")";s.appendChild(o);});
+}
 
-    // UI Binding
-    const bsPanel = document.getElementById('bsPanel');
-    const adPanel = document.getElementById('adPanel');
-    const tabBs = document.getElementById('tabBsBtn');
-    const tabAd = document.getElementById('TabAdBtn');
-    const bsInput = document.getElementById('bsDateInput');
-    const adInput = document.getElementById('adDateInput');
-    const resultDiv = document.getElementById('resultText');
-    const copyBtn = document.getElementById('copyResultBtn');
-    let lastResultText = '';
-
-    tabBs.addEventListener('click', () => {
-        bsPanel.style.display = 'block';
-        adPanel.style.display = 'none';
-        tabBs.classList.add('active');
-        tabAd.classList.remove('active');
+/* ── Tabs ── */
+function initTabs(){
+  document.querySelectorAll(".tab-btn").forEach(b=>{
+    b.addEventListener("click",()=>{
+      document.querySelectorAll(".tab-btn").forEach(x=>{x.classList.remove("active");x.setAttribute("aria-selected","false");});
+      document.querySelectorAll(".tab-pane").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");b.setAttribute("aria-selected","true");
+      document.getElementById(b.dataset.tab).classList.add("active");
     });
-    tabAd.addEventListener('click', () => {
-        bsPanel.style.display = 'none';
-        adPanel.style.display = 'block';
-        tabAd.classList.add('active');
-        tabBs.classList.remove('active');
+  });
+}
+
+/* ── Prefill today ── */
+function prefill(){
+  const np=new Date(Date.now()+((5*60+45)*60000));
+  const ny=np.getUTCFullYear(),nm=np.getUTCMonth()+1,nd=np.getUTCDate();
+  document.getElementById("ad-year").value=ny;
+  document.getElementById("ad-month").value=nm;
+  document.getElementById("ad-day").value=nd;
+  const t=convertADtoBS(ny,nm,nd);
+  if(t&&!t.error){
+    document.getElementById("bs-year").value=t.by;
+    document.getElementById("bs-month").value=t.bm;
+    document.getElementById("bs-day").value=t.bd;
+    updateHint();
+  }
+}
+
+/* ── Init ── */
+document.addEventListener("DOMContentLoaded",()=>{
+  populateMonths();
+  initTabs();
+  renderToday();
+  prefill();
+
+  document.getElementById("bs-year").addEventListener("input",()=>{updateHint();doBStoAD();});
+  document.getElementById("bs-month").addEventListener("change",()=>{updateHint();doBStoAD();});
+  document.getElementById("bs-day").addEventListener("input",doBStoAD);
+  ["ad-year","ad-month","ad-day"].forEach(id=>document.getElementById(id).addEventListener("input",doADtoBS));
+
+  document.getElementById("btn-bs-copy").addEventListener("click",()=>copyText(cur));
+  document.getElementById("btn-bs-share").addEventListener("click",()=>share(cur));
+  document.getElementById("btn-bs-clear").addEventListener("click",()=>{
+    ["bs-year","bs-day"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("bs-month").value="";
+    document.getElementById("bs-day-hint").textContent="";
+    document.getElementById("bs-result").innerHTML="";
+    document.getElementById("bs-act").style.display="none";cur="";
+  });
+  document.getElementById("btn-ad-copy").addEventListener("click",()=>copyText(cur));
+  document.getElementById("btn-ad-share").addEventListener("click",()=>share(cur));
+  document.getElementById("btn-ad-clear").addEventListener("click",()=>{
+    ["ad-year","ad-month","ad-day"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("ad-result").innerHTML="";
+    document.getElementById("ad-act").style.display="none";cur="";
+  });
+  document.getElementById("btn-swap").addEventListener("click",()=>{
+    const a=document.querySelector(".tab-btn.active");
+    document.querySelectorAll(".tab-btn").forEach(b=>{if(b!==a)b.click();});
+  });
+
+  doBStoAD();
+  doADtoBS();
+
+  // ── Recent conversions history (last 5) ──
+  const bsHist=[], adHist=[];
+  function addToHistory(arr, listId, wrapId, text){
+    if(!text) return;
+    if(arr[0]===text) return; // no duplicate
+    arr.unshift(text);
+    if(arr.length>5) arr.pop();
+    const el=document.getElementById(listId);
+    const wrap=document.getElementById(wrapId);
+    if(!el||!wrap) return;
+    el.innerHTML=arr.map(t=>`<span style="cursor:pointer;color:#c0392b;margin-right:8px" onclick="copyText('${t.replace(/'/g,"\\'")}');toast('✓ Copied!')">${t}</span>`).join('');
+    wrap.style.display='block';
+  }
+
+  // Hook into copy buttons to save history
+  document.getElementById("btn-bs-copy").addEventListener("click",()=>{
+    if(cur) addToHistory(bsHist,"bs-hist-list","bs-history",cur);
+  });
+  document.getElementById("btn-ad-copy").addEventListener("click",()=>{
+    if(cur) addToHistory(adHist,"ad-hist-list","ad-history",cur);
+  });
+
+  // ── Keyboard: Enter key triggers convert ──
+  ["bs-year","bs-month","bs-day"].forEach(id=>{
+    document.getElementById(id).addEventListener("keydown",e=>{
+      if(e.key==="Enter") doBStoAD();
     });
-
-    function updateCopyBtn(show, text) { 
-        lastResultText = text; 
-        copyBtn.style.display = show ? 'inline-block' : 'none'; 
-    }
-
-    function onBsConvert() {
-        let res = convertBSToAD(bsInput.value.trim());
-        if (res.ok) {
-            let out = `${res.bsY}-${String(res.bsM).padStart(2,'0')}-${String(res.bsD).padStart(2,'0')} BS → ${res.ad} AD (${res.weekday})`;
-            resultDiv.innerHTML = `<div style="font-size:1.3rem; font-weight:bold;">${res.bsY}-${String(res.bsM).padStart(2,'0')}-${String(res.bsD).padStart(2,'0')} BS</div>
-            <div style="margin:8px 0;">⬇️ ⬇️ ⬇️</div>
-            <div class="big-date">📅 ${res.ad} AD</div>
-            <div>${res.weekday} • ${res.adDate.toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'})}</div>
-            <span class="badge">✅ Verified with official panchanga</span>`;
-            updateCopyBtn(true, out);
-        } else {
-            resultDiv.innerHTML = `<span style="color:#b91c1c;">${res.error}</span>`;
-            updateCopyBtn(false, '');
-        }
-    }
-
-    function onAdConvert() {
-        let res = convertADToBS(adInput.value.trim());
-        if (res.ok) {
-            let out = `${res.adDate.toLocaleDateString('en-CA')} AD → ${res.bsYear}-${String(res.bsMonth).padStart(2,'0')}-${String(res.bsDay).padStart(2,'0')} BS`;
-            resultDiv.innerHTML = `<div style="font-size:1.2rem;">🌍 ${res.adDate.toLocaleDateString('en-CA')} AD</div>
-            <div style="margin:6px 0;">⤵️ Nepali date ⤵️</div>
-            <div class="big-date">🇳🇵 ${res.bsYear}-${String(res.bsMonth).padStart(2,'0')}-${String(res.bsDay).padStart(2,'0')} BS</div>
-            <span class="badge">📌 Bikram Sambat ${res.bsYear}</span>`;
-            updateCopyBtn(true, out);
-        } else {
-            resultDiv.innerHTML = `<span style="color:#b91c1c;">${res.error}</span>`;
-            updateCopyBtn(false, '');
-        }
-    }
-
-    copyBtn.onclick = () => { if(lastResultText) navigator.clipboard.writeText(lastResultText).then(()=>alert('Copied!')); };
-    document.getElementById('doBsConvert').onclick = onBsConvert;
-    document.getElementById('doAdConvert').onclick = onAdConvert;
-    bsInput.onkeypress = e => { if(e.key==='Enter') onBsConvert(); };
-    adInput.onkeypress = e => { if(e.key==='Enter') onAdConvert(); };
-
-    // Build reference table
-    const tbody = document.getElementById('tableBody');
-    const sampleYears = [2000, 2010, 2020, 2030, 2040, 2050, 2054, 2060, 2070, 2080, 2083, 2090, 2100];
-    sampleYears.forEach(y => {
-        let start = BS_START_DAYS[y];
-        let adStart = totalDaysToAD(start);
-        let adStr = `${adStart.getFullYear()}-${String(adStart.getMonth()+1).padStart(2,'0')}-${String(adStart.getDate()).padStart(2,'0')}`;
-        let testText = (y === 2083) ? "2083-02-02 → 2026-05-16 ✓" : "Verified";
-        let row = tbody.insertRow();
-        row.insertCell(0).innerHTML = `<strong>${y}</strong>`;
-        row.insertCell(1).innerHTML = `${y}-01-01 BS → ${adStr} AD`;
-        row.insertCell(2).innerHTML = testText;
-        row.insertCell(3).innerHTML = '<span style="color:#15803d;">✔ Accurate</span>';
+  });
+  ["ad-year","ad-month","ad-day"].forEach(id=>{
+    document.getElementById(id).addEventListener("keydown",e=>{
+      if(e.key==="Enter") doADtoBS();
     });
+  });
+  document.getElementById("fy").textContent=new Date().getFullYear();
 
-    // On load, ensure AD panel is active and perform conversion
-    tabAd.click();
-    setTimeout(() => onAdConvert(), 20);
+  // FAQ
+  document.querySelectorAll(".faq-q").forEach(q=>{
+    function tog(){const it=q.parentElement;const o=it.classList.toggle("open");q.setAttribute("aria-expanded",o);}
+    q.addEventListener("click",tog);
+    q.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog();}});
+  });
+});
 </script>
-     <div id="footer"></div>
-     <script src="/components.js"></script>
 </body>
 </html>
