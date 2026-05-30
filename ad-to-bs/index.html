@@ -47,12 +47,13 @@ function switchFeat(id, btn){
   const pref=localStorage.getItem('dm');
   const sysDark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
   if(pref==='1'||(pref===null&&sysDark)) document.body.classList.add('dark-mode');
+  else if(pref==='0') document.body.classList.remove('dark-mode');
 })();
 function toggleDark(){
   const isDark=document.body.classList.toggle('dark-mode');
   localStorage.setItem('dm',isDark?'1':'0');
   const btn=document.getElementById('dm-btn');
-  if(btn) btn.textContent=isDark?'☀️ Light':'🌙 Dark';
+  if(btn) btn.textContent=isDark?'☀️':'🌙';
 }
 
 /* ════════════════════════════════════════
@@ -68,6 +69,7 @@ function successAnim(id){
   card.classList.add('success-anim');
 }
 
+var lastOp=1;
 /* ════════════════════════════════════════
    ADD/SUBTRACT DAYS FROM BS DATE
    ════════════════════════════════════════ */
@@ -78,7 +80,7 @@ function calcAddSub(op){
   const n=+document.getElementById('as-n').value;
   const res=document.getElementById('as-result');
   if(!y||!m||!d||!n){res.innerHTML='';return;}
-  const err=valBS(y,m,d);
+  const err=typeof valBS==='function'?valBS(y,m,d):null;
   if(err){res.innerHTML='<p class="err">⚠ '+err+'</p>';return;}
   const base=convertBStoAD(y,m,d);
   if(base.error){res.innerHTML='<p class="err">⚠ '+base.error+'</p>';return;}
@@ -164,7 +166,7 @@ window.doADtoBS=function(){
 /* ── Init dark mode button label ── */
 document.addEventListener('DOMContentLoaded',function(){
   const btn=document.getElementById('dm-btn');
-  if(btn) btn.textContent=document.body.classList.contains('dark-mode')?'☀️ Light':'🌙 Dark';
+  if(btn) btn.textContent=document.body.classList.contains('dark-mode')?'☀️':'🌙';
   animateCounter();
   // Populate add/sub month select
   const asm=document.getElementById('as-m');
@@ -176,6 +178,139 @@ document.addEventListener('DOMContentLoaded',function(){
       asm.appendChild(o);
     });
   }
+});
+
+/* ════════════════════════════════════════
+   LANGUAGE TOGGLE (English ↔ नेपाली)
+   ════════════════════════════════════════ */
+let currentLang = localStorage.getItem('lang') || 'en';
+
+const TRANSLATIONS = {
+  en: {
+    title_bstoad: 'BS to AD Converter',
+    title_adtobs: 'AD to BS Converter',
+    sub_bstoad: 'Bikram Sambat to Gregorian · Instant & Accurate',
+    sub_adtobs: 'Gregorian to Bikram Sambat · Instant & Accurate',
+    enter_bs: 'Enter Bikram Sambat (BS) Date',
+    enter_ad: 'Enter Gregorian (AD) Date',
+    year: 'Year', month: 'Month (1-12)', day: 'Day (1-31)',
+    show_cal: '🗓 Show Calendar', hide_cal: '🗓 Hide Calendar',
+    today_label: "Today's Date",
+    ad_label: 'AD (Gregorian)', bs_label: 'BS (Bikram Sambat)',
+    copy: '📋 Copy', share: '🔗 Share', clear: '✕ Clear',
+    age_tab: '🎂 Age in BS', diff_tab: '📐 Date Difference',
+    addsub_tab: '➕ Add/Subtract', bulk_tab: '📋 Bulk Convert',
+    age_label: 'Enter your BS birth date',
+    diff_from: 'From BS Date', diff_to: 'To BS Date',
+    addsub_label: 'BS Date + or − Days',
+    num_days: 'Number of Days',
+    convert_all: '🔄 Convert All', copy_results: '📋 Copy Results',
+    free_forever: 'Free Forever', no_signup: 'No signup needed',
+    accurate: '100% Accurate', verified: 'Verified data',
+    no_ads: 'No Ads on Results', clean: 'Clean experience',
+    offline: 'Works Offline', pure_js: 'Pure browser JS',
+    users_say: 'What Users Say',
+    ad_date: 'AD Date', bs_date: 'BS Date',
+    total_days: 'Total: {n} days lived',
+    next_bday: '🎂 Next birthday in {n} days ({date})',
+    happy_bday: '🎂 Happy Birthday today!',
+    lang_btn: 'नेपाली',
+    dark_btn: '🌙', light_btn: '☀️',
+    show_embed: 'Show Embed Code',
+  },
+  np: {
+    title_bstoad: 'बि.सं. देखि ई.सं. परिवर्तक',
+    title_adtobs: 'ई.सं. देखि बि.सं. परिवर्तक',
+    sub_bstoad: 'बिक्रम सम्बत देखि ग्रेगोरियन · तत्काल र सटीक',
+    sub_adtobs: 'ग्रेगोरियन देखि बिक्रम सम्बत · तत्काल र सटीक',
+    enter_bs: 'बिक्रम सम्बत (बि.सं.) मिति प्रविष्ट गर्नुहोस्',
+    enter_ad: 'ग्रेगोरियन (ई.सं.) मिति प्रविष्ट गर्नुहोस्',
+    year: 'वर्ष', month: 'महिना', day: 'दिन',
+    show_cal: '🗓 क्यालेन्डर देखाउनुस्', hide_cal: '🗓 क्यालेन्डर लुकाउनुस्',
+    today_label: 'आजको मिति',
+    ad_label: 'ई.सं. (ग्रेगोरियन)', bs_label: 'बि.सं. (बिक्रम सम्बत)',
+    copy: '📋 प्रतिलिपि', share: '🔗 साझा', clear: '✕ मेटाउनुस्',
+    age_tab: '🎂 बि.सं. मा उमेर', diff_tab: '📐 मिति अन्तर',
+    addsub_tab: '➕ जोड/घटाउ', bulk_tab: '📋 बहु परिवर्तन',
+    age_label: 'आफ्नो बि.सं. जन्म मिति प्रविष्ट गर्नुहोस्',
+    diff_from: 'बि.सं. मिति देखि', diff_to: 'बि.सं. मिति सम्म',
+    addsub_label: 'बि.सं. मिति + वा − दिनहरू',
+    num_days: 'दिनको संख्या',
+    convert_all: '🔄 सबै परिवर्तन', copy_results: '📋 नतिजा प्रतिलिपि',
+    free_forever: 'सधैँ निःशुल्क', no_signup: 'दर्ता आवश्यक छैन',
+    accurate: '१००% सटीक', verified: 'प्रमाणित डेटा',
+    no_ads: 'परिणाममा विज्ञापन छैन', clean: 'सफा अनुभव',
+    offline: 'अफलाइन काम गर्छ', pure_js: 'शुद्ध ब्राउजर JS',
+    users_say: 'प्रयोगकर्ताहरू के भन्छन्',
+    ad_date: 'ई.सं. मिति', bs_date: 'बि.सं. मिति',
+    total_days: 'जम्मा: {n} दिन जिएको',
+    next_bday: '🎂 अर्को जन्मदिन {n} दिनमा ({date})',
+    happy_bday: '🎂 जन्मदिनको शुभकामना!',
+    lang_btn: 'English',
+    dark_btn: '🌙', light_btn: '☀️',
+    show_embed: 'एम्बेड कोड देखाउनुस्',
+  }
+};
+
+function t(key){ return (TRANSLATIONS[currentLang]||TRANSLATIONS.en)[key]||key; }
+
+function applyLang(){
+  const isNP = currentLang === 'np';
+  // Page title/sub
+  const isAdToBs = window.location.pathname.includes('ad-to-bs');
+  const titleEl = document.getElementById('pg-title');
+  const subEl = document.getElementById('pg-sub');
+  if(titleEl) titleEl.textContent = isAdToBs ? t('title_adtobs') : t('title_bstoad');
+  if(subEl) subEl.textContent = isAdToBs ? t('sub_adtobs') : t('sub_bstoad');
+
+  // Labels
+  const map = {
+    'lbl-enter-bs': 'enter_bs', 'lbl-enter-ad': 'enter_ad',
+    'lbl-today': 'today_label', 'lbl-ad': 'ad_label', 'lbl-bs': 'bs_label',
+    'lbl-age': 'age_label', 'lbl-diff-from': 'diff_from', 'lbl-diff-to': 'diff_to',
+    'lbl-addsub': 'addsub_label', 'lbl-numdays': 'num_days',
+    'lbl-users-say': 'users_say',
+    'btn-bs-copy': 'copy', 'btn-bs-share': 'share', 'btn-bs-clear': 'clear',
+    'btn-ad-copy': 'copy', 'btn-ad-share': 'share', 'btn-ad-clear': 'clear',
+    'tab-age-btn': 'age_tab', 'tab-diff-btn': 'diff_tab',
+    'tab-addsub-btn': 'addsub_tab', 'tab-bulk-btn': 'bulk_tab',
+    'btn-convert-all': 'convert_all', 'btn-copy-results': 'copy_results',
+    'tb-free': 'free_forever', 'tb-nosignup': 'no_signup',
+    'tb-accurate': 'accurate', 'tb-verified': 'verified',
+    'tb-noads': 'no_ads', 'tb-clean': 'clean',
+    'tb-offline': 'offline', 'tb-purejs': 'pure_js',
+    'cal-toggle-btn': document.getElementById('bs-cal-grid')&&document.getElementById('bs-cal-grid').style.display!=='none'?'hide_cal':'show_cal',
+    'ad-cal-toggle-btn': document.getElementById('ad-cal-grid')&&document.getElementById('ad-cal-grid').style.display!=='none'?'hide_cal':'show_cal',
+  };
+  Object.entries(map).forEach(([id,key])=>{
+    const el=document.getElementById(id);
+    if(el) el.textContent=t(key);
+  });
+  // Today badge
+  const tb=document.querySelector('.today-badge');
+  if(tb) tb.innerHTML='📅 '+t('today_label');
+  // tw-lbl
+  const twLbls=document.querySelectorAll('.tw-lbl');
+  if(twLbls[0]) twLbls[0].textContent=t('ad_label');
+  if(twLbls[1]) twLbls[1].textContent=t('bs_label');
+  // Lang button
+  const lb=document.getElementById('lang-btn');
+  if(lb) lb.textContent=t('lang_btn');
+  // Devanagari body font for NP
+  document.body.style.fontFamily = isNP ? "'Noto Serif Devanagari','Inter',sans-serif" : "'Inter',sans-serif";
+}
+
+function toggleLang(){
+  currentLang = currentLang==='en'?'np':'en';
+  localStorage.setItem('lang', currentLang);
+  applyLang();
+}
+
+// Init lang on load
+document.addEventListener('DOMContentLoaded', function(){
+  const saved=localStorage.getItem('lang');
+  if(saved) currentLang=saved;
+  applyLang();
 });
 
 </script>
@@ -216,7 +351,7 @@ a:hover{text-decoration:underline;}
   content:'';position:absolute;bottom:0;left:0;right:0;
   height:5px;background:linear-gradient(90deg,#f39c12,#f1c40f,#f39c12);
 }
-.hdr-inner{display:flex;align-items:center;gap:12px;padding-bottom:14px;}
+.hdr-inner{display:flex;align-items:center;gap:10px;padding-bottom:14px;flex-wrap:nowrap;}
 .hdr-ico{font-size:1.8rem;flex-shrink:0;line-height:1;}
 .hdr h1{font-size:clamp(1rem,4vw,1.35rem);font-weight:700;line-height:1.2;}
 .hdr .sub{font-size:.78rem;opacity:.85;margin-top:2px;}
@@ -539,42 +674,81 @@ footer a{color:#f39c12;}
 .np-input-row input{text-align:center;font-family:'Noto Serif Devanagari',serif;font-size:1rem;}
 
 
-/* ── Dark Mode ── */
-@media(prefers-color-scheme:dark){
-  :root{
-    --bg:#0f0f13;--white:#1a1a2e;--surf:#22223a;--text:#e8e8f0;
-    --muted:#9090a8;--border:#333350;--gold:#f39c12;
-  }
-  .hdr{background:linear-gradient(135deg,#96281b,#5a1008);}
-  .result-card{background:linear-gradient(135deg,#2a1f10,#1a1a2e);}
-  .age-result{background:linear-gradient(135deg,#102010,#1a1a2e);}
-  .diff-result{background:linear-gradient(135deg,#101828,#1a1a2e);}
-  input[type=number],select{background:var(--surf);color:var(--text);border-color:var(--border);}
-  .cal-day{color:var(--text);}
-  .cal-day:hover{background:var(--border);}
-  .cal-day.selected{background:var(--red);color:#fff;}
-  .faq-q{color:var(--text);}
-  .rel-link{background:var(--surf);color:var(--text);}
-  .ibox{background:var(--surf);}
-  footer{background:#080810;}
-}
+/* ── Dark Mode — comprehensive ── */
 .dark-mode{
-  --bg:#0f0f13;--white:#1a1a2e;--surf:#22223a;--text:#e8e8f0;
-  --muted:#9090a8;--border:#333350;
+  --bg:#111118;--white:#1c1c2a;--surf:#24243a;--text:#e2e2f0;
+  --muted:#8888aa;--border:#36365a;--gold:#f39c12;--green:#2ecc71;
 }
-.dark-mode .hdr{background:linear-gradient(135deg,#96281b,#5a1008);}
-.dark-mode .result-card{background:linear-gradient(135deg,#2a1f10,#1a1a2e);}
-.dark-mode .age-result{background:linear-gradient(135deg,#102010,#1a1a2e);}
-.dark-mode .diff-result{background:linear-gradient(135deg,#101828,#1a1a2e);}
-.dark-mode input[type=number],.dark-mode select{background:var(--surf);color:var(--text);border-color:var(--border);}
+.dark-mode body{background:var(--bg);color:var(--text);}
+.dark-mode .hdr{background:linear-gradient(135deg,#8b1a10,#4a0e06);}
+.dark-mode .card,.dark-mode .sec,.dark-mode .today,.dark-mode .feat-tabs~*{background:var(--white);}
+.dark-mode .result-card{background:linear-gradient(135deg,#2a1e0e,#1c1c2a);border-color:#c0722b;}
+.dark-mode .age-result{background:linear-gradient(135deg,#0e2010,#1c1c2a);border-color:#27ae60;}
+.dark-mode .diff-result{background:linear-gradient(135deg,#0e182a,#1c1c2a);border-color:#2980b9;}
+.dark-mode .r-val{color:#e87060;}
+.dark-mode .age-val{color:#2ecc71;}
+.dark-mode .diff-val{color:#5dade2;}
+.dark-mode input[type=number],.dark-mode select,.dark-mode textarea{background:var(--surf)!important;color:var(--text)!important;border-color:var(--border)!important;}
+.dark-mode input[type=number]::placeholder,.dark-mode textarea::placeholder{color:var(--muted);}
+.dark-mode .tab-btn{color:var(--muted);}
+.dark-mode .tab-btn.active{color:#e87060;}
 .dark-mode .cal-day{color:var(--text);}
+.dark-mode .cal-day:hover{background:var(--border);}
+.dark-mode .cal-day.selected{background:var(--red);color:#fff;}
+.dark-mode .cal-day.empty{color:transparent;}
+.dark-mode .cal-hdr{color:var(--muted);}
+.dark-mode .cal-title{color:var(--text);}
+.dark-mode .cal-nav button{background:var(--surf);color:var(--text);border-color:var(--border);}
 .dark-mode .faq-q{color:var(--text);}
-.dark-mode .rel-link,.dark-mode .ibox{background:var(--surf);color:var(--text);}
-.dark-mode footer{background:#080810;}
+.dark-mode .faq-a{color:var(--muted);}
+.dark-mode .faq-item{border-color:var(--border);}
+.dark-mode .rel-link{background:var(--surf);color:var(--text);border-color:var(--border);}
+.dark-mode .rel-link:hover{background:var(--border);}
+.dark-mode .ibox{background:var(--surf);border-color:var(--border);}
+.dark-mode .ibox .iv{color:var(--text);}
+.dark-mode .trust-bottom{background:var(--white);}
+.dark-mode .tb-item2 strong{color:var(--text);}
+.dark-mode .tcard{background:var(--surf);border-color:var(--border);}
+.dark-mode .tcard p{color:#aaa;}
+.dark-mode .embed-box{background:var(--surf);color:var(--muted);border-color:var(--border);}
+.dark-mode .bulk-row:nth-child(odd){background:var(--surf);}
+.dark-mode .bulk-row{color:var(--text);}
+.dark-mode .feat-tab{background:var(--surf);color:var(--muted);border-color:var(--border);}
+.dark-mode .feat-tab.active{background:var(--red);color:#fff;}
+.dark-mode .err{background:#2a1010;color:#ff8080;}
+.dark-mode .holiday-badge{background:#2a1e00;color:#f39c12;border-color:#f39c12;}
+.dark-mode .tag{background:#2a2010;color:#d4a017;}
+.dark-mode .today{border-color:var(--border);}
+.dark-mode .tw-lbl{color:var(--muted);}
+.dark-mode .tw-val{color:var(--text);}
+.dark-mode .tw-np{color:#e87060;}
+.dark-mode .tw-day{color:var(--muted);border-color:var(--border);}
+.dark-mode .trust{color:var(--muted);}
+.dark-mode .hdr-badge{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);}
+.dark-mode footer{background:#080810;color:#666;}
+.dark-mode .f-label{color:var(--muted);}
+.dark-mode .r-lbl{color:var(--muted);}
+.dark-mode .r-np{color:#aaa;}
+.dark-mode .day-hint{color:var(--muted);}
+.dark-mode .bc a{color:rgba(255,255,255,.7);}
+.dark-mode .url-bar input{background:var(--surf);color:var(--muted);border-color:var(--border);}
+.dark-mode .addsub-ops button{background:var(--surf);color:var(--text);border-color:var(--border);}
+.dark-mode .counter-badge{background:linear-gradient(135deg,#8b1a10,#c0392b);}
+.dark-mode .sec h2{color:var(--text);}
+.dark-mode .sec h3{color:#e87060;}
+.dark-mode .sec p,.dark-mode .sec li{color:#aaa;}
+.dark-mode a{color:#e87060;}
+/* System dark preference */
+@media(prefers-color-scheme:dark){
+  body:not(.light-mode){
+    --bg:#111118;--white:#1c1c2a;--surf:#24243a;--text:#e2e2f0;
+    --muted:#8888aa;--border:#36365a;
+  }
+}
 
 /* ── Dark mode toggle button ── */
-.dm-toggle{position:fixed;bottom:72px;right:16px;z-index:200;background:var(--white);border:1.5px solid var(--border);border-radius:100px;padding:8px 14px;font:600 .78rem 'Inter',sans-serif;cursor:pointer;box-shadow:var(--shm);color:var(--text);transition:all var(--tr);}
-.dm-toggle:hover{border-color:var(--red);}
+.dm-toggle{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:100px;padding:5px 12px;font:600 .75rem 'Inter',sans-serif;cursor:pointer;color:#fff;transition:all var(--tr);white-space:nowrap;}
+.dm-toggle:hover{background:rgba(255,255,255,.25);}
 
 /* ── Success animation ── */
 @keyframes successPop{0%{transform:scale(.95);opacity:.7}60%{transform:scale(1.03)}100%{transform:scale(1);opacity:1}}
@@ -620,12 +794,13 @@ footer a{color:#f39c12;}
   .addsub-row{grid-template-columns:1fr;}
 }
 
+
+.addsub-n-input{background:var(--surf);color:var(--text);border-color:var(--border);}
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<button class="dm-toggle" id="dm-btn" onclick="toggleDark()" aria-label="Toggle dark mode">🌙 Dark</button>
 <header class="hdr" role="banner">
   <div class="wrap">
     <nav class="bc" aria-label="Breadcrumb">
@@ -656,13 +831,13 @@ footer a{color:#f39c12;}
 
   <!-- Today's date -->
   <section class="today" aria-label="Today's Nepali Date">
-    <div class="today-badge">📅 Today's Date</div>
+    <div class="today-badge" id="lbl-today">📅 Today's Date</div>
     <div>
-      <div class="tw-lbl">AD (Gregorian)</div>
+      <div class="tw-lbl" id="lbl-ad">AD (Gregorian)</div>
       <div class="tw-val" id="tw-ad">—</div>
     </div>
     <div>
-      <div class="tw-lbl">BS (Bikram Sambat)</div>
+      <div class="tw-lbl" id="lbl-bs">BS (Bikram Sambat)</div>
       <div class="tw-val" id="tw-bs">—</div>
       <div class="tw-np" id="tw-np">—</div>
     </div>
@@ -693,7 +868,7 @@ footer a{color:#f39c12;}
 
     <!-- BS → AD -->
     <div class="tab-pane" id="pane-bs" role="tabpanel" aria-labelledby="tab-bs">
-      <label class="f-label" for="bs-year">Enter Bikram Sambat (BS) Date</label>
+      <label class="f-label" id="lbl-enter-bs" for="bs-year">Enter Bikram Sambat (BS) Date</label>
       <div class="input-row">
         <div class="yr-wrap">
           <input type="number" id="bs-year" min="2000" max="2090"
@@ -729,7 +904,7 @@ footer a{color:#f39c12;}
 
     <!-- AD → BS -->
     <div class="tab-pane active" id="pane-ad" role="tabpanel" aria-labelledby="tab-ad">
-      <label class="f-label">Enter Gregorian (AD) Date</label>
+      <label class="f-label" id="lbl-enter-ad">Enter Gregorian (AD) Date</label>
       <div class="ad-row">
         <div class="field">
           <label for="ad-year">Year</label>
@@ -770,15 +945,15 @@ footer a{color:#f39c12;}
   <!-- ── Extra Feature Tools ── -->
   <section class="card" aria-label="Extra Tools" style="padding:16px 14px;">
     <div class="feat-tabs" role="tablist">
-      <button class="feat-tab active" onclick="switchFeat('age',this)">🎂 Age in BS</button>
-      <button class="feat-tab" onclick="switchFeat('diff',this)">📐 Date Difference</button>
-      <button class="feat-tab" onclick="switchFeat('addsub',this)">➕ Add/Subtract Days</button>
-      <button class="feat-tab" onclick="switchFeat('bulk',this)">📋 Bulk Convert</button>
+      <button class="feat-tab active" id="tab-age-btn" onclick="switchFeat('age',this)">🎂 Age in BS</button>
+      <button class="feat-tab" id="tab-diff-btn" onclick="switchFeat('diff',this)">📐 Date Difference</button>
+      <button class="feat-tab" id="tab-addsub-btn" onclick="switchFeat('addsub',this)">➕ Add/Subtract Days</button>
+      <button class="feat-tab" id="tab-bulk-btn" onclick="switchFeat('bulk',this)">📋 Bulk Convert</button>
     </div>
 
     <!-- Age Calculator -->
     <div class="feat-pane active" id="feat-age">
-      <label class="f-label">Enter your BS birth date</label>
+      <label class="f-label" id="lbl-age">Enter your BS birth date</label>
       <div class="input-row" style="margin-bottom:6px;">
         <div class="yr-wrap">
           <input type="number" id="age-y" min="2000" max="2090" placeholder="Year" aria-label="Birth Year BS" inputmode="numeric" oninput="calcAge()">
@@ -809,7 +984,7 @@ footer a{color:#f39c12;}
 
     <!-- Date Difference -->
     <div class="feat-pane" id="feat-diff">
-      <label class="f-label">From BS Date</label>
+      <label class="f-label" id="lbl-diff-from">From BS Date</label>
       <div class="ad-row" style="margin-bottom:8px;">
         <div class="field"><label for="diff-y1">Year</label>
           <input type="number" id="diff-y1" min="2000" max="2090" placeholder="Year" inputmode="numeric" oninput="calcDiff()"></div>
@@ -832,7 +1007,7 @@ footer a{color:#f39c12;}
         <div class="field"><label for="diff-d1">Day</label>
           <input type="number" id="diff-d1" min="1" max="32" placeholder="Day" inputmode="numeric" oninput="calcDiff()"></div>
       </div>
-      <label class="f-label">To BS Date</label>
+      <label class="f-label" id="lbl-diff-to">To BS Date</label>
       <div class="ad-row" style="margin-bottom:6px;">
         <div class="field"><label for="diff-y2">Year</label>
           <input type="number" id="diff-y2" min="2000" max="2090" placeholder="Year" inputmode="numeric" oninput="calcDiff()"></div>
@@ -860,7 +1035,7 @@ footer a{color:#f39c12;}
 
     <!-- Add/Subtract Days -->
     <div class="feat-pane" id="feat-addsub">
-      <label class="f-label">BS Date + or − Days</label>
+      <label class="f-label" id="lbl-addsub">BS Date + or − Days</label>
       <div class="ad-row" style="margin-bottom:8px;">
         <div class="field"><label for="as-y">Year</label>
           <input type="number" id="as-y" min="2000" max="2090" placeholder="Year" inputmode="numeric" oninput="calcAddSub(1)"></div>
@@ -869,13 +1044,13 @@ footer a{color:#f39c12;}
         <div class="field"><label for="as-d">Day</label>
           <input type="number" id="as-d" min="1" max="32" placeholder="Day" inputmode="numeric" oninput="calcAddSub(1)"></div>
       </div>
-      <label class="f-label">Number of Days</label>
+      <label class="f-label" id="lbl-numdays">Number of Days</label>
       <div class="addsub-ops">
-        <button onclick="calcAddSub(-1)" title="Subtract days">−</button>
+        <button id="btn-sub" onclick="lastOp=-1;calcAddSub(-1)" title="Subtract days">− Subtract</button>
         <input type="number" id="as-n" min="1" max="9999" placeholder="Days" inputmode="numeric"
-               style="text-align:center;padding:10px;border:1.5px solid var(--border);border-radius:var(--r);font:.9rem Inter,sans-serif;background:var(--surf);color:var(--text);width:120px;"
-               oninput="calcAddSub(1)">
-        <button onclick="calcAddSub(1)" title="Add days">+</button>
+               class="addsub-n-input" style="text-align:center;padding:10px;border:1.5px solid var(--border);border-radius:var(--r);font:.9rem 'Inter',sans-serif;width:110px;"
+               oninput="calcAddSub(lastOp||1)">
+        <button id="btn-add" onclick="lastOp=1;calcAddSub(1)" title="Add days">+ Add</button>
       </div>
       <div id="as-result" style="margin-top:8px;" aria-live="polite"></div>
     </div>
@@ -887,8 +1062,8 @@ footer a{color:#f39c12;}
       <p style="font-size:.76rem;color:var(--muted);margin-bottom:6px;">Format: YYYY MM DD or YYYY-MM-DD or YYYY/MM/DD</p>
       <textarea class="bulk-input" id="bulk-input" placeholder="2083 2 13&#10;2081 1 1&#10;2080-06-15&#10;2054/4/2" oninput="doBulk()" aria-label="Bulk date input"></textarea>
       <div style="display:flex;gap:8px;margin-top:6px;">
-        <button class="btn btn-p" onclick="doBulk()">🔄 Convert All</button>
-        <button class="btn btn-o" onclick="copyBulk()">📋 Copy Results</button>
+        <button class="btn btn-p" id="btn-convert-all" onclick="doBulk()">🔄 Convert All</button>
+        <button class="btn btn-o" id="btn-copy-results" onclick="copyBulk()">📋 Copy Results</button>
       </div>
       <div id="bulk-result" style="margin-top:8px;" aria-live="polite"></div>
     </div>
@@ -978,12 +1153,12 @@ footer a{color:#f39c12;}
       <div class="counter-badge">⚡ <span id="conv-counter">10,000+</span> conversions today</div>
     </div>
     <div class="trust-bottom">
-      <div class="tb-item2"><strong>✓ Free Forever</strong><span>No signup needed</span></div>
-      <div class="tb-item2"><strong>✓ 100% Accurate</strong><span>Verified data</span></div>
-      <div class="tb-item2"><strong>✓ No Ads on Results</strong><span>Clean experience</span></div>
-      <div class="tb-item2"><strong>✓ Works Offline</strong><span>Pure browser JS</span></div>
+      <div class="tb-item2"><strong id="tb-free">✓ Free Forever</strong><span id="tb-nosignup">No signup needed</span></div>
+      <div class="tb-item2"><strong id="tb-accurate">✓ 100% Accurate</strong><span id="tb-verified">Verified data</span></div>
+      <div class="tb-item2"><strong id="tb-noads">✓ No Ads on Results</strong><span id="tb-clean">Clean experience</span></div>
+      <div class="tb-item2"><strong id="tb-offline">✓ Works Offline</strong><span id="tb-purejs">Pure browser JS</span></div>
     </div>
-    <h3 style="margin-bottom:8px;">What Users Say</h3>
+    <h3 id="lbl-users-say" style="margin-bottom:8px;">What Users Say</h3>
     <div class="testimonials">
       <div class="tcard"><p>"Finally a date converter that actually works correctly! Used it for my passport application."</p><div class="tname">— Ramesh K., Kathmandu</div></div>
       <div class="tcard"><p>"Best Nepali date converter I've found. Fast, accurate, and works on mobile."</p><div class="tname">— Sita M., Pokhara</div></div>
@@ -1647,7 +1822,7 @@ function calcAge(){
   const d=+document.getElementById('age-d').value;
   const res=document.getElementById('age-result');
   if(!y||!m||!d){res.innerHTML='';return;}
-  const err=valBS&&valBS(y,m,d);
+  const err=typeof valBS==='function'?valBS(y,m,d):null;
   if(err){res.innerHTML='<p class="err">⚠ '+err+'</p>';return;}
 
   // Today in BS
@@ -1700,8 +1875,8 @@ function calcDiff(){
   const d2=+document.getElementById('diff-d2').value;
   const res=document.getElementById('diff-result');
   if(!y1||!m1||!d1||!y2||!m2||!d2){res.innerHTML='';return;}
-  const e1=valBS&&valBS(y1,m1,d1);
-  const e2=valBS&&valBS(y2,m2,d2);
+  const e1=typeof valBS==='function'?valBS(y1,m1,d1):null;
+  const e2=typeof valBS==='function'?valBS(y2,m2,d2):null;
   if(e1){res.innerHTML='<p class="err">⚠ Date 1: '+e1+'</p>';return;}
   if(e2){res.innerHTML='<p class="err">⚠ Date 2: '+e2+'</p>';return;}
   const r1=convertBStoAD(y1,m1,d1);
