@@ -149,19 +149,7 @@ function copyEmbed(){
   showToast('✓ Embed code copied!');
 }
 
-/* ════════════════════════════════════════
-   PATCH doBStoAD + doADtoBS for success anim
-   ════════════════════════════════════════ */
-const _origBStoAD=doBStoAD;
-window.doBStoAD=function(){
-  _origBStoAD();
-  successAnim('bs-result');
-};
-const _origADtoBS=doADtoBS;
-window.doADtoBS=function(){
-  _origADtoBS();
-  successAnim('ad-result');
-};
+/* success anim triggered inline in result render */
 
 /* ── Init dark mode button label ── */
 document.addEventListener('DOMContentLoaded',function(){
@@ -257,7 +245,7 @@ function t(key){ return (TRANSLATIONS[currentLang]||TRANSLATIONS.en)[key]||key; 
 function applyLang(){
   const isNP = currentLang === 'np';
   // Page title/sub
-  const isAdToBs = window.location.pathname.includes('ad-to-bs');
+  const isAdToBs = document.querySelector('h1') && document.querySelector('h1').textContent.includes('AD to BS');
   const titleEl = document.getElementById('pg-title');
   const subEl = document.getElementById('pg-sub');
   if(titleEl) titleEl.textContent = isAdToBs ? t('title_adtobs') : t('title_bstoad');
@@ -795,7 +783,7 @@ footer a{color:#f39c12;}
 }
 
 
-.addsub-n-input{background:var(--surf);color:var(--text);border-color:var(--border);}
+.addsub-n-input{background:var(--surf)!important;color:var(--text)!important;border:1.5px solid var(--border)!important;}
 </style>
 </head>
 <body>
@@ -1389,6 +1377,7 @@ function convertADtoBS(y,m,d){
 function todayBS(){const n=new Date();return convertADtoBS(n.getFullYear(),n.getMonth()+1,n.getDate());}
 
 /* ── Toast ── */
+function showToast(msg){return toast(msg);}
 function toast(msg){
   const t=document.getElementById("toast");
   t.textContent=msg;t.classList.add("show");
@@ -1410,6 +1399,7 @@ function share(s){
 let cur="";
 
 /* ── Update day hint ── */
+function updateBSDayHint(){return updateHint();}
 function updateHint(){
   const y=+document.getElementById("bs-year").value;
   const m=+document.getElementById("bs-month").value;
@@ -1439,7 +1429,7 @@ function doBStoAD(){
     ${holHTML1}
     <div class="url-bar"><input type="text" id="surl-bs" readonly value="${shareURL1}" onclick="this.select()" aria-label="Shareable URL"><button class="btn btn-o" style="padding:6px 10px;font-size:.75rem" onclick="copyText('${shareURL1}');showToast('✓ URL copied!')">🔗 Copy Link</button></div>
   </div>`;
-  ac.style.display="flex";
+  ac.style.display="flex"; ac.querySelectorAll(".act-hidden").forEach(b=>b.classList.remove("act-hidden"));
   if(typeof updateURL==='function') updateURL(y,m,d,'bs');
   if(document.getElementById('bs-cal-grid')&&document.getElementById('bs-cal-grid').style.display!=='none'){
     calYear=+y;calMonth=+m;renderBSCalendar('bs-cal-grid');
@@ -1468,7 +1458,7 @@ function doADtoBS(){
     ${holHTML2}
     <div class="url-bar"><input type="text" id="surl-ad" readonly value="${shareURL2}" onclick="this.select()" aria-label="Shareable URL"><button class="btn btn-o" style="padding:6px 10px;font-size:.75rem" onclick="copyText('${shareURL2}');showToast('✓ URL copied!')">🔗 Copy Link</button></div>
   </div>`;
-  ac.style.display="flex";
+  ac.style.display="flex"; ac.querySelectorAll(".act-hidden").forEach(b=>b.classList.remove("act-hidden"));
   if(typeof updateURL==='function') updateURL(y,m,d,'ad');
   if(document.getElementById('ad-cal-grid')&&document.getElementById('ad-cal-grid').style.display!=='none'){
     renderADCalendar('ad-cal-grid');
@@ -1553,7 +1543,8 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("ad-result").innerHTML="";
     document.getElementById("ad-act").style.display="none";cur="";
   });
-  document.getElementById("btn-swap").addEventListener("click",()=>{
+  const swapBtn=document.getElementById("btn-swap");
+  if(swapBtn) swapBtn.addEventListener("click",()=>{
     const a=document.querySelector(".tab-btn.active");
     document.querySelectorAll(".tab-btn").forEach(b=>{if(b!==a)b.click();});
   });
