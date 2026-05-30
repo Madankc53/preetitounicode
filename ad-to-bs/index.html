@@ -4,19 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>AD to BS Converter — Gregorian to Bikram Sambat Date | Nepal</title>
-<meta name="description" content="Convert AD to BS instantly. Enter any Gregorian date and get the exact Bikram Sambat (BS) date. Free, accurate, mobile-friendly. Supports 1943–2034 AD.">
-<meta name="keywords" content="AD to BS converter,Gregorian to Bikram Sambat,convert AD date to BS,English date to Nepali date,Nepal date converter">
+<meta name="description" content="Convert AD to BS instantly. Visual calendar picker, age calculator, date difference. Free, accurate AD to BS converter. Supports 1943–2034 AD.">
+<meta name="keywords" content="Nepali Date Converter,BS to AD Converter,AD to BS Converter,Bikram Sambat Converter,Nepali Calendar Converter">
 <meta name="author" content="TheNepal.io">
 <link rel="canonical" href="https://converter.thenepal.io/ad-to-bs/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://converter.thenepal.io/ad-to-bs/">
 <meta property="og:title" content="AD to BS Converter — Gregorian to Bikram Sambat">
-<meta property="og:description" content="Convert any Gregorian (AD) date to Bikram Sambat (BS) instantly. Free, accurate, verified.">
+<meta property="og:description" content="Instantly convert BS to AD and AD to BS. Verified Bikram Sambat data. Free, fast, mobile-friendly.">
 <meta property="og:locale" content="ne_NP">
 <meta property="og:site_name" content="TheNepal.io">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AD to BS Converter — Gregorian to Bikram Sambat">
-<meta name="twitter:description" content="Convert AD dates to Bikram Sambat (BS) instantly. Free, accurate Nepali date converter.">
+<meta name="twitter:title" content="Nepali Date Converter — BS to AD & AD to BS">
+<meta name="twitter:description" content="Free accurate Nepali date converter. Bikram Sambat 2000–2090. Matches Hamro Patro.">
 <meta name="theme-color" content="#c0392b">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,16 @@
 
 <!-- Schema -->
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebApplication","name":"AD to BS Converter","url":"https://converter.thenepal.io/ad-to-bs/","description":"Convert Gregorian (AD) to Bikram Sambat (BS). Supports 1943–2034 AD. Accurate, instant, free.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TheNepal.io","url":"https://thenepal.io"}}
+{"@context":"https://schema.org","@type":"WebApplication","name":"AD to BS Converter","url":"https://converter.thenepal.io/ad-to-bs/","description":"Convert BS to AD and AD to BS. Exact Bikram Sambat data 2000–2090.","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"TheNepal.io","url":"https://thenepal.io"}}
+/* ── Feature tab switcher ── */
+function switchFeat(id, btn){
+  document.querySelectorAll('.feat-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.feat-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const p=document.getElementById('feat-'+id);
+  if(p) p.classList.add('active');
+}
+
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://thenepal.io"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://converter.thenepal.io"},{"@type":"ListItem","position":3,"name":"AD to BS Converter","item":"https://converter.thenepal.io/ad-to-bs/"}]}
@@ -338,6 +347,59 @@ footer a{color:#f39c12;}
   .tab-pane{ padding:20px 20px; }
   .wrap{ padding:0 20px; }
 }
+
+/* ── Visual Calendar ── */
+.cal-wrap{margin-bottom:6px;}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.cal-nav button{background:none;border:1.5px solid var(--border);border-radius:var(--r);padding:5px 12px;cursor:pointer;font:600 .82rem 'Inter',sans-serif;color:var(--text);transition:background var(--tr);}
+.cal-nav button:hover{background:var(--border);}
+.cal-title{font:700 .9rem 'Inter',sans-serif;color:var(--text);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-hdr{text-align:center;font:700 .65rem 'Inter',sans-serif;color:var(--muted);padding:4px 0;text-transform:uppercase;}
+.cal-day{text-align:center;padding:5px 2px;font:.78rem 'Inter',sans-serif;color:var(--text);cursor:pointer;border-radius:6px;transition:background var(--tr),color var(--tr);min-width:0;line-height:1.2;}
+.cal-day:hover{background:var(--border);}
+.cal-day.selected{background:var(--red);color:#fff;font-weight:700;}
+.cal-day.today-cal{border:2px solid var(--gold);font-weight:700;}
+.cal-day.holiday{color:#e67e22;}
+.cal-day.empty{cursor:default;}
+.cal-day.empty:hover{background:none;}
+.cal-toggle{font-size:.75rem;color:var(--red);cursor:pointer;margin-bottom:6px;display:inline-flex;align-items:center;gap:4px;font-weight:600;}
+.cal-toggle:hover{text-decoration:underline;}
+
+/* ── Feature tabs ── */
+.feat-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0 10px;}
+.feat-tab{padding:7px 14px;border:1.5px solid var(--border);border-radius:100px;font:600 .78rem 'Inter',sans-serif;color:var(--muted);cursor:pointer;background:var(--surf);transition:all var(--tr);white-space:nowrap;}
+.feat-tab.active{background:var(--red);color:#fff;border-color:var(--red);}
+.feat-pane{display:none;}
+.feat-pane.active{display:block;}
+
+/* ── Holiday badge ── */
+.holiday-badge{display:inline-flex;align-items:center;gap:5px;background:#fff3e0;color:#e67e22;border:1px solid #f39c12;border-radius:100px;font-size:.72rem;font-weight:600;padding:3px 10px;margin-top:6px;}
+
+/* ── Age result ── */
+.age-result{background:linear-gradient(135deg,#f0fff4,#fff);border:1.5px solid var(--green);border-radius:var(--r);padding:14px 15px;margin-top:10px;animation:fu .18s ease;}
+.age-val{font-size:1.2rem;font-weight:700;color:var(--green);}
+
+/* ── Date diff result ── */
+.diff-result{background:linear-gradient(135deg,#f0f4ff,#fff);border:1.5px solid #3498db;border-radius:var(--r);padding:14px 15px;margin-top:10px;animation:fu .18s ease;}
+.diff-val{font-size:1.2rem;font-weight:700;color:#2980b9;}
+
+/* ── Share image button ── */
+.btn-img{background:linear-gradient(135deg,#667eea,#764ba2);color:#fff;}
+.btn-img:hover{opacity:.9;}
+
+/* ── URL share bar ── */
+.url-bar{display:flex;gap:6px;margin-top:8px;align-items:center;}
+.url-bar input{flex:1;padding:8px 10px;border:1.5px solid var(--border);border-radius:var(--r);font:.78rem 'Inter',sans-serif;color:var(--muted);background:var(--surf);cursor:pointer;}
+.url-bar button{padding:8px 12px;white-space:nowrap;}
+
+/* ── Nepali input toggle ── */
+.np-toggle{font-size:.72rem;color:var(--muted);margin-top:4px;cursor:pointer;display:inline-flex;align-items:center;gap:3px;}
+.np-toggle:hover{color:var(--red);}
+.np-input-row{display:none;gap:8px;margin-bottom:6px;}
+.np-input-row.show{display:grid;grid-template-columns:1fr 2fr 1fr;}
+.np-input-row input{text-align:center;font-family:'Noto Serif Devanagari',serif;font-size:1rem;}
+
 </style>
 </head>
 <body>
@@ -402,10 +464,10 @@ footer a{color:#f39c12;}
   <section class="card" aria-label="Date Converter">
 
     <div class="tabs" role="tablist">
-      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-btn" style="text-decoration:none">🇳🇵 BS → AD</a>
-      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-swap" title="Go to BS→AD" style="text-decoration:none">⇄</a>
-      <button class="tab-btn active" id="tab-ad" data-tab="pane-ad"
-              role="tab" aria-selected="true" aria-controls="pane-ad">AD → BS 🇳🇵</button>
+      <button class="tab-btn" id="tab-bs" data-tab="pane-bs"
+              role="tab" aria-selected="false" aria-controls="pane-bs">🇳🇵 BS → AD</button>
+      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-swap" title="Go to BS→AD" style="text-decoration:none" aria-label="Switch to BS to AD">⇄</a>
+      <a href="https://converter.thenepal.io/bs-to-ad/" class="tab-btn" style="text-decoration:none" aria-label="Go to BS to AD converter">🇳🇵 BS → AD</a>
     </div>
 
     <!-- BS → AD -->
@@ -427,6 +489,12 @@ footer a{color:#f39c12;}
           <div class="day-hint" id="bs-day-hint"></div>
         </div>
       </div>
+
+      <!-- Visual Calendar Toggle -->
+      <div style="margin-bottom:6px;">
+        <span class="cal-toggle" id="cal-toggle-btn" onclick="toggleCalendar()">🗓 Show Calendar</span>
+      </div>
+      <div id="bs-cal-grid" style="display:none;margin-bottom:10px;background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r);padding:10px;"></div>
       <div class="result-area" id="bs-result" aria-live="polite"></div>
       <div id="bs-history" style="margin-top:10px;font-size:.76rem;color:#6b6b7a;display:none;">
         <strong>Recent:</strong> <span id="bs-hist-list"></span>
@@ -458,6 +526,12 @@ footer a{color:#f39c12;}
                  placeholder="1–31" aria-label="AD Day" inputmode="numeric">
         </div>
       </div>
+
+      <!-- Visual Calendar Toggle -->
+      <div style="margin-bottom:6px;">
+        <span class="cal-toggle" id="ad-cal-toggle-btn" onclick="toggleADCalendar()">🗓 Show Calendar</span>
+      </div>
+      <div id="ad-cal-grid" style="display:none;margin-bottom:10px;background:var(--surf);border:1.5px solid var(--border);border-radius:var(--r);padding:10px;"></div>
       <div class="result-area" id="ad-result" aria-live="polite"></div>
       <div id="ad-history" style="margin-top:10px;font-size:.76rem;color:#6b6b7a;display:none;">
         <strong>Recent:</strong> <span id="ad-hist-list"></span>
@@ -471,10 +545,61 @@ footer a{color:#f39c12;}
 
   </section>
 
+
+  <!-- ── Extra Feature Tools ── -->
+  <section class="card" aria-label="Extra Tools" style="padding:16px 14px;">
+    <div class="feat-tabs" role="tablist">
+      <button class="feat-tab active" onclick="switchFeat('age',this)">🎂 Age in BS</button>
+      <button class="feat-tab" onclick="switchFeat('diff',this)">📐 Date Difference</button>
+    </div>
+
+    <!-- Age Calculator -->
+    <div class="feat-pane active" id="feat-age">
+      <label class="f-label">Enter your BS birth date</label>
+      <div class="input-row" style="margin-bottom:6px;">
+        <div class="yr-wrap">
+          <input type="number" id="age-y" min="2000" max="2090" placeholder="Year" aria-label="Birth Year BS" inputmode="numeric" oninput="calcAge()">
+        </div>
+        <div class="sel-wrap">
+          <select id="age-m" aria-label="Birth Month BS" onchange="calcAge()">
+            <option value="">Month</option>
+          </select>
+        </div>
+        <div class="dy-wrap">
+          <input type="number" id="age-d" min="1" max="32" placeholder="Day" aria-label="Birth Day BS" inputmode="numeric" oninput="calcAge()">
+        </div>
+      </div>
+      <div id="age-result" aria-live="polite"></div>
+    </div>
+
+    <!-- Date Difference -->
+    <div class="feat-pane" id="feat-diff">
+      <label class="f-label">From BS Date</label>
+      <div class="ad-row" style="margin-bottom:8px;">
+        <div class="field"><label for="diff-y1">Year</label>
+          <input type="number" id="diff-y1" min="2000" max="2090" placeholder="Year" inputmode="numeric" oninput="calcDiff()"></div>
+        <div class="field"><label for="diff-m1">Month</label>
+          <select id="diff-m1" onchange="calcDiff()"><option value="">Month</option></select></div>
+        <div class="field"><label for="diff-d1">Day</label>
+          <input type="number" id="diff-d1" min="1" max="32" placeholder="Day" inputmode="numeric" oninput="calcDiff()"></div>
+      </div>
+      <label class="f-label">To BS Date</label>
+      <div class="ad-row" style="margin-bottom:6px;">
+        <div class="field"><label for="diff-y2">Year</label>
+          <input type="number" id="diff-y2" min="2000" max="2090" placeholder="Year" inputmode="numeric" oninput="calcDiff()"></div>
+        <div class="field"><label for="diff-m2">Month</label>
+          <select id="diff-m2" onchange="calcDiff()"><option value="">Month</option></select></div>
+        <div class="field"><label for="diff-d2">Day</label>
+          <input type="number" id="diff-d2" min="1" max="32" placeholder="Day" inputmode="numeric" oninput="calcDiff()"></div>
+      </div>
+      <div id="diff-result" aria-live="polite"></div>
+    </div>
+  </section>
+
   <!-- SEO Content -->
   <section class="sec" aria-labelledby="about-h">
     <h2 id="about-h">AD to BS Converter — Gregorian to Bikram Sambat</h2>
-    <p>This <strong>AD to BS converter</strong> instantly converts any <strong>Gregorian (AD)</strong> date to the exact <strong>Bikram Sambat (BS)</strong> date. Perfect for finding your Nepali birth date, official documents, and everyday use.</p>
+    <p>This <strong>AD to BS converter</strong> converts any <strong>Gregorian (AD)</strong> date to the exact <strong>Bikram Sambat (BS)</strong> date. Features visual calendar picker, age calculator, date difference, and shareable URLs.</p>
     <div class="info-grid">
       <div class="ibox"><div class="il">Supported Range</div><div class="iv">2000–2090 BS</div></div>
       <div class="ibox"><div class="il">Anchor Date</div><div class="iv">2000-01-01 BS = 1943-04-14 AD</div></div>
@@ -564,6 +689,45 @@ footer a{color:#f39c12;}
 
 <!-- ══ ALL JS INLINE — no external file needed ══ -->
 <script>
+
+/* ── Nepali Holidays ── */
+const HOLIDAYS = {
+  // Format: "YYYY-MM-DD" (BS date): "Holiday Name"
+  // Major public holidays Nepal
+  "2083-1-1":"Nepali New Year (Navabarsha)",
+  "2083-2-15":"Buddha Jayanti",
+  "2083-3-15":"Ropain / National Paddy Day",
+  "2083-6-1":"Constitution Day",
+  "2083-7-1":"Ghatasthapana",
+  "2083-7-8":"Fulpati",
+  "2083-7-9":"Maha Ashtami",
+  "2083-7-10":"Maha Navami",
+  "2083-7-11":"Vijaya Dashami (Dashain)",
+  "2083-7-15":"Kojagrat Purnima",
+  "2083-8-1":"Tihar / Laxmi Puja",
+  "2083-8-4":"Bhai Tika",
+  "2083-9-29":"Christmas Day",
+  "2083-10-10":"Maghe Sankranti (approx)",
+  "2083-11-7":"Maha Shivaratri (approx)",
+  "2083-12-30":"Fagu Purnima / Holi",
+  // 2082
+  "2082-1-1":"Nepali New Year (Navabarsha)",
+  "2082-6-1":"Constitution Day",
+  "2082-7-11":"Vijaya Dashami (Dashain)",
+  "2082-8-1":"Tihar / Laxmi Puja",
+  "2082-9-29":"Christmas Day",
+  "2082-10-1":"Maghe Sankranti",
+  // 2081
+  "2081-1-1":"Nepali New Year (Navabarsha)",
+  "2081-6-1":"Constitution Day",
+  "2081-9-29":"Christmas Day",
+};
+function getHoliday(bsY,bsM,bsD){
+  const key=bsY+"-"+bsM+"-"+bsD;
+  return HOLIDAYS[key]||null;
+}
+
+
 /* ── BS Calendar Data (2000–2090) — 2081 Chaitra=31 FIXED ── */
 const BS_DATA={
   2000:[30,32,31,32,31,30,30,30,29,30,29,31],
@@ -759,12 +923,21 @@ function doBStoAD(){
   if(r.error){re.innerHTML=`<p class="err">⚠ ${r.error}</p>`;ac.style.display="none";cur="";return;}
   const af=fmtAD(r.adY,r.adM,r.adD);
   cur=`${y} ${MEN[+m-1]} ${d} BS = ${af} AD (${r.dn})`;
+  const hol1=(typeof getHoliday==='function')?getHoliday(+y,+m,+d):'';
+  const holHTML1=hol1?`<div class="holiday-badge">🎉 ${hol1}</div>`:'';
+  const shareURL1=window.location.origin+window.location.pathname+'?y='+y+'&m='+m+'&d='+d;
   re.innerHTML=`<div class="result-card">
     <span class="r-lbl">AD Date</span>
     <span class="r-val">${af}</span>
     <div class="tags"><span class="tag">${r.dn}</span><span class="tag np">${r.dnp}</span></div>
+    ${holHTML1}
+    <div class="url-bar"><input type="text" id="surl-bs" readonly value="${shareURL1}" onclick="this.select()" aria-label="Shareable URL"><button class="btn btn-o" style="padding:6px 10px;font-size:.75rem" onclick="copyText('${shareURL1}');showToast('✓ URL copied!')">🔗 Copy Link</button></div>
   </div>`;
   ac.style.display="flex";
+  if(typeof updateURL==='function') updateURL(y,m,d,'bs');
+  if(document.getElementById('bs-cal-grid')&&document.getElementById('bs-cal-grid').style.display!=='none'){
+    calYear=+y;calMonth=+m;renderBSCalendar('bs-cal-grid');
+  }
 }
 function doADtoBS(){
   const y=document.getElementById("ad-year").value.trim();
@@ -778,13 +951,22 @@ function doADtoBS(){
   const bf=`${r.by} ${r.mn} ${r.bd}`;
   const np=`${npNum(r.by)} ${r.mnp} ${npNum(r.bd)}`;
   cur=`${fmtAD(+y,+m,+d)} AD = ${bf} BS (${r.dn})`;
+  const hol2=(typeof getHoliday==='function')?getHoliday(r.by,r.bm,r.bd):'';
+  const holHTML2=hol2?`<div class="holiday-badge">🎉 ${hol2}</div>`:'';
+  const shareURL2=window.location.origin+window.location.pathname+'?y='+y+'&m='+m+'&d='+d+'&mode=ad';
   re.innerHTML=`<div class="result-card">
     <span class="r-lbl">BS Date</span>
     <span class="r-val">${bf}</span>
     <div class="r-np">${np}</div>
     <div class="tags"><span class="tag">${r.dn}</span><span class="tag np">${r.dnp}</span><span class="tag">${r.mn}</span></div>
+    ${holHTML2}
+    <div class="url-bar"><input type="text" id="surl-ad" readonly value="${shareURL2}" onclick="this.select()" aria-label="Shareable URL"><button class="btn btn-o" style="padding:6px 10px;font-size:.75rem" onclick="copyText('${shareURL2}');showToast('✓ URL copied!')">🔗 Copy Link</button></div>
   </div>`;
   ac.style.display="flex";
+  if(typeof updateURL==='function') updateURL(y,m,d,'ad');
+  if(document.getElementById('ad-cal-grid')&&document.getElementById('ad-cal-grid').style.display!=='none'){
+    renderADCalendar('ad-cal-grid');
+  }
 }
 
 /* ── Today widget ── */
@@ -872,6 +1054,17 @@ document.addEventListener("DOMContentLoaded",()=>{
 
   doBStoAD();
   doADtoBS();
+  if(typeof loadFromURL==='function') setTimeout(loadFromURL,50);
+  // Populate extra feature month selects
+  ['age-m','diff-m1','diff-m2'].forEach(id=>{
+    const s=document.getElementById(id);
+    if(!s) return;
+    MEN.forEach((n,i)=>{const o=document.createElement('option');o.value=i+1;o.textContent=String(i+1).padStart(2,'0')+' — '+n;s.appendChild(o);});
+  });
+  ['bs-year','bs-day','ad-year','ad-month','ad-day','age-y','age-m','age-d',
+   'diff-y1','diff-m1','diff-d1','diff-y2','diff-m2','diff-d2'].forEach(id=>{
+    if(typeof setupNpInput==='function') setupNpInput(id);
+  });
 
   // ── Recent conversions history (last 5) ──
   const bsHist=[], adHist=[];
@@ -915,6 +1108,343 @@ document.addEventListener("DOMContentLoaded",()=>{
     q.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();tog();}});
   });
 });
+
+
+/* ════════════════════════════════════════
+   FEATURE 1: URL-based shareable results
+   ════════════════════════════════════════ */
+function updateURL(y,m,d,mode){
+  const params=new URLSearchParams(window.location.search);
+  if(y) params.set('y',y); else params.delete('y');
+  if(m) params.set('m',m); else params.delete('m');
+  if(d) params.set('d',d); else params.delete('d');
+  if(mode) params.set('mode',mode);
+  const newURL=window.location.pathname+'?'+params.toString();
+  window.history.replaceState({},'',newURL);
+}
+function loadFromURL(){
+  const p=new URLSearchParams(window.location.search);
+  const y=p.get('y'),m=p.get('m'),d=p.get('d'),mode=p.get('mode');
+  if(y&&m&&d){
+    if(mode==='ad'){
+      document.getElementById('tab-ad')&&document.getElementById('tab-ad').click();
+      document.getElementById('ad-year').value=y;
+      document.getElementById('ad-month').value=m;
+      document.getElementById('ad-day').value=d;
+    } else {
+      document.getElementById('bs-year').value=y;
+      const ms=document.getElementById('bs-month');
+      if(ms) ms.value=m;
+      document.getElementById('bs-day').value=d;
+      updateBSDayHint&&updateBSDayHint();
+    }
+  }
+}
+function getShareURL(){
+  return window.location.href;
+}
+
+/* ════════════════════════════════════════
+   FEATURE 2: Visual BS Calendar
+   ════════════════════════════════════════ */
+let calYear=0, calMonth=0, calMode='bs', calTargetYear='', calTargetMonth='', calTargetDay='';
+
+function initCalendar(yearId, monthId, dayId){
+  const y=+document.getElementById(yearId).value;
+  const m=+document.getElementById(monthId).value||1;
+  calYear = y||new Date().getFullYear();
+  calMonth = m;
+  calTargetYear=yearId; calTargetMonth=monthId; calTargetDay=dayId;
+}
+
+function renderBSCalendar(containerId){
+  const cont=document.getElementById(containerId);
+  if(!cont) return;
+  const y=calYear, m=calMonth;
+  if(!BS_DATA[y]) return;
+  const daysInMonth=BS_DATA[y][m-1];
+
+  // Day of week for 1st of this month — compute via convertBStoAD
+  const firstDay=convertBStoAD(y,m,1);
+  const startDow = firstDay.error ? 0 : firstDay.adDate.getUTCDay();
+
+  // Today in BS
+  const npNow=new Date(Date.now()+((5*60+45)*60000));
+  const todayAD=convertADtoBS(npNow.getUTCFullYear(),npNow.getUTCMonth()+1,npNow.getUTCDate());
+  const isCurrentMonth = !todayAD.error && todayAD.by===y && todayAD.bm===m;
+
+  const selectedDay = +document.getElementById(calTargetDay).value;
+
+  const days=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  let html='<div class="cal-nav">'
+    +'<button onclick="calPrev()">◀</button>'
+    +'<span class="cal-title">'+MEN[m-1]+' '+y+' ('+BS_MONTHS_NP[m-1]+')</span>'
+    +'<button onclick="calNext()">▶</button>'
+    +'</div>'
+    +'<div class="cal-grid">';
+  days.forEach(d=>html+='<div class="cal-hdr">'+d+'</div>');
+  for(let i=0;i<startDow;i++) html+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const cls=['cal-day'];
+    if(d===selectedDay) cls.push('selected');
+    if(isCurrentMonth && d===todayAD.bd) cls.push('today-cal');
+    const hol=getHoliday(y,m,d);
+    if(hol) cls.push('holiday');
+    const title=hol?' title="'+hol+'"':'';
+    html+='<div class="'+cls.join(' ')+'"'+title+' onclick="calSelect('+d+')">'+d+'</div>';
+  }
+  html+='</div>';
+  cont.innerHTML=html;
+}
+
+function calSelect(d){
+  document.getElementById(calTargetDay).value=d;
+  // trigger input event
+  document.getElementById(calTargetDay).dispatchEvent(new Event('input'));
+  // re-render to show selected
+  const cont=document.getElementById('bs-cal-grid');
+  if(cont) renderBSCalendar('bs-cal-grid');
+}
+function calPrev(){
+  calMonth--;
+  if(calMonth<1){calMonth=12;calYear--;}
+  if(!BS_DATA[calYear]) return;
+  document.getElementById(calTargetYear).value=calYear;
+  const ms=document.getElementById(calTargetMonth);
+  if(ms) ms.value=calMonth;
+  updateBSDayHint&&updateBSDayHint();
+  renderBSCalendar('bs-cal-grid');
+}
+function calNext(){
+  calMonth++;
+  if(calMonth>12){calMonth=1;calYear++;}
+  if(!BS_DATA[calYear]) return;
+  document.getElementById(calTargetYear).value=calYear;
+  const ms=document.getElementById(calTargetMonth);
+  if(ms) ms.value=calMonth;
+  updateBSDayHint&&updateBSDayHint();
+  renderBSCalendar('bs-cal-grid');
+}
+function toggleCalendar(){
+  const w=document.getElementById('bs-cal-grid');
+  const btn=document.getElementById('cal-toggle-btn');
+  if(!w) return;
+  if(w.style.display==='none'||!w.style.display){
+    initCalendar('bs-year','bs-month','bs-day');
+    renderBSCalendar('bs-cal-grid');
+    w.style.display='block';
+    btn.textContent='🗓 Hide Calendar';
+  } else {
+    w.style.display='none';
+    btn.textContent='🗓 Show Calendar';
+  }
+}
+
+/* Visual AD calendar */
+function renderADCalendar(containerId){
+  const cont=document.getElementById(containerId);
+  if(!cont) return;
+  const y=+document.getElementById('ad-year').value||new Date().getFullYear();
+  const m=+document.getElementById('ad-month').value||1;
+  const daysInMonth=new Date(Date.UTC(y,m,0)).getUTCDate();
+  const startDow=new Date(Date.UTC(y,m-1,1)).getUTCDay();
+  const now=new Date(Date.now()+((5*60+45)*60000));
+  const isCurrentMonth=now.getUTCFullYear()===y&&now.getUTCMonth()+1===m;
+  const todayD=now.getUTCDate();
+  const selectedDay=+document.getElementById('ad-day').value;
+  const days=['Su','Mo','Tu','We','Th','Fr','Sa'];
+  const mNames=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  let html='<div class="cal-nav">'
+    +'<button onclick="adCalPrev()">◀</button>'
+    +'<span class="cal-title">'+mNames[m-1]+' '+y+'</span>'
+    +'<button onclick="adCalNext()">▶</button>'
+    +'</div><div class="cal-grid">';
+  days.forEach(d=>html+='<div class="cal-hdr">'+d+'</div>');
+  for(let i=0;i<startDow;i++) html+='<div class="cal-day empty"></div>';
+  for(let d=1;d<=daysInMonth;d++){
+    const cls=['cal-day'];
+    if(d===selectedDay) cls.push('selected');
+    if(isCurrentMonth&&d===todayD) cls.push('today-cal');
+    html+='<div class="'+cls.join(' ')+'" onclick="adCalSelect('+d+')">'+d+'</div>';
+  }
+  html+='</div>';
+  cont.innerHTML=html;
+}
+function adCalSelect(d){
+  document.getElementById('ad-day').value=d;
+  document.getElementById('ad-day').dispatchEvent(new Event('input'));
+  renderADCalendar('ad-cal-grid');
+}
+function adCalPrev(){
+  let y=+document.getElementById('ad-year').value||new Date().getFullYear();
+  let m=+document.getElementById('ad-month').value||1;
+  m--; if(m<1){m=12;y--;}
+  document.getElementById('ad-year').value=y;
+  document.getElementById('ad-month').value=m;
+  document.getElementById('ad-year').dispatchEvent(new Event('input'));
+  renderADCalendar('ad-cal-grid');
+}
+function adCalNext(){
+  let y=+document.getElementById('ad-year').value||new Date().getFullYear();
+  let m=+document.getElementById('ad-month').value||1;
+  m++; if(m>12){m=1;y++;}
+  document.getElementById('ad-year').value=y;
+  document.getElementById('ad-month').value=m;
+  document.getElementById('ad-year').dispatchEvent(new Event('input'));
+  renderADCalendar('ad-cal-grid');
+}
+function toggleADCalendar(){
+  const w=document.getElementById('ad-cal-grid');
+  const btn=document.getElementById('ad-cal-toggle-btn');
+  if(!w) return;
+  if(w.style.display==='none'||!w.style.display){
+    renderADCalendar('ad-cal-grid');
+    w.style.display='block';
+    btn.textContent='🗓 Hide Calendar';
+  } else {
+    w.style.display='none';
+    btn.textContent='🗓 Show Calendar';
+  }
+}
+
+/* ════════════════════════════════════════
+   FEATURE 3: Age in BS
+   ════════════════════════════════════════ */
+function calcAge(){
+  const y=+document.getElementById('age-y').value;
+  const m=+document.getElementById('age-m').value;
+  const d=+document.getElementById('age-d').value;
+  const res=document.getElementById('age-result');
+  if(!y||!m||!d){res.innerHTML='';return;}
+  const err=valBS&&valBS(y,m,d);
+  if(err){res.innerHTML='<p class="err">⚠ '+err+'</p>';return;}
+
+  // Today in BS
+  const now=new Date(Date.now()+((5*60+45)*60000));
+  const today=convertADtoBS(now.getUTCFullYear(),now.getUTCMonth()+1,now.getUTCDate());
+  if(today.error){res.innerHTML='<p class="err">⚠ Could not get today.</p>';return;}
+
+  let years=today.by-y;
+  let months=today.bm-m;
+  let days=today.bd-d;
+  if(days<0){months--;const pm=today.bm-1||12;const py=today.bm===1?today.by-1:today.by;days+=BS_DATA[py]?BS_DATA[py][pm-1]:30;}
+  if(months<0){years--;months+=12;}
+
+  // Total days
+  const birthAD=convertBStoAD(y,m,d);
+  const todayAD=convertBStoAD(today.by,today.bm,today.bd);
+  let totalDays=0;
+  if(!birthAD.error&&!todayAD.error){
+    totalDays=Math.floor((todayAD.adDate-birthAD.adDate)/86400000);
+  }
+
+  // Next birthday
+  let nextBY=today.by;
+  if(today.bm>m||(today.bm===m&&today.bd>=d)) nextBY++;
+  const maxDay=BS_DATA[nextBY]?Math.min(d,BS_DATA[nextBY][m-1]):d;
+  const nextBirth=convertBStoAD(nextBY,m,maxDay);
+  let daysToNext='';
+  if(!nextBirth.error&&!todayAD.error){
+    const diff=Math.floor((nextBirth.adDate-todayAD.adDate)/86400000);
+    if(diff>0) daysToNext='<div style="font-size:.8rem;color:var(--muted);margin-top:6px;">🎂 Next birthday in <strong>'+diff+' days</strong> ('+fmtAD(nextBirth.adY,nextBirth.adM,nextBirth.adD)+')</div>';
+    else if(diff===0) daysToNext='<div style="font-size:.8rem;color:var(--red);margin-top:6px;">🎂 <strong>Happy Birthday today!</strong></div>';
+  }
+
+  res.innerHTML='<div class="age-result">'
+    +'<div class="age-val">'+years+' years, '+months+' months, '+days+' days</div>'
+    +'<div style="font-size:.8rem;color:var(--muted);margin-top:4px;">Total: '+totalDays.toLocaleString()+' days lived</div>'
+    +daysToNext
+    +'</div>';
+}
+
+/* ════════════════════════════════════════
+   FEATURE 4: Date Difference (BS dates)
+   ════════════════════════════════════════ */
+function calcDiff(){
+  const y1=+document.getElementById('diff-y1').value;
+  const m1=+document.getElementById('diff-m1').value;
+  const d1=+document.getElementById('diff-d1').value;
+  const y2=+document.getElementById('diff-y2').value;
+  const m2=+document.getElementById('diff-m2').value;
+  const d2=+document.getElementById('diff-d2').value;
+  const res=document.getElementById('diff-result');
+  if(!y1||!m1||!d1||!y2||!m2||!d2){res.innerHTML='';return;}
+  const e1=valBS&&valBS(y1,m1,d1);
+  const e2=valBS&&valBS(y2,m2,d2);
+  if(e1){res.innerHTML='<p class="err">⚠ Date 1: '+e1+'</p>';return;}
+  if(e2){res.innerHTML='<p class="err">⚠ Date 2: '+e2+'</p>';return;}
+  const r1=convertBStoAD(y1,m1,d1);
+  const r2=convertBStoAD(y2,m2,d2);
+  if(r1.error||r2.error){res.innerHTML='<p class="err">⚠ Conversion error.</p>';return;}
+  const diff=Math.abs(Math.floor((r2.adDate-r1.adDate)/86400000));
+  const weeks=Math.floor(diff/7);
+  const remDays=diff%7;
+  const months=Math.floor(diff/30.44);
+  const years=Math.floor(diff/365.25);
+  const earlier=r1.adDate<=r2.adDate?y1+' '+MEN[m1-1]+' '+d1:y2+' '+MEN[m2-1]+' '+d2;
+  const later=r1.adDate<=r2.adDate?y2+' '+MEN[m2-1]+' '+d2:y1+' '+MEN[m1-1]+' '+d1;
+  res.innerHTML='<div class="diff-result">'
+    +'<div class="diff-val">'+diff.toLocaleString()+' days</div>'
+    +'<div style="font-size:.82rem;color:var(--muted);margin-top:4px;">'
+    +(years>0?years+' years · ':'')+weeks+' weeks '+remDays+' days · '+months+' months (approx)'
+    +'</div>'
+    +'<div style="font-size:.78rem;color:#666;margin-top:4px;">From <strong>'+earlier+' BS</strong> to <strong>'+later+' BS</strong></div>'
+    +'</div>';
+}
+
+/* ════════════════════════════════════════
+   FEATURE 5: Nepali digit input
+   ════════════════════════════════════════ */
+const NP_TO_EN={'०':'0','१':'1','२':'2','३':'3','४':'4','५':'5','६':'6','७':'7','८':'8','९':'9'};
+function npToEn(s){return s.split('').map(c=>NP_TO_EN[c]||c).join('');}
+function setupNpInput(inputId){
+  const el=document.getElementById(inputId);
+  if(!el) return;
+  el.addEventListener('input',function(){
+    const converted=npToEn(this.value);
+    if(converted!==this.value){
+      this.value=converted;
+      this.dispatchEvent(new Event('input'));
+    }
+  });
+}
+
+/* ════════════════════════════════════════
+   FEATURE 6: Share as image (html2canvas)
+   ════════════════════════════════════════ */
+function shareAsImage(){
+  const result=document.querySelector('.result-card');
+  if(!result){showToast('Convert a date first!');return;}
+  if(typeof html2canvas==='undefined'){
+    // Fallback: copy text
+    copyText(cur);
+    showToast('📋 Result copied! (Image sharing requires html2canvas)');
+    return;
+  }
+  html2canvas(result,{scale:2,backgroundColor:'#fff'}).then(canvas=>{
+    canvas.toBlob(blob=>{
+      if(navigator.share&&navigator.canShare&&navigator.canShare({files:[new File([blob],'nepali-date.png',{type:'image/png'})]})){
+        navigator.share({title:'Nepali Date Conversion',files:[new File([blob],'nepali-date.png',{type:'image/png'})]});
+      } else {
+        const a=document.createElement('a');
+        a.download='nepali-date.png';
+        a.href=URL.createObjectURL(blob);
+        a.click();
+        showToast('✓ Image downloaded!');
+      }
+    });
+  });
+}
+
+/* ════════════════════════════════════════
+   FEATURE 7: Holiday display in result
+   ════════════════════════════════════════ */
+function getHolidayBadge(bsY,bsM,bsD){
+  const h=getHoliday(bsY,bsM,bsD);
+  if(!h) return '';
+  return '<div class="holiday-badge">🎉 '+h+'</div>';
+}
+
 </script>
 </body>
 </html>
