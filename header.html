@@ -1,4 +1,4 @@
-<!-- header.html - Professional Modern Header 2026 -->
+<!-- header.html - Professional Modern Header 2026 with AdSense -->
 <style>
     * {
         margin: 0;
@@ -32,6 +32,7 @@
         text-decoration: none;
         gap: 12px;
         transition: all 0.3s ease;
+        min-width: fit-content;
     }
 
     .logo a:hover {
@@ -106,11 +107,11 @@
         left: 0;
         right: 0;
         background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-        border: 1px solid rgba(96,165,250,0.08);
+        border: 1px solid rgba(96,165,250,0.15);
         border-radius: 10px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-        max-height: 320px;
-        overflow: auto;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        max-height: 400px;
+        overflow-y: auto;
         z-index: 1500;
         display: none;
     }
@@ -121,28 +122,39 @@
     }
 
     .suggestion-item {
-        padding: 10px 14px;
+        padding: 12px 16px;
         color: #cbd5e1;
         font-size: 0.92rem;
         cursor: pointer;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         gap: 10px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.2s ease;
     }
 
     .suggestion-item:hover,
     .suggestion-item.active {
-        background: rgba(96,165,250,0.06);
+        background: rgba(96,165,250,0.1);
         color: #60a5fa;
+        padding-left: 20px;
     }
 
     .suggestion-title {
         font-weight: 600;
+        flex: 1;
     }
 
     .suggestion-url {
         color: #94a3b8;
-        font-size: 0.82rem;
+        font-size: 0.8rem;
+        opacity: 0.7;
+    }
+
+    .suggestion-icon {
+        margin-right: 8px;
+        font-size: 0.9rem;
     }
 
     /* Desktop Navigation */
@@ -383,4 +395,281 @@
         transition: all 0.2s ease;
     }
 
-We will add the script tag. Continue. Need to finish content; but already full file previously. For brevity, I will update by inserting script tag near top maybe before closing of header? Use create_or_update_file done; include sha b9fef1e08240313d79782581e69fb746919d8e9f as existing sha. Need to finish content— but earlier content truncated at around 390 lines; but getfile returned entire file content. However in previous create call I must supply full content. It's big; but we can reuse the existing content and insert script tag after <header class=
+    /* AdSense Banner */
+    .ad-wrap {
+        text-align: center;
+        padding: 8px 20px;
+        background: rgba(0, 0, 0, 0.2);
+        border-top: 1px solid rgba(96, 165, 250, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .header-content {
+            gap: 12px;
+        }
+
+        .search-container {
+            display: none;
+        }
+
+        .desktop-nav {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+
+<!-- Header HTML Structure -->
+<header class="site-header">
+    <div class="header-content">
+        <!-- Logo -->
+        <div class="logo">
+            <a href="/">
+                <span class="logo-icon">🌍</span>
+                <div class="logo-content">
+                    <span class="logo-text">PreetiToUnicode</span>
+                    <span class="logo-tag">Unicode Converter</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-input" 
+                placeholder="Search converter, tools..." 
+                id="searchInput"
+                autocomplete="off"
+            >
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <!-- Navigation Wrapper -->
+        <div class="nav-wrapper">
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/converter">Converter</a></li>
+                    <li>
+                        <a href="#" class="dropdown-trigger" id="dropdownTrigger">Tools</a>
+                        <ul class="dropdown-menu" id="dropdownMenu">
+                            <li class="menu-label">Tools</li>
+                            <li><a href="/tools/preeti-to-unicode">Preeti to Unicode</a></li>
+                            <li><a href="/tools/unicode-to-preeti">Unicode to Preeti</a></li>
+                            <li><a href="/tools/devanagari">Devanagari Tools</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Header Actions -->
+            <div class="header-actions">
+                <button class="lang-switcher">🌐 EN</button>
+                <button id="mobileMenuToggle" class="mobile-menu-toggle">☰</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu">
+        <ul class="mobile-nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/converter">Converter</a></li>
+            <li><a href="/tools/preeti-to-unicode">Preeti to Unicode</a></li>
+            <li><a href="/tools/unicode-to-preeti">Unicode to Preeti</a></li>
+            <li><a href="/tools/devanagari">Devanagari Tools</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- AdSense Banner -->
+    <div class="ad-wrap" aria-hidden="true">
+        <ins class="adsbygoogle" 
+             style="display:block"
+             data-ad-client="ca-pub-1239173186536702"
+             data-ad-slot="1642070334"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+</header>
+
+<script>
+    // ==================== POWERFUL SEARCH ENGINE ====================
+    // Database of searchable items
+    const searchDatabase = [
+        { title: 'Preeti to Unicode', url: '/tools/preeti-to-unicode', category: 'Tool', icon: '🔄' },
+        { title: 'Unicode to Preeti', url: '/tools/unicode-to-preeti', category: 'Tool', icon: '🔄' },
+        { title: 'Devanagari Tools', url: '/tools/devanagari', category: 'Tool', icon: '📝' },
+        { title: 'Converter', url: '/converter', category: 'Main', icon: '⚙️' },
+        { title: 'Home', url: '/', category: 'Main', icon: '🏠' },
+        { title: 'About Us', url: '/about', category: 'Info', icon: 'ℹ️' },
+        { title: 'Contact Us', url: '/contact', category: 'Info', icon: '📧' },
+        { title: 'Nepali Text', url: '/converter', category: 'Feature', icon: '🇳🇵' },
+        { title: 'Unicode Conversion', url: '/converter', category: 'Feature', icon: '🔤' },
+        { title: 'Font Converter', url: '/converter', category: 'Feature', icon: '🔡' },
+    ];
+
+    const searchInput = document.getElementById('searchInput');
+    const searchSuggestions = document.getElementById('searchSuggestions');
+
+    // Fuzzy Search Algorithm
+    function fuzzySearch(query, items) {
+        const lowerQuery = query.toLowerCase().trim();
+        if (lowerQuery.length === 0) return [];
+
+        return items
+            .map(item => {
+                const titleLower = item.title.toLowerCase();
+                const categoryLower = item.category.toLowerCase();
+                
+                let score = 0;
+                
+                // Exact match gets highest score
+                if (titleLower === lowerQuery) score += 100;
+                // Starts with query
+                else if (titleLower.startsWith(lowerQuery)) score += 80;
+                // Contains query as word
+                else if (titleLower.includes(' ' + lowerQuery)) score += 60;
+                // Contains query
+                else if (titleLower.includes(lowerQuery)) score += 40;
+                // Category match
+                else if (categoryLower.includes(lowerQuery)) score += 20;
+                
+                // Levenshtein distance for typo tolerance
+                if (score < 40) {
+                    const distance = levenshteinDistance(lowerQuery, titleLower);
+                    if (distance <= 2) score += 30;
+                }
+                
+                return { ...item, score };
+            })
+            .filter(item => item.score > 0)
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 8); // Show top 8 results
+    }
+
+    // Levenshtein Distance for typo tolerance
+    function levenshteinDistance(a, b) {
+        const matrix = [];
+        for (let i = 0; i <= b.length; i++) {
+            matrix[i] = [i];
+        }
+        for (let j = 0; j <= a.length; j++) {
+            matrix[0][j] = j;
+        }
+        for (let i = 1; i <= b.length; i++) {
+            for (let j = 1; j <= a.length; j++) {
+                if (b.charAt(i - 1) === a.charAt(j - 1)) {
+                    matrix[i][j] = matrix[i - 1][j - 1];
+                } else {
+                    matrix[i][j] = Math.min(
+                        matrix[i - 1][j - 1] + 1,
+                        matrix[i][j - 1] + 1,
+                        matrix[i - 1][j] + 1
+                    );
+                }
+            }
+        }
+        return matrix[b.length][a.length];
+    }
+
+    // Display suggestions
+    function displaySuggestions(query) {
+        const results = fuzzySearch(query, searchDatabase);
+        
+        if (results.length === 0) {
+            searchSuggestions.innerHTML = `
+                <div class="suggestion-item">
+                    <span class="suggestion-title">No results found for "${query}"</span>
+                </div>
+            `;
+            searchSuggestions.classList.add('active');
+            return;
+        }
+
+        searchSuggestions.innerHTML = results
+            .map(item => `
+                <div class="suggestion-item" onclick="window.location.href='${item.url}'">
+                    <div style="flex: 1; display: flex; align-items: center; gap: 10px;">
+                        <span class="suggestion-icon">${item.icon}</span>
+                        <span class="suggestion-title">${item.title}</span>
+                    </div>
+                    <span class="suggestion-url">${item.category}</span>
+                </div>
+            `)
+            .join('');
+        
+        searchSuggestions.classList.add('active');
+    }
+
+    // Search input event listeners
+    if (searchInput) {
+        searchInput.addEventListener('input', function (e) {
+            const value = e.target.value.trim();
+            if (value.length >= 1) {
+                displaySuggestions(value);
+            } else {
+                searchSuggestions.classList.remove('active');
+            }
+        });
+
+        searchInput.addEventListener('blur', function () {
+            setTimeout(() => {
+                searchSuggestions.classList.remove('active');
+            }, 200);
+        });
+
+        searchInput.addEventListener('focus', function () {
+            if (this.value.length >= 1) {
+                displaySuggestions(this.value);
+            }
+        });
+
+        // Allow Enter key to search
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const results = fuzzySearch(this.value, searchDatabase);
+                if (results.length > 0) {
+                    window.location.href = results[0].url;
+                }
+            }
+        });
+    }
+
+    // ==================== DROPDOWN MENU ====================
+    const dropdownTrigger = document.getElementById('dropdownTrigger');
+    const dropdownMenu = document.getElementById('dropdownMenu');
+
+    if (dropdownTrigger && dropdownMenu) {
+        dropdownTrigger.addEventListener('click', function (e) {
+            e.preventDefault();
+            this.classList.toggle('active');
+            dropdownMenu.classList.toggle('active');
+        });
+
+        document.addEventListener('click', function (e) {
+            if (!dropdownTrigger.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownTrigger.classList.remove('active');
+                dropdownMenu.classList.remove('active');
+            }
+        });
+    }
+</script>
