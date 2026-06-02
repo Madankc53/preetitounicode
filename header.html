@@ -1,82 +1,268 @@
-<!-- header.html - Self-contained Professional Header -->
+<!-- header.html - Professional Modern Header 2026 -->
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
     .site-header {
-        background: #ffffff;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         position: sticky;
         top: 0;
         z-index: 1000;
-        border-bottom: 1px solid #f1f1f1;
+        border-bottom: 2px solid rgba(59, 130, 246, 0.3);
     }
 
     .header-content {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 16px 20px;
+        padding: 12px 20px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 24px;
     }
 
+    /* Logo */
     .logo a {
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: #1f2937;
+        gap: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .logo a:hover {
+        transform: translateY(-2px);
     }
 
     .logo-icon {
         font-size: 36px;
-        margin-right: 12px;
+        line-height: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+
+    .logo-content {
+        display: flex;
+        flex-direction: column;
     }
 
     .logo-text {
-        font-size: 1.65rem;
+        font-size: 1.55rem;
         font-weight: 800;
         letter-spacing: -0.03em;
+        background: linear-gradient(90deg, #f8fafc, #cbd5e1);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     .logo-tag {
-        display: block;
-        font-size: 0.78rem;
-        color: #dc2626;
-        margin-top: -4px;
+        font-size: 0.7rem;
+        color: #60a5fa;
         font-weight: 600;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        margin-top: -4px;
+    }
+
+    /* Search Bar */
+    .search-container {
+        flex: 1;
+        max-width: 400px;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 10px 16px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 24px;
+        color: #f1f5f9;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+    }
+
+    .search-input::placeholder {
+        color: #64748b;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: #60a5fa;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
     }
 
     /* Desktop Navigation */
+    .nav-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .desktop-nav {
+        display: flex;
+        align-items: center;
+    }
+
     .nav-links {
         display: flex;
         list-style: none;
         margin: 0;
         padding: 0;
-        gap: 32px;
+        gap: 4px;
     }
 
-    .nav-links a {
-        color: #374151;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s;
+    .nav-links li {
         position: relative;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-        color: #dc2626;
+    .nav-links > li > a {
+        color: #cbd5e1;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 10px 16px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border-radius: 8px;
     }
 
-    .nav-links a.active::after {
-        content: '';
+    .nav-links > li > a:hover,
+    .nav-links > li > a.active {
+        color: #60a5fa;
+        background: rgba(96, 165, 250, 0.1);
+    }
+
+    .nav-links > li > a.active {
+        background: rgba(96, 165, 250, 0.15);
+        border-bottom: 2px solid #60a5fa;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-trigger {
+        cursor: pointer;
+        position: relative;
+    }
+
+    .dropdown-trigger::after {
+        content: '▼';
+        font-size: 0.65rem;
+        margin-left: 4px;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown-trigger.active::after {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        display: none;
         position: absolute;
-        bottom: -6px;
+        top: calc(100% + 8px);
         left: 0;
-        width: 100%;
-        height: 2.5px;
-        background: #dc2626;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border: 1px solid rgba(96, 165, 250, 0.2);
+        border-radius: 12px;
+        min-width: 280px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        list-style: none;
+        padding: 8px 0;
+        z-index: 2000;
+        animation: slideDown 0.3s ease;
     }
 
-    /* Mobile Button */
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .dropdown-menu.active {
+        display: block;
+    }
+
+    .dropdown-menu li a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px 20px;
+        color: #cbd5e1;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        font-size: 0.92rem;
+    }
+
+    .dropdown-menu li a::before {
+        content: '→';
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.2s ease;
+        font-size: 0.85rem;
+    }
+
+    .dropdown-menu li a:hover {
+        background: rgba(96, 165, 250, 0.1);
+        color: #60a5fa;
+        padding-left: 24px;
+    }
+
+    .dropdown-menu li a:hover::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .dropdown-menu .menu-label {
+        padding: 10px 20px;
+        color: #64748b;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Language & Mobile Toggle */
+    .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .lang-switcher {
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 8px 14px;
+        border-radius: 8px;
+        color: #cbd5e1;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .lang-switcher:hover {
+        background: rgba(96, 165, 250, 0.1);
+        border-color: #60a5fa;
+        color: #60a5fa;
+    }
+
+    /* Mobile Menu Toggle */
     .mobile-menu-toggle {
         display: none;
         background: none;
@@ -84,48 +270,170 @@
         width: 42px;
         height: 42px;
         cursor: pointer;
-        font-size: 28px;
-        color: #1f2937;
+        font-size: 24px;
+        color: #cbd5e1;
+        transition: all 0.3s ease;
+        border-radius: 8px;
+    }
+
+    .mobile-menu-toggle:hover {
+        background: rgba(96, 165, 250, 0.1);
+        color: #60a5fa;
     }
 
     /* Mobile Menu */
     .mobile-menu {
         display: none;
-        background: #ffffff;
-        border-top: 1px solid #e5e7eb;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-top: 1px solid rgba(96, 165, 250, 0.2);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        z-index: 999;
+    }
+
+    .mobile-menu.active {
+        display: block;
+        animation: slideDown 0.3s ease;
     }
 
     .mobile-nav-links {
         list-style: none;
-        padding: 0;
+        padding: 12px 0;
         margin: 0;
     }
 
-    .mobile-nav-links li a {
-        display: block;
-        padding: 18px 25px;
-        color: #374151;
-        text-decoration: none;
-        font-size: 1.12rem;
-        border-bottom: 1px solid #f3f4f6;
+    .mobile-nav-links li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    .mobile-nav-links a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+        color: #cbd5e1;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-nav-links a:hover,
     .mobile-nav-links a.active {
-        background: #fef2f2;
-        color: #dc2626;
+        background: rgba(96, 165, 250, 0.1);
+        color: #60a5fa;
+        padding-left: 24px;
+    }
+
+    .mobile-nav-links a::before {
+        content: '→';
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: all 0.2s ease;
+    }
+
+    .mobile-nav-links a:hover::before,
+    .mobile-nav-links a.active::before {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .mobile-search {
+        padding: 12px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-search input {
+        width: 100%;
+        padding: 10px 14px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: #f1f5f9;
+        font-size: 0.9rem;
     }
 
     /* Responsive */
+    @media (max-width: 1024px) {
+        .search-container {
+            max-width: 250px;
+        }
+
+        .nav-links {
+            gap: 0;
+        }
+
+        .nav-links > li > a {
+            padding: 8px 12px;
+            font-size: 0.88rem;
+        }
+    }
+
     @media (max-width: 768px) {
+        .header-content {
+            padding: 10px 16px;
+            gap: 12px;
+        }
+
+        .search-container {
+            display: none;
+        }
+
         .desktop-nav {
             display: none;
         }
+
         .mobile-menu-toggle {
             display: block;
         }
-        .mobile-menu.active {
-            display: block;
+
+        .logo-text {
+            font-size: 1.3rem;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+        }
+
+        .header-actions {
+            gap: 8px;
+        }
+
+        .lang-switcher {
+            padding: 6px 10px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-content {
+            padding: 10px 12px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+        }
+
+        .logo-tag {
+            font-size: 0.65rem;
+        }
+
+        .lang-switcher {
+            display: none;
+        }
+
+        .mobile-menu-toggle {
+            width: 38px;
+            height: 38px;
+            font-size: 20px;
         }
     }
 </style>
@@ -134,45 +442,205 @@
     <div class="header-content">
         <!-- Logo -->
         <div class="logo">
-            <a href="https://converter.thenepal.io">
+            <a href="https://converter.thenepal.io" aria-label="thenepal.io Home">
                 <span class="logo-icon">🇳🇵</span>
-                <div>
+                <div class="logo-content">
                     <span class="logo-text">thenepal.io</span>
                     <span class="logo-tag">Converter</span>
                 </div>
             </a>
         </div>
 
-        <!-- Desktop Menu -->
-        <nav class="desktop-nav">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <input 
+                type="search" 
+                class="search-input" 
+                placeholder="Search tools, guides..." 
+                id="headerSearch"
+                aria-label="Search tools"
+            >
+        </div>
+
+        <!-- Desktop Navigation -->
+        <nav class="desktop-nav nav-wrapper">
             <ul class="nav-links">
-                <li><a href="https://converter.thenepal.io">Home</a></li>
-                <li><a href="https://converter.thenepal.io/land-converter/" class="active">जग्गा कन्वर्टर</a></li>
-                <li><a href="#">Unit Converter</a></li>
-                <li><a href="https://gpatopercentage.thenepal.io">GPA Calculator</a></li>
-                <li><a href="https://thenepal.io" target="_blank">Blog</a></li>
+                <li><a href="https://converter.thenepal.io">🏠 Home</a></li>
+                
+                <!-- Tools Dropdown -->
+                <li class="dropdown-trigger" id="toolsDropdown">
+                    <a href="#" class="dropdown-trigger">🔧 Tools</a>
+                    <ul class="dropdown-menu" id="toolsMenu">
+                        <li><span class="menu-label">Date & Calendar</span></li>
+                        <li><a href="https://converter.thenepal.io/date-converter/">📅 Date Converter</a></li>
+                        <li><a href="https://converter.thenepal.io/bs-to-ad/">BS to AD</a></li>
+                        <li><a href="https://converter.thenepal.io/ad-to-bs/">AD to BS</a></li>
+                        
+                        <li><span class="menu-label">Land & Units</span></li>
+                        <li><a href="https://converter.thenepal.io/land-converter/">🏞️ Land Converter</a></li>
+                        <li><a href="https://converter.thenepal.io/unit-converter/">📏 Unit Converter</a></li>
+                        
+                        <li><span class="menu-label">Text Converters</span></li>
+                        <li><a href="https://converter.thenepal.io/preeti-to-unicode-converter/">Preeti to Unicode</a></li>
+                        <li><a href="https://converter.thenepal.io/unicode-to-preeti-converter/">Unicode to Preeti</a></li>
+                    </ul>
+                </li>
+
+                <!-- Currency Dropdown -->
+                <li class="dropdown-trigger" id="currencyDropdown">
+                    <a href="#" class="dropdown-trigger">💱 Currency</a>
+                    <ul class="dropdown-menu" id="currencyMenu">
+                        <li><span class="menu-label">Currency Rates</span></li>
+                        <li><a href="https://converter.thenepal.io/currency/inr-to-npr">₹ INR to NPR</a></li>
+                        <li><a href="https://converter.thenepal.io/currency/usd-to-npr">$ USD to NPR</a></li>
+                    </ul>
+                </li>
+
+                <!-- Guides Dropdown -->
+                <li class="dropdown-trigger" id="guidesDropdown">
+                    <a href="#" class="dropdown-trigger">📚 Guides</a>
+                    <ul class="dropdown-menu" id="guidesMenu">
+                        <li><span class="menu-label">Calendar Guides</span></li>
+                        <li><a href="https://converter.thenepal.io/guide/bikram-sambat">Bikram Sambat Guide</a></li>
+                        <li><a href="https://converter.thenepal.io/guide/bs-vs-ad-calendar">BS vs AD Calendar</a></li>
+                        <li><a href="https://converter.thenepal.io/guide/nepali-months-guide">Nepali Months</a></li>
+                        <li><a href="https://converter.thenepal.io/guide/history-of-bikram-sambat">History of BS</a></li>
+                    </ul>
+                </li>
+
+                <li><a href="https://thenepal.io/blog">📝 Blog</a></li>
             </ul>
         </nav>
 
-        <!-- Mobile Toggle -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
-            ☰
-        </button>
+        <!-- Header Actions -->
+        <div class="header-actions">
+            <!-- Language Switcher -->
+            <button class="lang-switcher" id="langSwitcher" aria-label="Toggle Language">
+                <span>🌐 EN</span>
+            </button>
+
+            <!-- Mobile Toggle -->
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
+                ☰
+            </button>
+        </div>
     </div>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-search">
+            <input 
+                type="search" 
+                class="search-input" 
+                placeholder="Search tools..." 
+                id="mobileSearch"
+                aria-label="Search tools on mobile"
+            >
+        </div>
+
         <ul class="mobile-nav-links">
-            <li><a href="https://converter.thenepal.io">Home</a></li>
-            <li><a href="#" class="active">जग्गा कन्वर्टर</a></li>
-            <li><a href="#">Unit Converter</a></li>
-            <li><a href="https://gpatopercentage.thenepal.io">GPA Calculator</a></li>
-            <li><a href="https://thenepal.io" target="_blank">Blog</a></li>
+            <li><a href="https://converter.thenepal.io">🏠 Home</a></li>
+            
+            <li><span class="menu-label">📅 Date & Calendar</span></li>
+            <li><a href="https://converter.thenepal.io/date-converter/">Date Converter</a></li>
+            <li><a href="https://converter.thenepal.io/bs-to-ad/">BS to AD</a></li>
+            <li><a href="https://converter.thenepal.io/ad-to-bs/">AD to BS</a></li>
+
+            <li><span class="menu-label">🏞️ Land & Units</span></li>
+            <li><a href="https://converter.thenepal.io/land-converter/">Land Converter</a></li>
+            <li><a href="https://converter.thenepal.io/unit-converter/">Unit Converter</a></li>
+
+            <li><span class="menu-label">📝 Text Converters</span></li>
+            <li><a href="https://converter.thenepal.io/preeti-to-unicode-converter/">Preeti to Unicode</a></li>
+            <li><a href="https://converter.thenepal.io/unicode-to-preeti-converter/">Unicode to Preeti</a></li>
+
+            <li><span class="menu-label">💱 Currency</span></li>
+            <li><a href="https://converter.thenepal.io/currency/inr-to-npr">INR to NPR</a></li>
+            <li><a href="https://converter.thenepal.io/currency/usd-to-npr">USD to NPR</a></li>
+
+            <li><span class="menu-label">📚 Resources</span></li>
+            <li><a href="https://converter.thenepal.io/guide/bikram-sambat">Bikram Sambat Guide</a></li>
+            <li><a href="https://converter.thenepal.io/guide/bs-vs-ad-calendar">BS vs AD Calendar</a></li>
+            <li><a href="https://thenepal.io/blog">Blog</a></li>
         </ul>
     </div>
-    <!-- Performance Boost -->
-<link rel="preconnect" href="https://pagead2.googlesyndication.com">
-<link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
-
-<meta name="google-adsense-platform-account" content="ca-pub-1239173186536702">
 </header>
+
+<script>
+    // Dropdown Menu Toggle
+    const dropdowns = ['toolsDropdown', 'currencyDropdown', 'guidesDropdown'];
+    
+    dropdowns.forEach(id => {
+        const trigger = document.getElementById(id);
+        if (trigger) {
+            trigger.addEventListener('click', function(e) {
+                e.preventDefault();
+                const menu = this.querySelector('.dropdown-menu');
+                const triggerLink = this.querySelector('a');
+                
+                // Close other menus
+                dropdowns.forEach(otherId => {
+                    if (otherId !== id) {
+                        const otherMenu = document.getElementById(otherId).querySelector('.dropdown-menu');
+                        const otherTrigger = document.getElementById(otherId).querySelector('a');
+                        otherMenu.classList.remove('active');
+                        otherTrigger.classList.remove('active');
+                    }
+                });
+                
+                menu.classList.toggle('active');
+                triggerLink.classList.toggle('active');
+            });
+        }
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        dropdowns.forEach(id => {
+            const dropdown = document.getElementById(id);
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.querySelector('.dropdown-menu').classList.remove('active');
+                dropdown.querySelector('a').classList.remove('active');
+            }
+        });
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', function() {
+            mobileMenu.classList.toggle('active');
+        });
+    }
+
+    // Close mobile menu when clicking a link
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.remove('active');
+        });
+    });
+
+    // Language Switcher
+    const langSwitcher = document.getElementById('langSwitcher');
+    let currentLang = 'EN';
+    
+    if (langSwitcher) {
+        langSwitcher.addEventListener('click', function() {
+            currentLang = currentLang === 'EN' ? 'नेपाली' : 'EN';
+            this.innerHTML = `<span>🌐 ${currentLang}</span>`;
+            // Add language switching logic here
+        });
+    }
+
+    // Search Functionality
+    const headerSearch = document.getElementById('headerSearch');
+    if (headerSearch) {
+        headerSearch.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            // Add search logic here
+        });
+    }
+</script>
