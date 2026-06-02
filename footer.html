@@ -11,9 +11,8 @@
                     <span class="footer-logo-icon">🇳🇵</span>
                     <span class="footer-logo-text">thenepal.io <small>Tools</small></span>
                 </div>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
                 <p class="footer-description">
-                    नेपालको नम्बर १ अनलाइन कन्वर्टर टुल्स। रोपनी-आना, बिघा-कठ्ठा, GPA, Date, Currency र थप धेरै उपकरणहरू निःशुल्क।
+                    नेपालको नम्बर १ अनलाइन कन्वर्टर टुल्स। रोपनी-आना, बिघा-कठ्ठा, GPA, Date, Currency र अन्य उपयोगी टुल्स।
                 </p>
                 
                 <div class="footer-social">
@@ -42,10 +41,10 @@
                 <ul class="footer-links">
                     <li><a href="https://converter.thenepal.io/land-converter/">रोपनी आना कन्वर्टर</a></li>
                     <li><a href="https://converter.thenepal.io/bigha-kattha-converter/">बिघा कठ्ठा कन्वर्टर</a></li>
-                    <li><a href="#">Percentage Calculator</a></li>
-                    <li><a href="#">CGPA Calculator</a></li>
-                    <li><a href="#">Age Calculator</a></li>
-                    <li><a href="#">Currency Converter</a></li>
+                    <li><a href="https://converter.thenepal.io/percentage-calculator/">Percentage Calculator</a></li>
+                    <li><a href="https://converter.thenepal.io/cgpa-calculator/">CGPA Calculator</a></li>
+                    <li><a href="https://converter.thenepal.io/age-calculator/">Age Calculator</a></li>
+                    <li><a href="https://converter.thenepal.io/currency-converter/">Currency Converter</a></li>
                 </ul>
             </div>
 
@@ -135,6 +134,7 @@
     .footer-logo-icon {
         font-size: 2.4rem;
         line-height: 1;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 
     .footer-logo-text {
@@ -144,6 +144,17 @@
         background: linear-gradient(90deg, #f8fafc, #cbd5e1);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .footer-logo-text small {
+        font-size: 0.65rem;
+        font-weight: 500;
+        background: none;
+        color: #94a3b8;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
+        -webkit-background-clip: unset;
     }
 
     .footer-description {
@@ -151,6 +162,7 @@
         line-height: 1.65;
         font-size: 0.95rem;
         max-width: 280px;
+        margin-bottom: 20px;
     }
 
     .footer-social {
@@ -165,11 +177,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(255,255,255,0.08);
+        background: rgba(255, 255, 255, 0.08);
         border-radius: 50%;
         font-size: 1.3rem;
         color: #cbd5e1;
         transition: all 0.3s ease;
+        text-decoration: none;
     }
 
     .social-link:hover {
@@ -184,6 +197,7 @@
         margin-bottom: 22px;
         color: #f1f5f9;
         position: relative;
+        display: inline-block;
     }
 
     .footer-title::after {
@@ -211,240 +225,6 @@
         text-decoration: none;
         transition: all 0.25s ease;
         font-size: 0.96rem;
-    }
-
-    .footer-links a:hover {
-        color: #60a5fa;
-        padding-left: 6px;
-    }
-
-    /* Newsletter */
-    .newsletter-form {
-        display: flex;
-        gap: 10px;
-        margin: 18px 0 22px;
-    }
-
-    .newsletter-form input {
-        flex: 1;
-        padding: 14px 16px;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 12px;
-        color: white;
-        font-size: 0.95rem;
-    }
-
-    .newsletter-form input:focus {
-        outline: none;
-        border-color: #60a5fa;
-        background: rgba(255,255,255,0.12);
-    }
-
-    .newsletter-form button {
-        padding: 14px 24px;
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-        white-space: nowrap;
-        transition: all 0.3s;
-    }
-
-    .newsletter-form button:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
-    }
-
-    .contact-info p {
-        margin: 10px 0;
-        color: #94a3b8;
-        font-size: 0.92rem;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    /* Bottom Bar */
-    .footer-bottom {
-        border-top: 1px solid rgba(255,255,255,0.08);
-        padding-top: 28px;
-    }
-
-    .footer-bottom-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 16px;
-        color: #64748b;
-        font-size: 0.9rem;
-    }
-
-    .footer-bottom-content strong {
-        color: #cbd5e1;
-    }
-
-    /* Responsive */
-    @media (max-width: 1024px) {
-        .footer-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-        }
-        .brand-col { grid-column: span 2; }
-    }
-
-    @media (max-width: 640px) {
-        .footer-container {
-            padding: 50px 20px 25px;
-        }
-        .footer-grid {
-            grid-template-columns: 1fr;
-            gap: 35px;
-        }
-        .newsletter-form {
-            flex-direction: column;
-        }
-        .newsletter-form button {
-            width: 100%;
-        }
-        .footer-bottom-content {
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-</style>
-
-<script>
-    // Newsletter Handler
-    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const email = this.querySelector('input[type="email"]').value.trim();
-        
-        if (email) {
-            alert('✅ धन्यवाद! तपाईंको इमेलमा अपडेट पठाइने छ।');
-            this.reset();
-        }
-    });
-</script>
-
-<!-- JSON-LD Schema for SEO -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "thenepal.io",
-  "url": "https://thenepal.io",
-  "logo": "https://thenepal.io/logo.png",
-  "description": "Nepal's most trusted free online conversion tools - Land Converter, GPA, Date, Unit & more.",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "Kathmandu & Pokhara",
-    "addressCountry": "NP"
-  },
-  "sameAs": [
-    "https://facebook.com/thenepal.io",
-    "https://twitter.com/thenepal_io",
-    "https://github.com/thenepal"
-  ]
-}
-</script    .footer-logo-icon {
-        font-size: 2rem;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-        background: linear-gradient(135deg, #60a5fa, #a78bfa);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-
-    .footer-logo-text {
-        font-size: 1.5rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        background: linear-gradient(125deg, #f1f5f9, #cbd5e1);
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
-    }
-
-    .footer-logo-text small {
-        font-size: 0.7rem;
-        font-weight: 500;
-        background: none;
-        color: #94a3b8;
-        background-clip: unset;
-        -webkit-background-clip: unset;
-    }
-
-    .footer-description {
-        color: #94a3b8;
-        line-height: 1.6;
-        font-size: 0.9rem;
-        margin-bottom: 24px;
-    }
-
-    /* Social Links */
-    .footer-social {
-        display: flex;
-        gap: 16px;
-    }
-
-    .social-link {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 38px;
-        height: 38px;
-        background: rgba(255, 255, 255, 0.05);
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        color: #94a3b8;
-        text-decoration: none;
-    }
-
-    .social-link:hover {
-        background: linear-gradient(135deg, #2563eb, #7c3aed);
-        color: white;
-        transform: translateY(-3px);
-    }
-
-    /* Footer Titles */
-    .footer-title {
-        font-size: 1.1rem;
-        font-weight: 600;
-        margin-bottom: 20px;
-        color: #f1f5f9;
-        position: relative;
-        display: inline-block;
-    }
-
-    .footer-title::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 0;
-        width: 30px;
-        height: 2px;
-        background: linear-gradient(95deg, #2563eb, #7c3aed);
-        border-radius: 2px;
-    }
-
-    /* Footer Links */
-    .footer-links {
-        list-style: none;
-    }
-
-    .footer-links li {
-        margin-bottom: 12px;
-    }
-
-    .footer-links a {
-        color: #94a3b8;
-        text-decoration: none;
-        transition: all 0.2s ease;
-        font-size: 0.9rem;
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -467,59 +247,58 @@
         transform: translateX(0);
     }
 
-    /* Newsletter Form */
+    /* Newsletter */
     .newsletter-text {
         color: #94a3b8;
-        font-size: 0.85rem;
-        margin-bottom: 16px;
+        font-size: 0.92rem;
+        margin-bottom: 18px;
         line-height: 1.5;
     }
 
     .newsletter-form {
         display: flex;
         gap: 10px;
-        margin-bottom: 20px;
+        margin: 18px 0 22px;
     }
 
     .newsletter-form input {
         flex: 1;
-        padding: 12px 14px;
-        background: rgba(255, 255, 255, 0.05);
+        padding: 14px 16px;
+        background: rgba(255, 255, 255, 0.07);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 12px;
-        color: #f1f5f9;
-        font-size: 0.85rem;
+        color: white;
+        font-size: 0.95rem;
         transition: all 0.2s ease;
-    }
-
-    .newsletter-form input:focus {
-        outline: none;
-        border-color: #2563eb;
-        background: rgba(255, 255, 255, 0.08);
     }
 
     .newsletter-form input::placeholder {
         color: #64748b;
     }
 
+    .newsletter-form input:focus {
+        outline: none;
+        border-color: #60a5fa;
+        background: rgba(255, 255, 255, 0.12);
+    }
+
     .newsletter-form button {
-        padding: 12px 20px;
+        padding: 14px 24px;
         background: linear-gradient(135deg, #2563eb, #7c3aed);
         border: none;
         border-radius: 12px;
         color: white;
         font-weight: 600;
-        font-size: 0.85rem;
         cursor: pointer;
-        transition: all 0.3s ease;
+        white-space: nowrap;
+        transition: all 0.3s;
     }
 
     .newsletter-form button:hover {
         transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
     }
 
-    /* Contact Info */
     .contact-info {
         margin-top: 20px;
         padding-top: 16px;
@@ -527,12 +306,12 @@
     }
 
     .contact-info p {
+        margin: 10px 0;
+        color: #94a3b8;
+        font-size: 0.92rem;
         display: flex;
         align-items: center;
         gap: 10px;
-        font-size: 0.85rem;
-        color: #94a3b8;
-        margin-bottom: 10px;
     }
 
     .contact-info p span {
@@ -541,8 +320,8 @@
 
     /* Bottom Bar */
     .footer-bottom {
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding-top: 24px;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 28px;
     }
 
     .footer-bottom-content {
@@ -551,11 +330,16 @@
         align-items: center;
         flex-wrap: wrap;
         gap: 16px;
+        color: #64748b;
+        font-size: 0.9rem;
     }
 
     .footer-bottom-content p {
-        color: #64748b;
-        font-size: 0.8rem;
+        margin: 0;
+    }
+
+    .footer-bottom-content strong {
+        color: #cbd5e1;
     }
 
     .footer-bottom-links {
@@ -566,7 +350,7 @@
     .footer-bottom-links a {
         color: #64748b;
         text-decoration: none;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         transition: color 0.2s ease;
     }
 
@@ -574,71 +358,81 @@
         color: #60a5fa;
     }
 
-    /* Responsive Design */
+    /* Responsive */
     @media (max-width: 1024px) {
         .footer-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
+            gap: 40px;
         }
-        
-        .brand-col {
-            grid-column: span 2;
-        }
+        .brand-col { grid-column: span 2; }
     }
 
     @media (max-width: 768px) {
         .footer-container {
-            padding: 40px 24px 20px;
+            padding: 50px 20px 25px;
         }
-        
         .footer-grid {
             grid-template-columns: 1fr;
-            gap: 32px;
+            gap: 35px;
         }
-        
         .brand-col {
             grid-column: span 1;
         }
-        
+        .newsletter-form {
+            flex-direction: column;
+        }
+        .newsletter-form button {
+            width: 100%;
+        }
         .footer-bottom-content {
             flex-direction: column;
             text-align: center;
         }
-        
         .footer-bottom-links {
             justify-content: center;
-        }
-        
-        .newsletter-form {
-            flex-direction: column;
-        }
-        
-        .newsletter-form button {
-            width: 100%;
         }
     }
 
     @media (max-width: 480px) {
         .footer-container {
-            padding: 32px 20px 16px;
+            padding: 40px 20px 20px;
         }
-        
         .footer-logo-text {
-            font-size: 1.3rem;
+            font-size: 1.4rem;
         }
-        
         .footer-title {
             font-size: 1rem;
         }
-        
         .footer-links a {
             font-size: 0.85rem;
         }
     }
 </style>
 
+<!-- JSON-LD Schema for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "thenepal.io",
+  "url": "https://thenepal.io",
+  "logo": "https://thenepal.io/logo.png",
+  "description": "Nepal's most trusted free online conversion tools - Land Converter, GPA, Date, Unit & more.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Kathmandu & Pokhara",
+    "addressCountry": "NP"
+  },
+  "sameAs": [
+    "https://facebook.com/thenepal.io",
+    "https://twitter.com/thenepal_io",
+    "https://github.com/thenepal"
+  ]
+}
+</script>
+
 <script>
-    // Newsletter form submission handler (demo)
+    // Newsletter form submission handler
     (function() {
         const newsletterForm = document.getElementById('newsletterForm');
         if (newsletterForm) {
@@ -648,14 +442,13 @@
                 const email = emailInput.value.trim();
                 
                 if (email) {
-                    // Show success message (you can replace with actual API call)
-                    alert('Thank you for subscribing! You will receive updates from thenepal.io');
+                    // Show success message (replace with actual API call)
+                    alert('✅ धन्यवाद! तपाईंको इमेलमा अपडेट पठाइने छ।');
                     emailInput.value = '';
                 } else {
-                    alert('Please enter a valid email address.');
+                    alert('कृपया सही इमेल ठेगाना प्रविष्ट गर्नुहोस्।');
                 }
             });
         }
     })();
 </script>
-
