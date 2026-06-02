@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Income Tax Calculator Nepal 2083 | Accurate Tax Tool for FY 2083/84</title>
+  <meta name="description" content="Calculate your Nepal income tax for fiscal year 2083/84 instantly. Progressive tax slabs, SSF deductions, net income & effective rate. Free and accurate.">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Noto Sans', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(145deg, #f5f0e8 0%, #e8dfd3 100%);
+      min-height: 100vh;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* Main Card */
+    .tax-card {
+      background: #ffffff;
+      border-radius: 48px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      backdrop-filter: blur(0px);
+      transition: all 0.2s;
+    }
+
+    /* Header */
+    .hero {
+      background: linear-gradient(135deg, #1e4620 0%, #2e7d32 100%);
+      padding: 2rem 2rem 1.8rem;
+      color: white;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      display: inline-block;
+      padding: 0.3rem 1rem;
+      border-radius: 60px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      opacity: 0.9;
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Two column layout */
+    .calculator-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      background: #fefaf5;
+    }
+
+    .input-panel {
+      flex: 1.2;
+      min-width: 280px;
+    }
+
+    .result-panel {
+      flex: 1;
+      min-width: 280px;
+      background: #ffffff;
+      border-radius: 32px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      padding: 1.5rem;
+      border: 1px solid #f1e2cf;
+    }
+
+    /* Form groups */
+    .input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .input-group label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: #2c3e2f;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: white;
+      border: 1.5px solid #e2d4c2;
+      border-radius: 60px;
+      transition: all 0.2s;
+      padding: 0.2rem 1rem;
+    }
+
+    .input-wrapper:focus-within {
+      border-color: #2e7d32;
+      box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.2);
+    }
+
+    .currency-symbol {
+      font-weight: 600;
+      color: #6c5a47;
+      font-size: 1.1rem;
+    }
+
+    .input-wrapper input {
+      width: 100%;
+      padding: 0.9rem 0.6rem 0.9rem 0.5rem;
+      border: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      outline: none;
+      background: transparent;
+      font-family: monospace;
+    }
+
+    .input-wrapper input[type="number"] {
+      -moz-appearance: textfield;
+    }
+    .input-wrapper input::-webkit-outer-spin-button,
+    .input-wrapper input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .help-text {
+      font-size: 0.7rem;
+      color: #8b765c;
+      margin-top: 0.4rem;
+      margin-left: 1rem;
+    }
+
+    /* checkbox style */
+    .checkbox-group {
+      background: #fcf7f0;
+      border-radius: 28px;
+      padding: 0.8rem 1rem;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: 500;
+      color: #2c3e2f;
+    }
+
+    /* Slab visual */
+    .slab-breakdown {
+      margin-top: 1.5rem;
+      background: #fef6ea;
+      border-radius: 28px;
+      padding: 1.2rem;
+    }
+
+    .slab-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px dashed #e8d6c0;
+      font-size: 0.85rem;
+    }
+
+    .slab-item:last-child {
+      border-bottom: none;
+    }
+
+    .rate-badge {
+      background: #2e7d32;
+      color: white;
+      padding: 0.1rem 0.5rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+    }
+
+    /* result styles */
+    .result-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #1e4620;
+      line-height: 1.2;
+      word-break: break-word;
+    }
+
+    .net-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #b4652c;
+    }
+
+    .stat-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #f0e2d2;
+      padding: 0.75rem 0;
+    }
+
+    .stat-label {
+      font-weight: 500;
+      color: #5f4c38;
+    }
+
+    .stat-number {
+      font-weight: 700;
+      font-family: monospace;
+      font-size: 1rem;
+    }
+
+    .effective-rate {
+      background: #eaf5ea;
+      border-radius: 28px;
+      padding: 0.8rem;
+      text-align: center;
+      margin: 1rem 0;
+    }
+
+    button {
+      background: #2e7d32;
+      color: white;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.8rem;
+    }
+
+    button:hover {
+      background: #1b5e20;
+      transform: scale(0.97);
+    }
+
+    @media (max-width: 760px) {
+      .calculator-wrapper {
+        padding: 1.5rem;
+        gap: 1.5rem;
+      }
+      .hero h1 {
+        font-size: 1.7rem;
+      }
+      .result-value {
+        font-size: 1.6rem;
+      }
+    }
+
+    .note {
+      font-size: 0.7rem;
+      text-align: center;
+      margin-top: 1rem;
+      color: #9b886e;
+    }
+
+    .tooltip {
+      border-bottom: 1px dashed #bcaa8e;
+      cursor: help;
+    }
+  </style>
+</head>
+<body>
+  <div id="header"></div>
+<div class="container">
+  <div class="tax-card">
+    <div class="hero">
+      <div class="hero-badge">🇳🇵 नेपाल सरकार • Inland Revenue Department</div>
+      <h1>Income Tax Calculator Nepal<br>Fiscal Year 2083/84 (2026/27 AD)</h1>
+      <p>Accurate progressive tax slabs for resident individuals · Social Security (SSF) ready · Real-time calculation</p>
+    </div>
+
+    <div class="calculator-wrapper">
+      <!-- LEFT PANEL: Inputs -->
+      <div class="input-panel">
+        <div class="input-group">
+          <label>💰 Annual Gross Income (NPR)</label>
+          <div class="input-wrapper">
+            <span class="currency-symbol">रू</span>
+            <input type="number" id="annualIncome" value="1800000" step="10000" placeholder="e.g., 18,00,000">
+          </div>
+          <div class="help-text">Your total yearly income before any deductions</div>
+        </div>
+
+        <div class="input-group">
+          <label>📉 Total Deductions (Qualifying)</label>
+          <div class="input-wrapper">
+            <span class="currency-symbol">रू</span>
+            <input type="number" id="totalDeductions" value="0" step="5000" placeholder="CIT, retirement fund, etc">
+          </div>
+          <div class="help-text">Eligible deductions: SSF, CIT, approved retirement contributions</div>
+        </div>
+
+        <div class="checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" id="ssfCheckbox"> 🛡️ Include Social Security Fund (SSF) @ 1% of Annual Income
+          </label>
+          <span class="tooltip" title="SSF (1% of gross income) is automatically added to deductions if checked. Reduces taxable income.">ⓘ</span>
+        </div>
+
+        <div class="slab-breakdown">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem;">
+            <strong>📊 Tax Slabs (Resident Individual) 2083/84</strong>
+            <span class="rate-badge">updated rates</span>
+          </div>
+          <div class="slab-item"><span>Up to रू 5,00,000</span><span><strong>1%</strong></span></div>
+          <div class="slab-item"><span>रू 5,00,001 – 7,00,000</span><span><strong>10%</strong></span></div>
+          <div class="slab-item"><span>रू 7,00,001 – 10,00,000</span><span><strong>20%</strong></span></div>
+          <div class="slab-item"><span>रू 10,00,001 – 20,00,000</span><span><strong>30%</strong></span></div>
+          <div class="slab-item"><span>Above रू 20,00,000</span><span><strong>36%</strong></span></div>
+          <div class="help-text" style="margin-top: 8px;">*Tax applies on taxable income = Gross - Deductions</div>
+        </div>
+      </div>
+
+      <!-- RIGHT PANEL: Results -->
+      <div class="result-panel" id="resultPanel">
+        <div style="margin-bottom: 1rem;">
+          <span style="font-weight: 600;">📋 TAX SUMMARY (FY 2083/84)</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Gross Annual Income</span>
+          <span class="stat-number" id="displayGross">रू 0</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Total Deductions</span>
+          <span class="stat-number" id="displayDeductions">रू 0</span>
+        </div>
+        <div class="stat-item" style="border-bottom: 2px solid #e2cfb5;">
+          <span class="stat-label"><strong>Taxable Income</strong></span>
+          <span class="stat-number" id="displayTaxable"><strong>रू 0</strong></span>
+        </div>
+
+        <div style="margin-top: 1.2rem; background: #faf3e8; border-radius: 28px; padding: 1rem;">
+          <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+            <span>🧾 Total Income Tax Liability</span>
+            <span class="result-value" id="totalTax">रू 0</span>
+          </div>
+          <div class="effective-rate" id="effectiveRateBox">
+            <span>📈 Effective Tax Rate: <strong id="effectiveRate">0%</strong></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 0.8rem;">
+            <span>💵 Net Annual Income (After Tax)</span>
+            <span class="net-value" id="netIncome">रू 0</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 0.5rem;">
+            <span>Monthly Net Income</span>
+            <span class="stat-number" id="monthlyNet">रू 0</span>
+          </div>
+        </div>
+
+        <div style="margin-top: 1rem; font-size: 0.7rem; background: #f9f0e4; padding: 0.6rem; border-radius: 20px;">
+          <span>🏛️ <strong>Tax calculation rule:</strong> Income tax = progressive slabs applied on <em>Taxable Income</em> (Gross – Deductions). SSF checkbox adds 1% of gross to deductions automatically.</span>
+        </div>
+        <button id="resetBtn" style="margin-top: 1rem; width: 100%;">⟳ Reset to Default</button>
+        <div class="note">Based on Budget 2083/84 (Income Tax Act 2058). For informational use only. Consult CA for filing.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function() {
+    // DOM elements
+    const annualIncomeInput = document.getElementById('annualIncome');
+    const deductionsInput = document.getElementById('totalDeductions');
+    const ssfCheckbox = document.getElementById('ssfCheckbox');
+    const displayGross = document.getElementById('displayGross');
+    const displayDeductions = document.getElementById('displayDeductions');
+    const displayTaxable = document.getElementById('displayTaxable');
+    const totalTaxSpan = document.getElementById('totalTax');
+    const effectiveRateSpan = document.getElementById('effectiveRate');
+    const netIncomeSpan = document.getElementById('netIncome');
+    const monthlyNetSpan = document.getElementById('monthlyNet');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Tax slabs for Resident Individual FY 2083/84
+    // format: { limit, rate }
+    const slabs = [
+      { limit: 500000, rate: 0.01 },    // 1%
+      { limit: 700000, rate: 0.10 },    // 10%
+      { limit: 1000000, rate: 0.20 },   // 20%
+      { limit: 2000000, rate: 0.30 },   // 30%
+      { limit: Infinity, rate: 0.36 }    // 36%
+    ];
+
+    // Format NPR with commas (Nepali style thousand separators)
+    function formatNPR(value) {
+      if (isNaN(value)) return 'रू 0';
+      let num = Math.floor(value);
+      // Convert to string and add commas (Indian/Nepali numbering: 1,00,000)
+      let str = num.toString();
+      let lastThree = str.slice(-3);
+      let otherDigits = str.slice(0, -3);
+      if (otherDigits !== '') {
+        lastThree = ',' + lastThree;
+      }
+      let formatted = otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+      return 'रू ' + (formatted || '0');
+    }
+
+    // Compute tax based on taxable income
+    function computeTax(taxableIncome) {
+      if (taxableIncome <= 0) return 0;
+      let remaining = taxableIncome;
+      let tax = 0;
+      let previousLimit = 0;
+      
+      for (let i = 0; i < slabs.length; i++) {
+        let slabLimit = slabs[i].limit;
+        let rate = slabs[i].rate;
+        let taxableInThisSlab = 0;
+        
+        if (remaining <= 0) break;
+        
+        if (slabLimit === Infinity) {
+          taxableInThisSlab = remaining;
+        } else {
+          let slabRange = slabLimit - previousLimit;
+          if (remaining >= slabRange) {
+            taxableInThisSlab = slabRange;
+          } else {
+            taxableInThisSlab = remaining;
+          }
+        }
+        tax += taxableInThisSlab * rate;
+        remaining -= taxableInThisSlab;
+        previousLimit = slabLimit;
+        if (remaining <= 0) break;
+      }
+      return Math.max(0, tax);
+    }
+
+    // Detailed breakdown (optional but can be used for tooltip)
+    function updateAll() {
+      let grossIncome = parseFloat(annualIncomeInput.value);
+      if (isNaN(grossIncome) || grossIncome < 0) grossIncome = 0;
+      
+      let manualDeductions = parseFloat(deductionsInput.value);
+      if (isNaN(manualDeductions) || manualDeductions < 0) manualDeductions = 0;
+      
+      let ssfDeduction = 0;
+      if (ssfCheckbox.checked) {
+        ssfDeduction = grossIncome * 0.01;   // 1% of annual gross
+      }
+      
+      let totalDeductions = manualDeductions + ssfDeduction;
+      let taxableIncome = Math.max(0, grossIncome - totalDeductions);
+      
+      // Compute income tax
+      let incomeTax = computeTax(taxableIncome);
+      
+      // Final tax liability (no surcharge/cess for simplicity, but exact Nepal rules)
+      let totalTaxLiability = incomeTax;
+      
+      let netIncome = grossIncome - totalTaxLiability;
+      let effectiveRate = (grossIncome > 0) ? (totalTaxLiability / grossIncome) * 100 : 0;
+      let monthlyNet = netIncome / 12;
+      
+      // Update displays
+      displayGross.innerText = formatNPR(grossIncome);
+      displayDeductions.innerText = formatNPR(totalDeductions);
+      displayTaxable.innerText = formatNPR(taxableIncome);
+      totalTaxSpan.innerText = formatNPR(totalTaxLiability);
+      effectiveRateSpan.innerText = effectiveRate.toFixed(2) + '%';
+      netIncomeSpan.innerText = formatNPR(netIncome);
+      monthlyNetSpan.innerText = formatNPR(monthlyNet);
+    }
+    
+    // Event listeners
+    function handleInput() {
+      // clean values
+      let gross = parseFloat(annualIncomeInput.value);
+      if (isNaN(gross)) annualIncomeInput.value = 0;
+      if (gross < 0) annualIncomeInput.value = 0;
+      
+      let ded = parseFloat(deductionsInput.value);
+      if (isNaN(ded)) deductionsInput.value = 0;
+      if (ded < 0) deductionsInput.value = 0;
+      
+      updateAll();
+    }
+    
+    annualIncomeInput.addEventListener('input', handleInput);
+    deductionsInput.addEventListener('input', handleInput);
+    ssfCheckbox.addEventListener('change', handleInput);
+    
+    resetBtn.addEventListener('click', () => {
+      annualIncomeInput.value = '1800000';
+      deductionsInput.value = '0';
+      ssfCheckbox.checked = false;
+      handleInput();
+    });
+    
+    // Initial load
+    handleInput();
+    
+    // Additional safe formatting on blur
+    annualIncomeInput.addEventListener('blur', function() {
+      let v = parseFloat(this.value);
+      if (isNaN(v) || v < 0) this.value = 0;
+      updateAll();
+    });
+    deductionsInput.addEventListener('blur', function() {
+      let v = parseFloat(this.value);
+      if (isNaN(v) || v < 0) this.value = 0;
+      updateAll();
+    });
+  })();
+</script>
+  <div id="footer"></div>
+  <script src="/components.js"></script>
+</body>
+</html>
