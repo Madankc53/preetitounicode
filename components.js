@@ -55,6 +55,7 @@
     ]);
 
     // ====================== ACTIVE LINK HIGHLIGHT ======================
+    // This runs AFTER header and footer are loaded
     const currentPath = window.location.pathname.replace(/\/$/, '') || '/';
     
     document.querySelectorAll('.nav-links a, .mobile-nav-links a').forEach(link => {
@@ -105,6 +106,8 @@
                 toggleBtn.style.fontSize = '28px';
             }
         });
+    } else {
+        console.warn('Mobile menu elements not found. Check that header.html has ids: mobileMenuToggle and mobileMenu');
     }
 
     console.log('🚀 thenepal.io components loaded successfully');
