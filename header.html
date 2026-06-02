@@ -74,6 +74,7 @@
         max-width: 400px;
         display: flex;
         align-items: center;
+        position: relative;
     }
 
     .search-input {
@@ -96,6 +97,52 @@
         border-color: #60a5fa;
         background: rgba(255, 255, 255, 0.12);
         box-shadow: 0 0 20px rgba(96, 165, 250, 0.2);
+    }
+
+    /* Suggestions */
+    .search-suggestions {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border: 1px solid rgba(96,165,250,0.08);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        max-height: 320px;
+        overflow: auto;
+        z-index: 1500;
+        display: none;
+    }
+
+    .search-suggestions.active {
+        display: block;
+        animation: slideDown 0.18s ease;
+    }
+
+    .suggestion-item {
+        padding: 10px 14px;
+        color: #cbd5e1;
+        font-size: 0.92rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .suggestion-item:hover,
+    .suggestion-item.active {
+        background: rgba(96,165,250,0.06);
+        color: #60a5fa;
+    }
+
+    .suggestion-title {
+        font-weight: 600;
+    }
+
+    .suggestion-url {
+        color: #94a3b8;
+        font-size: 0.82rem;
     }
 
     /* Desktop Navigation */
@@ -460,6 +507,7 @@
                 id="headerSearch"
                 aria-label="Search tools"
             >
+            <div class="search-suggestions" id="headerSuggestions" role="listbox" aria-label="Search suggestions"></div>
         </div>
 
         <!-- Desktop Navigation -->
@@ -536,6 +584,7 @@
                 id="mobileSearch"
                 aria-label="Search tools on mobile"
             >
+            <div class="search-suggestions" id="mobileSuggestions" role="listbox" aria-label="Mobile search suggestions"></div>
         </div>
 
         <ul class="mobile-nav-links">
@@ -581,15 +630,18 @@
                 // Close other menus
                 dropdowns.forEach(otherId => {
                     if (otherId !== id) {
-                        const otherMenu = document.getElementById(otherId).querySelector('.dropdown-menu');
-                        const otherTrigger = document.getElementById(otherId).querySelector('a');
-                        otherMenu.classList.remove('active');
-                        otherTrigger.classList.remove('active');
+                        const otherDropdown = document.getElementById(otherId);
+                        if (otherDropdown) {
+                            const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                            const otherTrigger = otherDropdown.querySelector('a');
+                            if (otherMenu) otherMenu.classList.remove('active');
+                            if (otherTrigger) otherTrigger.classList.remove('active');
+                        }
                     }
                 });
                 
-                menu.classList.toggle('active');
-                triggerLink.classList.toggle('active');
+                if (menu) menu.classList.toggle('active');
+                if (triggerLink) triggerLink.classList.toggle('active');
             });
         }
     });
@@ -599,8 +651,10 @@
         dropdowns.forEach(id => {
             const dropdown = document.getElementById(id);
             if (dropdown && !dropdown.contains(e.target)) {
-                dropdown.querySelector('.dropdown-menu').classList.remove('active');
-                dropdown.querySelector('a').classList.remove('active');
+                const menu = dropdown.querySelector('.dropdown-menu');
+                const link = dropdown.querySelector('a');
+                if (menu) menu.classList.remove('active');
+                if (link) link.classList.remove('active');
             }
         });
     });
@@ -616,12 +670,14 @@
     }
 
     // Close mobile menu when clicking a link
-    const mobileLinks = mobileMenu.querySelectorAll('a');
-    mobileLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            mobileMenu.classList.remove('active');
+    if (mobileMenu) {
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+            });
         });
-    });
+    }
 
     // Language Switcher
     const langSwitcher = document.getElementById('langSwitcher');
@@ -631,16 +687,169 @@
         langSwitcher.addEventListener('click', function() {
             currentLang = currentLang === 'EN' ? 'नेपाली' : 'EN';
             this.innerHTML = `<span>🌐 ${currentLang}</span>`;
-            // Add language switching logic here
+            // Add language switching logic here (redirect / toggle classes / load translations)
         });
     }
 
-    // Search Functionality
+    // --- Client-side Search Implementation ---
+    // Index populated from sitemap URLs
+    const searchIndex = [
+        { title: 'Home', url: 'https://converter.thenepal.io/' },
+        { title: 'Date Converter', url: 'https://converter.thenepal.io/date-converter/' },
+        { title: 'BS to AD', url: 'https://converter.thenepal.io/bs-to-ad/' },
+        { title: 'AD to BS', url: 'https://converter.thenepal.io/ad-to-bs/' },
+        { title: 'Preeti to Unicode', url: 'https://converter.thenepal.io/preeti-to-unicode-converter/' },
+        { title: 'Unicode to Preeti', url: 'https://converter.thenepal.io/unicode-to-preeti-converter/' },
+        { title: 'Land Converter', url: 'https://converter.thenepal.io/land-converter/' },
+        { title: 'Unit Converter', url: 'https://converter.thenepal.io/unit-converter/' },
+        { title: 'INR to NPR', url: 'https://converter.thenepal.io/currency/inr-to-npr' },
+        { title: 'USD to NPR', url: 'https://converter.thenepal.io/currency/usd-to-npr' },
+        { title: 'History of Nepali New Year', url: 'https://converter.thenepal.io/guide/History-of-Nepali-New-Year' },
+        { title: 'How Old Is Bikram Sambat', url: 'https://converter.thenepal.io/guide/How-Old-Is-Bikram-Sambat' },
+        { title: 'When Did Nepal Adopt Bikram Sambat', url: 'https://converter.thenepal.io/guide/When-Did-Nepal-Adopt-Bikram-Sambat' },
+        { title: 'Bikram Sambat (Guide)', url: 'https://converter.thenepal.io/guide/bikram-sambat' },
+        { title: 'BS vs AD Calendar', url: 'https://converter.thenepal.io/guide/bs-vs-ad-calendar' },
+        { title: 'History of Bikram Sambat', url: 'https://converter.thenepal.io/guide/history-of-bikram-sambat' },
+        { title: 'Nepali Months Guide', url: 'https://converter.thenepal.io/guide/nepali-months-guide' },
+        { title: 'Who Created Bikram Sambat', url: 'https://converter.thenepal.io/guide/who-created-bikram-sambat' },
+        { title: 'Why Nepal Uses Bikram Sambat', url: 'https://converter.thenepal.io/guide/why-nepal-uses-bikram-sambat' }
+    ];
+
     const headerSearch = document.getElementById('headerSearch');
-    if (headerSearch) {
-        headerSearch.addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            // Add search logic here
+    const headerSuggestions = document.getElementById('headerSuggestions');
+
+    const mobileSearch = document.getElementById('mobileSearch');
+    const mobileSuggestions = document.getElementById('mobileSuggestions');
+
+    let activeIndex = -1;
+
+    function normalize(str) {
+        return (str || '').toString().toLowerCase();
+    }
+
+    function highlightMatch(text, query) {
+        if (!query) return text;
+        const idx = text.toLowerCase().indexOf(query.toLowerCase());
+        if (idx === -1) return text;
+        return text.substring(0, idx) + '<strong>' + text.substring(idx, idx + query.length) + '</strong>' + text.substring(idx + query.length);
+    }
+
+    function renderSuggestions(container, items, query) {
+        container.innerHTML = '';
+        if (!items || items.length === 0) {
+            const none = document.createElement('div');
+            none.className = 'suggestion-item';
+            none.innerHTML = '<span class="suggestion-title">No results</span>';
+            container.appendChild(none);
+            return;
+        }
+        items.forEach((item, idx) => {
+            const el = document.createElement('div');
+            el.className = 'suggestion-item';
+            el.setAttribute('role', 'option');
+            el.setAttribute('data-url', item.url);
+            el.setAttribute('data-index', idx);
+
+            const title = document.createElement('div');
+            title.className = 'suggestion-title';
+            title.innerHTML = highlightMatch(item.title, query);
+
+            const url = document.createElement('div');
+            url.className = 'suggestion-url';
+            url.textContent = item.url.replace(/^https?:\/\//, '');
+
+            el.appendChild(title);
+            el.appendChild(url);
+
+            el.addEventListener('click', function() {
+                window.location.href = item.url;
+            });
+
+            container.appendChild(el);
         });
     }
+
+    function searchQuery(query) {
+        const q = normalize(query);
+        if (!q) return [];
+        // rank exact startsWith first, then includes
+        const starts = [];
+        const includes = [];
+        for (const item of searchIndex) {
+            const t = normalize(item.title);
+            const u = normalize(item.url);
+            if (t.startsWith(q) || u.startsWith(q)) starts.push(item);
+            else if (t.includes(q) || u.includes(q)) includes.push(item);
+        }
+        return starts.concat(includes).slice(0, 8);
+    }
+
+    function attachSearchHandlers(inputEl, suggestionsEl) {
+        if (!inputEl || !suggestionsEl) return;
+
+        inputEl.addEventListener('input', function(e) {
+            const q = this.value.trim();
+            activeIndex = -1;
+            if (!q) {
+                suggestionsEl.classList.remove('active');
+                suggestionsEl.innerHTML = '';
+                return;
+            }
+            const results = searchQuery(q);
+            renderSuggestions(suggestionsEl, results, q);
+            suggestionsEl.classList.add('active');
+        });
+
+        inputEl.addEventListener('keydown', function(e) {
+            const items = suggestionsEl.querySelectorAll('.suggestion-item');
+            if (!items || items.length === 0) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = Math.min(activeIndex + 1, items.length - 1);
+                items.forEach(i => i.classList.remove('active'));
+                items[activeIndex].classList.add('active');
+                items[activeIndex].scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = Math.max(activeIndex - 1, 0);
+                items.forEach(i => i.classList.remove('active'));
+                items[activeIndex].classList.add('active');
+                items[activeIndex].scrollIntoView({ block: 'nearest' });
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (activeIndex >= 0 && items[activeIndex]) {
+                    const url = items[activeIndex].getAttribute('data-url');
+                    window.location.href = url;
+                } else {
+                    // go to first result if exists
+                    const first = suggestionsEl.querySelector('.suggestion-item');
+                    if (first) window.location.href = first.getAttribute('data-url');
+                }
+            } else if (e.key === 'Escape') {
+                suggestionsEl.classList.remove('active');
+            }
+        });
+
+        // close when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!suggestionsEl.contains(e.target) && e.target !== inputEl) {
+                suggestionsEl.classList.remove('active');
+            }
+        });
+    }
+
+    attachSearchHandlers(headerSearch, headerSuggestions);
+    attachSearchHandlers(mobileSearch, mobileSuggestions);
+
+    // Basic accessibility: focus suggestion with mouseover
+    document.addEventListener('mouseover', function(e) {
+        if (e.target.closest('.suggestion-item')) {
+            const el = e.target.closest('.suggestion-item');
+            const siblings = el.parentElement.querySelectorAll('.suggestion-item');
+            siblings.forEach(s => s.classList.remove('active'));
+            el.classList.add('active');
+        }
+    });
+
 </script>
