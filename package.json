@@ -2,7 +2,14 @@
   "name": "sitemap-generator",
   "version": "1.0.0",
   "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev"
+  },
   "dependencies": {
     "fast-glob": "^3.2.12"
+  },
+  "devDependencies": {
+    "wrangler": "^4.98.0"
   }
 }
