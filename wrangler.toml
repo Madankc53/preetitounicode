@@ -1,0 +1,39 @@
+name = "preeti-converter"
+type = "javascript"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Build configuration
+[build]
+command = "npm run build"
+cwd = "."
+
+[build.upload]
+format = "modules"
+main = "src/index.js"
+
+# Exclude node_modules and other large files
+[env.production]
+name = "preeti-converter-prod"
+route = "https://preeti-converter.dev/*"
+
+# Assets configuration for static files
+[[unsafe.bindings]]
+name = "ASSETS"
+type = "rpc"
+service = "assets"
+
+# Configure which files are excluded from upload
+[env.production.triggers]
+crons = []
+
+# Exclude node_modules and build artifacts
+exclude_paths = [
+  "node_modules/**/*",
+  ".git/**/*",
+  ".gitignore",
+  "*.md",
+  "dist/**/*",
+  "build/**/*"
+]
