@@ -13,27 +13,15 @@ cwd = "."
 format = "modules"
 main = "src/index.js"
 
-# Exclude node_modules and other large files
+# Static site configuration
+[site]
+bucket = "./preeti-converter"
+include = ["*.html", "*.css", "*.js"]
+exclude = ["node_modules", ".git", "*.md"]
+
 [env.production]
 name = "preeti-converter-prod"
 route = "https://preeti-converter.dev/*"
 
-# Assets configuration for static files
-[[unsafe.bindings]]
-name = "ASSETS"
-type = "rpc"
-service = "assets"
-
-# Configure which files are excluded from upload
-[env.production.triggers]
-crons = []
-
-# Exclude node_modules and build artifacts
-exclude_paths = [
-  "node_modules/**/*",
-  ".git/**/*",
-  ".gitignore",
-  "*.md",
-  "dist/**/*",
-  "build/**/*"
-]
+[env.production.site]
+bucket = "./preeti-converter"
