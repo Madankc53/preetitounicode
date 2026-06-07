@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nepali Age Calculator | Accurate Bikram Sambat Age Tool | BS Date Calculator</title>
-  <meta name="description" content="Calculate your exact age in years, months, and days using the Nepali Bikram Sambat (BS) calendar. Perfect for official documents, horoscope, and cultural events. Free, accurate, and easy.">
+  <meta name="description" content="Calculate your exact age in years, months, and days using the Nepali Bikram Sambat (BS) calendar. Automatic today's date, custom reference, perfect for official documents.">
   <meta name="keywords" content="Nepali Age Calculator, Bikram Sambat age, BS age calculator, Nepali birth date, age in Nepal, Nepali calendar age, कति वर्ष, BS to AD age">
   <meta name="author" content="Nepal Tools">
   <meta name="robots" content="index, follow">
@@ -27,17 +27,14 @@
       margin: 0 auto;
     }
 
-    /* Main tool card */
     .tool-card {
       background: #ffffff;
       border-radius: 56px;
       overflow: hidden;
       box-shadow: 0 30px 55px -20px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(0px);
       transition: all 0.2s;
     }
 
-    /* Hero */
     .hero {
       background: linear-gradient(125deg, #1e3c2c 0%, #2a5a3a 100%);
       padding: 2rem 2rem 1.8rem;
@@ -71,7 +68,6 @@
       font-size: 1rem;
     }
 
-    /* Flex layout */
     .age-wrapper {
       display: flex;
       flex-wrap: wrap;
@@ -95,7 +91,6 @@
       border: 1px solid #eedfcb;
     }
 
-    /* Date pickers */
     .date-group {
       background: #ffffff;
       border-radius: 32px;
@@ -154,7 +149,6 @@
       box-shadow: 0 0 0 3px rgba(42, 127, 62, 0.2);
     }
 
-    /* Age result */
     .age-result {
       text-align: center;
       margin-bottom: 1.5rem;
@@ -236,6 +230,17 @@
       color: #a28f74;
     }
 
+    .today-badge {
+      background: #eaf1e6;
+      border-radius: 24px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.7rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.5rem;
+    }
+
     @media (max-width: 760px) {
       .age-wrapper {
         padding: 1.5rem;
@@ -260,7 +265,7 @@
     <div class="hero">
       <div class="hero-badge">🗓️ Bikram Sambat • नेपाली उमेर क्यालकुलेटर</div>
       <h1>Nepali Age Calculator (BS)<br>नेपाली उमेर गणना</h1>
-      <p>Calculate your exact age in years, months & days using official Bikram Sambat calendar. Perfect for legal documents, horoscope, and cultural events.</p>
+      <p>Calculate your exact age in years, months & days using official Bikram Sambat calendar. Reference date automatically set to today.</p>
     </div>
 
     <div class="age-wrapper">
@@ -299,10 +304,10 @@
         </div>
 
         <div class="date-group">
-          <div class="date-title">📌 Reference Date (Today or Custom)</div>
+          <div class="date-title">📌 Reference Date (As of — Auto Today)</div>
           <div class="date-selectors">
             <div class="select-box">
-              <label>As of BS Year</label>
+              <label>Year (BS)</label>
               <input type="number" id="asBsYear" value="2082" min="1970" max="2100">
             </div>
             <div class="select-box">
@@ -319,7 +324,10 @@
               <input type="number" id="asBsDay" value="15" min="1" max="32">
             </div>
           </div>
-          <button id="setTodayBtn">📆 Set to Current Nepali Date (Today)</button>
+          <div class="today-badge" id="todayBadge">
+            📍 Today's Nepali Date: <strong id="todayNepaliDisplay">--</strong>
+          </div>
+          <button id="setTodayBtn">🔄 Reset Reference to Today's Date</button>
         </div>
       </div>
 
@@ -341,7 +349,7 @@
             <span style="font-size: 0.7rem;">(Days left: <span id="daysUntilBirthday">0</span>)</span>
           </div>
         </div>
-        <div class="note">✨ Accurate BS calendar core (lunisolar). Age calculated using precise Nepali month lengths & epoch.</div>
+        <div class="note">✨ Accurate BS calendar engine (lunisolar). Age calculated using precise Nepali month lengths & epoch. Reference date auto-updates to today's actual BS date.</div>
       </div>
     </div>
   </div>
@@ -377,22 +385,19 @@
       if (corrections[bsYear] && bsMonth >= 1 && bsMonth <= 12) {
         return corrections[bsYear][bsMonth-1];
       }
-      // For other years, use default pattern with minor adjustments (reliable)
+      // For other years, use default pattern with minor adjustments
       if (bsYear >= 2000 && bsYear <= 2025) return defaultDays[bsMonth-1];
-      // fallback
       return defaultDays[bsMonth-1];
     }
 
     // Convert BS to absolute day number (since epoch BS 2000/1/1 = day 0)
     function bsToAbsolute(bsYear, bsMonth, bsDay) {
       let total = 0;
-      // Years before target
       for (let y = 2000; y < bsYear; y++) {
         for (let m = 1; m <= 12; m++) {
           total += getBSMonthDays(y, m);
         }
       }
-      // Months in target year
       for (let m = 1; m < bsMonth; m++) {
         total += getBSMonthDays(bsYear, m);
       }
@@ -421,7 +426,20 @@
       return { year: targetYear, month: targetMonth, day: targetDay };
     }
 
-    // Validate and normalize BS day (clamps to month max)
+    // Get current Nepali date from system clock (AD to BS conversion)
+    function getCurrentNepaliDate() {
+      const todayAD = new Date();
+      const yearAD = todayAD.getFullYear();
+      const monthAD = todayAD.getMonth();
+      const dayAD = todayAD.getDate();
+      // Epoch: BS 2000 Baishakh 1 = AD 1943 April 14
+      const epochAD = new Date(1943, 3, 14); // month 3 = April
+      const targetAD = new Date(yearAD, monthAD, dayAD);
+      let diffDays = Math.floor((targetAD - epochAD) / (1000 * 3600 * 24));
+      return absoluteToBs(diffDays);
+    }
+
+    // Normalize BS date (clamp day to month max)
     function normalizeBsDate(bsYear, bsMonth, bsDay) {
       let maxDay = getBSMonthDays(bsYear, bsMonth);
       if (bsDay < 1) bsDay = 1;
@@ -429,9 +447,8 @@
       return { year: bsYear, month: bsMonth, day: bsDay };
     }
 
-    // Calculate age in years, months, days between two BS dates (fromDate -> toDate)
+    // Calculate age in years, months, days between two BS dates
     function calculateAge(fromYear, fromMonth, fromDay, toYear, toMonth, toDay) {
-      // Normalize both
       let fromNorm = normalizeBsDate(fromYear, fromMonth, fromDay);
       let toNorm = normalizeBsDate(toYear, toMonth, toDay);
       
@@ -441,14 +458,13 @@
       if (toAbs < fromAbs) return { years: 0, months: 0, days: 0, totalDays: 0, totalMonths: 0, totalWeeks: 0 };
       
       let totalDaysDiff = toAbs - fromAbs;
-      // Calculate years, months, days by iterating month by month (precise)
       let tempYear = fromNorm.year;
       let tempMonth = fromNorm.month;
       let tempDay = fromNorm.day;
       let years = 0;
       let months = 0;
       
-      // add years until overflow
+      // Add years
       while (true) {
         let nextYear = tempYear + 1;
         let testAbs = bsToAbsolute(nextYear, tempMonth, tempDay);
@@ -457,7 +473,7 @@
           tempYear = nextYear;
         } else break;
       }
-      // add months
+      // Add months
       while (true) {
         let nextMonth = tempMonth + 1;
         let nextYear = tempYear;
@@ -472,7 +488,7 @@
           tempMonth = nextMonth;
         } else break;
       }
-      // days remaining
+      // Remaining days
       let remainingStartAbs = bsToAbsolute(tempYear, tempMonth, tempDay);
       let days = toAbs - remainingStartAbs;
       
@@ -485,12 +501,11 @@
         days: days,
         totalDays: totalDaysDiff,
         totalMonths: totalMonths,
-        totalWeeks: totalWeeks,
-        nextBirthdayInfo: null
+        totalWeeks: totalWeeks
       };
     }
 
-    // Get next birthday (fromDate -> next occurrence after toDate)
+    // Get next birthday
     function getNextBirthday(birthYear, birthMonth, birthDay, currentYear, currentMonth, currentDay) {
       let candidateYear = currentYear;
       let candidateDate = { year: candidateYear, month: birthMonth, day: birthDay };
@@ -506,7 +521,7 @@
       return { date: candidateDate, daysLeft: daysLeft };
     }
 
-    // ---- DOM elements ----
+    // ---------- DOM Elements ----------
     const bsYearInput = document.getElementById('bsYear');
     const bsMonthSelect = document.getElementById('bsMonth');
     const bsDayInput = document.getElementById('bsDay');
@@ -514,6 +529,7 @@
     const asBsMonthSelect = document.getElementById('asBsMonth');
     const asBsDayInput = document.getElementById('asBsDay');
     const setTodayBtn = document.getElementById('setTodayBtn');
+    const todayNepaliDisplay = document.getElementById('todayNepaliDisplay');
     
     const ageYearsSpan = document.getElementById('ageYears');
     const ageMonthsSpan = document.getElementById('ageMonths');
@@ -524,23 +540,20 @@
     const nextBirthdaySpan = document.getElementById('nextBirthday');
     const daysUntilBirthdaySpan = document.getElementById('daysUntilBirthday');
     
-    // Helper: get current Nepali date (system date approximated from AD)
-    // For perfect "today" we compute from real AD now -> convert to BS
-    function getCurrentNepaliDate() {
-      const todayAD = new Date();
-      const yearAD = todayAD.getFullYear();
-      const monthAD = todayAD.getMonth();
-      const dayAD = todayAD.getDate();
-      // Simplified but robust: using official converter from epoch
-      // epoch BS 2000/1/1 = 1943/4/14
-      let epochBS = { y: 2000, m: 1, d: 1 };
-      let epochAD = new Date(1943, 3, 14);
-      let targetAD = new Date(yearAD, monthAD, dayAD);
-      let diffDays = Math.floor((targetAD - epochAD) / (1000 * 3600 * 24));
-      let absolute = diffDays;
-      return absoluteToBs(absolute);
+    const monthNamesNep = ["Baishakh","Jestha","Ashadh","Shrawan","Bhadra","Ashwin","Kartik","Mangsir","Poush","Magh","Falgun","Chaitra"];
+    
+    // Update the reference date to today's actual BS date
+    function setReferenceToToday() {
+      const todayBS = getCurrentNepaliDate();
+      asBsYearInput.value = todayBS.year;
+      asBsMonthSelect.value = todayBS.month;
+      asBsDayInput.value = todayBS.day;
+      // Update the badge display
+      todayNepaliDisplay.innerText = `${monthNamesNep[todayBS.month-1]} ${todayBS.day}, ${todayBS.year} BS`;
+      updateAge();
     }
     
+    // Update age calculation and UI
     function updateAge() {
       let birthYear = parseInt(bsYearInput.value);
       let birthMonth = parseInt(bsMonthSelect.value);
@@ -551,7 +564,28 @@
       
       if (isNaN(birthYear)) birthYear = 2055;
       if (isNaN(asYear)) asYear = 2082;
-      // Normalize days (clamped inside function later)
+      
+      // Clamp birth day
+      let maxBirthDay = getBSMonthDays(birthYear, birthMonth);
+      if (birthDay > maxBirthDay) {
+        bsDayInput.value = maxBirthDay;
+        birthDay = maxBirthDay;
+      }
+      if (birthDay < 1) {
+        bsDayInput.value = 1;
+        birthDay = 1;
+      }
+      
+      // Clamp reference day
+      let maxRefDay = getBSMonthDays(asYear, asMonth);
+      if (asDay > maxRefDay) {
+        asBsDayInput.value = maxRefDay;
+        asDay = maxRefDay;
+      }
+      if (asDay < 1) {
+        asBsDayInput.value = 1;
+        asDay = 1;
+      }
       
       const ageData = calculateAge(birthYear, birthMonth, birthDay, asYear, asMonth, asDay);
       ageYearsSpan.innerText = ageData.years;
@@ -561,17 +595,27 @@
       totalWeeksSpan.innerText = ageData.totalWeeks;
       totalDaysSpan.innerText = ageData.totalDays;
       
-      // Next birthday
+      // Next birthday calculation
       const next = getNextBirthday(birthYear, birthMonth, birthDay, asYear, asMonth, asDay);
-      const monthNames = ["Baishakh","Jestha","Ashadh","Shrawan","Bhadra","Ashwin","Kartik","Mangsir","Poush","Magh","Falgun","Chaitra"];
-      nextBirthdaySpan.innerText = `${monthNames[next.date.month-1]} ${next.date.day}, ${next.date.year} BS`;
+      nextBirthdaySpan.innerText = `${monthNamesNep[next.date.month-1]} ${next.date.day}, ${next.date.year} BS`;
       daysUntilBirthdaySpan.innerText = next.daysLeft;
     }
     
-    // Listeners
+    // Event binding with day clamping
     function bindEvents() {
-      bsYearInput.addEventListener('input', updateAge);
-      bsMonthSelect.addEventListener('change', updateAge);
+      bsYearInput.addEventListener('input', function() {
+        let max = getBSMonthDays(parseInt(bsYearInput.value), parseInt(bsMonthSelect.value));
+        let val = parseInt(bsDayInput.value);
+        if (val > max) bsDayInput.value = max;
+        if (val < 1) bsDayInput.value = 1;
+        updateAge();
+      });
+      bsMonthSelect.addEventListener('change', function() {
+        let max = getBSMonthDays(parseInt(bsYearInput.value), parseInt(bsMonthSelect.value));
+        let val = parseInt(bsDayInput.value);
+        if (val > max) bsDayInput.value = max;
+        updateAge();
+      });
       bsDayInput.addEventListener('input', function() {
         let max = getBSMonthDays(parseInt(bsYearInput.value), parseInt(bsMonthSelect.value));
         let val = parseInt(this.value);
@@ -579,8 +623,19 @@
         if (val < 1) this.value = 1;
         updateAge();
       });
-      asBsYearInput.addEventListener('input', updateAge);
-      asBsMonthSelect.addEventListener('change', updateAge);
+      
+      asBsYearInput.addEventListener('input', function() {
+        let max = getBSMonthDays(parseInt(asBsYearInput.value), parseInt(asBsMonthSelect.value));
+        let val = parseInt(asBsDayInput.value);
+        if (val > max) asBsDayInput.value = max;
+        updateAge();
+      });
+      asBsMonthSelect.addEventListener('change', function() {
+        let max = getBSMonthDays(parseInt(asBsYearInput.value), parseInt(asBsMonthSelect.value));
+        let val = parseInt(asBsDayInput.value);
+        if (val > max) asBsDayInput.value = max;
+        updateAge();
+      });
       asBsDayInput.addEventListener('input', function() {
         let max = getBSMonthDays(parseInt(asBsYearInput.value), parseInt(asBsMonthSelect.value));
         let val = parseInt(this.value);
@@ -588,30 +643,29 @@
         if (val < 1) this.value = 1;
         updateAge();
       });
+      
       setTodayBtn.addEventListener('click', () => {
-        const todayBS = getCurrentNepaliDate();
-        asBsYearInput.value = todayBS.year;
-        asBsMonthSelect.value = todayBS.month;
-        asBsDayInput.value = todayBS.day;
-        updateAge();
+        setReferenceToToday();
       });
     }
     
-    // initial set birth default & today reference
+    // Initialize: set reference to today's date automatically, load birth defaults, update everything
     function init() {
-      const today = getCurrentNepaliDate();
-      asBsYearInput.value = today.year;
-      asBsMonthSelect.value = today.month;
-      asBsDayInput.value = today.day;
+      const todayBS = getCurrentNepaliDate();
+      asBsYearInput.value = todayBS.year;
+      asBsMonthSelect.value = todayBS.month;
+      asBsDayInput.value = todayBS.day;
+      todayNepaliDisplay.innerText = `${monthNamesNep[todayBS.month-1]} ${todayBS.day}, ${todayBS.year} BS`;
+      
+      // Set default birth example (optional but clear)
+      bsYearInput.value = 2055;
+      bsMonthSelect.value = 6;  // Ashwin as example
+      bsDayInput.value = 15;
+      
       bindEvents();
       updateAge();
-      // manual day clamping for both fields at start
-      let bDay = parseInt(bsDayInput.value);
-      let bMonth = parseInt(bsMonthSelect.value);
-      let bYear = parseInt(bsYearInput.value);
-      let maxBirth = getBSMonthDays(bYear, bMonth);
-      if (bDay > maxBirth) bsDayInput.value = maxBirth;
     }
+    
     init();
   })();
 </script>
