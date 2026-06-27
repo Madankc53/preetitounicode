@@ -1,110 +1,195 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Core & Info Pages -->
-  <url>
-    <loc>https://converter.thenepal.io/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/about</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.5</priority>
-  </url>
-
-  <!-- Conversion Tools -->
-  <url>
-    <loc>https://converter.thenepal.io/date-converter/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/bs-to-ad/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/ad-to-bs/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/preeti-to-unicode-converter/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/unicode-to-preeti-converter/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/land-converter/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/unit-converter/</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Currency Pages -->
-  <url>
-    <loc>https://converter.thenepal.io/currency/inr-to-npr</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/currency/usd-to-npr</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- Guides -->
-  <url>
-    <loc>https://converter.thenepal.io/guide/History-of-Nepali-New-Year</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/How-Old-Is-Bikram-Sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/When-Did-Nepal-Adopt-Bikram-Sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/bikram-sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/bs-vs-ad-calendar</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/history-of-bikram-sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/nepali-months-guide</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/who-created-bikram-sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/why-nepal-uses-bikram-sambat</loc>
-    <lastmod>2026-05-31</lastmod>
-    <priority>0.6</priority>
-  </url>
+<url>
+<loc>https://converter.thenepal.io/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/about.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/download-preeti-font.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/footer.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/header.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/2083/mala-mass.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/2083/nepal-public-holidays.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/2083/subha-sait.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/2084/calendar.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/ad-to-bs/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/bs-to-ad/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/calculator/age-calculator.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/calculator/income-tax-calculator.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/currency/inr-to-npr.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/currency/usd-to-npr.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/date-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/bs-vs-ad-calendar.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/history-of-bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/history-of-nepali-new-year.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/how-old-Is-bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/nepali-months-guide.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/when-did-nepal-adopt-bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/who-created-bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/guide/why-nepal-uses-bikram-sambat.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/land-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/ashadh-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/ashoj-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/baishak-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/bhadra-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/chaitra-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/dashain-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/falgun-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/jestha-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/kartik-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/magh-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/mangsir-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/poush-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/nepali-calendar-2083/shrawan-2083.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/preeti-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/preeti-to-unicode-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/preeti-to-unicode-converter/kantipur-to-unicode.html</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/preeti-unicode-guide/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/today-nepali-date/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/unicode-to-preeti-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/unit-converter/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
+<url>
+<loc>https://converter.thenepal.io/2083/tihar/</loc>
+<lastmod>2026-06-28T04:14:39+05:45</lastmod>
+</url>
 </urlset>
