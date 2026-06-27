@@ -1,0 +1,30 @@
+name: Minify Code
+
+on:
+  push:
+    branches:
+      - main # Change to 'master' if your default branch is named master
+    paths:
+      - '**.html'
+      - '**.css'
+      - '**.js'
+
+jobs:
+  minify_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Minify HTML, CSS, and JS
+        uses: itsallclean/html-css-js-minifier@v2
+        with:
+          directory: '.' # Scans your entire repository
+
+      - name: Commit and Push Minified Code
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          git diff --quiet && git diff --staged --quiet || git commit -m "Automated code minification"
+          git push
