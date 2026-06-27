@@ -3,7 +3,13 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main # If your default branch is named 'master', change 'main' to 'master'
+      - main # Change to 'master' if your default branch uses that name
+    paths-ignore:
+      - '**.md'
+      - '.gitignore'
+      - 'LICENSE'
+      - '_headers'
+      - '_redirects'
 
 jobs:
   sitemap_job:
@@ -11,12 +17,15 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches full history so file modification dates match real git history
 
       - name: Generate Sitemap
         id: sitemap
         uses: cicirello/generate-sitemap@v1
         with:
           base-url-path: https://converter.thenepal.io/
+          exclude-paths: 404.html # Keeps your 404 page hidden from search engine indexing
 
       - name: Commit and Push Sitemap
         run: |
