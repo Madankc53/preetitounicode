@@ -1,0 +1,32 @@
+name: Google Indexing API
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 */12 * * *"
+
+jobs:
+  indexing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          pip install google-auth requests
+
+      - name: Create credentials.json
+        run: |
+          echo '${{ secrets.GCP_SA_KEY }}' > credentials.json
+
+      - name: Run Indexer
+        run: |
+          python index.py
