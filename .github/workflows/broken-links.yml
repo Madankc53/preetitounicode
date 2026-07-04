@@ -1,0 +1,23 @@
+name: Check Repository Files for Broken Links
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  repo_link_checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Check Code Links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Checks all markdown and HTML files in your project directory
+          args: --verbose './**/*.md' './**/*.html'
+
