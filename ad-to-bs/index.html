@@ -172,6 +172,70 @@ input[type=number]{text-align:center;}
 .hist span{cursor:pointer;color:var(--red);margin-right:8px;}
 .hist span:hover{text-decoration:underline;}
 
+/* ── Quick chips ── */
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;}
+.chip{background:var(--surf);border:1.5px solid var(--border);color:var(--text);font:600 .74rem 'Inter',sans-serif;padding:6px 12px;border-radius:100px;cursor:pointer;transition:all var(--tr);white-space:nowrap;-webkit-tap-highlight-color:transparent;}
+.chip:hover{border-color:var(--red);color:var(--red);}
+.chip:active{transform:scale(.94);}
+.chip.chip-reset{color:var(--muted);}
+.chip.chip-reset:hover{border-color:var(--muted);color:var(--text);}
+
+/* ── Rich result card v2 ── */
+@keyframes cardEnter{0%{opacity:0;transform:translateY(14px) scale(.96);}100%{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes checkPop{0%{transform:scale(0) rotate(-20deg);opacity:0;}60%{transform:scale(1.15) rotate(4deg);}100%{transform:scale(1) rotate(0);opacity:1;}}
+.rcard{position:relative;overflow:hidden;background:linear-gradient(160deg,#fff8f0 0%,var(--white) 55%);border:1.5px solid var(--gold);border-radius:14px;padding:16px;animation:cardEnter .45s cubic-bezier(.16,1,.3,1);}
+.dm .rcard{background:linear-gradient(160deg,#2a1e0e 0%,var(--white) 55%);}
+.rcard-badge{display:inline-flex;align-items:center;gap:5px;background:var(--green);color:#fff;font-size:.72rem;font-weight:700;padding:4px 11px;border-radius:100px;margin-bottom:12px;}
+.rcard-badge .chk{display:inline-block;animation:checkPop .5s cubic-bezier(.17,.89,.32,1.28) .1s both;}
+.rcard-flow{display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;margin-bottom:14px;}
+.rcard-wk{font-size:.72rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;}
+.rcard-main{font-size:clamp(1.05rem,4.2vw,1.3rem);font-weight:700;color:var(--text);}
+.rcard-arrow{font-size:1.1rem;color:var(--gold);margin:4px 0;line-height:1;animation:arrowBounce 1.4s ease-in-out infinite;}
+@keyframes arrowBounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+.rcard-bs{font-size:clamp(1.15rem,4.6vw,1.5rem);font-weight:700;color:var(--red);}
+.dm .rcard-bs{color:#e87060;}
+.rcard-bs .roll-num{display:inline-block;min-width:1.6ch;}
+.rcard-np{font-family:'Noto Serif Devanagari',serif;font-size:1.05rem;color:var(--muted);margin-top:2px;}
+.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px;}
+.stat-box{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:8px 10px;}
+.stat-box .sl{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);display:block;margin-bottom:2px;}
+.stat-box .sv{font-size:.83rem;font-weight:700;color:var(--text);}
+.stat-box.stat-hol .sv{color:#e67e22;}
+.stat-box.stat-hol.none .sv{color:var(--muted);font-weight:600;}
+.copy-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;}
+.copy-row .btn{flex:1;justify-content:center;min-width:96px;}
+.seo-para{font-size:.79rem;color:var(--muted);line-height:1.6;border-top:1px dashed var(--border);padding-top:9px;margin-top:2px;}
+.seo-para strong{color:var(--text);}
+
+/* Confetti */
+.confetti-piece{position:absolute;top:-10px;width:7px;height:11px;border-radius:2px;pointer-events:none;z-index:5;animation:confettiFall ease-in forwards;}
+@keyframes confettiFall{0%{transform:translateY(0) rotate(0deg);opacity:1;}100%{transform:translateY(240px) rotate(540deg);opacity:0;}}
+
+/* ── Recent search cards ── */
+.hist-wrap{margin-top:10px;}
+.hist-lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:6px;}
+.hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;}
+.hist-card{background:var(--surf);border:1px solid var(--border);border-radius:var(--r);padding:9px 10px;cursor:pointer;transition:transform var(--tr),border-color var(--tr);animation:cardEnter .3s ease both;}
+.hist-card:hover{transform:translateY(-2px);border-color:var(--red);}
+.hc-lbl{font-size:.65rem;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px;}
+.hc-en{font-size:.73rem;color:var(--text);font-weight:600;}
+.hc-arrow{text-align:center;color:var(--muted);font-size:.75rem;margin:2px 0;}
+.hc-bs{font-size:.73rem;color:var(--red);font-weight:700;}
+.dm .hc-bs{color:#e87060;}
+
+/* ── Floating convert widget (mobile) ── */
+.float-bar{position:fixed;left:0;right:0;bottom:0;display:none;background:var(--white);border-top:1.5px solid var(--border);box-shadow:0 -6px 20px rgba(0,0,0,.1);z-index:600;padding:4px 6px calc(4px + env(safe-area-inset-bottom,0px));}
+.dm .float-bar{background:var(--surf);}
+.fb-inner{display:flex;max-width:520px;margin:0 auto;}
+.fb-btn{flex:1;background:none;border:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px;font:700 .64rem 'Inter',sans-serif;color:var(--text);cursor:pointer;border-radius:10px;transition:background var(--tr);-webkit-tap-highlight-color:transparent;}
+.fb-btn:active{background:var(--border);}
+.fb-ico{font-size:1.05rem;line-height:1;}
+.fb-btn.fb-main{color:var(--red);}
+@media(max-width:640px){
+  .float-bar{display:block;}
+  body{padding-bottom:60px;}
+}
+
 /* ── Visual Calendar ── */
 .cal-toggle{font-size:.74rem;color:var(--red);cursor:pointer;display:inline-flex;align-items:center;gap:4px;font-weight:600;margin-bottom:6px;}
 .cal-toggle:hover{text-decoration:underline;}
@@ -379,11 +443,17 @@ footer a{color:var(--gold);}
           <div class="day-hint" id="bs-day-hint"></div>
         </div>
       </div>
+      <div class="chip-row">
+        <button class="chip" onclick="chipSet('bs','today')">Today</button>
+        <button class="chip" onclick="chipSet('bs','yesterday')">Yesterday</button>
+        <button class="chip" onclick="chipSet('bs','tomorrow')">Tomorrow</button>
+        <button class="chip" onclick="chipSet('bs','newyear')">🎉 New Year</button>
+        <button class="chip chip-reset" onclick="chipSet('bs','reset')">✕ Reset</button>
+      </div>
       <span class="cal-toggle" id="bs-cal-btn" onclick="toggleCal('bs')">🗓 Show Calendar</span>
       <div class="cal-box" id="bs-cal"></div>
       <div class="result-area" id="bs-result" aria-live="polite"></div>
       <div class="act" id="bs-act">
-        <button class="btn btn-p" id="btn-bs-copy">📋 <span id="lbl-copy-bs">Copy</span></button>
         <button class="btn btn-o" id="btn-bs-share">🔗 <span>Share</span></button>
         <button class="btn btn-g" id="btn-bs-clear">✕ Clear</button>
       </div>
@@ -407,11 +477,17 @@ footer a{color:var(--gold);}
           <input type="number" id="ad-day" min="1" max="31" placeholder="1–31" aria-label="AD Day" inputmode="numeric" autocomplete="off">
         </div>
       </div>
+      <div class="chip-row">
+        <button class="chip" onclick="chipSet('ad','today')">Today</button>
+        <button class="chip" onclick="chipSet('ad','yesterday')">Yesterday</button>
+        <button class="chip" onclick="chipSet('ad','tomorrow')">Tomorrow</button>
+        <button class="chip" onclick="chipSet('ad','newyear')">🎉 New Year</button>
+        <button class="chip chip-reset" onclick="chipSet('ad','reset')">✕ Reset</button>
+      </div>
       <span class="cal-toggle" id="ad-cal-btn" onclick="toggleCal('ad')">🗓 Show Calendar</span>
       <div class="cal-box" id="ad-cal"></div>
       <div class="result-area" id="ad-result" aria-live="polite"></div>
       <div class="act" id="ad-act">
-        <button class="btn btn-p" id="btn-ad-copy">📋 <span id="lbl-copy-ad">Copy</span></button>
         <button class="btn btn-o" id="btn-ad-share">🔗 <span>Share</span></button>
         <button class="btn btn-g" id="btn-ad-clear">✕ Clear</button>
       </div>
@@ -645,6 +721,16 @@ footer a{color:var(--gold);}
 
 <div id="toast" role="status" aria-live="polite"></div>
 
+<!-- Floating convert widget (mobile only) -->
+<div class="float-bar" id="float-bar" role="toolbar" aria-label="Quick actions">
+  <div class="fb-inner">
+    <button class="fb-btn fb-main" onclick="floatAction('convert')"><span class="fb-ico">🔄</span>Convert</button>
+    <button class="fb-btn" onclick="floatAction('today')"><span class="fb-ico">📅</span>Today</button>
+    <button class="fb-btn" onclick="floatAction('swap')"><span class="fb-ico">⇄</span>Swap</button>
+    <button class="fb-btn" onclick="floatAction('clear')"><span class="fb-ico">✕</span>Clear</button>
+  </div>
+</div>
+
 <!-- ══════════════════════════════════════════
      ALL JS — single clean block
      No duplication. No code outside script tags.
@@ -823,6 +909,21 @@ function adToBS(y,m,d){
   return{by,bm,bd,mn:MEN[bm-1],mnp:MNP[bm-1],dn:DEN[dw],dnp:DNP[dw]};
 }
 
+/* ── Rich date info helpers ── */
+function totalDaysBS(y){return BS[y].reduce((a,b)=>a+b,0);}
+function dayOfYearBS(y,m,d){let o=0;for(let i=0;i<m-1;i++)o+=BS[y][i];return o+ +d;}
+const SEASONS=[
+  {en:"Spring",np:"बसन्त"},{en:"Summer",np:"ग्रीष्म"},{en:"Monsoon",np:"वर्षा"},
+  {en:"Monsoon",np:"वर्षा"},{en:"Monsoon",np:"वर्षा"},{en:"Autumn",np:"शरद"},
+  {en:"Autumn",np:"शरद"},{en:"Winter",np:"हेमन्त"},{en:"Winter",np:"शिशिर"},
+  {en:"Winter",np:"शिशिर"},{en:"Spring",np:"बसन्त"},{en:"Spring",np:"बसन्त"}
+];
+function seasonInfo(bm){return SEASONS[bm-1];}
+function fmtADLong(y,m,d,dn){
+  return dn+", "+["January","February","March","April","May","June","July","August","September","October","November","December"][m-1]
+    +" "+d+", "+y;
+}
+
 /* ── Toast ── */
 function toast(msg){
   const t=document.getElementById("toast");
@@ -901,7 +1002,9 @@ function toggleLang(){
 /* ── State ── */
 let curBS="",curAD="";
 const histBS=[],histAD=[];
+let cardState={ad:{en:"",np:""},bs:{en:"",np:""}};
 let asOp=1;
+const MFULL=["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 /* ── Update BS day hint ── */
 function updateHint(){
@@ -911,22 +1014,176 @@ function updateHint(){
   h.textContent=(y>=2000&&y<=2090&&m>=1&&m<=12&&BS[y])?"1–"+BS[y][m-1]:"";
 }
 
-/* ── Build result HTML ── */
-function resultHTML(lbl,val,npVal,tags,hol,url){
-  const holH=hol?`<div class="hol-badge">🎉 ${hol}</div>`:"";
-  const tagsH=tags.map(([tx,cls])=>`<span class="tag${cls?" "+cls:""}">${tx}</span>`).join("");
-  const urlEnc=url.replace(/'/g,"\\'");
-  return `<div class="result-card anim-in">
-    <span class="r-lbl">${lbl}</span>
-    <span class="r-val">${val}</span>
-    ${npVal?`<div class="r-np">${npVal}</div>`:""}
-    <div class="tags">${tagsH}</div>
-    ${holH}
+/* ── Number roll animation ── */
+function rollNumber(el,target,dur){
+  dur=dur||520;
+  const t0=performance.now();
+  function step(now){
+    const p=Math.min((now-t0)/dur,1);
+    const eased=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*eased);
+    if(p<1) requestAnimationFrame(step); else el.textContent=target;
+  }
+  requestAnimationFrame(step);
+}
+
+/* ── Confetti (New Year) ── */
+function fireConfetti(container){
+  const colors=["#c0392b","#f39c12","#27ae60","#3498db","#9b59b6"];
+  for(let i=0;i<36;i++){
+    const el=document.createElement("div");
+    el.className="confetti-piece";
+    el.style.left=(Math.random()*100)+"%";
+    el.style.background=colors[Math.floor(Math.random()*colors.length)];
+    el.style.animationDelay=(Math.random()*0.25)+"s";
+    el.style.animationDuration=(1+Math.random()*0.7)+"s";
+    container.appendChild(el);
+    setTimeout(()=>el.remove(),2300);
+  }
+}
+function afterCardRender(re,isNewYear){
+  const card=re.querySelector(".rcard"); if(!card)return;
+  const rollEl=card.querySelector(".roll-num");
+  if(rollEl) rollNumber(rollEl,+rollEl.dataset.target);
+  if(isNewYear){ toast("🎉 Happy New Year!"); fireConfetti(card); }
+}
+
+/* ── Build rich result card ── */
+function buildRichCard(o){
+  const doy=dayOfYearBS(o.bsY,o.bsM,o.bsD);
+  const total=totalDaysBS(o.bsY);
+  const remain=total-doy;
+  const seas=seasonInfo(o.bsM);
+  const hol=HOL[`${o.bsY}-${o.bsM}-${o.bsD}`]||"";
+  const urlEnc=o.url.replace(/'/g,"\\'");
+  const bsBlock=`<div class="rcard-bs">${o.bsMain}<span class="roll-num" data-target="${o.bsDay}">0</span>${o.bsSuffix}</div>
+      <div class="rcard-np">${o.bsNP}</div>`;
+  const adBlock=`<div class="rcard-wk">${o.weekday}</div><div class="rcard-main">${o.adLabel}</div>`;
+  const flow = o.direction==="ad2bs"
+    ? `${adBlock}<div class="rcard-arrow">↓</div>${bsBlock}`
+    : `${bsBlock}<div class="rcard-arrow">↓</div>${adBlock}`;
+  return `<div class="rcard" id="rcard-${o.pane}">
+    <div class="rcard-badge"><span class="chk">✅</span> Converted Successfully</div>
+    <div class="rcard-flow">${flow}</div>
+    <div class="stat-grid">
+      <div class="stat-box"><span class="sl">Week</span><span class="sv">${o.weekday}</span></div>
+      <div class="stat-box"><span class="sl">Day of Year</span><span class="sv">${doy} / ${total}</span></div>
+      <div class="stat-box"><span class="sl">Days Remaining</span><span class="sv">${remain}</span></div>
+      <div class="stat-box"><span class="sl">Season</span><span class="sv">${seas.en} · ${seas.np}</span></div>
+      <div class="stat-box stat-hol${hol?"":" none"}" style="grid-column:1/-1"><span class="sl">Holiday</span><span class="sv">${hol?"🎉 "+hol:"None"}</span></div>
+    </div>
+    <div class="copy-row">
+      <button class="btn btn-o" onclick="copyPane('${o.pane}','en')">📋 <span>English</span></button>
+      <button class="btn btn-o" onclick="copyPane('${o.pane}','np')">📋 <span>Nepali</span></button>
+      <button class="btn btn-p" onclick="copyPane('${o.pane}','both')">📋 <span>Both</span></button>
+    </div>
+    <p class="seo-para">${o.paraText}</p>
     <div class="url-row">
-      <input type="text" readonly value="${url}" onclick="this.select()" aria-label="Shareable URL">
+      <input type="text" readonly value="${o.url}" onclick="this.select()" aria-label="Shareable URL">
       <button class="btn btn-o" onclick="copyTxt('${urlEnc}');toast('✓ URL copied!')">🔗</button>
     </div>
   </div>`;
+}
+function copyPane(pane,which){
+  const s=cardState[pane]; if(!s||!s.en) return;
+  const txt = which==="en"?s.en : which==="np"?s.np : s.en+"\n"+s.np;
+  copyTxt(txt);
+}
+
+/* ── Relative label + recent search cards ── */
+function relLabel(y,m,d){
+  const nt=nepNow();
+  const diff=Math.round((Date.UTC(y,m-1,d)-Date.UTC(nt.y,nt.m-1,nt.d))/86400000);
+  if(diff===0) return "Today";
+  if(diff===-1) return "Yesterday";
+  if(diff===1) return "Tomorrow";
+  return `${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+}
+function addHistCard(pane,entry){
+  const arr = pane==="bs"?histBS:histAD;
+  if(arr.length && arr[0].en===entry.en) return;
+  arr.unshift(entry); if(arr.length>4) arr.pop();
+  renderHistCards(pane);
+}
+function renderHistCards(pane){
+  const el=document.getElementById(pane+"-hist"); if(!el)return;
+  const arr = pane==="bs"?histBS:histAD;
+  if(!arr.length){el.innerHTML="";return;}
+  el.innerHTML=`<div class="hist-lbl">Recent</div><div class="hist-grid">`
+    +arr.map(e=>`<div class="hist-card" onclick="copyTxt('${(e.en+" = "+e.bs).replace(/'/g,"\\'")}')">
+        <div class="hc-lbl">${e.label}</div>
+        <div class="hc-en">${e.en}</div>
+        <div class="hc-arrow">↓</div>
+        <div class="hc-bs">${e.bs}</div>
+      </div>`).join("")
+    +`</div>`;
+}
+
+/* ── Quick chips ── */
+function chipSet(pane,kind){
+  if(kind==="reset"){ chipReset(pane); return; }
+  const nt=nepNow();
+  const todayMs=Date.UTC(nt.y,nt.m-1,nt.d);
+  let targetAD=null;
+  if(kind==="today") targetAD={y:nt.y,m:nt.m,d:nt.d};
+  else if(kind==="yesterday"){const dd=new Date(todayMs-86400000);targetAD={y:dd.getUTCFullYear(),m:dd.getUTCMonth()+1,d:dd.getUTCDate()};}
+  else if(kind==="tomorrow"){const dd=new Date(todayMs+86400000);targetAD={y:dd.getUTCFullYear(),m:dd.getUTCMonth()+1,d:dd.getUTCDate()};}
+  else if(kind==="newyear"){
+    const cur=adToBS(nt.y,nt.m,nt.d);
+    const by=cur.error?2083:cur.by;
+    const ny=bsToAD(by,1,1);
+    if(!ny.error) targetAD={y:ny.y,m:ny.m,d:ny.d};
+  }
+  if(!targetAD) return;
+  if(pane==="ad"){
+    document.getElementById("ad-year").value=targetAD.y;
+    document.getElementById("ad-month").value=targetAD.m;
+    document.getElementById("ad-day").value=targetAD.d;
+    doADtoBS();
+  } else {
+    const bs=adToBS(targetAD.y,targetAD.m,targetAD.d);
+    if(bs.error) return;
+    document.getElementById("bs-year").value=bs.by;
+    document.getElementById("bs-month").value=bs.bm;
+    document.getElementById("bs-day").value=bs.bd;
+    updateHint();
+    doBStoAD();
+  }
+}
+function chipReset(pane){
+  if(pane==="ad"){
+    ["ad-year","ad-month","ad-day"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("ad-result").innerHTML="";
+    document.getElementById("ad-act").classList.remove("show");
+    curAD=""; cardState.ad={en:"",np:""};
+  } else {
+    ["bs-year","bs-day"].forEach(id=>document.getElementById(id).value="");
+    document.getElementById("bs-month").value="";
+    document.getElementById("bs-day-hint").textContent="";
+    document.getElementById("bs-result").innerHTML="";
+    document.getElementById("bs-act").classList.remove("show");
+    curBS=""; cardState.bs={en:"",np:""};
+  }
+}
+
+/* ── Floating widget ── */
+function floatAction(kind){
+  const adActive=document.getElementById("pane-ad").classList.contains("active");
+  const pane=adActive?"ad":"bs";
+  const scrollToCard=()=>document.querySelector(".card").scrollIntoView({behavior:"smooth",block:"start"});
+  if(kind==="convert"){ adActive?doADtoBS():doBStoAD(); scrollToCard(); }
+  else if(kind==="today"){ chipSet(pane,"today"); scrollToCard(); }
+  else if(kind==="swap"){ togglePane(); }
+  else if(kind==="clear"){ chipReset(pane); }
+}
+function togglePane(){
+  const adActive=document.getElementById("pane-ad").classList.contains("active");
+  document.getElementById("pane-ad").classList.toggle("active",!adActive);
+  document.getElementById("pane-bs").classList.toggle("active",adActive);
+  const tabAd=document.getElementById("tab-ad");
+  tabAd.classList.toggle("active",!adActive);
+  tabAd.setAttribute("aria-selected",(!adActive).toString());
+  document.querySelector(".card").scrollIntoView({behavior:"smooth",block:"start"});
 }
 
 /* ── Converters UI ── */
@@ -936,16 +1193,25 @@ function doBStoAD(){
   const d=document.getElementById("bs-day").value.trim();
   const re=document.getElementById("bs-result");
   const ac=document.getElementById("bs-act");
-  if(!y||!m||!d){re.innerHTML="";ac.classList.remove("show");curBS="";return;}
+  if(!y||!m||!d){re.innerHTML="";ac.classList.remove("show");curBS="";cardState.bs={en:"",np:""};return;}
   const r=bsToAD(y,m,d);
   if(r.error){re.innerHTML=`<p class="err">⚠ ${r.error}</p>`;ac.classList.remove("show");curBS="";return;}
   const af=fmtAD(r.y,r.m,r.d);
-  curBS=`${y} ${MEN[+m-1]} ${d} BS = ${af} AD (${r.dn})`;
-  const hol=HOL[`${y}-${m}-${d}`]||"";
-  const url=location.origin+location.pathname+`?y=${y}&m=${m}&d=${d}`;
-  re.innerHTML=resultHTML(t("ad_date"),af,"",[
-    [r.dn,""],[r.dnp,"np"]
-  ],hol,url);
+  const bsNP=`${npN(y)} ${MNP[+m-1]} ${npN(d)}`;
+  const enFull=`${y} ${MEN[+m-1]} ${d} BS = ${af} AD (${r.dn})`;
+  curBS=enFull;
+  cardState.bs={en:enFull, np:`${bsNP} = ${af}`};
+  const isNY = +m===1 && +d===1;
+  const paraText=`<strong>${y} ${MEN[+m-1]} ${d} BS</strong> equals <strong>${af} AD</strong>. This date falls on <strong>${r.dn}</strong>.`;
+  const url=location.origin+location.pathname+`?y=${y}&m=${m}&d=${d}&mode=bs`;
+  re.innerHTML=buildRichCard({
+    pane:"bs", direction:"bs2ad", weekday:r.dn,
+    adLabel:`${r.d} ${MFULL[r.m-1]} ${r.y} AD`,
+    bsMain:`${y} ${MEN[+m-1]} `, bsDay:+d, bsSuffix:" BS",
+    bsNP, bsY:+y,bsM:+m,bsD:+d, url, paraText, isNewYear:isNY
+  });
+  afterCardRender(re,isNY);
+  addHistCard("bs",{label:relLabel(r.y,r.m,r.d), en:`${y}-${String(m).padStart(2,"0")}-${String(d).padStart(2,"0")} BS`, bs:af});
   ac.classList.add("show");
   updateURL(y,m,d,"bs");
   if(document.getElementById("bs-cal").style.display!=="none") renderBSCal();
@@ -957,17 +1223,26 @@ function doADtoBS(){
   const d=document.getElementById("ad-day").value.trim();
   const re=document.getElementById("ad-result");
   const ac=document.getElementById("ad-act");
-  if(!y||!m||!d){re.innerHTML="";ac.classList.remove("show");curAD="";return;}
+  if(!y||!m||!d){re.innerHTML="";ac.classList.remove("show");curAD="";cardState.ad={en:"",np:""};return;}
   const r=adToBS(y,m,d);
   if(r.error){re.innerHTML=`<p class="err">⚠ ${r.error}</p>`;ac.classList.remove("show");curAD="";return;}
   const bf=`${r.by} ${r.mn} ${r.bd}`;
-  const np=`${npN(r.by)} ${r.mnp} ${npN(r.bd)}`;
-  curAD=`${fmtAD(+y,+m,+d)} AD = ${bf} BS (${r.dn})`;
-  const hol=HOL[`${r.by}-${r.bm}-${r.bd}`]||"";
+  const npFull=`${npN(r.by)} ${r.mnp} ${npN(r.bd)}`;
+  const adEn=fmtAD(+y,+m,+d);
+  const enFull=`${adEn} AD = ${bf} BS (${r.dn})`;
+  curAD=enFull;
+  cardState.ad={en:enFull, np:`${adEn} = ${npFull}`};
+  const isNY = r.bm===1 && r.bd===1;
+  const paraText=`<strong>${adEn} AD</strong> equals <strong>${bf} BS</strong>. This date falls on <strong>${r.dn}</strong>.`;
   const url=location.origin+location.pathname+`?y=${y}&m=${m}&d=${d}&mode=ad`;
-  re.innerHTML=resultHTML(t("bs_date"),bf,np,[
-    [r.dn,""],[r.dnp,"np"],[r.mn,""]
-  ],hol,url);
+  re.innerHTML=buildRichCard({
+    pane:"ad", direction:"ad2bs", weekday:r.dn,
+    adLabel:`${+d} ${MFULL[+m-1]} ${y} AD`,
+    bsMain:`${r.by} ${r.mn} `, bsDay:r.bd, bsSuffix:" BS",
+    bsNP:npFull, bsY:r.by,bsM:r.bm,bsD:r.bd, url, paraText, isNewYear:isNY
+  });
+  afterCardRender(re,isNY);
+  addHistCard("ad",{label:relLabel(+y,+m,+d), en:adEn, bs:bf});
   ac.classList.add("show");
   updateURL(y,m,d,"ad");
   if(document.getElementById("ad-cal").style.display!=="none") renderADCal();
@@ -986,7 +1261,10 @@ function renderToday(){
 }
 
 /* ── URL share ── */
+let suppressURL=true; // true during the initial dual-pane prefill so it doesn't
+                       // clobber location.search before loadURL() has read it
 function updateURL(y,m,d,mode){
+  if(suppressURL) return;
   const p=new URLSearchParams();
   p.set("y",y);p.set("m",m);p.set("d",d);p.set("mode",mode);
   history.replaceState({},"",location.pathname+"?"+p.toString());
@@ -1232,15 +1510,6 @@ function npInput(id){
   });
 }
 
-/* ── History ── */
-function addHist(arr,listId,txt){
-  if(!txt||arr[0]===txt)return;
-  arr.unshift(txt); if(arr.length>5)arr.pop();
-  const el=document.getElementById(listId); if(!el)return;
-  el.innerHTML="<strong>Recent:</strong> "
-    +arr.map(s=>`<span onclick="copyTxt('${s.replace(/'/g,"\\'")}');toast('✓ Copied!')">${s}</span>`).join("");
-}
-
 /* ── Tab switching (button only, links are real links) ── */
 function initTabs(){
   document.querySelectorAll(".tab-btn[data-tab]").forEach(b=>{
@@ -1292,7 +1561,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   doBStoAD();
   applyLang();
   animCounter();
-  setTimeout(loadURL,80);
+  setTimeout(()=>{ suppressURL=false; loadURL(); },80);
 
   // Nepali digit input on all number fields
   ["bs-year","bs-day","ad-year","ad-month","ad-day",
@@ -1309,26 +1578,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   ["bs-year","bs-day"].forEach(id=>document.getElementById(id).addEventListener("keydown",e=>{if(e.key==="Enter")doBStoAD();}));
   ["ad-year","ad-month","ad-day"].forEach(id=>document.getElementById(id).addEventListener("keydown",e=>{if(e.key==="Enter")doADtoBS();}));
 
-  // Copy/Share/Clear — BS
-  document.getElementById("btn-bs-copy").addEventListener("click",()=>{copyTxt(curBS);addHist(histBS,"bs-hist",curBS);});
+  // Share/Clear — BS (copy is now inline in the result card: English/Nepali/Both)
   document.getElementById("btn-bs-share").addEventListener("click",()=>shareTxt(curBS));
-  document.getElementById("btn-bs-clear").addEventListener("click",()=>{
-    ["bs-year","bs-day"].forEach(id=>document.getElementById(id).value="");
-    document.getElementById("bs-month").value="";
-    document.getElementById("bs-day-hint").textContent="";
-    document.getElementById("bs-result").innerHTML="";
-    document.getElementById("bs-act").classList.remove("show");
-    curBS="";
-  });
-  // Copy/Share/Clear — AD
-  document.getElementById("btn-ad-copy").addEventListener("click",()=>{copyTxt(curAD);addHist(histAD,"ad-hist",curAD);});
+  document.getElementById("btn-bs-clear").addEventListener("click",()=>chipReset("bs"));
+  // Share/Clear — AD
   document.getElementById("btn-ad-share").addEventListener("click",()=>shareTxt(curAD));
-  document.getElementById("btn-ad-clear").addEventListener("click",()=>{
-    ["ad-year","ad-month","ad-day"].forEach(id=>document.getElementById(id).value="");
-    document.getElementById("ad-result").innerHTML="";
-    document.getElementById("ad-act").classList.remove("show");
-    curAD="";
-  });
+  document.getElementById("btn-ad-clear").addEventListener("click",()=>chipReset("ad"));
 
   // Footer year
   document.getElementById("fy").textContent=new Date().getFullYear();
