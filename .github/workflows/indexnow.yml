@@ -1,0 +1,25 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Notify IndexNow
+        run: |
+          curl -X POST "https://api.indexnow.org/indexnow" \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d '{
+              "host: "converter.thenepal.io"
+key: "886412cc-eca6-4ebc-bcd2-aaf27dc54847"
+keyLocation: "https://converter.thenepal.io/886412cc-eca6-4ebc-bcd2-aaf27dc54847.txt",
+              "urlList":[
+                "https://converter.thenepal.io/sitemap.xml"
+              ]
+            }'
