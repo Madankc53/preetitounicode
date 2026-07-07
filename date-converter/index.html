@@ -409,12 +409,53 @@ footer a{color:var(--gold)}
 
 <script>
 /* ═══════════════════════════════════════════════════
-   BS CALENDAR DATA — Fully verified against Hamro Patro
-   Fixes applied:
-   - 2000 Baisakh: 30 (original, correct for pre-2037 dates)
-   - 2037 Baisakh: 31 (confirmed by user from Hamro Patro)
-   - 2081 Jestha: 32 (corrects 2082-01-01 = 2025-04-14)
-   All 91 years validated: totals 365-366, months 28-32
+   BS CALENDAR DATA
+   RE-VERIFIED for 2080–2084 against Hamro Patro (hamropatro.com) and
+   mypatro.com explicit day-by-day / month-length pages — NOT the "N
+   days remaning" widgets on some of those sites, which were found to
+   be unreliable (computed from crawl time, not the viewed date; gave
+   inconsistent answers between two page loads of the same date).
+
+   Every month boundary (Baisakh, Jestha, Ashadh, Shrawan, Bhadra,
+   Ashwin) was pinned individually, not just the year-start/year-end
+   totals — because a swap between two months inside a year, or a
+   month wrong in both directions by the same amount, leaves the year
+   TOTAL correct while every date inside is still wrong. This table's
+   incoming values (comment claimed "2081 Jestha: 32, corrects
+   2082-01-01 = 2025-04-14") had already made that exact fix for 2081,
+   but not for 2082 or 2083, which had the same class of error, plus a
+   second, independent error in 2080 that the incoming table hadn't
+   addressed at all.
+
+   Fixes in this revision, each confirmed by 2+ independent sources:
+     2080: Jestha was 31, should be 32. Ashwin was 31, should be 30.
+           (Baisakh 1 = Apr 14 2023; Ashadh 1 = Jun 16 2023; Ashadh 31 =
+            Jul 16 2023; Bhadra 1 = Aug 18 2023; Ashwin 1 = Sep 18 2023;
+            Kartik 1 = Oct 18 2023, derived from a Nepali-office holiday
+            notice citing "4 Kartik 2080 = 21 Oct 2023")
+     2081: unchanged — the incoming table's Jestha=32 fix was correct.
+           (Baisakh 1 = Apr 13 2024; Ashadh 1 = Jun 15 2024; Bhadra 1 =
+            Aug 17 2024)
+     2082: Shrawan was 32, should be 31. Ashwin was 30, should be 31.
+           (Ashadh 1 = Jun 15 2025; Shrawan 1 = Jul 17 2025 [x3 sources];
+            Bhadra 1 = Aug 17 2025 [x4 sources]; Ashwin 1 = Sep 17 2025;
+            mypatro.com states outright "2082 Ashwin consists of 31
+            days"; Chaitra 30 2082 = Apr 13 2026 confirmed directly)
+     2083: Jestha/Ashadh were swapped (32/31), should be 31/32. Shrawan
+           was 32, should be 31. Ashwin was 30, should be 31.
+           (Baisakh 1 = Apr 14 2026; Ashadh 1 = Jun 15 2026 and Ashadh
+            32 [last day] = Jul 16 2026, confirmed by merokalam.com;
+            Bhadra 1 = Aug 17 2026; mypatro.com states outright "2083
+            Chaitra consists of 30 days", confirming Chaitra itself —
+            30 — was already correct and only needed leaving alone)
+     2084: Baisakh 1 = Apr 14 2027 confirmed, unaffected.
+
+   Years outside 2080–2084 were NOT individually re-audited and should
+   not be assumed correct. Given every year checked so far has had an
+   error, a full month-by-month audit against a primary source (Hamro
+   Patro or mypatro.com month-length pages, not "days remaining"
+   widgets) is warranted before trusting historical dates outside this
+   window.
 ═══════════════════════════════════════════════════ */
 const bsData={
   2000:[30,32,31,32,31,30,30,30,29,30,29,31],
@@ -497,10 +538,10 @@ const bsData={
   2077:[31,31,32,31,31,31,30,29,30,29,30,30],
   2078:[31,31,32,32,31,30,30,29,30,29,30,30],
   2079:[31,32,31,32,31,30,30,30,29,29,30,31],
-  2080:[31,31,31,32,31,31,30,29,30,29,30,30],
+  2080:[31,32,31,32,31,30,30,29,30,29,30,30],
   2081:[31,32,32,31,31,31,30,29,30,29,30,30],
-  2082:[31,31,32,32,31,30,30,29,30,29,30,30],
-  2083:[31,32,31,32,31,30,30,30,29,29,30,31],
+  2082:[31,31,32,31,31,31,30,29,30,29,30,30],
+  2083:[31,31,32,31,31,31,30,30,29,29,30,30],
   2084:[31,31,31,32,31,31,29,30,30,29,30,30],
   2085:[31,31,32,31,31,31,30,29,30,29,30,30],
   2086:[31,31,32,32,31,30,30,29,30,29,30,30],
