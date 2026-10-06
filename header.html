@@ -82,7 +82,7 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
         <li class="nh-dd">
           <button type="button" aria-expanded="false" aria-controls="nh-p1">Calendar &amp; Festivals</button>
           <div class="nh-panel" id="nh-p1" hidden><div class="nh-in">
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="cal">
               <p class="nh-h">Nepali calendar 2083</p>
               <a href="/nepali-calendar-2083/" data-p data-k="patro nepali calendar 2083 पात्रो">Calendar 2083</a>
               <a href="/2084/calendar" data-k="nepali calendar 2084 patro">Calendar 2084</a>
@@ -102,7 +102,7 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
                 <a href="/nepali-calendar-2083/chaitra-2083" data-k="chait चैत्र march">Chaitra 2083</a>
               </div>
             </div>
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="fest">
               <p class="nh-h">Festivals &amp; holidays</p>
               <a href="/nepali-calendar-2083/dashain-2083" data-p data-k="dashai dashain tika vijaya dashami दशैं">Dashain 2083</a>
               <a href="/2083/tihar/" data-p data-k="deepawali diwali laxmi puja kukur tihar तिहार">Tihar 2083</a>
@@ -117,13 +117,13 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
         <li class="nh-dd">
           <button type="button" aria-expanded="false" aria-controls="nh-p2">Converters</button>
           <div class="nh-panel" id="nh-p2" hidden><div class="nh-in">
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="conv">
               <p class="nh-h">Date</p>
               <a href="/date-converter/" data-p data-k="nepali date converter miti">Date Converter</a>
               <a href="/bs-to-ad/" data-p data-k="bikram sambat to english gregorian nepali to english date">BS to AD</a>
               <a href="/ad-to-bs/" data-p data-k="english to nepali date gregorian to bikram sambat">AD to BS</a>
             </div>
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="fonts">
               <p class="nh-h">Nepali fonts &amp; typing</p>
               <a href="/preeti-to-unicode-converter/" data-p data-k="preeti font unicode nepali typing प्रीति">Preeti to Unicode</a>
               <a href="/unicode-to-preeti-converter/" data-k="unicode to preeti font nepali">Unicode to Preeti</a>
@@ -132,7 +132,7 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
               <a href="/preeti-unicode-guide/" data-k="preeti unicode guide how to">Preeti &amp; Unicode guide</a>
               <a href="/download-preeti-font" data-k="download preeti font ttf install">Download Preeti font</a>
             </div>
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="units">
               <p class="nh-h">Units &amp; currency</p>
               <a href="/land-converter/" data-k="land ropani aana bigha kattha dhur ferro रोपनी">Land Converter</a>
               <a href="/unit-converter/" data-k="length weight area unit conversion">Unit Converter</a>
@@ -145,7 +145,7 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
         <li class="nh-dd">
           <button type="button" aria-expanded="false" aria-controls="nh-p3">Calculators</button>
           <div class="nh-panel" id="nh-p3" hidden><div class="nh-in">
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="calc">
               <p class="nh-h">Calculators</p>
               <a href="/calculator/age-calculator" data-k="age calculator nepali bs umar उमेर">Age Calculator</a>
               <a href="/calculator/income-tax-calculator" data-k="income tax nepal salary tax kar कर">Income Tax Calculator</a>
@@ -164,7 +164,7 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
               <a href="/guide/who-created-bikram-sambat" data-k="vikramaditya founder">Who created Bikram Sambat</a>
               <a href="/guide/how-old-Is-bikram-sambat" data-k="age year 2083 how old">How old is Bikram Sambat</a>
             </div>
-            <div class="nh-col">
+            <div class="nh-col" data-bucket="guide">
               <p class="nh-h">Nepal &amp; the calendar</p>
               <a href="/guide/when-did-nepal-adopt-bikram-sambat" data-k="adopted official calendar rana">When Nepal adopted Bikram Sambat</a>
               <a href="/guide/why-nepal-uses-bikram-sambat">Why Nepal uses Bikram Sambat</a>
@@ -207,31 +207,42 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
   /* current page */
   function clean(p){return p.replace(/\.html$/,'').replace(/\/$/,'')||'/'}
   var here=clean(location.pathname);
-  $$('.nh-nav a').forEach(function(a){if(clean(a.getAttribute('href'))===here){a.setAttribute('aria-current','page');var d=a.closest('.nh-dd');if(d)d.classList.add('has-cur')}});
+  function markCur(){
+    $$('.nh-nav a[aria-current]').forEach(function(a){a.removeAttribute('aria-current')});
+    $$('.nh-dd.has-cur').forEach(function(d){d.classList.remove('has-cur')});
+    $$('.nh-nav a').forEach(function(a){if(clean(a.getAttribute('href'))===here){a.setAttribute('aria-current','page');var d=a.closest('.nh-dd');if(d)d.classList.add('has-cur')}});
+  }
+  markCur();
 
   /* dropdowns */
-  var dds=$$('.nh-dd'),hoverOK=matchMedia('(hover:hover) and (min-width:901px)'),tm;
+  var dds=[],hoverOK=matchMedia('(hover:hover) and (min-width:901px)'),tm;
   function setDD(li,o){$('button',li).setAttribute('aria-expanded',o);$('.nh-panel',li).hidden=!o}
   function closeAll(x){dds.forEach(function(li){if(li!==x)setDD(li,false)})}
-  dds.forEach(function(li){
+  function wireDD(li){
+    dds.push(li);
     var b=$('button',li);
     b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')!=='true';closeAll(li);setDD(li,o)});
     li.addEventListener('mouseenter',function(){if(hoverOK.matches){clearTimeout(tm);closeAll(li);setDD(li,true)}});
     li.addEventListener('mouseleave',function(){if(hoverOK.matches){tm=setTimeout(function(){setDD(li,false)},160)}});
-  });
+  }
+  $$('.nh-dd').forEach(wireDD);
 
   /* mobile menu + search toggle */
   var bm=$('#nh-bm');
   bm.addEventListener('click',function(){var o=!h.classList.contains('nh-menu-open');h.classList.toggle('nh-menu-open',o);bm.setAttribute('aria-expanded',o);bm.textContent=o?'✕':'☰'});
 
-  /* search: indexes every link in the menu, so new menu links are searchable automatically */
+  /* search: indexes every link in the menu (including auto-added ones) */
   var q=$('#nh-q'),list=$('#nh-list'),st=$('#nh-status'),box=$('.nh-search'),act=-1;
-  var seen={},items=[];
-  $$('.nh-nav a').forEach(function(a){
-    var u=a.getAttribute('href');if(seen[u])return;seen[u]=1;
-    var col=a.closest('.nh-col'),hd=col?$('.nh-h',col):null,t=a.textContent.trim();
-    items.push({t:t,tl:t.toLowerCase(),u:u,g:hd?hd.textContent:'',k:(a.getAttribute('data-k')||'').toLowerCase(),p:a.hasAttribute('data-p')});
-  });
+  var items=[];
+  function buildIndex(){
+    var seen={};items=[];
+    $$('.nh-nav a').forEach(function(a){
+      var u=a.getAttribute('href');if(seen[u])return;seen[u]=1;
+      var col=a.closest('.nh-col'),hd=col?$('.nh-h',col):null,t=a.textContent.trim();
+      items.push({t:t,tl:t.toLowerCase(),u:u,g:hd?hd.textContent:'',k:(a.getAttribute('data-k')||'').toLowerCase(),p:a.hasAttribute('data-p')});
+    });
+  }
+  buildIndex();
   function lev(a,b){var m=a.length,n=b.length,p=[],i,j;for(j=0;j<=n;j++)p[j]=j;for(i=1;i<=m;i++){var c=[i];for(j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));p=c}return p[n]}
   function score(it,s,tk){
     var t=it.tl,k=it.k,sc=0;
@@ -302,6 +313,118 @@ html[data-theme="dark"] .nh{--bg:#0f172a;--bg2:#1e293b;--tx:#f1f5f9;--tx2:#cbd5e
     if(!h.contains(e.target))closeAll();
   });
   document.addEventListener('focusin',function(e){if(!box.contains(e.target))close()});
+
+  /* ===== AUTO MENU FROM sitemap.xml =====
+     Pages in the sitemap that are NOT already in the menu are added automatically:
+     into the matching dropdown column (data-bucket), or into a "More" dropdown if nothing fits.
+     Links you wrote by hand are never removed or changed. */
+  var AUTO={
+    sitemap:'/sitemap.xml',
+    ttl:6*60*60*1000,                                  // re-read sitemap at most every 6 hours per visitor
+    cleanUrls:true,                                    // /page instead of /page.html
+    exclude:/^\/(header|footer|sitemap|404)$/i,        // never shown
+    moreLabel:'More'
+  };
+  var BUCKETS=[
+    ['fest',/(dashain|tihar|bhai-tika|holidays|subha-sait|mala-mass)/],
+    ['cal',/^\/(nepali-calendar-|today-nepali-date|\d{4}\/calendar)/],
+    ['fest',/^\/\d{4}\//],
+    ['fonts',/(preeti|unicode|kantipur)/],
+    ['units',/^\/(currency|unit-converter|land-converter)/],
+    ['conv',/^\/(date-converter|bs-to-ad|ad-to-bs)/],
+    ['calc',/^\/calculator\//],
+    ['guide',/^\/guide\//]
+  ];
+  var NAMES={'/today-nepali-date':"Today's Nepali Date",'/preeti-unicode-guide':'Preeti & Unicode Guide','/2083/mala-mass':'Mala Maas 2083'};
+  var UP={bs:'BS',ad:'AD',npr:'NPR',inr:'INR',usd:'USD',faq:'FAQ'},LOW={to:1,of:1,vs:1,in:1,and:1,the:1,is:1,a:1};
+  function key(p){return p.replace(/\.html$/i,'').replace(/\/+$/,'')}
+  function pretty(s){return s.split('-').filter(Boolean).map(function(w,i){var l=w.toLowerCase();if(UP[l])return UP[l];if(i&&LOW[l])return l;return l.charAt(0).toUpperCase()+l.slice(1)}).join(' ')}
+  function titleOf(k){
+    if(NAMES[k])return NAMES[k];
+    var seg=k.split('/').filter(Boolean),t=pretty(seg[seg.length-1]||''),y=k.match(/^\/(\d{4})\//);
+    if(y&&t.indexOf(y[1])<0)t+=' '+y[1];
+    return t;
+  }
+  var base=new URL(AUTO.sitemap,location.href);
+  function fetchXml(u){
+    return fetch(u,{credentials:'omit'}).then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){
+      var d=new DOMParser().parseFromString(t,'application/xml');
+      if(d.getElementsByTagName('parsererror').length)throw 0;return d});
+  }
+  function loadMap(u,depth){
+    return fetchXml(u).then(function(d){
+      if(d.getElementsByTagName('sitemapindex').length&&depth<2){
+        var kids=[].slice.call(d.getElementsByTagName('sitemap')).slice(0,15).map(function(s){var l=s.getElementsByTagName('loc')[0];return l?l.textContent.trim():null}).filter(Boolean);
+        return Promise.all(kids.map(function(k){return loadMap(k,depth+1).catch(function(){return[]})})).then(function(a){return[].concat.apply([],a)});
+      }
+      return [].slice.call(d.getElementsByTagName('loc')).map(function(l){return l.textContent.trim()});
+    });
+  }
+  function normalize(locs){
+    var seen={},out=[];
+    locs.forEach(function(loc){
+      var u;try{u=new URL(loc,base)}catch(x){return}
+      if(u.host!==base.host)return;
+      var k=key(u.pathname);if(!k||AUTO.exclude.test(k)||seen[k.toLowerCase()])return;
+      seen[k.toLowerCase()]=1;
+      var href=AUTO.cleanUrls?u.pathname.replace(/\.html$/i,''):u.pathname;
+      if(u.origin!==location.origin)href=u.origin+href;
+      out.push({k:k,h:href,t:titleOf(k)});
+    });
+    return out.sort(function(a,b){return a.t.localeCompare(b.t)});
+  }
+  function bucketOf(k){
+    for(var i=0;i<BUCKETS.length;i++)if(BUCKETS[i][1].test(k)){
+      if(h.querySelector('.nh-col[data-bucket="'+BUCKETS[i][0]+'"]'))return BUCKETS[i][0];
+    }
+    return null;
+  }
+  function mkLink(e){
+    var a=document.createElement('a');a.href=e.h;a.textContent=e.t;a.setAttribute('data-nh-a','1');
+    a.setAttribute('data-k',e.k.replace(/[\/\-_.]+/g,' ').trim());return a;
+  }
+  function inject(entries){
+    $$('[data-nh-a]').forEach(function(n){n.parentNode&&n.parentNode.removeChild(n)});
+    dds=dds.filter(function(li){return li.isConnected});
+    var known={};
+    $$('.nh-nav a').forEach(function(a){known[key(a.getAttribute('href')).toLowerCase()]=1});
+    var more={},names=[];
+    entries.forEach(function(e){
+      if(known[e.k.toLowerCase()])return;
+      var b=bucketOf(e.k),col=b?h.querySelector('.nh-col[data-bucket="'+b+'"]'):null;
+      if(col){col.appendChild(mkLink(e));return}
+      var seg=e.k.split('/').filter(Boolean),g=seg.length>1?pretty(seg[0]):'Pages';
+      if(!more[g]){more[g]=[];names.push(g)}
+      more[g].push(e);
+    });
+    if(names.length){
+      var ul=$('.nh-nav'),li=document.createElement('li');li.className='nh-dd';li.setAttribute('data-nh-a','1');
+      var btn=document.createElement('button');btn.type='button';btn.setAttribute('aria-expanded','false');btn.setAttribute('aria-controls','nh-pm');btn.textContent=AUTO.moreLabel;
+      var pn=document.createElement('div');pn.className='nh-panel';pn.id='nh-pm';pn.hidden=true;
+      var inn=document.createElement('div');inn.className='nh-in';
+      names.sort().forEach(function(g){
+        var col=document.createElement('div');col.className='nh-col';
+        var hd=document.createElement('p');hd.className='nh-h';hd.textContent=g;col.appendChild(hd);
+        more[g].forEach(function(e){col.appendChild(mkLink(e))});
+        inn.appendChild(col);
+      });
+      pn.appendChild(inn);li.appendChild(btn);li.appendChild(pn);
+      var last=ul.lastElementChild;
+      if(last&&!last.classList.contains('nh-dd'))ul.insertBefore(li,last);else ul.appendChild(li);
+      wireDD(li);
+    }
+    buildIndex();markCur();
+  }
+  var KEY='nhMap1:'+base.href,cached=null;
+  try{cached=JSON.parse(store.get(KEY)||'null')}catch(e){}
+  if(cached&&cached.l&&cached.l.length)inject(normalize(cached.l));
+  if(!cached||Date.now()-cached.ts>AUTO.ttl){
+    loadMap(base.href,0).then(function(locs){
+      if(!locs.length)return;
+      store.set(KEY,JSON.stringify({ts:Date.now(),l:locs}));
+      inject(normalize(locs));
+    }).catch(function(){/* keep the hand-written menu as is */});
+  }
 })();
 </script>
 <!--SITE-HEADER-END-->
