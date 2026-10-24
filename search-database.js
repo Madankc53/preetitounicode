@@ -123,7 +123,7 @@ window.siteSearchDatabase = [
     },
     { 
         title: 'Nepali Months Guide', 
-        url: '/guide/nepali-months', 
+        url: '/guide/nepali-months-guide', 
         category: 'Guide', 
         icon: '📅',
         keywords: ['nepali months', 'months', 'calendar', 'chaitra', 'baisakh']
@@ -139,7 +139,7 @@ window.siteSearchDatabase = [
     // ==================== NEPAL FINANCE HUB ====================
     { 
         title: 'Nepal Finance Hub', 
-        url: '/Nepal-Finance-Hub/', 
+        url: '/currency/', 
         category: 'Finance', 
         icon: '💰',
         keywords: ['finance', 'nepal', 'money', 'banking', 'investment', 'financial']
@@ -148,7 +148,7 @@ window.siteSearchDatabase = [
     // ==================== TAX CALCULATORS ====================
     { 
         title: 'Nepal Tax Calculators', 
-        url: '/Nepal-Tax-Calculators/', 
+        url: '/calculator/income-tax-calculator', 
         category: 'Finance', 
         icon: '💼',
         keywords: ['tax', 'calculator', 'nepal tax', 'income tax', 'calculate tax']
@@ -157,34 +157,16 @@ window.siteSearchDatabase = [
     // ==================== TOOLS COLLECTION ====================
     { 
         title: 'All Tools', 
-        url: '/tools/', 
+        url: '/', 
         category: 'Tools', 
         icon: '🔧',
         keywords: ['tools', 'all tools', 'converters', 'utilities', 'applications']
     },
-    { 
-        title: 'Converters', 
-        url: '/converters/', 
-        category: 'Tools', 
-        icon: '⚙️',
-        keywords: ['converter', 'convert', 'convertors', 'transformation']
-    },
+
 
     // ==================== SPECIAL PAGES ====================
-    { 
-        title: 'Blog', 
-        url: '/blog/', 
-        category: 'Blog', 
-        icon: '📝',
-        keywords: ['blog', 'articles', 'posts', 'news', 'updates']
-    },
-    { 
-        title: 'Contact', 
-        url: '/contact/', 
-        category: 'Support', 
-        icon: '📧',
-        keywords: ['contact', 'support', 'help', 'email', 'message']
-    },
+
+
 
     // ==================== POPULAR SEARCHES ====================
     { 

@@ -6,3 +6,10 @@ wrangler.toml
 package.json
 package-lock.json
 bun.lockb
+# Source, scripts and backups that should not be served publicly
+*.py
+*.zip
+credentials.json
+sitemap-generator.yml
+functions/
+github/

@@ -399,6 +399,22 @@
     }
     .toast.show { transform: translateX(-50%) translateY(0); }
   </style>
+
+  <!-- SEO (added) -->
+  <link rel="canonical" href="https://converter.thenepal.io/unicode-to-preeti-converter/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Unicode to Preeti Converter – Full Page Tool | thenepal.io">
+  <meta property="og:description" content="Convert Unicode Devanagari to Preeti/Kantipur font instantly. Download as .txt or .docx. 100% private, offline. ब mapping fixed.">
+  <meta property="og:url" content="https://converter.thenepal.io/unicode-to-preeti-converter/">
+  <meta property="og:site_name" content="TheNepal.io">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Unicode to Preeti Converter – Full Page Tool | thenepal.io">
+  <meta name="twitter:description" content="Convert Unicode Devanagari to Preeti/Kantipur font instantly. Download as .txt or .docx. 100% private, offline. ब mapping fixed.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Unicode to Preeti Converter", "url": "https://converter.thenepal.io/unicode-to-preeti-converter/", "description": "Convert Unicode Devanagari to Preeti/Kantipur font instantly. Download as .txt or .docx. 100% private, offline. ब mapping fixed.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NPR"}, "publisher": {"@type": "Organization", "name": "TheNepal.io", "url": "https://thenepal.io/"}}</script>
+  <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
 </head>
 <body>
 
@@ -709,7 +725,7 @@
   range.addEventListener('input', (e) => { const v = e.target.value; sizeSpan.innerText = v+'px'; document.documentElement.style.setProperty('--out-size', v+'px'); localStorage.setItem('preeti_out_size', v); });
   const savedSize = localStorage.getItem('preeti_out_size'); if(savedSize) { range.value = savedSize; sizeSpan.innerText = savedSize+'px'; document.documentElement.style.setProperty('--out-size', savedSize+'px'); }
   const savedTheme = localStorage.getItem('preeti_theme'); if(savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
-  document.getElementById('swapDirectionBtn').href = '/preeti-to-unicode/';
+  document.getElementById('swapDirectionBtn').href = '/preeti-to-unicode-converter/';
   
   onFontChange();
 </script>

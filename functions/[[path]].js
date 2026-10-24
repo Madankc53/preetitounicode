@@ -18,7 +18,7 @@ export async function onRequest(context) {
         </div>
         <nav>
           <a href="/" style="color: white; margin-left: 1.5rem; text-decoration: none;">Home</a>
-          <a href="/units" style="color: white; margin-left: 1.5rem; text-decoration: none;">Units</a>
+          <a href="/unit-converter/" style="color: white; margin-left: 1.5rem; text-decoration: none;">Units</a>
         </nav>
       </div>
     </header>
