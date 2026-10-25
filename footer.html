@@ -104,7 +104,6 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
         <ul class="nf-links">
           <li><a href="/preeti-to-unicode-converter/">Preeti to Unicode</a></li>
           <li><a href="/unicode-to-preeti-converter/">Unicode to Preeti</a></li>
-          <li><a href="/preeti-converter/">Preeti Converter</a></li>
         </ul>
       </details>
       <details class="nf-col" open>
@@ -129,6 +128,8 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
       <p>&copy; <span id="nf-year">2026</span> <strong>thenepal.io</strong>. All rights reserved.</p>
       <nav aria-label="Footer utility">
         <a href="/about">About</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy-policy/">Privacy</a>
         <a href="/sitemap.xml">Sitemap</a>
         <button type="button" class="nf-top-btn" id="nf-up" aria-label="Back to top">↑ Top</button>
       </nav>
@@ -165,12 +166,12 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
     {id:'cal',title:'Calendar & Dates',re:/^\/(nepali-calendar-\d{4}|today-nepali-date|\d{4}\/calendar)$/,
       prio:['/nepali-calendar-2083','/2084/calendar','/today-nepali-date']},
     {id:'fonts',title:'Nepali Fonts & Typing',re:/(preeti|unicode|kantipur)/,
-      prio:['/preeti-to-unicode-converter','/unicode-to-preeti-converter','/preeti-converter','/preeti-to-unicode-converter/kantipur-to-unicode','/download-preeti-font','/preeti-unicode-guide']},
+      prio:['/preeti-to-unicode-converter','/unicode-to-preeti-converter','/preeti-to-unicode-converter/kantipur-to-unicode','/download-preeti-font','/preeti-unicode-guide']},
     {id:'conv',title:'Converters & Units',re:/^\/(date-converter|bs-to-ad|ad-to-bs|land-converter|unit-converter|currency)/,
       prio:['/date-converter','/bs-to-ad','/ad-to-bs','/land-converter','/unit-converter']},
     {id:'calc',title:'Calculators',re:/^\/calculator\//},
     {id:'guide',title:'Guides',re:/^\/guide\//,limit:10},
-    {id:'site',title:'Site',re:/^\/about$/}
+    {id:'site',title:'Site',re:/^\/(about|contact|privacy-policy)$/,prio:['/about','/contact','/privacy-policy']}
   ];
   var ORDER=['conv','fonts','cal','fest','calc','guide','months','site'];
 
@@ -184,7 +185,9 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
     '/nepali-calendar-2083':'Calendar 2083',
     '/2083/nepal-public-holidays':'Public Holidays 2083',
     '/2083/mala-mass':'Mala Maas 2083',
-    '/about':'About'
+    '/about':'About',
+    '/contact':'Contact',
+    '/privacy-policy':'Privacy Policy'
   };
   var UP={bs:'BS',ad:'AD',npr:'NPR',inr:'INR',usd:'USD',faq:'FAQ'};
   var LOW={to:1,of:1,vs:1,in:1,and:1,the:1,is:1,a:1};

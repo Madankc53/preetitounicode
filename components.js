@@ -1,3 +1,13 @@
+/* Offline support: register the service worker (see /sw.js) */
+(function () {
+    if (!('serviceWorker' in navigator)) return;
+    var secure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    if (!secure) return;
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function () {});
+    });
+})();
+
 /**
  * components.js - Fixed & Improved for thenepal.io
  * Loads header and footer + Mobile Menu + Active Link

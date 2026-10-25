@@ -48,3 +48,7 @@
 # Currency hub (was an extensionless file called Nepal-Finance-Hub)
 /Nepal-Finance-Hub                   /currency/                               301
 /Nepal-Finance-Hub/                  /currency/                               301
+
+# Removed duplicate (non-functional design mock-up); the real converter is below
+/preeti-converter                    /preeti-to-unicode-converter/            301
+/preeti-converter/                   /preeti-to-unicode-converter/            301

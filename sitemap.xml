@@ -2,35 +2,35 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://converter.thenepal.io/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/dashain-tika-time</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/mala-mass</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/nepal-public-holidays</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/subha-sait</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/bhai-tika</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2084/calendar</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/about</loc>
@@ -38,55 +38,99 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/ad-to-bs/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/bs-to-ad/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/calculator/age-calculator</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/calculator/income-tax-calculator</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/contact/</loc>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/currency/</loc>
     <lastmod>2026-10-24</lastmod>
   </url>
   <url>
+    <loc>https://converter.thenepal.io/currency/aed-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/aud-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/eur-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/gbp-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
     <loc>https://converter.thenepal.io/currency/inr-to-npr</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/jpy-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/kwd-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/myr-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/qar-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/currency/sar-to-npr</loc>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/currency/usd-to-npr</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/date-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/download-preeti-font</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/bikram-sambat</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/bs-vs-ad-calendar</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/convert-nepali-date-of-birth-bs-to-ad</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/history-of-bikram-sambat</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/history-of-nepali-new-year</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/how-old-is-bikram-sambat</loc>
@@ -94,102 +138,106 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/nepali-months-guide</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/when-did-nepal-adopt-bikram-sambat</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/who-created-bikram-sambat</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/why-nepal-uses-bikram-sambat</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/land-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/ashadh-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/ashoj-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/baishak-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/bhadra-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/chaitra-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/dashain-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/falgun-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/jestha-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/kartik-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/magh-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/mangsir-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/poush-2083</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/shrawan-2083</loc>
-    <lastmod>2026-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/preeti-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/preeti-to-unicode-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/preeti-to-unicode-converter/kantipur-to-unicode</loc>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/preeti-unicode-guide/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/privacy-policy/</loc>
+    <lastmod>2026-10-25</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/today-nepali-date/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/unicode-to-preeti-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/unit-converter/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-24</lastmod>
   </url>
 </urlset>

@@ -15,10 +15,87 @@ window.siteSearchDatabase = [
     },
     { 
         title: 'About Us', 
-        url: '/about.html', 
+        url: '/about', 
         category: 'Info', 
         icon: 'ℹ️',
-        keywords: ['about', 'info', 'information', 'team', 'contact info']
+        keywords: ['about', 'info', 'information', 'team', 'who runs']
+    },
+    { 
+        title: 'AED to NPR', 
+        url: '/currency/aed-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['aed to npr', 'uae dirham', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'SAR to NPR', 
+        url: '/currency/sar-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['sar to npr', 'saudi riyal', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'QAR to NPR', 
+        url: '/currency/qar-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['qar to npr', 'qatari riyal', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'KWD to NPR', 
+        url: '/currency/kwd-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['kwd to npr', 'kuwaiti dinar', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'MYR to NPR', 
+        url: '/currency/myr-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['myr to npr', 'malaysian ringgit', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'GBP to NPR', 
+        url: '/currency/gbp-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['gbp to npr', 'british pound', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'EUR to NPR', 
+        url: '/currency/eur-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['eur to npr', 'euro', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'AUD to NPR', 
+        url: '/currency/aud-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['aud to npr', 'australian dollar', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'JPY to NPR', 
+        url: '/currency/jpy-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['jpy to npr', 'japanese yen', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'Contact', 
+        url: '/contact/', 
+        category: 'Info', 
+        icon: '✉️',
+        keywords: ['contact', 'report', 'mistake', 'error', 'suggest', 'feedback', 'support']
+    },
+    { 
+        title: 'Privacy Policy', 
+        url: '/privacy-policy/', 
+        category: 'Info', 
+        icon: '🔒',
+        keywords: ['privacy', 'policy', 'cookies', 'ads', 'data']
     },
 
     // ==================== DATE & CALENDAR TOOLS ====================

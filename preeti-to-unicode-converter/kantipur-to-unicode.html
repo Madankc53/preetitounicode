@@ -6,10 +6,10 @@
   <title>Kantipur to Unicode Converter | Free Nepali Font Tool</title>
   <meta name="description" content="Convert Kantipur legacy font to Unicode Devanagari instantly. Free, offline-capable, with file upload (.docx/.txt), history, and shareable links. 100% private.">
   <meta name="keywords" content="kantipur to unicode, kantipur font converter, nepali unicode, convert kantipur, preeti to unicode, nepali font">
-  <link rel="canonical" href="https://thenepal.io/kantipur-to-unicode/">
+  <link rel="canonical" href="https://converter.thenepal.io/preeti-to-unicode-converter/kantipur-to-unicode">
   <meta property="og:title" content="Kantipur to Unicode Converter — Free & Instant">
   <meta property="og:description" content="Convert Kantipur font text to Unicode Devanagari. Upload files, save history, share links. Works offline.">
-  <meta property="og:image" content="https://thenepal.io/assets/kantipur-og.png">
+  <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="manifest" id="dynamic-manifest">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,6 +86,11 @@
 
   <!-- SEO (added) -->
   <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
+
+  <!-- SEO (added) -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://converter.thenepal.io/preeti-to-unicode-converter/kantipur-to-unicode">
+  <meta property="og:site_name" content="TheNepal.io">
 </head>
 <body>
 
@@ -378,5 +383,6 @@
   function init(){ let savedSize=localStorage.getItem("kantipurFontSize"); if(savedSize) setFontSize(savedSize); setMode("k2u"); rawInput="kantipur ek mahaan saptahik"; updateUIFromRaw(); loadFromHash(); renderHistory(); detectClipboard(); }
   init();
 </script>
+<script src="/sw-register.js" defer></script>
 </body>
 </html>
