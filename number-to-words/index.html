@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number to Words in Nepali and English | Cheque Amount in Words (रुपैयाँ)</title>
+<meta name="description" content="Convert any amount to words in Nepali and English using the lakh and crore system. Cheque-style wording with रुपैयाँ, पैसा and मात्र. Free and runs in your browser.">
+<link rel="canonical" href="https://converter.thenepal.io/number-to-words/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Number to Words in Nepali and English | Cheque Amount in Words (रुपैयाँ)">
+<meta property="og:description" content="Convert any amount to words in Nepali and English using the lakh and crore system. Cheque-style wording with रुपैयाँ, पैसा and मात्र. Free and runs in your browser.">
+<meta property="og:url" content="https://converter.thenepal.io/number-to-words/">
+<meta property="og:site_name" content="TheNepal.io">
+<meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number to Words in Nepali and English | Cheque Amount in Words (रुपैयाँ)">
+<meta name="twitter:description" content="Convert any amount to words in Nepali and English using the lakh and crore system. Cheque-style wording with रुपैयाँ, पैसा and मात्र. Free and runs in your browser.">
+<meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebApplication", "name": "Number to Words (Nepali & English)", "url": "https://converter.thenepal.io/number-to-words/", "description": "Convert any amount to words in Nepali and English using the lakh and crore system. Cheque-style wording with रुपैयाँ, पैसा and मात्र. Free and runs in your browser.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NPR"}, "publisher": {"@type": "Organization", "name": "TheNepal.io", "url": "https://thenepal.io/"}}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How do I write an amount in words on a cheque in Nepal?", "acceptedAnswer": {"@type": "Answer", "text": "Write the rupees in words, then the paisa if there is any, and finish with मात्र (Only), so nobody can add digits. This tool produces that wording in Nepali and in English. Check it against your bank's rules before you sign."}}, {"@type": "Question", "name": "What is the largest number it supports?", "acceptedAnswer": {"@type": "Answer", "text": "Up to 13 digits before the decimal point, which is up to the खर्ब (Kharab) range. Amounts can have at most two decimal places, for paisa."}}, {"@type": "Question", "name": "Does it accept Nepali digits and commas?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. You can type 1,23,456 or १२३४५६. Commas and spaces are ignored."}}, {"@type": "Question", "name": "Why is the English wording using Lakh and Crore?", "acceptedAnswer": {"@type": "Answer", "text": "Nepali cheques and forms use the lakh and crore system, so the English words use Lakh, Crore, Arab and Kharab instead of million and billion."}}, {"@type": "Question", "name": "Is anything sent to a server?", "acceptedAnswer": {"@type": "Answer", "text": "No. The conversion happens in your browser."}}]}]}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Noto+Sans+Devanagari:wght@400;700&family=Playfair+Display:wght@700&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1239173186536702" crossorigin="anonymous"></script>
+<style>
+:root{--bg:#FDFAF5;--card:#fff;--ink:#1C1C1E;--ink2:#3A3A3C;--mute:#6C6C70;--line:#E5DDD0;--red:#C0392B;--gold:#A07800;--link:#1d4ed8;--note:#FFF8E0;--ok:#1a6e40}
+@media (prefers-color-scheme:dark){html:not([data-theme="light"]){--bg:#0f1115;--card:#171a21;--ink:#f1f1f3;--ink2:#d0d0d6;--mute:#9a9aa3;--line:#2a2f3a;--red:#ef6b5c;--gold:#e0b04a;--link:#8ab4ff;--note:#231f12;--ok:#5cc489}}
+html[data-theme="dark"]{--bg:#0f1115;--card:#171a21;--ink:#f1f1f3;--ink2:#d0d0d6;--mute:#9a9aa3;--line:#2a2f3a;--red:#ef6b5c;--gold:#e0b04a;--link:#8ab4ff;--note:#231f12;--ok:#5cc489}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.7;-webkit-text-size-adjust:100%}
+.page{max-width:760px;margin:0 auto;padding:32px 20px 72px}
+.eyebrow{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin:0 0 8px}
+h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.15;margin:0 0 6px}
+.ne{font-family:'Tiro Devanagari Hindi','Noto Sans Devanagari',serif;color:var(--mute);font-size:1.05rem;margin:0 0 14px}
+.lead{font-size:1.05rem;color:var(--ink2);margin:0 0 18px}
+h2{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;margin:34px 0 10px;padding-top:6px;border-top:1px solid var(--line)}
+h3{font-size:1rem;margin:18px 0 4px}
+p,li{color:var(--ink2)}
+a{color:var(--link);text-underline-offset:2px}
+.conv{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap}
+.field{flex:1 1 180px}
+.field label{display:block;font-size:.8rem;font-weight:700;color:var(--mute);margin-bottom:4px}
+.field input{width:100%;font:inherit;font-size:1.25rem;font-weight:700;padding:10px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.field input:focus{outline:2px solid var(--red);outline-offset:1px}
+.pair{font-weight:800;font-size:1.05rem;padding:0 4px 11px;color:var(--ink)}
+.swap{font:inherit;font-weight:700;background:transparent;color:var(--ink);border:1.5px solid var(--line);border-radius:10px;padding:10px 14px;cursor:pointer}
+.swap:hover,.swap:focus-visible{border-color:var(--red);outline:none}
+.result{font-size:1.35rem;margin:16px 0 2px;color:var(--ink);min-height:2em}
+.result strong{color:var(--red)}
+.rate{font-size:.95rem;color:var(--ink2);margin:0}
+.status{font-size:.82rem;color:var(--mute);margin:6px 0 0}
+.status.warn{color:var(--gold)}
+.retry{font:inherit;font-weight:700;background:var(--red);color:#fff;border:0;border-radius:10px;padding:9px 16px;cursor:pointer;margin-top:8px}
+.retry[hidden]{display:none}
+table{border-collapse:collapse;width:100%;font-size:.95rem;margin:10px 0}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left}
+th{background:var(--card);color:var(--ink)}
+td:last-child,th:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.note{background:var(--note);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:10px;padding:12px 15px;margin:20px 0}
+.note p{margin:0;font-size:.92rem}
+.ad{margin:22px 0;min-height:90px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.pills a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:.9rem}
+.pills a:hover,.pills a:focus-visible{border-color:var(--red);outline:none}
+details{border-top:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:700;color:var(--ink)}
+details p{margin:8px 0 0}
+@media (max-width:560px){.pair{display:none}th,td{padding:8px}}
+
+textarea{width:100%;font:inherit;font-size:1.1rem;padding:12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);min-height:130px;resize:vertical}
+textarea.ne{font-family:'Noto Sans Devanagari','Tiro Devanagari Hindi',sans-serif;line-height:1.8}
+textarea:focus,select:focus,input:focus{outline:2px solid var(--red);outline-offset:1px}
+select{font:inherit;font-size:1.05rem;font-weight:700;padding:11px 10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+.btn{font:inherit;font-weight:700;background:var(--red);color:#fff;border:0;border-radius:10px;padding:9px 16px;cursor:pointer}
+.btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.out{background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:12px 14px;margin:10px 0;font-size:1.1rem;color:var(--ink);word-break:break-word}
+.out.ne{font-family:'Noto Sans Devanagari','Tiro Devanagari Hindi',sans-serif;line-height:1.9}
+.lbl{font-size:.78rem;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.08em;margin:14px 0 0}
+.bar{display:flex;height:14px;border-radius:99px;overflow:hidden;margin:10px 0;background:var(--line)}
+.bar i{display:block;height:100%}
+.legend{font-size:.85rem;color:var(--mute)}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.stat div{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.stat span{display:block;font-size:.75rem;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.06em}
+.stat b{font-size:1.2rem;color:var(--ink)}
+.err{color:var(--red);font-size:.9rem;min-height:1.4em;margin:6px 0 0}
+.scroll{max-height:380px;overflow:auto;border:1px solid var(--line);border-radius:10px}
+.scroll table{margin:0}
+.scroll th{position:sticky;top:0}
+code{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:0 5px;font-size:.92em}
+.dev{font-family:'Noto Sans Devanagari','Tiro Devanagari Hindi',sans-serif}
+td:last-child,th:last-child{text-align:right}
+table.map td:last-child,table.map th:last-child{text-align:left}
+</style>
+
+</head>
+<body>
+<div id="header"></div>
+<main class="page" id="main-content">
+  <p class="eyebrow">Number tool</p>
+  <h1>Number to Words (Nepali &amp; English)</h1>
+  <p class="ne">अङ्क अक्षरमा — रुपैयाँ मात्र</p>
+  <p class="lead">Write any amount in words for cheques, forms and receipts, in Nepali and in English.</p>
+
+  <div class="conv">
+    <div class="row">
+      <div class="field">
+        <label for="amt">Amount (rupees, up to 2 decimal places)</label>
+        <input id="amt" type="text" inputmode="decimal" value="123456.50" autocomplete="off">
+      </div>
+    </div>
+    <p class="err" id="err" aria-live="polite"></p>
+    <p class="lbl">Figures (lakh format)</p><div class="out" id="fig"></div>
+    <p class="lbl">In Nepali</p><div class="out ne" id="ne"></div>
+    <p><button class="btn alt" id="cne" type="button">Copy Nepali</button></p>
+    <p class="lbl">In English</p><div class="out" id="en"></div>
+    <p><button class="btn alt" id="cen" type="button">Copy English</button> <span class="status" id="msg" aria-live="polite"></span></p>
+    <p class="lbl">Try an example</p>
+    <div class="pills" id="ex"><a href="#" data-v="1500">1,500</a><a href="#" data-v="25000">25,000</a><a href="#" data-v="100000">1,00,000</a><a href="#" data-v="1234567.75">12,34,567.75</a><a href="#" data-v="10000000">1,00,00,000</a></div>
+  </div>
+  <div class="ad">
+    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+  <h2>Writing an amount in words</h2>
+  <p>Nepal uses the lakh and crore system: the first three digits form the hundreds group, then every two digits form a group (हजार, लाख, करोड, अर्ब, खर्ब). So 1,23,456 is read as <span class="dev">एक लाख तेइस हजार चार सय छपन्न</span>. The tool writes the amount in Nepali and in English, adds रुपैयाँ and पैसा, and ends with <span class="dev">मात्र</span> / "Only", the way amounts are written on cheques.</p>
+  <div class="note"><p><strong>Always check cheques and legal forms.</strong> Nepali number words have spelling variants (for example 28 and 49), and banks may expect their own form. Read the result and compare it with your bank's or office's requirement before you write it on a document.</p></div>
+  <h2>Related tools</h2>
+  <div class="pills">
+    <a href="/nepali-typing/">Roman to Nepali typing</a>
+    <a href="/emi-calculator/">EMI calculator</a>
+    <a href="/currency/">Currency to NPR</a>
+    <a href="/calculator/income-tax-calculator">Income tax calculator</a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+  <details><summary>How do I write an amount in words on a cheque in Nepal?</summary><p>Write the rupees in words, then the paisa if there is any, and finish with मात्र (Only), so nobody can add digits. This tool produces that wording in Nepali and in English. Check it against your bank&#x27;s rules before you sign.</p></details>
+  <details><summary>What is the largest number it supports?</summary><p>Up to 13 digits before the decimal point, which is up to the खर्ब (Kharab) range. Amounts can have at most two decimal places, for paisa.</p></details>
+  <details><summary>Does it accept Nepali digits and commas?</summary><p>Yes. You can type 1,23,456 or १२३४५६. Commas and spaces are ignored.</p></details>
+  <details><summary>Why is the English wording using Lakh and Crore?</summary><p>Nepali cheques and forms use the lakh and crore system, so the English words use Lakh, Crore, Arab and Kharab instead of million and billion.</p></details>
+  <details><summary>Is anything sent to a server?</summary><p>No. The conversion happens in your browser.</p></details>
+</main>
+<div id="footer"></div>
+<script src="/number-to-words/ntw.js"></script>
+<script>
+(function(){
+  var amt=document.getElementById('amt'),err=document.getElementById('err'),ne=document.getElementById('ne'),en=document.getElementById('en'),fig=document.getElementById('fig'),msg=document.getElementById('msg');
+  var MSG={empty:'Type an amount.',invalid:'Use digits only, with an optional decimal point.',toolarge:'That number is too large. The limit is 13 digits before the decimal point.',precision:'Use at most 2 decimal places (paisa).'};
+  function grp(i){ if(i.length<=3) return i; var l=i.slice(-3),r=i.slice(0,-3); return r.replace(/\B(?=(\d{2})+(?!\d))/g,',')+','+l; }
+  function run(){
+    var r=NTW.convert(amt.value);
+    if(!r.ok){err.textContent=MSG[r.error]||'Invalid amount.';ne.textContent='';en.textContent='';fig.textContent='';return;}
+    err.textContent='';
+    ne.textContent=r.ne; en.textContent=r.en; fig.textContent='Rs. '+grp(r.int)+'.'+r.frac;
+  }
+  function copy(el){ var t=el.textContent; if(!t)return;
+    function ok(){msg.textContent='Copied.';}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,function(){msg.textContent='Select the text and copy it.';});}else msg.textContent='Select the text and copy it.'; }
+  amt.addEventListener('input',run);
+  document.getElementById('cne').addEventListener('click',function(){copy(ne);});
+  document.getElementById('cen').addEventListener('click',function(){copy(en);});
+  document.getElementById('ex').addEventListener('click',function(e){var v=e.target.getAttribute&&e.target.getAttribute('data-v'); if(v){e.preventDefault();amt.value=v;run();}});
+  run();
+})();
+</script>
+<script src="/components.js"></script>
+</body>
+</html>

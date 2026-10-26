@@ -1,0 +1,48 @@
+name: Update rates
+
+# Fetches the daily NRB exchange rates and the FENEGOSIDA gold/silver rate and
+# commits them to data/. Each script fails closed: if the source cannot be read
+# or the numbers look wrong, nothing is committed and the job turns red.
+
+on:
+  schedule:
+    - cron: '45 4 * * *'   # 10:30 Nepal time
+    - cron: '45 8 * * *'   # 14:30 Nepal time (gold/silver is published mid-day)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-rates
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update NRB exchange rates
+        id: nrb
+        continue-on-error: true
+        run: python3 scripts/update_nrb.py
+
+      - name: Update gold and silver rate
+        id: gold
+        continue-on-error: true
+        run: python3 scripts/update_gold.py
+
+      - name: Commit changed data
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add data/
+          git diff --staged --quiet || git commit -m "Automated rate update"
+          git push
+
+      - name: Fail the run if a source failed
+        if: steps.nrb.outcome == 'failure' || steps.gold.outcome == 'failure'
+        run: |
+          echo "NRB: ${{ steps.nrb.outcome }}, gold/silver: ${{ steps.gold.outcome }}"
+          exit 1

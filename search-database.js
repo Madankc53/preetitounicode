@@ -274,6 +274,48 @@ window.siteSearchDatabase = [
         icon: '🔍',
         keywords: ['land measurement', 'kattha', 'bigha', 'nepal land']
     },
+    { 
+        title: 'Roman to Nepali Typing', 
+        url: '/nepali-typing/', 
+        category: 'Tools', 
+        icon: '⌨️',
+        keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
+    },
+    { 
+        title: 'Number to Words', 
+        url: '/number-to-words/', 
+        category: 'Tools', 
+        icon: '🔢',
+        keywords: ['number to words', 'amount in words', 'cheque', 'rupees in words', 'अङ्क अक्षरमा']
+    },
+    { 
+        title: 'EMI Calculator', 
+        url: '/emi-calculator/', 
+        category: 'Tools', 
+        icon: '🏦',
+        keywords: ['emi', 'loan calculator', 'home loan', 'car loan', 'kista', 'किस्ता']
+    },
+    { 
+        title: 'NRB Exchange Rates', 
+        url: '/nrb-exchange-rates/', 
+        category: 'Tools', 
+        icon: '💱',
+        keywords: ['nrb', 'nepal rastra bank', 'forex', 'buy sell rate', 'exchange rate']
+    },
+    { 
+        title: 'Gold & Silver Price', 
+        url: '/gold-silver-price/', 
+        category: 'Tools', 
+        icon: '🥇',
+        keywords: ['gold price', 'silver price', 'tola', 'sun chandi', 'सुन चाँदी']
+    },
+    { 
+        title: 'Nepali Calendar 2082', 
+        url: '/nepali-calendar-2082/', 
+        category: 'Tools', 
+        icon: '📅',
+        keywords: ['calendar 2082', 'patro 2082', 'पात्रो २०८२']
+    },
 ];
 
 /**

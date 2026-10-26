@@ -11,6 +11,7 @@ on:
       - '_headers'
       - '_redirects'
       - 'sitemap.xml'
+      - 'data/**'
   workflow_dispatch:
 
 permissions:

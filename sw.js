@@ -110,6 +110,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;       // never touch other sites
   if (url.pathname === '/sw.js') return;                  // always fetch the worker fresh
+  if (url.pathname.indexOf('/data/') === 0) return;       // live price/rate data must never be served stale
 
   const isPage = request.mode === 'navigate' || /\.html$/i.test(url.pathname) || url.pathname === '/sitemap.xml';
   event.respondWith(isPage ? networkFirst(request) : staleWhileRevalidate(request));
