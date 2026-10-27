@@ -1,114 +1,117 @@
-// sw.js for GitHub Pages
-const CACHE_NAME = 'my-site-cache-v1';
+/* Service worker for converter.thenepal.io
+ *
+ * Goal: pages you have already opened keep working with no connection
+ * (converters and date tools run in the browser), and you get a friendly
+ * offline page for pages you have not opened yet.
+ *
+ * Strategy
+ *  - Pages (navigations) and .html partials: network first, so you always see
+ *    the newest version when online; fall back to the cached copy, then to
+ *    /offline.html.
+ *  - Other same-origin files (css, js, json, images, fonts): serve the cached
+ *    copy immediately and refresh it in the background.
+ *  - Anything from another site (ads, Google Fonts, CDNs, exchange rates) is
+ *    never touched by this worker.
+ *
+ * To force every visitor to drop old caches after a big change, bump VERSION.
+ */
+const VERSION = 'v2';
+const CORE_CACHE = 'thenepal-core-' + VERSION;
+const RUNTIME_CACHE = 'thenepal-pages-' + VERSION;
 const OFFLINE_URL = '/offline.html';
+const MAX_RUNTIME_ENTRIES = 80;
 
-// Files to cache for offline access
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/styles.css',    // Add your CSS files
-  '/script.js',     // Add your JS files
-  '/manifest.json'  // If you have a web app manifest
+// Small shell only. Each file is cached on its own, so one missing file can
+// never stop the worker from installing.
+const PRECACHE = [
+  OFFLINE_URL,
+  '/header.html',
+  '/footer.html',
+  '/components.js',
+  '/search-database.js',
+  '/search-engine.js',
 ];
 
-// Install event - cache essential files
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
-      .then(() => self.skipWaiting())
+    caches.open(CORE_CACHE).then((cache) =>
+      Promise.allSettled(PRECACHE.map((url) => cache.add(new Request(url, { cache: 'reload' }))))
+    ).then(() => self.skipWaiting())
   );
 });
 
-// Activate event - clean up old caches
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => self.clients.claim())
+    caches.keys()
+      .then((keys) => Promise.all(
+        keys
+          .filter((k) => k.startsWith('thenepal-') && k !== CORE_CACHE && k !== RUNTIME_CACHE)
+          .map((k) => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
-// Fetch event - serve from cache first, fall back to network
-self.addEventListener('fetch', event => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
+function isCacheable(response) {
+  // Only cache complete, direct, successful answers. A redirected response must
+  // not be reused for a page navigation, and error pages must never be cached.
+  return response && response.ok && response.status === 200 && response.type === 'basic' && !response.redirected;
+}
+
+async function trimCache(cacheName, max) {
+  const cache = await caches.open(cacheName);
+  const keys = await cache.keys();
+  for (let i = 0; i < keys.length - max; i++) await cache.delete(keys[i]);
+}
+
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    if (isCacheable(response)) {
+      const copy = response.clone();
+      caches.open(RUNTIME_CACHE).then((c) => c.put(request, copy)).then(() => trimCache(RUNTIME_CACHE, MAX_RUNTIME_ENTRIES));
+    }
+    return response;
+  } catch (err) {
+    const cached = await caches.match(request, { ignoreSearch: true });
+    if (cached) return cached;
+    if (request.mode === 'navigate') {
+      const offline = await caches.match(OFFLINE_URL);
+      if (offline) return offline;
+    }
+    return new Response('You are offline.', {
+      status: 503,
+      statusText: 'Offline',
+      headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+    });
   }
+}
 
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
+async function staleWhileRevalidate(request) {
+  const cached = await caches.match(request);
+  const refresh = fetch(request)
+    .then((response) => {
+      if (isCacheable(response)) {
+        const copy = response.clone();
+        caches.open(RUNTIME_CACHE).then((c) => c.put(request, copy));
+      }
+      return response;
+    })
+    .catch(() => null);
+  if (cached) return cached;
+  const fresh = await refresh;
+  return fresh || new Response('', { status: 504, statusText: 'Offline' });
+}
 
-        // Clone the request because it's a one-time use stream
-        const fetchRequest = event.request.clone();
+self.addEventListener('fetch', (event) => {
+  const request = event.request;
+  if (request.method !== 'GET') return;
 
-        return fetch(fetchRequest).then(response => {
-          // Check if we received a valid response
-          if (!response || response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;       // never touch other sites
+  if (url.pathname === '/sw.js') return;                  // always fetch the worker fresh
+  if (url.pathname.indexOf('/data/') === 0) return;       // live price/rate data must never be served stale
 
-          // Clone the response because it's a one-time use stream
-          const responseToCache = response.clone();
-
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              // Don't cache if it's a Chrome extension request
-              if (!event.request.url.includes('chrome-extension')) {
-                cache.put(event.request, responseToCache);
-              }
-            });
-
-          return response;
-        }).catch(error => {
-          // If both cache and network fail, show offline page
-          if (event.request.mode === 'navigate') {
-            return caches.match(OFFLINE_URL);
-          }
-          return new Response('Offline content not available', {
-            status: 503,
-            statusText: 'Service Unavailable'
-          });
-        });
-      })
-  );
+  const isPage = request.mode === 'navigate' || /\.html$/i.test(url.pathname) || url.pathname === '/sitemap.xml';
+  event.respondWith(isPage ? networkFirst(request) : staleWhileRevalidate(request));
 });
-// In your sw.js urlsToCache array
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/manifest.json',
-  '/assets/css/main.css',
-  '/assets/css/components.css',
-  '/assets/css/animations.css'
-];
-// In your sw.js urlsToCache array
-const urlsToCache = [
-  '/',
-  '/index.html',
-  '/offline.html',
-  '/manifest.json',
-  '/assets/css/main.css',
-  '/assets/css/fonts.css',
-  '/assets/js/common.js',
-  '/assets/fonts/Preeti.woff2',  // Add your font
-  '/assets/fonts/Preeti.woff',    // Fallback format
-  '/assets/fonts/Preeti.ttf'      // Fallback format
-];

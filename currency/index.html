@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>NPR Currency Converter | Nepal Finance Hub</title>
+  <meta name="description" content="Free NPR currency converter with the latest daily exchange rates for USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD, JPY and INR, plus a simple Nepal trip budget estimator.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background: #f8fafc;
+      color: #0f172a;
+      padding: 24px 20px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* header / hero */
+    .hero {
+      background: linear-gradient(135deg, #0f2b3d 0%, #1e4a6e 100%);
+      border-radius: 2rem;
+      padding: 2rem 2rem 1.8rem;
+      color: white;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero p {
+      margin-top: 0.5rem;
+      opacity: 0.85;
+      font-size: 0.95rem;
+    }
+
+    /* converter panel */
+    .converter-card {
+      background: white;
+      border-radius: 1.75rem;
+      padding: 1.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+      transition: all 0.2s;
+    }
+
+    .live-rate-badge {
+      background: #eef2ff;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #1e3a8a;
+      margin-bottom: 1rem;
+    }
+
+    .converter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: flex-end;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .currency-input {
+      flex: 2;
+      min-width: 180px;
+    }
+
+    .currency-input label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #334155;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .input-group {
+      display: flex;
+      background: #f1f5f9;
+      border-radius: 1.2rem;
+      border: 1px solid #e2e8f0;
+      transition: 0.2s;
+    }
+
+    .input-group:focus-within {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+    }
+
+    .input-group input, .input-group select {
+      background: transparent;
+      border: none;
+      padding: 12px 16px;
+      font-size: 1rem;
+      font-weight: 500;
+      outline: none;
+    }
+
+    .input-group input {
+      flex: 2;
+      min-width: 0;
+    }
+
+    .input-group select {
+      flex: 1;
+      cursor: pointer;
+      border-left: 1px solid #cbd5e1;
+    }
+
+    .swap-icon {
+      background: #f1f5f9;
+      border-radius: 2rem;
+      padding: 0.7rem;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+    }
+
+    .swap-icon:hover {
+      background: #e2e8f0;
+      transform: scale(1.03);
+    }
+
+    .convert-btn {
+      background: #dc2626;
+      color: white;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 2rem;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .convert-btn:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+    }
+
+    .result-box {
+      background: #fefce8;
+      border-left: 6px solid #dc2626;
+      padding: 1rem 1.5rem;
+      border-radius: 1.2rem;
+      margin-top: 1rem;
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* tabs */
+    .tabs-container {
+      background: white;
+      border-radius: 1.5rem;
+      margin-bottom: 2rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .tabs-header {
+      display: flex;
+      flex-wrap: wrap;
+      background: #f8fafc;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 0.5rem 1rem 0;
+      gap: 0.25rem;
+    }
+
+    .tab-btn {
+      padding: 0.8rem 1.2rem;
+      font-weight: 600;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      border-radius: 2rem 2rem 0 0;
+      transition: 0.2s;
+      color: #334155;
+    }
+
+    .tab-btn.active {
+      background: white;
+      color: #dc2626;
+      border-bottom: 3px solid #dc2626;
+      font-weight: 700;
+    }
+
+    .tab-pane {
+      display: none;
+      padding: 1.8rem;
+      animation: fade 0.2s ease;
+    }
+
+    .tab-pane.active-pane {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(6px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+
+    /* popular currencies grid */
+    .popular-section {
+      margin: 2rem 0 1.8rem;
+    }
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .popular-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .popular-card {
+      background: white;
+      border-radius: 1.2rem;
+      padding: 1rem;
+      text-align: center;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      transition: 0.2s;
+      border: 1px solid #eef2ff;
+      cursor: pointer;
+    }
+    .popular-card:hover {
+      border-color: #dc2626;
+      transform: translateY(-3px);
+    }
+    .currency-pair {
+      font-size: 1.1rem;
+      color: #0f172a;
+    }
+    .rate-value {
+      color: #2c3e66;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    /* cards grid */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .action-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      transition: 0.2s;
+      border: 1px solid #f1f5f9;
+    }
+    .action-card i {
+      font-size: 2rem;
+      color: #dc2626;
+      margin-bottom: 0.8rem;
+    }
+    .action-card h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    .action-card p {
+      font-size: 0.85rem;
+      color: #475569;
+      margin: 0.5rem 0;
+    }
+    .btn-sm {
+      background: #eef2ff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 2rem;
+      font-weight: 600;
+      margin-top: 12px;
+      cursor: pointer;
+    }
+
+    /* partner row */
+    .partner-section {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .partner-logo {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+      flex-wrap: wrap;
+    }
+    .partner-item {
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #fef3c7;
+      padding: 0.4rem 1rem;
+      border-radius: 2rem;
+      color: #b45309;
+    }
+    .partner-item i {
+      margin-right: 6px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.75rem;
+      color: #64748b;
+    }
+    @media (max-width: 680px) {
+      .hero h1 { font-size: 1.4rem; }
+      .converter-row { flex-direction: column; align-items: stretch; }
+      .swap-icon { align-self: center; width: 40px; }
+      .tab-btn { padding: 0.6rem 1rem; font-size: 0.8rem; }
+    }
+  </style>
+
+  <!-- SEO (added) -->
+  <link rel="canonical" href="https://converter.thenepal.io/currency/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NPR Currency Converter | Nepal Finance Hub">
+  <meta property="og:description" content="Free NPR currency converter with the latest daily exchange rates for USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD, JPY and INR, plus a simple Nepal trip budget estimator.">
+  <meta property="og:url" content="https://converter.thenepal.io/currency/">
+  <meta property="og:site_name" content="TheNepal.io">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NPR Currency Converter | Nepal Finance Hub">
+  <meta name="twitter:description" content="Free NPR currency converter with the latest daily exchange rates for USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD, JPY and INR, plus a simple Nepal trip budget estimator.">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Nepal Finance Hub — NPR Currency Converter", "url": "https://converter.thenepal.io/currency/", "description": "Free NPR currency converter with the latest daily exchange rates for USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD, JPY and INR, plus a simple Nepal trip budget estimator.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any", "browserRequirements": "Requires JavaScript", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NPR"}, "publisher": {"@type": "Organization", "name": "TheNepal.io", "url": "https://thenepal.io/"}}</script>
+  <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
+</head>
+<body>
+<div class="container">
+  <div class="hero">
+    <h1><i class="fas fa-rupee-sign"></i> Nepal Finance Hub <span style="font-size: 1rem;">🇳🇵</span></h1>
+    <p>Today's NPR exchange rates, a currency converter and a simple Nepal trip budget estimator</p>
+  </div>
+
+  <!-- LIVE CONVERTER CARD -->
+  <div class="converter-card">
+    <div class="live-rate-badge" id="liveRateBadge"><i class="fas fa-chart-line"></i> 1 USD = NPR -- Loading...</div>
+    <h2 style="font-size: 1.6rem; font-weight: 800;">NPR ⇄ USD <span style="font-size: 1rem;">& other currencies</span></h2>
+    <div class="converter-row">
+      <div class="currency-input">
+        <label>Amount</label>
+        <div class="input-group">
+          <input type="number" id="amountInput" value="1" step="any" placeholder="0.00">
+          <select id="fromCurrency">
+            <option value="USD">USD - US Dollar</option>
+            <option value="NPR" selected>NPR - Nepali Rupee</option>
+            <option value="AED">AED - UAE Dirham</option>
+            <option value="SAR">SAR - Saudi Riyal</option>
+            <option value="QAR">QAR - Qatari Riyal</option>
+            <option value="KWD">KWD - Kuwaiti Dinar</option>
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="INR">INR - Indian Rupee</option>
+          </select>
+        </div>
+      </div>
+      <div class="swap-icon" id="swapBtn"><i class="fas fa-exchange-alt"></i></div>
+      <div class="currency-input">
+        <label>To</label>
+        <div class="input-group">
+          <input type="number" id="resultAmount" readonly placeholder="Converted amount">
+          <select id="toCurrency">
+            <option value="USD" selected>USD - US Dollar</option>
+            <option value="NPR">NPR - Nepali Rupee</option>
+            <option value="AED">AED - UAE Dirham</option>
+            <option value="SAR">SAR - Saudi Riyal</option>
+            <option value="QAR">QAR - Qatari Riyal</option>
+            <option value="KWD">KWD - Kuwaiti Dinar</option>
+            <option value="MYR">MYR - Malaysian Ringgit</option>
+            <option value="EUR">EUR - Euro</option>
+            <option value="GBP">GBP - British Pound</option>
+            <option value="AUD">AUD - Australian Dollar</option>
+            <option value="JPY">JPY - Japanese Yen</option>
+            <option value="INR">INR - Indian Rupee</option>
+          </select>
+        </div>
+      </div>
+      <button class="convert-btn" id="convertBtn"><i class="fas fa-sync-alt"></i> Convert</button>
+    </div>
+    <div class="result-box" id="conversionResult">
+      💱 Click convert to see result
+    </div>
+  </div>
+
+  <!-- TABS SECTION (Today Rate, Travel Budget) -->
+  <div class="tabs-container">
+    <div class="tabs-header">
+      <button class="tab-btn active" data-tab="today">📈 Today Rate</button>
+      <button class="tab-btn" data-tab="budget">✈️ Travel Budget</button>
+    </div>
+    <div class="tab-pane active-pane" id="todayPane">
+      <h3><i class="fas fa-globe"></i> Today's Rates</h3>
+      <div id="todayRateContent">Loading the latest rates...</div>
+    </div>
+    <div class="tab-pane" id="budgetPane">
+      <h3><i class="fas fa-plane"></i> Travel Budget Estimator (Nepal Trip)</h3>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin: 1rem 0;">
+        <div><label>💰 Daily budget (NPR): </label><input type="number" id="dailyBudget" value="3500" step="500" style="padding:8px; border-radius: 12px; border:1px solid #ccc;"></div>
+        <div><label>📅 Number of days: </label><input type="number" id="travelDays" value="5" step="1" style="padding:8px; border-radius: 12px; border:1px solid #ccc;"></div>
+        <div><label>👥 Travelers: </label><input type="number" id="travelers" value="1" step="1" style="padding:8px; border-radius: 12px; border:1px solid #ccc;"></div>
+      </div>
+      <button id="estimateBudgetBtn" class="btn-sm" style="background:#dc2626; color:white;">Estimate Total Cost</button>
+      <div id="budgetResult" class="result-box" style="margin-top: 1rem;">Total estimated cost: NPR -- (accommodation + food + local transport approx.)</div>
+    </div>
+  </div>
+
+  <!-- POPULAR CURRENCY CONVERSIONS -->
+  <div class="popular-section">
+    <div class="section-title"><i class="fas fa-fire"></i> POPULAR CONVERSIONS</div>
+    <div class="popular-grid" id="popularGrid"></div>
+  </div>
+
+  <!-- CURRENCY PAGES -->
+  <div class="popular-section">
+    <div class="section-title"><i class="fas fa-list"></i> ALL CURRENCY CONVERTERS</div>
+    <div class="popular-grid">
+      <a class="popular-card" href="/currency/usd-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇺🇸 USD → NPR</div><div class="rate-value" style="font-size:.9rem">US dollar</div></a>
+      <a class="popular-card" href="/currency/aed-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇦🇪 AED → NPR</div><div class="rate-value" style="font-size:.9rem">UAE dirham</div></a>
+      <a class="popular-card" href="/currency/sar-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇸🇦 SAR → NPR</div><div class="rate-value" style="font-size:.9rem">Saudi riyal</div></a>
+      <a class="popular-card" href="/currency/qar-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇶🇦 QAR → NPR</div><div class="rate-value" style="font-size:.9rem">Qatari riyal</div></a>
+      <a class="popular-card" href="/currency/kwd-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇰🇼 KWD → NPR</div><div class="rate-value" style="font-size:.9rem">Kuwaiti dinar</div></a>
+      <a class="popular-card" href="/currency/myr-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇲🇾 MYR → NPR</div><div class="rate-value" style="font-size:.9rem">Malaysian ringgit</div></a>
+      <a class="popular-card" href="/currency/eur-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇪🇺 EUR → NPR</div><div class="rate-value" style="font-size:.9rem">Euro</div></a>
+      <a class="popular-card" href="/currency/gbp-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇬🇧 GBP → NPR</div><div class="rate-value" style="font-size:.9rem">British pound</div></a>
+      <a class="popular-card" href="/currency/aud-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇦🇺 AUD → NPR</div><div class="rate-value" style="font-size:.9rem">Australian dollar</div></a>
+      <a class="popular-card" href="/currency/jpy-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇯🇵 JPY → NPR</div><div class="rate-value" style="font-size:.9rem">Japanese yen</div></a>
+      <a class="popular-card" href="/currency/inr-to-npr" style="text-decoration:none;color:inherit"><div class="currency-pair">🇮🇳 INR → NPR</div><div class="rate-value" style="font-size:.9rem">Indian rupee</div></a>
+    </div>
+  </div>
+
+  <!-- CARDS: Travel Cost -->
+  <div class="cards-grid">
+    <div class="action-card"><i class="fas fa-map-marked-alt"></i><h3>Travel Cost Estimator</h3><p>Plan your Nepal trip: hotels, transport, permits</p><button class="btn-sm" onclick="document.querySelector('[data-tab=\'budget\']').click();">Try Budget Tool →</button></div>
+  </div>
+
+  <footer>© 2026 TheNepal.io · Exchange rates come from a public daily rates feed and are indicative only. Banks and money transfer services set their own rates and fees.</footer>
+</div>
+
+<script src="/currency/rates.js"></script>
+<script>
+  // Rates are set ONLY from a real feed (see /currency/rates.js). If none can be
+  // loaded the page says so; it never falls back to a made-up number.
+  var exchangeRates = null;
+  var rateDate = '';
+  var rateSource = '';
+  var POPULAR_PAIRS = [
+    { from: 'USD', label: 'USD → NPR' }, { from: 'AED', label: 'AED → NPR' }, { from: 'SAR', label: 'SAR → NPR' },
+    { from: 'QAR', label: 'QAR → NPR' }, { from: 'KWD', label: 'KWD → NPR' }, { from: 'MYR', label: 'MYR → NPR' },
+    { from: 'GBP', label: 'GBP → NPR' }, { from: 'EUR', label: 'EUR → NPR' }, { from: 'AUD', label: 'AUD → NPR' },
+    { from: 'JPY', label: 'JPY → NPR' }
+  ];
+
+  function $(id) { return document.getElementById(id); }
+  function fmt(n, max) {
+    return new Intl.NumberFormat('en-IN', { maximumFractionDigits: max == null ? 2 : max }).format(n);
+  }
+  function convert(amount, from, to) {
+    return exchangeRates ? NPRRates.convert(exchangeRates, amount, from, to) : NaN;
+  }
+
+  function setBadge() {
+    var b = $('liveRateBadge');
+    if (!exchangeRates) { b.innerHTML = '<i class="fas fa-chart-line"></i> Rates unavailable'; return; }
+    b.innerHTML = '<i class="fas fa-chart-line"></i> 1 USD = NPR ' + fmt(exchangeRates.NPR) + ' • ' +
+      (rateSource === 'live' ? 'Rate date ' + rateDate : 'Saved rate from ' + rateDate + ' (offline)');
+  }
+
+  function updateConverterUI() {
+    var box = $('conversionResult');
+    if (!exchangeRates) {
+      $('resultAmount').value = '';
+      box.innerHTML = '⚠️ The latest rates could not be loaded. Check your connection and <button type="button" id="retryRates" class="btn-sm" style="background:#dc2626;color:#fff">try again</button>';
+      return;
+    }
+    var amount = parseFloat($('amountInput').value);
+    var from = $('fromCurrency').value, to = $('toCurrency').value;
+    if (isNaN(amount)) { $('resultAmount').value = ''; box.textContent = 'Enter an amount to convert.'; return; }
+    var result = convert(amount, from, to);
+    if (!isFinite(result)) { $('resultAmount').value = ''; box.textContent = 'No rate is available for that pair.'; return; }
+    $('resultAmount').value = result.toFixed(2);
+    box.textContent = '✅ ' + fmt(amount) + ' ' + from + ' = ' + fmt(result) + ' ' + to;
+  }
+
+  function updatePopularRates() {
+    var grid = $('popularGrid');
+    grid.innerHTML = '';
+    POPULAR_PAIRS.forEach(function (pair) {
+      var rate = convert(1, pair.from, 'NPR');
+      var card = document.createElement('div');
+      card.className = 'popular-card';
+      card.innerHTML = '<div class="currency-pair">' + pair.label + '</div><div class="rate-value">' +
+        (isFinite(rate) ? fmt(rate, rate < 10 ? 4 : 2) + ' NPR' : '–') + '</div>';
+      card.onclick = function () {
+        $('fromCurrency').value = pair.from;
+        $('toCurrency').value = 'NPR';
+        $('amountInput').value = 1;
+        updateConverterUI();
+      };
+      grid.appendChild(card);
+    });
+  }
+
+  function updateTodayTab() {
+    var box = $('todayRateContent');
+    if (!exchangeRates) { box.textContent = 'Rates are unavailable right now. Please try again in a moment.'; return; }
+    var items = [['💵', 'USD', 1], ['💶', 'EUR', 1], ['💷', 'GBP', 1], ['🇦🇺', 'AUD', 1], ['🇦🇪', 'AED', 1],
+                 ['🇸🇦', 'SAR', 1], ['🇶🇦', 'QAR', 1], ['🇯🇵', 'JPY', 100]];
+    var html = '<div style="display:flex; flex-wrap:wrap; gap:1.5rem; margin-top:0.8rem;">';
+    items.forEach(function (it) {
+      var v = convert(it[2], it[1], 'NPR');
+      html += '<div><strong>' + it[0] + ' ' + it[1] + '/NPR</strong><br/>' + it[2] + ' ' + it[1] + ' = ' +
+        (isFinite(v) ? fmt(v) : '–') + ' NPR</div>';
+    });
+    html += '</div><p class="text-muted" style="margin-top:12px;">Mid-market reference rates from a public daily feed' +
+      (rateDate ? ' · ' + (rateSource === 'live' ? 'rate date ' : 'saved rate from ') + rateDate : '') +
+      ' · indicative only, not what a bank or transfer service will give you.</p>';
+    box.innerHTML = html;
+  }
+
+  // Travel budget: plain arithmetic, needs no exchange rate.
+  function setupTravelBudget() {
+    var dailyInput = $('dailyBudget'), daysInput = $('travelDays'), travelersInput = $('travelers'), resultDiv = $('budgetResult');
+    function compute() {
+      var daily = parseFloat(dailyInput.value) || 0;
+      var days = parseInt(daysInput.value) || 0;
+      var travelers = parseInt(travelersInput.value) || 1;
+      resultDiv.innerHTML = '✈️ Total estimated trip cost: <strong>रु ' + (daily * days * travelers).toLocaleString('en-IN') +
+        '</strong> (accommodation + meals + local transport). Flights are not included.';
+    }
+    $('estimateBudgetBtn').addEventListener('click', compute);
+    compute();
+  }
+
+  function setupSwap() {
+    $('swapBtn').addEventListener('click', function () {
+      var fromSel = $('fromCurrency'), toSel = $('toCurrency');
+      var f = fromSel.value; fromSel.value = toSel.value; toSel.value = f;
+      updateConverterUI();
+    });
+  }
+
+  function initTabs() {
+    var btns = document.querySelectorAll('.tab-btn');
+    var panes = document.querySelectorAll('.tab-pane');
+    btns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        btns.forEach(function (b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        panes.forEach(function (pane) { pane.classList.remove('active-pane'); });
+        $(btn.getAttribute('data-tab') + 'Pane').classList.add('active-pane');
+      });
+    });
+  }
+
+  function refreshAll() {
+    setBadge();
+    updateTodayTab();
+    updatePopularRates();
+    updateConverterUI();
+  }
+
+  function loadRates() {
+    $('liveRateBadge').innerHTML = '<i class="fas fa-chart-line"></i> Loading the latest rates...';
+    NPRRates.load().then(function (d) {
+      exchangeRates = d.rates; rateDate = d.date; rateSource = d.source;
+      refreshAll();
+    }, function () {
+      exchangeRates = null; rateDate = ''; rateSource = '';
+      refreshAll();
+    });
+  }
+
+  $('convertBtn').addEventListener('click', updateConverterUI);
+  $('amountInput').addEventListener('input', updateConverterUI);
+  $('fromCurrency').addEventListener('change', updateConverterUI);
+  $('toCurrency').addEventListener('change', updateConverterUI);
+  $('conversionResult').addEventListener('click', function (e) { if (e.target && e.target.id === 'retryRates') loadRates(); });
+  setupSwap();
+  initTabs();
+  setupTravelBudget();
+  loadRates();
+</script>
+<script src="/sw-register.js" defer></script>
+</body>
+</html>

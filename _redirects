@@ -1,0 +1,54 @@
+# Cloudflare redirects (Workers static assets / Pages).
+# Each line: <old path> <new path> <status>
+# These catch URLs that earlier canonical tags, the homepage and old links used
+# but that never matched a real file. Real pages are never listed here.
+
+# 2083 festival and calendar pages
+/2083/mala-maas                      /2083/mala-mass                          301
+/2083/mala-maas/                     /2083/mala-mass                          301
+/2083/shubha-sait                    /2083/subha-sait                         301
+/2083/shubha-sait/                   /2083/subha-sait                         301
+/nepal-public-holidays-2083          /2083/nepal-public-holidays              301
+/nepal-public-holidays-2083/         /2083/nepal-public-holidays              301
+/2083/bhai-tika                      /2083/tihar/bhai-tika                    301
+/2083/bhai-tika/                     /2083/tihar/bhai-tika                    301
+/2083/dashain                        /nepali-calendar-2083/dashain-2083       301
+/2083/dashain/                       /nepali-calendar-2083/dashain-2083       301
+/dashain-2083                        /nepali-calendar-2083/dashain-2083       301
+/dashain-2083/                       /nepali-calendar-2083/dashain-2083       301
+/2083                                /nepali-calendar-2083/                   301
+/2083/                               /nepali-calendar-2083/                   301
+/nepali-calendar-2083/baisakh-2083   /nepali-calendar-2083/baishak-2083       301
+/nepali-calendar-2083/baisakh-2083/  /nepali-calendar-2083/baishak-2083       301
+
+# Guides (canonicals used to say /blog/)
+/blog/what-is-bikram-sambat          /guide/bikram-sambat                     301
+/blog/bs-vs-ad-calendar              /guide/bs-vs-ad-calendar                 301
+/blog/history-of-nepali-new-year     /guide/history-of-nepali-new-year        301
+/blog/nepali-months-guide            /guide/nepali-months-guide               301
+/blog/who-created-bikram-sambat      /guide/who-created-bikram-sambat         301
+/blog/why-nepal-uses-bikram-sambat   /guide/why-nepal-uses-bikram-sambat      301
+/guide/how-old-Is-bikram-sambat      /guide/how-old-is-bikram-sambat          301
+/guide/nepali-months                 /guide/nepali-months-guide               301
+
+# Preeti / Unicode tools
+/preeti-unicode                      /preeti-to-unicode-converter/            301
+/preeti-unicode/                     /preeti-to-unicode-converter/            301
+/preeti-to-unicode                   /preeti-to-unicode-converter/            301
+/preeti-to-unicode/                  /preeti-to-unicode-converter/            301
+/unicode-to-preeti                   /unicode-to-preeti-converter/            301
+/unicode-to-preeti/                  /unicode-to-preeti-converter/            301
+/kantipur-to-unicode                 /preeti-to-unicode-converter/kantipur-to-unicode  301
+/kantipur-to-unicode/                /preeti-to-unicode-converter/kantipur-to-unicode  301
+/unicode-vs-preeti                   /preeti-unicode-guide/                   301
+/unicode-vs-preeti/                  /preeti-unicode-guide/                   301
+/what-is-preeti-font                 /preeti-unicode-guide/                   301
+/what-is-preeti-font/                /preeti-unicode-guide/                   301
+
+# Currency hub (was an extensionless file called Nepal-Finance-Hub)
+/Nepal-Finance-Hub                   /currency/                               301
+/Nepal-Finance-Hub/                  /currency/                               301
+
+# Removed duplicate (non-functional design mock-up); the real converter is below
+/preeti-converter                    /preeti-to-unicode-converter/            301
+/preeti-converter/                   /preeti-to-unicode-converter/            301

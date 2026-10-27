@@ -1,0 +1,23 @@
+name: Site check
+
+# Fails the pull request if a change breaks internal links, canonical tags or
+# structured data. Takes a few seconds and needs no dependencies.
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check links, canonicals and structured data
+        run: python3 scripts/check_site.py

@@ -15,10 +15,87 @@ window.siteSearchDatabase = [
     },
     { 
         title: 'About Us', 
-        url: '/about.html', 
+        url: '/about', 
         category: 'Info', 
         icon: 'ℹ️',
-        keywords: ['about', 'info', 'information', 'team', 'contact info']
+        keywords: ['about', 'info', 'information', 'team', 'who runs']
+    },
+    { 
+        title: 'AED to NPR', 
+        url: '/currency/aed-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['aed to npr', 'uae dirham', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'SAR to NPR', 
+        url: '/currency/sar-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['sar to npr', 'saudi riyal', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'QAR to NPR', 
+        url: '/currency/qar-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['qar to npr', 'qatari riyal', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'KWD to NPR', 
+        url: '/currency/kwd-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['kwd to npr', 'kuwaiti dinar', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'MYR to NPR', 
+        url: '/currency/myr-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['myr to npr', 'malaysian ringgit', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'GBP to NPR', 
+        url: '/currency/gbp-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['gbp to npr', 'british pound', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'EUR to NPR', 
+        url: '/currency/eur-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['eur to npr', 'euro', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'AUD to NPR', 
+        url: '/currency/aud-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['aud to npr', 'australian dollar', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'JPY to NPR', 
+        url: '/currency/jpy-to-npr', 
+        category: 'Finance', 
+        icon: '💱',
+        keywords: ['jpy to npr', 'japanese yen', 'currency', 'exchange rate', 'nepali rupee']
+    },
+    { 
+        title: 'Contact', 
+        url: '/contact/', 
+        category: 'Info', 
+        icon: '✉️',
+        keywords: ['contact', 'report', 'mistake', 'error', 'suggest', 'feedback', 'support']
+    },
+    { 
+        title: 'Privacy Policy', 
+        url: '/privacy-policy/', 
+        category: 'Info', 
+        icon: '🔒',
+        keywords: ['privacy', 'policy', 'cookies', 'ads', 'data']
     },
 
     // ==================== DATE & CALENDAR TOOLS ====================
@@ -123,7 +200,7 @@ window.siteSearchDatabase = [
     },
     { 
         title: 'Nepali Months Guide', 
-        url: '/guide/nepali-months', 
+        url: '/guide/nepali-months-guide', 
         category: 'Guide', 
         icon: '📅',
         keywords: ['nepali months', 'months', 'calendar', 'chaitra', 'baisakh']
@@ -139,7 +216,7 @@ window.siteSearchDatabase = [
     // ==================== NEPAL FINANCE HUB ====================
     { 
         title: 'Nepal Finance Hub', 
-        url: '/Nepal-Finance-Hub/', 
+        url: '/currency/', 
         category: 'Finance', 
         icon: '💰',
         keywords: ['finance', 'nepal', 'money', 'banking', 'investment', 'financial']
@@ -148,7 +225,7 @@ window.siteSearchDatabase = [
     // ==================== TAX CALCULATORS ====================
     { 
         title: 'Nepal Tax Calculators', 
-        url: '/Nepal-Tax-Calculators/', 
+        url: '/calculator/income-tax-calculator', 
         category: 'Finance', 
         icon: '💼',
         keywords: ['tax', 'calculator', 'nepal tax', 'income tax', 'calculate tax']
@@ -157,34 +234,16 @@ window.siteSearchDatabase = [
     // ==================== TOOLS COLLECTION ====================
     { 
         title: 'All Tools', 
-        url: '/tools/', 
+        url: '/', 
         category: 'Tools', 
         icon: '🔧',
         keywords: ['tools', 'all tools', 'converters', 'utilities', 'applications']
     },
-    { 
-        title: 'Converters', 
-        url: '/converters/', 
-        category: 'Tools', 
-        icon: '⚙️',
-        keywords: ['converter', 'convert', 'convertors', 'transformation']
-    },
+
 
     // ==================== SPECIAL PAGES ====================
-    { 
-        title: 'Blog', 
-        url: '/blog/', 
-        category: 'Blog', 
-        icon: '📝',
-        keywords: ['blog', 'articles', 'posts', 'news', 'updates']
-    },
-    { 
-        title: 'Contact', 
-        url: '/contact/', 
-        category: 'Support', 
-        icon: '📧',
-        keywords: ['contact', 'support', 'help', 'email', 'message']
-    },
+
+
 
     // ==================== POPULAR SEARCHES ====================
     { 
@@ -214,6 +273,48 @@ window.siteSearchDatabase = [
         category: 'Search', 
         icon: '🔍',
         keywords: ['land measurement', 'kattha', 'bigha', 'nepal land']
+    },
+    { 
+        title: 'Roman to Nepali Typing', 
+        url: '/nepali-typing/', 
+        category: 'Tools', 
+        icon: '⌨️',
+        keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
+    },
+    { 
+        title: 'Number to Words', 
+        url: '/number-to-words/', 
+        category: 'Tools', 
+        icon: '🔢',
+        keywords: ['number to words', 'amount in words', 'cheque', 'rupees in words', 'अङ्क अक्षरमा']
+    },
+    { 
+        title: 'EMI Calculator', 
+        url: '/emi-calculator/', 
+        category: 'Tools', 
+        icon: '🏦',
+        keywords: ['emi', 'loan calculator', 'home loan', 'car loan', 'kista', 'किस्ता']
+    },
+    { 
+        title: 'NRB Exchange Rates', 
+        url: '/nrb-exchange-rates/', 
+        category: 'Tools', 
+        icon: '💱',
+        keywords: ['nrb', 'nepal rastra bank', 'forex', 'buy sell rate', 'exchange rate']
+    },
+    { 
+        title: 'Gold & Silver Price', 
+        url: '/gold-silver-price/', 
+        category: 'Tools', 
+        icon: '🥇',
+        keywords: ['gold price', 'silver price', 'tola', 'sun chandi', 'सुन चाँदी']
+    },
+    { 
+        title: 'Nepali Calendar 2082', 
+        url: '/nepali-calendar-2082/', 
+        category: 'Tools', 
+        icon: '📅',
+        keywords: ['calendar 2082', 'patro 2082', 'पात्रो २०८२']
     },
 ];
 

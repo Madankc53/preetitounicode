@@ -3,13 +3,19 @@ name: Generate Sitemap
 on:
   push:
     branches:
-      - main # Change to 'master' if your default branch uses that name
+      - main
     paths-ignore:
       - '**.md'
       - '.gitignore'
       - 'LICENSE'
       - '_headers'
       - '_redirects'
+      - 'sitemap.xml'
+      - 'data/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   sitemap_job:
@@ -18,19 +24,18 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetches full history so file modification dates match real git history
+          fetch-depth: 0 # full history so lastmod dates match real git history
 
       - name: Generate Sitemap
-        id: sitemap
-        uses: cicirello/generate-sitemap@v1
-        with:
-          base-url-path: https://converter.thenepal.io/
-          exclude-paths: 404.html # Keeps your 404 page hidden from search engine indexing
+        # Lists only indexable pages, in the URL form Cloudflare actually serves
+        # (no .html, directory pages with a trailing slash). Prints warnings for
+        # pages whose canonical tag disagrees with their real URL.
+        run: python3 generate_sitemap_automated.py
 
       - name: Commit and Push Sitemap
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add sitemap.xml
-          git diff --quiet && git diff --staged --quiet || git commit -m "Automated sitemap update"
+          git diff --staged --quiet || git commit -m "Automated sitemap update"
           git push

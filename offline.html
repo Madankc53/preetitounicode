@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>You are offline | TheNepal.io</title>
+<style>
+:root{--bg:#FDFAF5;--card:#fff;--ink:#1C1C1E;--mute:#6C6C70;--line:#E5DDD0;--red:#C0392B}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1115;--card:#171a21;--ink:#f1f1f3;--mute:#9a9aa3;--line:#2a2f3a;--red:#ef6b5c}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.6;padding:24px}
+main{max-width:520px;width:100%;text-align:center}
+.icon{font-size:3rem;margin-bottom:6px}
+h1{font-size:1.6rem;margin:0 0 4px}
+.ne{color:var(--mute);margin:0 0 16px}
+p{color:var(--mute);margin:0 0 20px}
+.btn{display:inline-block;background:var(--red);color:#fff;border:0;border-radius:10px;padding:11px 20px;font-weight:700;font-size:1rem;cursor:pointer;text-decoration:none}
+ul{list-style:none;padding:0;margin:26px 0 0;display:grid;gap:8px}
+li a{display:block;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 14px;color:var(--ink);text-decoration:none;font-weight:600}
+h2{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:30px 0 0}
+</style>
+
+</head>
+<body>
+<main>
+  <div class="icon" aria-hidden="true">📴</div>
+  <h1>You are offline</h1>
+  <p class="ne">तपाईं अफलाइन हुनुहुन्छ</p>
+  <p>This page has not been opened on this device yet, so it is not saved. Check your connection and try again.</p>
+  <button class="btn" type="button" onclick="location.reload()">Try again</button>
+  <h2>Tools you have opened before still work offline</h2>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/today-nepali-date/">Today's Nepali Date</a></li>
+    <li><a href="/bs-to-ad/">BS → AD Converter</a></li>
+    <li><a href="/preeti-to-unicode-converter/">Preeti → Unicode Converter</a></li>
+  </ul>
+</main>
+</body>
+</html>

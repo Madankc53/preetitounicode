@@ -176,6 +176,12 @@ body{margin:0;background:var(--bl-bg);color:var(--bl-tx);font:17px/1.7 system-ui
 .bl-disc{margin:16px 0 40px;font-size:14px;color:var(--bl-mu)}
 .bl-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 </style>
+
+  <!-- SEO (added) -->
+  <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
 </head>
 
 <body>
@@ -464,5 +470,6 @@ body{margin:0;background:var(--bl-bg);color:var(--bl-tx);font:17px/1.7 system-ui
   [dEl,mEl,yEl].forEach(function(e){e.addEventListener('input',render);e.addEventListener('change',render)});
 })();
 </script>
+<script src="/sw-register.js" defer></script>
 </body>
 </html>
