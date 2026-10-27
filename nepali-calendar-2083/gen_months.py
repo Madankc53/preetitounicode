@@ -422,6 +422,58 @@ This is also the peak of Nepal's spring trekking season.""",
   ),
 ]
 
+# ── Correct calendar facts ───────────────────────────────────────────────
+# Month lengths and AD start dates for 2083 BS. They match the Government of Nepal
+# public-holiday list for 2083 and Hamro Patro (see PR #4). Everything that depends
+# on them (length, AD range, weekday of day 1, holiday AD dates) is derived here.
+import re as _re
+from datetime import date as _d, timedelta as _td
+_TRUE_LENS = [31,31,32,31,31,31,30,29,30,29,30,30]
+_MF = ['January','February','March','April','May','June','July','August','September','October','November','December']
+_M3 = [x[:3] for x in _MF]
+_DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+def _long(x): return f"{_MF[x.month-1]} {x.day}, {x.year}"
+_SPECIAL = [
+  ("Shrawan 1 (July 18) falls on a <strong>Saturday — Nepal's weekly holiday</strong>.", "Shrawan 1 (July 17) falls on a <strong>Friday</strong>."),
+  ("Chaitra 1 (March 14, 2027) falls on a <strong>Saturday — Nepal's weekly holiday</strong>.", "Chaitra 1 (March 15, 2027) falls on a <strong>Monday</strong>."),
+  ("Jul 20, 27, Aug 3, 10, 17", "Jul 20, 27, Aug 3, 10"),
+  ("Thursday, January 14, 2027 (Magh 1", "Friday, January 15, 2027 (Magh 1"),
+  ("Magh 1 (January 14, 2027)", "Magh 1 (January 15, 2027)"),
+]
+def _walk(o, f):
+    if isinstance(o, str): return f(o)
+    if isinstance(o, list): return [_walk(i, f) for i in o]
+    if isinstance(o, dict): return {k: _walk(v, f) for k, v in o.items()}
+    return o
+_cur = _d(2026, 4, 14)
+for _m in MONTHS:
+    _i = _m['num'] - 1
+    _s, _L = _cur, _TRUE_LENS[_i]; _e = _s + _td(_L - 1); _cur += _td(_L)
+    _old = (_m['adStart'], _m['adEnd'], _m['days'])
+    _os = _d(int(_m['adStartISO'][:4]), int(_m['adStartISO'][5:7]), int(_m['adStartISO'][8:]))
+    _oe = _d(int(_m['adEndISO'][:4]), int(_m['adEndISO'][5:7]), int(_m['adEndISO'][8:]))
+    _pairs = {}
+    _pairs[f"{_MF[_os.month-1]} {_os.day} to {_MF[_oe.month-1]} {_oe.day}, {_oe.year}"] = f"{_MF[_s.month-1]} {_s.day} to {_MF[_e.month-1]} {_e.day}, {_e.year}"
+    _pairs[f"{_M3[_os.month-1]} {_os.day} to {_M3[_oe.month-1]} {_oe.day}, {_oe.year}"] = f"{_M3[_s.month-1]} {_s.day} to {_M3[_e.month-1]} {_e.day}, {_e.year}"
+    _pairs[_long(_os)] = _long(_s); _pairs[_long(_oe)] = _long(_e)
+    _pairs[f"{_old[2]} days"] = f"{_L} days"
+    _pairs = {k: v for k, v in _pairs.items() if k != v}
+    _rx = _re.compile("|".join(_re.escape(k) for k in sorted(_pairs, key=len, reverse=True))) if _pairs else None
+    def _fix(t, _rx=_rx, _pairs=_pairs):
+        for a, b in _SPECIAL: t = t.replace(a, b)
+        return _rx.sub(lambda mm: _pairs[mm.group(0)], t) if _rx else t
+    for _k in list(_m.keys()):
+        if _k in ('adStart','adEnd','adStartISO','adEndISO','adStartObj','startDOW','days','id','num','slug','prev','next_'): continue
+        _m[_k] = _walk(_m[_k], _fix)
+    _m['days'] = _L
+    _m['adStart'], _m['adEnd'] = _long(_s), _long(_e)
+    _m['adStartISO'], _m['adEndISO'] = _s.isoformat(), _e.isoformat()
+    _m['adStartObj'] = (_s.year, _s.month - 1, _s.day)
+    _m['startDOW'] = (_s.isoweekday() % 7)
+    for _day, _h in _m['holidays'].items():
+        _x = _s + _td(_day - 1)
+        _h['adDate'] = f"{_M3[_x.month-1]} {_x.day}, {_x.year}"; _h['dayEn'] = _DAYS[_x.isoweekday() % 7]
+
 # ── Shared CSS (inlined per page for Cloudflare static) ─────────────────
 SHARED_CSS = """
     :root{--red:#C0392B;--red-lt:#FEF0EE;--red-dk:#96281B;--sat:#C0392B;--sun:#1A5FAA;--gold:#A07800;--gold-lt:#FFF8E0;--mala:#5B2D8E;--mala-lt:#F2EDFF;--ink:#1C1C1E;--ink2:#3A3A3C;--ink3:#6C6C70;--paper:#FDFAF5;--card:#FFFFFF;--border:#E5DDD0;--nav-h:52px;--radius:10px;--shadow:0 2px 14px rgba(0,0,0,0.07)}
