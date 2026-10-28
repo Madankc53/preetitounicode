@@ -1,0 +1,163 @@
+{
+ "source": "Nepal Rastra Bank",
+ "source_url": "https://www.nrb.org.np/forex/",
+ "date": "2026-10-28",
+ "published_on": "2026-10-28 00:00:40",
+ "fetched_at": "2026-10-28T10:51:56Z",
+ "rates": [
+  {
+   "iso3": "AED",
+   "name": "UAE Dirham",
+   "unit": 1,
+   "buy": 41.36,
+   "sell": 41.52
+  },
+  {
+   "iso3": "AUD",
+   "name": "Australian Dollar",
+   "unit": 1,
+   "buy": 106.71,
+   "sell": 107.13
+  },
+  {
+   "iso3": "BHD",
+   "name": "Bahrain Dinar",
+   "unit": 1,
+   "buy": 402.62,
+   "sell": 404.21
+  },
+  {
+   "iso3": "CAD",
+   "name": "Canadian Dollar",
+   "unit": 1,
+   "buy": 108.35,
+   "sell": 108.77
+  },
+  {
+   "iso3": "CHF",
+   "name": "Swiss Franc",
+   "unit": 1,
+   "buy": 183.34,
+   "sell": 184.07
+  },
+  {
+   "iso3": "CNY",
+   "name": "Chinese Yuan",
+   "unit": 1,
+   "buy": 22.78,
+   "sell": 22.87
+  },
+  {
+   "iso3": "DKK",
+   "name": "Danish Kroner",
+   "unit": 1,
+   "buy": 22.64,
+   "sell": 22.73
+  },
+  {
+   "iso3": "EUR",
+   "name": "European Euro",
+   "unit": 1,
+   "buy": 169.21,
+   "sell": 169.88
+  },
+  {
+   "iso3": "GBP",
+   "name": "UK Pound Sterling",
+   "unit": 1,
+   "buy": 202.24,
+   "sell": 203.04
+  },
+  {
+   "iso3": "HKD",
+   "name": "Hong Kong Dollar",
+   "unit": 1,
+   "buy": 19.36,
+   "sell": 19.44
+  },
+  {
+   "iso3": "INR",
+   "name": "Indian Rupee",
+   "unit": 100,
+   "buy": 160.0,
+   "sell": 160.15
+  },
+  {
+   "iso3": "JPY",
+   "name": "Japanese Yen",
+   "unit": 10,
+   "buy": 9.63,
+   "sell": 9.67
+  },
+  {
+   "iso3": "KRW",
+   "name": "South Korean Won",
+   "unit": 100,
+   "buy": 11.44,
+   "sell": 11.49
+  },
+  {
+   "iso3": "KWD",
+   "name": "Kuwaity Dinar",
+   "unit": 1,
+   "buy": 492.91,
+   "sell": 494.86
+  },
+  {
+   "iso3": "MYR",
+   "name": "Malaysian Ringgit",
+   "unit": 1,
+   "buy": 37.15,
+   "sell": 37.29
+  },
+  {
+   "iso3": "OMR",
+   "name": "Omani Rial",
+   "unit": 1,
+   "buy": 394.5,
+   "sell": 396.06
+  },
+  {
+   "iso3": "QAR",
+   "name": "Qatari Riyal",
+   "unit": 1,
+   "buy": 41.67,
+   "sell": 41.84
+  },
+  {
+   "iso3": "SAR",
+   "name": "Saudi Arabian Riyal",
+   "unit": 1,
+   "buy": 40.47,
+   "sell": 40.63
+  },
+  {
+   "iso3": "SEK",
+   "name": "Swedish Kroner",
+   "unit": 1,
+   "buy": 15.25,
+   "sell": 15.31
+  },
+  {
+   "iso3": "SGD",
+   "name": "Singapore Dollar",
+   "unit": 1,
+   "buy": 118.5,
+   "sell": 118.97
+  },
+  {
+   "iso3": "THB",
+   "name": "Thai Baht",
+   "unit": 1,
+   "buy": 4.5,
+   "sell": 4.52
+  },
+  {
+   "iso3": "USD",
+   "name": "U.S. Dollar",
+   "unit": 1,
+   "buy": 151.89,
+   "sell": 152.49
+  }
+ ]
+}
