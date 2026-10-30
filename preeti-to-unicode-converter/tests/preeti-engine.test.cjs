@@ -67,7 +67,7 @@ test('on-screen keyboard labels are generated from the selected font map', () =>
   const keys = getKeyboardKeys('preeti');
   const labels = new Map(keys);
   for (const [key, value] of Object.entries(MAPS.preeti.fwd)) {
-    if (key.length === 1 && !/\\s/.test(key) && /[\\u0900-\\u097F]/.test(value)) {
+    if (key.length === 1 && !/\s/.test(key) && /[\u0900-\u097F]/.test(value)) {
       assert.equal(labels.get(key), value, `Keyboard label for key ${JSON.stringify(key)}`);
     }
   }
