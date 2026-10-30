@@ -791,11 +791,16 @@ let darkMode=localStorage.getItem('th-theme')==='dark';
 // ═══════════════════════════════════════════════════
 function applyRules(t,rules){
   if(!rules||!rules.length)return t;
-  const sorted=[...rules].sort((a,b)=>b.f.length-a.f.length);
-  for(const r of sorted){
-    try{t=t.replaceAll(r.f,r.r);}catch(e){}
+  // Match the longest legacy sequence at each position. This avoids chained
+  // global replacements accidentally changing text produced by an earlier rule.
+  const sorted=[...rules].filter(r=>r.f).sort((a,b)=>b.f.length-a.f.length);
+  let out='',i=0;
+  while(i<t.length){
+    const match=sorted.find(rule=>t.startsWith(rule.f,i));
+    if(match){out+=match.r;i+=match.f.length;}
+    else{out+=t[i];i++;}
   }
-  return t;
+  return out;
 }
 function applyPost(t,post){
   if(!post||!post.length)return t;
@@ -805,12 +810,14 @@ function applyPost(t,post){
   return t;
 }
 function fwdConvert(t,font){
-  const m=MAPS[font];
+  const m=MAPS[font]||MAPS.preeti;
+  if(typeof t!=='string'||!t)return'';
   t=applyRules(t,m.rules);
   let r='';
   for(const c of t)r+=m.fwd[c]!==undefined?m.fwd[c]:c;
   r=applyPost(r,m.post);
-  r=r.replace(/ि([\u0900-\u097F])/g,'$1ि');
+  // Legacy Preeti stores the short-i sign before its consonant.
+  r=r.replace(/ि([\\u0900-\\u097F])/g,'$1ि');
   return r;
 }
 function revConvert(t,font){
@@ -978,25 +985,23 @@ function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(
 // ═══════════════════════════════════════════════════
 // CLICK KEYBOARD
 // ═══════════════════════════════════════════════════
-const KB_KEYS=[
-  ['s','क'],['v','ख'],['u','ग'],['3','घ'],['S','क्'],
-  ['r','च'],['5','छ'],['h','ज'],['em','झ'],['N','ञ'],
-  ['6','ट'],['7','ठ'],['8','ड'],['9','ढ'],['C','ण'],
-  ['t','त'],['y','थ'],['g','न'],['k','प'],['f','फ'],
-  ['a','ब'],['e','भ'],['d','म'],['o','य'],['/',  'र'],
-  ['n','ल'],[';','स'],['x','ह'],['z','श'],['1','ज्ञ'],
-  ['q','त्र'],['Z','श्'],['l','ि'],['L','ी'],['m','ु'],
-  ['"','ू'],['f','ा'],[']','े'],['E','ै'],['o','ो'],
-  ['W','ौ'],['F','ँ'],['M','ः'],['+','ं'],['\\','्'],
-  ['.','।'],['!','१'],['@','२'],['#','३'],['$','४'],
-];
+function getKeyboardKeys(font){
+  const m=MAPS[font]||MAPS.preeti;
+  const entries=Object.entries(m.fwd).filter(([key,value])=>
+    key.length===1&&!/\\s/.test(key)&&/[\\u0900-\\u097F]/.test(value)
+  );
+  (m.rules||[]).forEach(rule=>entries.push([rule.f,rule.r]));
+  return [...new Map(entries.map(([key,value])=>[key,[key,value]])).values()]
+    .sort((a,b)=>b[0].length-a[0].length||a[0].localeCompare(b[0]));
+}
+
 function buildKeyboard(font){
   const kb=document.getElementById('keyboard');kb.innerHTML='';
-  KB_KEYS.forEach(([pre,uni])=>{
+  getKeyboardKeys(font).forEach(([pre,uni])=>{
     const b=document.createElement('button');
     b.className='key';b.title=`Insert: ${pre} → ${uni}`;
     b.setAttribute('aria-label',`Insert ${uni}`);
-    b.innerHTML=`<span class="kpre">${escHtml(pre)}</span><span class="kuni">${uni}</span>`;
+    b.innerHTML=`<span class="kpre">${escHtml(pre)}</span><span class="kuni">${escHtml(uni)}</span>`;
     b.onclick=()=>{
       const ta=inputTA();const pos=ta.selectionStart;
       ta.value=ta.value.slice(0,pos)+pre+ta.value.slice(ta.selectionEnd);
