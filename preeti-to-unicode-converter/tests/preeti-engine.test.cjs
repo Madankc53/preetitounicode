@@ -36,6 +36,16 @@ test('Preeti single-key mappings match the embedded map', () => {
   }
 });
 
+// Smoke fixtures mirror the converter page's published character/example table.
+// They guard the current implementation; independent linguistic verification is still required.
+test('published Preeti examples remain stable', () => {
+  assert.equal(fwdConvert('s', 'preeti'), 'क');
+  assert.equal(fwdConvert('v', 'preeti'), 'ख');
+  assert.equal(fwdConvert('u', 'preeti'), 'ग');
+  assert.equal(fwdConvert('g', 'preeti'), 'न');
+  assert.equal(fwdConvert('g]kfn', 'preeti'), 'नेपाल');
+});
+
 test('longest Preeti sequences take precedence over shorter overlapping rules', () => {
   assert.equal(fwdConvert('cf]', 'preeti'), 'ओ');
   assert.equal(fwdConvert('cfW', 'preeti'), 'औ');
