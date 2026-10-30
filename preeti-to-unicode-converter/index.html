@@ -6,7 +6,7 @@
 
 <!-- ═══ PRIMARY SEO ═══ -->
 <title>Preeti to Unicode Converter – Free Nepali Tool | TheNepal.io</title>
-<meta name="description" content="Convert Preeti text to Nepali Unicode online. Paste text or upload DOCX/TXT files, then copy or download the result. Supports Preeti, Kantipur and Sagarmatha.">
+<meta name="description" content="Convert Preeti text to Nepali Unicode online. Paste text, use the on-screen Preeti keyboard, or upload DOCX/TXT files. Free and mobile-friendly.">
 
 <meta name="author" content="Madan KC">
 <link rel="canonical" href="https://converter.thenepal.io/preeti-to-unicode-converter/">
@@ -15,7 +15,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://converter.thenepal.io/preeti-to-unicode-converter/">
 <meta property="og:title" content="Preeti to Unicode Converter – Free Nepali Font Tool">
-<meta property="og:description" content="Convert Preeti, Kantipur and Sagarmatha text to Nepali Unicode. Paste text or upload DOCX/TXT files; copy or download the result.">
+<meta property="og:description" content="Convert Preeti text to Nepali Unicode. Paste text, use the on-screen keyboard, or upload DOCX/TXT files.">
 <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="converter.thenepal.io">
@@ -23,7 +23,7 @@
 <!-- ═══ TWITTER ═══ -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Preeti to Unicode Converter – Free Nepali Font Tool">
-<meta name="twitter:description" content="Convert Preeti, Kantipur and Sagarmatha text to Nepali Unicode. Paste text or upload DOCX/TXT files, then copy or download.">
+<meta name="twitter:description" content="Convert Preeti text to Nepali Unicode. Paste text, use the on-screen keyboard, or upload DOCX/TXT files.">
 <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
 
 <!-- ═══ STRUCTURED DATA ═══ -->
@@ -36,9 +36,9 @@
   "applicationCategory":"UtilityApplication",
   "operatingSystem":"Any",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "description":"Browser-based tool for converting text encoded in Preeti, Kantipur and Sagarmatha legacy Nepali fonts to Unicode Devanagari. Supports pasted text and DOCX/TXT text extraction, with TXT, Word-compatible DOC and HTML exports.",
+  "description":"Browser-based tool for converting Preeti legacy Nepali font text to Unicode Devanagari. Supports pasted text and DOCX/TXT text extraction, with TXT, Word-compatible DOC and HTML exports.",
   "author":{"@type":"Person","name":"Madan KC","url":"https://madankc.com.np"},
-  "featureList":["Preeti to Unicode","Kantipur to Unicode","Sagarmatha to Unicode","Upload .docx files","Upload .txt files","Export as Word-compatible DOC","Export as TXT","Export as HTML","Dark mode","Click keyboard","Reverse Unicode to Preeti","Local text processing"]
+  "featureList":["Preeti to Unicode","Upload .docx files","Upload .txt files","Export as Word-compatible DOC","Export as TXT","Export as HTML","Dark mode","Click keyboard","Reverse Unicode to Preeti","Local text processing"]
 }
 </script>
 <script type="application/ld+json">
@@ -49,8 +49,8 @@
   "description":"Step-by-step guide to convert legacy Preeti Nepali font text to Unicode Devanagari using converter.thenepal.io",
   "totalTime":"PT1M",
   "step":[
-    {"@type":"HowToStep","position":1,"name":"Select your font","text":"Choose Preeti, Kantipur, or Sagarmatha from the font tabs. Most old Nepali documents use Preeti."},
-    {"@type":"HowToStep","position":2,"name":"Paste or upload text","text":"Paste Preeti font text into the left input box, or upload a .docx/.txt file using the file upload zone."},
+    {"@type":"HowToStep","position":1,"name":"Select your font","text":"Choose Preeti, the currently supported legacy font."},
+    {"@type":"HowToStep","position":2,"name":"Paste or upload text","text":"Paste Preeti font text into the input box, or upload a .docx/.txt file using the file upload zone."},
     {"@type":"HowToStep","position":3,"name":"See instant Unicode output","text":"Unicode Devanagari output appears instantly in the right panel as you type or paste — no button needed."},
     {"@type":"HowToStep","position":4,"name":"Copy or export","text":"Click Copy Unicode, or export as .TXT, Word-compatible .DOC, or .HTML file."}
   ]
@@ -62,7 +62,7 @@
   "@type":"FAQPage",
   "mainEntity":[
     {"@type":"Question","name":"What is Preeti font?","acceptedAnswer":{"@type":"Answer","text":"Preeti is a legacy ASCII-based Nepali font widely used in Nepal before Unicode became standard. Pressing 's' types 'क' and 'v' types 'ख'. Without Preeti font installed, the text appears as random English letters. Unicode solves this permanently."}},
-    {"@type":"Question","name":"Which fonts does this converter support?","acceptedAnswer":{"@type":"Answer","text":"This converter supports Preeti, Kantipur, and Sagarmatha — the three most widely used legacy Nepali fonts. Select your font using the tabs above the converter."}},
+    {"@type":"Question","name":"Which fonts does this converter support?","acceptedAnswer":{"@type":"Answer","text":"Preeti is currently supported. Kantipur and Sagarmatha are temporarily unavailable while their conversion maps are being tested."}},
     {"@type":"Question","name":"Can I convert a Word document (.docx) from Preeti to Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the file upload zone to drag and drop your .docx file. The tool extracts the text, converts it to Unicode, and lets you download the result as a .txt or .docx file."}},
     {"@type":"Question","name":"Is my document safe? Is it uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"Your text and files are never sent to any server. The entire conversion runs locally in your browser using JavaScript. You can turn off your internet and the tool still works."}},
     {"@type":"Question","name":"Can I convert Unicode back to Preeti?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click 'Unicode → Font' in the direction toggle above the converter to switch to reverse mode."}},
@@ -389,6 +389,109 @@ footer a:hover{text-decoration:underline}
   .btn{min-height:40px;font-size:12px}
   .action-row{gap:5px}
 }
+
+/* ── RESPONSIVE / ACCESSIBILITY FINISH ── */
+:where(button,a,input,textarea,[role="button"]):focus-visible{
+  outline:3px solid var(--gold);outline-offset:3px;
+}
+button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
+  touch-action:manipulation;
+}
+.preeti-input,.unicode-input,.out-box{
+  overflow-wrap:anywhere;
+}
+.conv-panel{min-width:0}
+.preeti-input,.unicode-input{display:block;min-width:0}
+.out-box{min-width:0;overflow-x:hidden}
+.drop-zone:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media (min-width:681px){
+  .conv-body{align-items:stretch}
+  .conv-panel{padding:18px}
+  .preeti-input,.unicode-input,.out-box{min-height:280px}
+}
+@media (max-width:900px){
+  .wrap{padding-left:14px;padding-right:14px}
+  .conv-toolbar{gap:9px}
+  .size-row{margin-left:auto}
+  .conv-body{grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr)}
+  .conv-panel{padding:12px}
+  .preeti-input,.unicode-input,.out-box{min-height:240px}
+}
+@media (max-width:680px){
+  html{scroll-padding-top:58px}
+  nav.topnav{height:52px;padding:0 12px;gap:8px}
+  .nav-logo{font-size:16px}
+  .hero{padding:34px 16px 30px}
+  .hero h1{font-size:clamp(32px,9vw,46px);margin-bottom:8px}
+  .hero-sub{font-size:14px;margin-bottom:18px}
+  .hero-badges{gap:6px;margin-bottom:18px}
+  .badge{font-size:10px;padding:4px 9px}
+  .hero-cta{min-height:46px;padding:12px 22px}
+  .ad-top{padding:10px 12px 0}
+  .wrap{padding:0 10px}
+  .breadcrumb{font-size:11px;padding:10px 2px}
+  .converter-section{border-radius:14px}
+  .conv-toolbar{padding:12px;gap:10px}
+  .toolbar-label{font-size:10px}
+  .font-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:100%}
+  .font-tab{padding:9px 5px;font-size:11px;min-height:42px}
+  .font-status{font-size:11px}
+  .mode-pills{display:grid;grid-template-columns:1fr 1fr;width:100%}
+  .mode-pill{min-height:42px;padding:8px 6px;font-size:12px}
+  .size-row{width:100%;margin:0;display:grid;grid-template-columns:auto 1fr auto}
+  .size-row input[type=range]{width:100%;min-width:0}
+  .conv-body{grid-template-columns:minmax(0,1fr);min-height:0}
+  .conv-panel{padding:13px 12px}
+  .conv-panel+.conv-panel{border-left:0;border-top:1px solid var(--border)}
+  .panel-head{font-size:10px;margin-bottom:8px}
+  .preeti-input,.unicode-input,.out-box{min-height:170px;max-height:42vh;padding:12px;font-size:16px;line-height:1.75}
+  .out-box{font-size:var(--out-size)}
+  .counts{font-size:10px;gap:14px}
+  .conv-divider{display:flex;flex-direction:row;border:0;border-top:1px dashed var(--border);border-bottom:1px dashed var(--border);padding:8px}
+  .swap-btn{width:42px;height:42px;font-size:18px}
+  .action-row{padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .action-row .btn{justify-content:center;width:100%;min-width:0;min-height:44px;padding:9px 8px;font-size:12px}
+  .action-row .btn.pri{grid-column:1/-1;font-size:13px}
+  .export-bar{padding:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .export-label{grid-column:1/-1;margin:0}
+  .export-bar .btn{justify-content:center;min-height:44px;min-width:0;padding:8px 5px;font-size:11px}
+  .kb-wrap,.file-section{padding:13px 12px}
+  .kb-toggle{min-height:42px;font-size:12px}
+  .keyboard{gap:6px}
+  .key{min-width:44px;min-height:46px;padding:5px 8px}
+  .key .kpre{font-size:10px}
+  .key .kuni{font-size:16px}
+  .drop-zone{padding:22px 12px}
+  .drop-zone h4{font-size:13px}
+  .drop-zone p{font-size:11px;line-height:1.5}
+  .fitem{flex-wrap:wrap;padding:8px}
+  .fitem-name{flex-basis:calc(100% - 100px);font-size:11px}
+  .fitem-sz{margin-left:auto}
+  .content-wrap{margin-top:34px;padding:0 14px}
+  .lead{font-size:15px}
+  .body-text{font-size:14px}
+  .ex-table{font-size:12px}
+  .ex-table th,.ex-table td{padding:9px 8px}
+  .ex-preeti{font-size:11px;overflow-wrap:anywhere}
+  .ex-uni{font-size:16px}
+  .ex-meaning{font-size:10px}
+  .author-box{padding:14px;gap:12px}
+  .toast{bottom:calc(14px + env(safe-area-inset-bottom));width:max-content;max-width:calc(100vw - 28px);text-align:center}
+}
+@media (max-width:380px){
+  .nav-logo{font-size:14px}
+  .hero{padding:28px 12px}
+  .hero h1{font-size:31px}
+  .hero-sub{font-size:13px}
+  .font-tab{font-size:10px;letter-spacing:0;padding:8px 3px}
+  .action-row .btn{font-size:11px}
+  .export-bar .btn{font-size:10px}
+  .counts{gap:9px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
 </style>
 </head>
 <body>
@@ -1120,8 +1223,16 @@ function toast(msg){
   const sz=localStorage.getItem('th-out-sz');
   if(sz){setFontSize(sz);document.querySelector('input[type=range]').value=sz;}
 
-  // Keyboard
+  // Keyboard and upload zone are operable without a mouse.
   buildKeyboard('preeti');
+  const kbToggle=document.getElementById('kb-toggle');
+  kbToggle.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleKb();}
+  });
+  const dropZone=document.getElementById('drop-zone');
+  dropZone.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();document.getElementById('file-in').click();}
+  });
 
   // Hash restore
   try{
