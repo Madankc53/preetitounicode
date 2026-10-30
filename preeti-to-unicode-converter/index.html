@@ -734,7 +734,7 @@ const MAPS = {
       {f:'if',r:'ष'},{f:'em',r:'झ'},{f:'f]',r:'ो'},{f:'fW',r:'ौ'}
     ],
     post:[
-      {f:'ि([\\u0900-\\u097F])',r:'$1ि'},{f:'ाे',r:'ो'},{f:'ाै',r:'ौ'}
+      {f:'ि([\u0900-\u097F])',r:'$1ि'},{f:'ाे',r:'ो'},{f:'ाै',r:'ौ'}
     ]
   },
   kantipur: {
@@ -817,7 +817,7 @@ function fwdConvert(t,font){
   for(const c of t)r+=m.fwd[c]!==undefined?m.fwd[c]:c;
   r=applyPost(r,m.post);
   // Legacy Preeti stores the short-i sign before its consonant.
-  r=r.replace(/ि([\\u0900-\\u097F])/g,'$1ि');
+  r=r.replace(/ि([\u0900-\u097F])/g,'$1ि');
   return r;
 }
 function revConvert(t,font){
@@ -988,7 +988,7 @@ function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(
 function getKeyboardKeys(font){
   const m=MAPS[font]||MAPS.preeti;
   const entries=Object.entries(m.fwd).filter(([key,value])=>
-    key.length===1&&!/\\s/.test(key)&&/[\\u0900-\\u097F]/.test(value)
+    key.length===1&&!/\s/.test(key)&&/[\u0900-\u097F]/.test(value)
   );
   (m.rules||[]).forEach(rule=>entries.push([rule.f,rule.r]));
   return [...new Map(entries.map(([key,value])=>[key,[key,value]])).values()]
