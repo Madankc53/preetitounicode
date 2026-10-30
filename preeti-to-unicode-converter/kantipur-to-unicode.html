@@ -238,12 +238,21 @@
     if (!raw) return "";
     let map = MAPS[currentFont];
     if (currentMode === "k2u") {
-      // forward: kantipur ascii -> unicode
-      let result = "";
-      for (let ch of raw) result += map[ch] || ch;
-      // post: fix halant & vowel order
-      result = result.replace(/ि([क-ह])/g, "$1ि");
-      return result;
+      // Forward conversion: prefer the longest matching key sequence.
+      const keys = Object.keys(map).sort((a,b) => b.length - a.length);
+      let result = "", i = 0;
+      while (i < raw.length) {
+        const key = keys.find(candidate => raw.startsWith(candidate, i));
+        if (key) {
+          result += map[key];
+          i += key.length;
+        } else {
+          result += raw[i];
+          i++;
+        }
+      }
+      // Reposition the short-i vowel sign after its consonant.
+      return result.replace(/ि([क-ह])/g, "$1ि");
     } else {
       // reverse: unicode -> kantipur ascii
       let revMap = buildReverse(map);
