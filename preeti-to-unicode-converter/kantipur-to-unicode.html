@@ -107,7 +107,14 @@
 
 <section class="hero">
   <h1>Kantipur ⇄ Unicode<br><span style="font-size:0.7em; opacity:0.9;">Legacy Nepali Font Converter</span></h1>
-  <p class="hero-sub">Convert Kantipur text to Nepali Unicode or back again. Paste text or upload DOCX/TXT files for text extraction.</p>
+  <p class="hero-sub">Convert text typed with the Kantipur or Preeti legacy font into Nepali Unicode. Choose the source font, paste the original text, and review the output before copying or downloading.</p>
+</section>
+
+<section style="max-width:900px;margin:30px auto;padding:0 20px;line-height:1.7">
+  <h2>Choose the correct legacy font</h2>
+  <p>Kantipur and Preeti use different keyboard mappings. Select the font applied to the original text before converting. This tool provides separate options for both. Its mapping should be treated as best-effort for uncommon symbols and joined letters, so compare important names and official wording against the source document.</p>
+  <p>DOCX uploads are read for text extraction; original page layout, tables, images and formatting are not preserved. The converted files are downloaded as TXT. For modern websites, email and online forms, Unicode is generally the more portable format.</p>
+  <p>For the main Preeti workflow, visit the <a href="/preeti-to-unicode-converter/">Preeti to Unicode converter</a>. To convert in the opposite direction, use the <a href="/unicode-to-preeti-converter/">Unicode to Preeti converter</a>.</p>
 </section>
 
 <div class="wrap">
@@ -169,7 +176,7 @@
           <input type="file" id="fileInput" multiple accept=".txt,.docx" style="display:none" onchange="handleFiles(this.files)">
           <div style="font-size:28px;">📄</div>
           <h4>Drag & drop files here</h4>
-          <p>.docx or .txt · 100% local processing</p>
+          <p>.docx or .txt · Text is extracted and converted in your browser; original document formatting is not preserved.</p>
           <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24' fill='none' stroke='%23003893' stroke-width='1.2'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpolyline points='14 2 14 8 20 8'/%3E%3C/svg%3E" alt="upload icon" loading="lazy" style="width:36px; margin-top:6px;">
         </div>
         <div id="fileList" class="file-list" style="margin-top:8px;"></div>
@@ -270,9 +277,12 @@
   }
 
   function updateUIFromRaw() {
+    const fontName = currentFont === "kantipur" ? "Kantipur" : "Preeti";
+    inputLabel.innerText = currentMode === "k2u" ? fontName + " Input" : "Unicode Input";
+    outputLabel.innerText = currentMode === "k2u" ? "Unicode Output" : fontName + " Output";
     if (currentMode === "k2u") {
       kantipurDisplay.value = rawInput;
-      kantipurDisplay.classList.toggle("ph", !disp);
+      kantipurDisplay.classList.toggle("ph", !rawInput);
       kantipurDisplay.style.display = "block";
       uniInputArea.style.display = "none";
     } else {
@@ -300,8 +310,6 @@
     currentMode = mode;
     document.getElementById("modeK2U").classList.toggle("on", mode==="k2u");
     document.getElementById("modeU2K").classList.toggle("on", mode==="u2k");
-    inputLabel.innerText = mode==="k2u" ? "Kantipur Input" : "Unicode Input";
-    outputLabel.innerText = mode==="k2u" ? "Unicode Output" : "Kantipur Output";
     // Use the previous conversion result as the next direction input.
     if (mode !== previousMode) rawInput = outputBox.classList.contains("empty") ? "" : outputBox.innerText;
     updateUIFromRaw();
