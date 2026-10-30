@@ -181,6 +181,8 @@ nav.topnav{
 .font-tabs{display:flex;gap:4px}
 .font-tab{font-family:'Outfit',sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:6px 14px;border-radius:7px;cursor:pointer;border:1.5px solid var(--border);background:var(--surface);color:var(--muted);transition:all var(--tr)}
 .font-tab:hover{border-color:var(--blue);color:var(--blue)}
+.font-tab:disabled{cursor:not-allowed;opacity:.48}
+.font-status{flex-basis:100%;margin:2px 0 0;color:var(--muted);font-size:11px;line-height:1.5}
 .font-tab.active{background:var(--blue);border-color:var(--blue);color:#fff}
 
 /* Mode pills */
@@ -408,12 +410,12 @@ footer a:hover{text-decoration:underline}
   <div class="hero-grain" aria-hidden="true"></div>
   <div class="hero-eyebrow"><div class="hero-flag">🇳🇵</div>Free · No signup · Local conversion</div>
   <h1 id="hero-h1" class="fu fu1">Preeti to Unicode<br><span class="deva">Converter</span></h1>
-  <p class="hero-sub fu fu2">Convert Preeti font text to Nepali Unicode instantly. Paste text or upload .docx and .txt files. Also supports Kantipur and Sagarmatha, with conversion processed in your browser.</p>
+  <p class="hero-sub fu fu2">Convert Preeti font text to Nepali Unicode in your browser. Paste text or upload .docx and .txt files.</p>
   <div class="hero-badges fu fu3">
     <span class="badge">✓ No character limit</span>
     <span class="badge">✓ Upload .docx &amp; .txt</span>
     <span class="badge">✓ Export Word / TXT / HTML</span>
-    <span class="badge">✓ Kantipur &amp; Sagarmatha</span>
+    <span class="badge">✓ Focused on Preeti conversion</span>
     <span class="badge">✓ Dark mode</span>
     <span class="badge">✓ Zero server data</span>
   </div>
@@ -442,9 +444,10 @@ footer a:hover{text-decoration:underline}
       <span class="toolbar-label">Font:</span>
       <div class="font-tabs" role="tablist" aria-label="Font selection">
         <button class="font-tab active" role="tab" aria-selected="true" data-font="preeti" onclick="setFont('preeti',this)">Preeti</button>
-        <button class="font-tab" role="tab" aria-selected="false" data-font="kantipur" onclick="setFont('kantipur',this)">Kantipur</button>
-        <button class="font-tab" role="tab" aria-selected="false" data-font="sagarmatha" onclick="setFont('sagarmatha',this)">Sagarmatha</button>
+        <button class="font-tab" role="tab" aria-selected="false" data-font="kantipur" aria-disabled="true" disabled title="Temporarily unavailable while accuracy is being verified">Kantipur · testing</button>
+        <button class="font-tab" role="tab" aria-selected="false" data-font="sagarmatha" aria-disabled="true" disabled title="Temporarily unavailable while accuracy is being verified">Sagarmatha · testing</button>
       </div>
+      <p class="font-status" role="note">Preeti is the active, priority font. Kantipur and Sagarmatha are temporarily disabled until their conversion maps pass accuracy testing.</p>
       <div class="mode-pills" role="group" aria-label="Conversion direction">
         <button class="mode-pill on" id="btn-pu" onclick="setMode('pu')" aria-pressed="true">Font → Unicode</button>
         <button class="mode-pill" id="btn-up" onclick="setMode('up')" aria-pressed="false">Unicode → Font</button>
