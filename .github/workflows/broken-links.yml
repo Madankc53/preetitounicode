@@ -1,23 +1,60 @@
 name: Check Repository Files for Broken Links
 
+# Checks outbound (external) links only. Internal links, canonical tags and
+# structured data are checked in a few seconds by check.yml / scripts/check_site.py.
+# Known-bad hosts are skipped in .lycheeignore.
 on:
   push:
     branches:
       - main
+    paths:
+      - '**/*.html'
+      - '**/*.md'
+      - '.lycheeignore'
+      - '.github/workflows/broken-links.yml'
   pull_request:
     branches:
       - main
+    paths:
+      - '**/*.html'
+      - '**/*.md'
+      - '.lycheeignore'
+      - '.github/workflows/broken-links.yml'
+  schedule:
+    - cron: '0 3 * * 1'   # Mondays: catches outbound links that die over time
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   repo_link_checker:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: lychee-${{ github.run_id }}
+          restore-keys: lychee-
+
       - name: Check Code Links
         uses: lycheeverse/lychee-action@v2
         with:
-          # Checks all markdown and HTML files in your project directory
-          args: --verbose './**/*.md' './**/*.html'
-
+          # --scheme: only web links (root-relative links are covered by check_site.py)
+          # --timeout/--max-retries: a dead host costs ~10s once, not minutes
+          # --cache: skip links that passed in the last day
+          args: >-
+            --no-progress
+            --scheme https --scheme http
+            --root-dir ${{ github.workspace }}
+            --fallback-extensions html
+            --timeout 10 --max-retries 1 --retry-wait-time 2
+            --max-concurrency 32
+            --cache --max-cache-age 1d
+            --accept 200,203,204,206,429
+            './**/*.html' './**/*.md'
