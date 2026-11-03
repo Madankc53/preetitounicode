@@ -12,21 +12,6 @@
   <script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.min.js"></script>
   
   <style>
-    @font-face {
-      font-family: 'Preeti';
-      src: url('https://cdn.jsdelivr.net/npm/@fontsource/preeti@4.5.0/files/preeti-latin-400-normal.woff2') format('woff2'),
-           url('https://fonts.cdnfonts.com/s/14783/Preeti.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Kantipur';
-      src: url('https://fonts.cdnfonts.com/s/14783/Kantipur.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
 
     * {
       margin: 0;
@@ -263,6 +248,16 @@
       font-family: 'Outfit', sans-serif;
       font-size: 15px;
     }
+    .font-notice {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: var(--blue-light);
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .font-notice a { color: var(--blue); font-weight: 600; }
 
     .divider-col {
       display: flex;
@@ -470,6 +465,7 @@
       <div class="panel">
         <div class="panel-header"><div class="dot red"></div> <span id="outputLabel">Preeti Output (Visual)</span></div>
         <div id="outputBox" class="output-box empty" role="textbox" tabindex="0">✨ Preeti font text appears here…</div>
+        <div id="fontNotice" class="font-notice" hidden>Preview tip: the Preeti font is not installed on this device, so the preview above shows plain letters instead of Nepali glyphs. Your text is converted correctly and will look right once pasted into Word with Preeti installed. <a href="/download-preeti-font">How to install the Preeti font →</a></div>
         <div class="count-row">
           <span>📖 चरित्र: <strong id="outChar">0</strong></span>
           <span>📝 शब्द: <strong id="outWord">0</strong></span>
@@ -740,7 +736,26 @@
   const savedSize = localStorage.getItem('preeti_out_size'); if(savedSize) { range.value = savedSize; sizeSpan.innerText = savedSize+'px'; document.documentElement.style.setProperty('--out-size', savedSize+'px'); }
   const savedTheme = localStorage.getItem('preeti_theme'); if(savedTheme === 'dark') document.documentElement.setAttribute('data-theme','dark');
   document.getElementById('swapDirectionBtn').href = '/preeti-to-unicode-converter/';
-  
+
+  // Preeti is a legacy font that must be installed on the device. Without it the preview
+  // shows plain letters, so say so instead of looking broken.
+  (function () {
+    function fontInstalled(name) {
+      try {
+        const ctx = document.createElement('canvas').getContext('2d');
+        const sample = 'mmmmmmmmmmlliWg]kfn';
+        return ['monospace', 'serif', 'sans-serif'].some(base => {
+          ctx.font = '72px ' + base;
+          const baseWidth = ctx.measureText(sample).width;
+          ctx.font = '72px "' + name + '", ' + base;
+          return ctx.measureText(sample).width !== baseWidth;
+        });
+      } catch (e) { return true; }
+    }
+    const notice = document.getElementById('fontNotice');
+    if (notice && !fontInstalled('Preeti')) notice.hidden = false;
+  })();
+
   onFontChange();
 </script>
 </body>

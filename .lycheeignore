@@ -1,0 +1,20 @@
+# One regex per line. lychee skips any link that matches.
+# Everything below was checked in a CI run on 2026-11-01 and either cannot be
+# fetched from GitHub's runners or is not meant to be fetched.
+
+# Our own site: internal links, canonicals and structured data are checked by
+# scripts/check_site.py, and new pages would 404 here until they are deployed.
+^https?://converter\.thenepal\.io
+
+# XML / schema namespace URLs, not pages
+^https?://(www\.)?schema\.org
+^https?://(www\.)?w3\.org
+^https?://ogp\.me
+
+# Time out or are blocked from GitHub runner IPs (they open fine in a browser)
+^https?://(www\.)?madankc\.com\.np
+^https?://(www\.)?hamropatro\.com
+^https?://patro\.nepal\.gov\.np
+^https?://(www\.)?vedicmarga\.com
+^https?://optout\.aboutads\.info
+^https?://fonts\.googleapis\.com
