@@ -21,3 +21,6 @@ jobs:
 
       - name: Check links, canonicals and structured data
         run: python3 scripts/check_site.py
+
+      - name: Check BS calendar data copies and anchor dates
+        run: python3 scripts/check_bs_data.py
