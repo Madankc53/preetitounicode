@@ -1,0 +1,26 @@
+name: Preeti conversion engine tests
+
+on:
+  push:
+    paths:
+      - "preeti-to-unicode-converter/index.html"
+      - "preeti-to-unicode-converter/tests/**"
+      - ".github/workflows/preeti-engine-tests.yml"
+  pull_request:
+    paths:
+      - "preeti-to-unicode-converter/index.html"
+      - "preeti-to-unicode-converter/tests/**"
+      - ".github/workflows/preeti-engine-tests.yml"
+
+jobs:
+  preeti-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Run Preeti engine regression tests
+        run: node --test preeti-to-unicode-converter/tests/preeti-engine.test.cjs
