@@ -10,7 +10,13 @@ NRB_API_BASE can be overridden for testing.
 import datetime as dt
 import json
 import os
+import re
+import socket
+import ssl
+import subprocess
 import sys
+import tempfile
+import urllib.error
 import urllib.parse
 import urllib.request
 
@@ -20,10 +26,80 @@ NPT = dt.timezone(dt.timedelta(hours=5, minutes=45))
 LOOKBACK_DAYS = 7
 
 
+def _openssl(args, data=None):
+    return subprocess.run(["openssl"] + args, input=data, capture_output=True, check=True, timeout=30).stdout
+
+
+def context_with_missing_intermediate(url):
+    """Some servers (NRB at the moment) send only their own certificate and not the
+    intermediate CA, so Python fails with "unable to get local issuer certificate"
+    even though browsers cope. Do what browsers do: read the certificate's
+    "CA Issuers" link, download the intermediate and trust it *as a chain
+    link only*. The chain must still end at a root the system already trusts."""
+    parts = urllib.parse.urlsplit(url)
+    host, port = parts.hostname, parts.port or 443
+    chain = _openssl(["s_client", "-connect", "%s:%d" % (host, port), "-servername", host, "-showcerts"], data=b"")
+    leaf = re.search(rb"-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----", chain, re.S)
+    if not leaf:
+        raise RuntimeError("no certificate received from " + host)
+    text = _openssl(["x509", "-noout", "-text"], data=leaf.group(0)).decode("utf-8", "replace")
+    m = re.search(r"CA Issuers - URI:(http://\S+)", text)
+    if not m:
+        raise RuntimeError("certificate has no CA Issuers link")
+    der = urllib.request.urlopen(m.group(1), timeout=30).read()
+    try:
+        pem = _openssl(["x509", "-inform", "DER", "-outform", "PEM"], data=der)
+    except subprocess.CalledProcessError:  # some CAs publish a PKCS#7 bundle instead
+        pem = _openssl(["pkcs7", "-inform", "DER", "-print_certs"], data=der)
+    # The intermediate arrives over plain HTTP, so it must prove itself: keep only
+    # certificates that verify against the roots the system already trusts. (Python's
+    # default context treats any certificate in its store as a trust anchor, so loading
+    # an unchecked download would let anyone who can tamper with that HTTP response
+    # impersonate the server.)
+    blocks = re.findall(rb"-----BEGIN CERTIFICATE-----.*?-----END CERTIFICATE-----\n?", pem, re.S)
+    if not blocks:
+        raise RuntimeError("no intermediate certificate downloaded")
+    paths = ssl.get_default_verify_paths()
+    ctx = ssl.create_default_context()
+    with tempfile.TemporaryDirectory() as tmp:
+        allf = os.path.join(tmp, "all.pem")
+        with open(allf, "wb") as fh:
+            fh.write(b"".join(blocks))
+        good = []
+        for i, blk in enumerate(blocks):
+            one = os.path.join(tmp, "c%d.pem" % i)
+            with open(one, "wb") as fh:
+                fh.write(blk)
+            cmd = ["verify", "-untrusted", allf]
+            cafile = os.environ.get("SSL_CERT_FILE") or paths.cafile or paths.openssl_cafile
+            if cafile and os.path.exists(cafile):
+                cmd += ["-CAfile", cafile]
+            capath = os.environ.get("SSL_CERT_DIR") or paths.capath or paths.openssl_capath
+            if capath and os.path.isdir(capath):
+                cmd += ["-CApath", capath]
+            try:
+                _openssl(cmd + [one])
+                good.append(blk)
+            except subprocess.CalledProcessError:
+                pass
+        if not good:
+            raise RuntimeError("downloaded intermediate does not chain to a trusted root")
+        ctx.load_verify_locations(cadata=b"".join(good).decode("ascii"))
+    return ctx
+
+
 def fetch_day(day):
     q = urllib.parse.urlencode({"from": day, "to": day, "per_page": 100, "page": 1})
-    req = urllib.request.Request(BASE + "?" + q, headers={"User-Agent": "thenepal.io-rates-updater (+https://converter.thenepal.io)"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    url = BASE + "?" + q
+    req = urllib.request.Request(url, headers={"User-Agent": "thenepal.io-rates-updater (+https://converter.thenepal.io)"})
+    try:
+        r = urllib.request.urlopen(req, timeout=30)
+    except urllib.error.URLError as e:
+        if not isinstance(e.reason, ssl.SSLCertVerificationError):
+            raise
+        print("TLS chain incomplete (%s); fetching the intermediate certificate" % e.reason, file=sys.stderr)
+        r = urllib.request.urlopen(req, timeout=30, context=context_with_missing_intermediate(url))
+    with r:
         return json.loads(r.read().decode("utf-8"))
 
 
