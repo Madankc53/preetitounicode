@@ -1,0 +1,11 @@
+# Files that live in the repo but should not be served from converter.thenepal.io
+scripts/
+.github/
+*.py
+*.zip
+credentials.json
+wrangler.toml
+node_modules/
+.gitignore
+README*
+*.md
