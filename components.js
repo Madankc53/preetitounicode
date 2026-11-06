@@ -49,7 +49,6 @@
             // Execute any scripts inside the loaded content
             executeScripts(element);
             
-            console.log(`✅ Loaded ${url} successfully`);
         } catch (error) {
             console.error(`❌ Failed to load ${url}:`, error);
             element.innerHTML = `<div style="color:red; text-align:center; padding:20px;">
@@ -79,46 +78,4 @@
         }
     });
 
-    // ====================== MOBILE MENU ======================
-    const toggleBtn = document.getElementById('mobileMenuToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    if (toggleBtn && mobileMenu) {
-        toggleBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            mobileMenu.classList.toggle('active');
-            
-            // Toggle between hamburger and close icon
-            if (mobileMenu.classList.contains('active')) {
-                this.innerHTML = '✕';
-                this.style.fontSize = '32px';
-                this.style.fontWeight = 'bold';
-            } else {
-                this.innerHTML = '<span class="hamburger"></span>';
-                this.style.fontSize = '28px';
-            }
-        });
-
-        // Close menu when a link is clicked
-        document.querySelectorAll('.mobile-nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                toggleBtn.innerHTML = '<span class="hamburger"></span>';
-                toggleBtn.style.fontSize = '28px';
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', function (e) {
-            if (!mobileMenu.contains(e.target) && !toggleBtn.contains(e.target)) {
-                mobileMenu.classList.remove('active');
-                toggleBtn.innerHTML = '<span class="hamburger"></span>';
-                toggleBtn.style.fontSize = '28px';
-            }
-        });
-    } else {
-        console.warn('Mobile menu elements not found. Check that header.html has ids: mobileMenuToggle and mobileMenu');
-    }
-
-    console.log('🚀 thenepal.io components loaded successfully');
 })();

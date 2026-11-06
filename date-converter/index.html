@@ -164,8 +164,11 @@ footer a{color:var(--gold)}
 @media(max-width:560px){.row3{grid-template-columns:1fr 1fr;grid-template-areas:"month month""year day"}.row3 .field:nth-child(1){grid-area:year}.row3 .field:nth-child(2){grid-area:month}.row3 .field:nth-child(3){grid-area:day}.info-grid{grid-template-columns:1fr}.rel-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}}
 @media(max-width:380px){.hdr h1{font-size:.82rem}.hdr-btn{padding:4px 8px;font-size:.67rem}}
 </style>
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
+<div id="header" style="min-height:61px"></div>
 <a class="skip" href="#main">Skip to main content</a>
 
 <header class="hdr" role="banner">
@@ -418,18 +421,6 @@ footer a{color:var(--gold)}
   </div>
 </div>
 
-<footer>
-  <div class="ftl">
-    <a href="https://thenepal.io/">TheNepal.io</a>
-    <a href="https://madankc.com.np/">MadanKC.com.np</a>
-    <a href="https://converter.thenepal.io/date-converter/">Date Converter</a>
-    <a href="https://converter.thenepal.io/bs-to-ad/">BS to AD</a>
-    <a href="https://converter.thenepal.io/ad-to-bs/">AD to BS</a>
-    <a href="https://hamropatro.com/" rel="noopener noreferrer" target="_blank">Hamro Patro</a>
-  </div>
-  <div>© <span id="ftr-year"></span> TheNepal.io · Nepali Date Converter · Accurate 2000–2090 BS</div>
-  <div style="margin-top:4px">Base: 2000-01-01 BS = 1943-04-14 AD · Built by <a href="https://madankc.com.np/">Madan KC</a></div>
-</footer>
 
 <div class="sticky-mob-ad" aria-label="Advertisement">
   <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334"></ins>
@@ -601,7 +592,7 @@ function renderToday(){
   document.getElementById('sw-bs').textContent=bsFull;
   document.getElementById('sw-ad').textContent=adFull;
   document.getElementById('sw-day').textContent=r.day+' · '+r.month;
-  document.getElementById('ftr-year').textContent=new Date().getUTCFullYear();
+  (document.getElementById('ftr-year')||{}).textContent=new Date().getUTCFullYear();
 }
 
 let activeTab='bs2ad';
@@ -694,5 +685,7 @@ function toggleFaq(el){const item=el.closest('.faq-item');const open=item.classL
 renderToday();
 </script>
 <script src="/sw-register.js" defer></script>
+<div id="footer"></div>
+<script src="/components.js"></script>
 </body>
 </html>

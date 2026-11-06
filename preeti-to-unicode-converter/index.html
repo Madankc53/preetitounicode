@@ -493,20 +493,13 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
 }
 
 </style>
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
+<div id="header" style="min-height:61px"></div>
 
 <!-- NAV -->
-<nav class="topnav" aria-label="Main navigation">
-  <a class="nav-logo" href="https://converter.thenepal.io/">converter.<span>thenepal</span>.io</a>
-  <div class="nav-links">
-    <a href="/preeti-to-unicode-converter/" class="active">Preeti → Unicode</a>
-    <a href="/unicode-to-preeti-converter/">Unicode → Preeti</a>
-    <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur</a>
-    <a href="/date-converter/">Date Converter</a>
-  </div>
-  <button class="nav-theme" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
-</nav>
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-h1">
@@ -802,10 +795,6 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
 
 </div><!-- /content-wrap -->
 
-<footer>
-  <p>Built with ❤️ for Nepal 🇳🇵 · Free forever · <a href="/date-converter/">📅 Date Converter</a> · <a href="https://madankc.com.np">madankc.com.np</a> · <a href="https://converter.thenepal.io/">All Tools</a></p>
-  <div class="footer-v">v3.0.0 · Preeti to Unicode Converter · converter.thenepal.io · Updated 30 October 2026</div>
-</footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -1249,5 +1238,7 @@ function toast(msg){
 </script>
 
 <script src="/sw-register.js" defer></script>
+<div id="footer"></div>
+<script src="/components.js"></script>
 </body>
 </html>

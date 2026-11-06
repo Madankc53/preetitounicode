@@ -91,19 +91,12 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://converter.thenepal.io/preeti-to-unicode-converter/kantipur-to-unicode">
   <meta property="og:site_name" content="TheNepal.io">
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
+<div id="header" style="min-height:61px"></div>
 
-<nav>
-  <a class="nav-logo" href="/">the<span>nepal</span>.io</a>
-  <div class="nav-links">
-    <a href="/preeti-to-unicode-converter/kantipur-to-unicode" class="active">Kantipur → Unicode</a>
-    <a href="/preeti-to-unicode-converter/">Preeti Converter</a>
-    <a href="/date-converter/">Date Converter</a>
-  </div>
-  <button class="install-btn" id="installBtn">📲 Install App</button>
-  <button class="nav-theme" id="themeBtn" aria-label="Dark mode">🌙</button>
-</nav>
 
 <section class="hero">
   <h1>Kantipur ⇄ Unicode<br><span style="font-size:0.7em; opacity:0.9;">Legacy Nepali Font Converter</span></h1>
@@ -195,10 +188,6 @@
   </div>
 </div>
 
-<footer>
-  <p>🇳🇵 Kantipur and Preeti text converter · Text conversion runs in your browser · Review results before using important documents</p>
-  <p style="font-size:10px; margin-top:6px;">thenepal.io – Preserving Nepali digital heritage</p>
-</footer>
 <div id="toastMessage" class="toast"></div>
 
 <script>
@@ -376,12 +365,12 @@
   document.getElementById("sizeSlider").oninput=(e)=>setFontSize(e.target.value);
   // install PWA
   let deferredPrompt;
-  window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; document.getElementById("installBtn").style.display="inline-flex"; });
-  document.getElementById("installBtn").onclick=()=>{ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; }); } else toast("Install via browser menu"); };
+  window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); deferredPrompt=e; (document.getElementById("installBtn")||document.createElement("i")).style.display="inline-flex"; });
+  (document.getElementById("installBtn")||document.createElement("i")).onclick=()=>{ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.userChoice.then(()=>{ deferredPrompt=null; }); } else toast("Install via browser menu"); };
   // theme
   let theme=localStorage.getItem("kantipurTheme")||"light";
   if(theme==="dark") document.documentElement.setAttribute("data-theme","dark");
-  document.getElementById("themeBtn").onclick=()=>{ let cur=document.documentElement.getAttribute("data-theme"); let next=cur==="dark"?"light":"dark"; document.documentElement.setAttribute("data-theme",next); localStorage.setItem("kantipurTheme",next); };
+  (document.getElementById("themeBtn")||document.createElement("i")).onclick=()=>{ let cur=document.documentElement.getAttribute("data-theme"); let next=cur==="dark"?"light":"dark"; document.documentElement.setAttribute("data-theme",next); localStorage.setItem("kantipurTheme",next); };
   // smart clipboard detection
   async function detectClipboard(){ try{ let txt=await navigator.clipboard.readText(); if(txt && /[kKgGcCjJtTdDpPfbBmM]/.test(txt) && !/[\u0900-\u097F]/.test(txt)) toast("📋 Clipboard looks like Kantipur text. Paste with button above."); }catch(e){} }
   function toast(msg){ let t=document.getElementById("toastMessage"); t.innerText=msg; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2000); }
@@ -390,5 +379,7 @@
   init();
 </script>
 <script src="/sw-register.js" defer></script>
+<div id="footer"></div>
+<script src="/components.js"></script>
 </body>
 </html>

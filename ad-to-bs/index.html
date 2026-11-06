@@ -363,9 +363,11 @@ footer a{color:var(--gold);}
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
-<div id="header"></div>
+<div id="header" style="min-height:61px"></div>
 <!-- ══ HEADER ══ -->
 <header class="hdr" role="banner">
   <div class="wrap">
@@ -711,18 +713,6 @@ footer a{color:var(--gold);}
 
 </main>
 
-<footer role="contentinfo">
-  <div class="wrap">
-    <div class="ftl">
-      <a href="https://thenepal.io">TheNepal.io</a>
-      <a href="https://madankc.com.np">MadanKC.com.np</a>
-      <a href="https://thenepal.io/privacy">Privacy</a>
-      <a href="https://thenepal.io/contact">Contact</a>
-    </div>
-    <p>AD to BS Converter · Gregorian to Bikram Sambat · 1943–2034 AD<br>
-    © <span id="fy"></span> TheNepal.io · Built for Nepal 🇳🇵</p>
-  </div>
-</footer>
 
 <div id="toast" role="status" aria-live="polite"></div>
 
@@ -1551,7 +1541,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.getElementById("btn-ad-clear").addEventListener("click",()=>chipReset("ad"));
 
   // Footer year
-  document.getElementById("fy").textContent=new Date().getFullYear();
+  (document.getElementById("fy")||{}).textContent=new Date().getFullYear();
 
   // FAQ accordion
   document.querySelectorAll(".faq-q").forEach(q=>{

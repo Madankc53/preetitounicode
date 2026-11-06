@@ -64,15 +64,11 @@ footer a{color:var(--t1);text-decoration:none;margin:0 .5rem}
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
-<header class="hdr">
-  <a href="/" class="logo"><div class="logo-ic">🔤</div>&nbsp;Nepali Converter</a>
-  <nav>
-    <a href="/">Converter</a><a href="/preeti-unicode-guide/">What is Preeti?</a>
-    <a href="/download-preeti-font/" class="on">Download Preeti</a>
-  </nav>
-</header>
+<div id="header" style="min-height:61px"></div>
 
 <nav class="bc"><a href="/">Home</a> › Download Preeti Font</nav>
 
@@ -162,7 +158,8 @@ footer a{color:var(--t1);text-decoration:none;margin:0 .5rem}
   </div>
 </div>
 
-<footer>© 2025 Nepali Converter · <a href="/">Home</a><a href="/preeti-unicode-guide/">What is Preeti?</a><a href="/preeti-to-unicode-converter/">Preeti→Unicode</a><a href="/preeti-unicode-guide/">Unicode vs Preeti</a></footer>
 <script src="/sw-register.js" defer></script>
+<div id="footer"></div>
+<script src="/components.js"></script>
 </body>
 </html>
