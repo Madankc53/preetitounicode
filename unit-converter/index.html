@@ -255,31 +255,6 @@
 <div id="footer"></div>
 
 <script>
-    // ------------------------------------------------------------------
-    // 1. AUTOMATIC HEADER & FOOTER (inline, no external file)
-    // ------------------------------------------------------------------
-    function loadHeaderFooter() {
-        const headerDiv = document.getElementById('header');
-        const footerDiv = document.getElementById('footer');
-        
-        if (headerDiv) {
-            headerDiv.innerHTML = `
-                <div class="auto-header">
-                    <h2>🇳🇵 नेपाल युनिट कन्भर्टर</h2>
-                    <p>सबै एकाईहरूको सही र छिटो रूपान्तरण • निःशुल्क</p>
-                </div>
-            `;
-        }
-        
-        if (footerDiv) {
-            footerDiv.innerHTML = `
-                <div class="auto-footer">
-                    <p>🔁 शतप्रतिशत सटीक रूपान्तरण | डाटा तपाईंको ब्राउजरमा प्रशोधन हुन्छ | निःशुल्क प्रयोग गर्नुहोस्</p>
-                    <p>© 2025 युनिट कन्भर्टर | सही मापनको लागि आधिकारिक मान प्रयोग गरिएको</p>
-                </div>
-            `;
-        }
-    }
     
     // ------------------------------------------------------------------
     // 2. UNIT CONVERSION LOGIC
@@ -557,7 +532,6 @@
     // 3. INITIALIZE EVERYTHING
     // ------------------------------------------------------------------
     document.addEventListener("DOMContentLoaded", () => {
-        loadHeaderFooter();   // injects header and footer
         initCategoryTabs();
         renderConverterUI();
         addSchema();
