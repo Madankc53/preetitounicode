@@ -53,9 +53,11 @@ th{background:var(--card);color:var(--ink)}
 td{color:var(--ink2)}
 @media (max-width:560px){th,td{padding:8px}}
 </style>
+<link rel="preload" href="/header.html" as="fetch" crossorigin>
+<link rel="preload" href="/footer.html" as="fetch" crossorigin>
 </head>
 <body>
-<div id="header"></div>
+<div id="header" style="min-height:61px"></div>
 <main class="page" id="main-content">
   <p class="eyebrow">Privacy</p>
   <h1>Privacy Policy</h1>
