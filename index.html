@@ -196,6 +196,11 @@
     .tool-card:hover .tool-arrow{transform:translateX(3px);color:var(--ink2)}
 
     /* ── FESTIVAL STRIP ── */
+    .fest-links a{color:var(--red);font-weight:600}
+    .grp-head{font-family:'Tiro Devanagari Hindi',serif;font-size:1.05rem;margin:22px 0 10px;color:var(--ink)}
+    .grp-head:first-of-type{margin-top:6px}
+    .quick{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:16px}
+    .trust{font-size:.75rem;color:#B8B0A0;text-align:center;margin-top:14px;padding:0 12px}
     .fest-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:8px}
     .fest-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .13s,box-shadow .13s;display:flex;gap:12px;align-items:center}
     .fest-card:hover,.fest-card:focus{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.1);border-color:var(--red);outline:none}
@@ -273,8 +278,15 @@
 
   <div class="hero-cta">
     <a class="cta-btn" href="https://converter.thenepal.io/nepali-calendar-2083/">📅 Nepal Calendar 2083</a>
-    <a class="cta-btn ghost" href="https://converter.thenepal.io/bs-to-ad/" target="_blank" rel="noopener">🔄 BS → AD Converter</a>
+    <a class="cta-btn ghost" href="https://converter.thenepal.io/bs-to-ad/">🔄 BS → AD Converter</a>
   </div>
+  <div class="quick" id="quickLinks">
+    <a class="cta-btn ghost" id="qBhai" href="https://converter.thenepal.io/2083/tihar/bhai-tika">🪔 Bhai Tika 2083</a>
+    <a class="cta-btn ghost" href="https://converter.thenepal.io/2083/nepal-public-holidays">🗓️ Holidays 2083</a>
+    <a class="cta-btn ghost" href="https://converter.thenepal.io/preeti-to-unicode-converter/">🔤 Preeti → Unicode</a>
+    <a class="cta-btn ghost" href="https://converter.thenepal.io/currency/usd-to-npr">💵 USD → NPR</a>
+  </div>
+  <p class="trust">Dates checked against two independent BS calendar datasets and official anchor dates · reviewed Nov 2026</p>
 </header>
 
 <!-- TOP AD -->
@@ -287,8 +299,8 @@
 
   <!-- TOOLS -->
   <h2 class="sec-head">🛠️ All Tools <span class="sec-head-ne">सबै टुल्स</span></h2>
+  <h3 class="grp-head">📅 Dates &amp; Calendar <span class="sec-head-ne">मिति र पात्रो</span></h3>
   <div class="tools-grid" role="list">
-
     <a class="tool-card featured" href="https://converter.thenepal.io/today-nepali-date/" role="listitem">
       <div class="tool-icon">⏰</div>
       <div class="tool-body">
@@ -299,7 +311,6 @@
       </div>
       <span class="tool-arrow" aria-hidden="true">→</span>
     </a>
-
     <a class="tool-card featured" href="https://converter.thenepal.io/bs-to-ad/" target="_blank" rel="noopener" role="listitem">
       <div class="tool-icon">🔄</div>
       <div class="tool-body">
@@ -310,84 +321,6 @@
       </div>
       <span class="tool-arrow" aria-hidden="true">→</span>
     </a>
-
-    <a class="tool-card gold" href="https://converter.thenepal.io/nepali-calendar-2083/" role="listitem">
-      <div class="tool-icon">📅</div>
-      <div class="tool-body">
-        <div class="tool-title">Nepali Calendar 2083 BS</div>
-        <span class="tool-title-ne">नेपाली पात्रो २०८३</span>
-        <div class="tool-desc">Full year 2083 BS (2026/2027 AD). All 12 months with holidays, tithi, Dashain, Tihar dates. Click any date for details.</div>
-        <span class="tool-badge pop">2026–2027</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card gold" href="https://converter.thenepal.io/2084/calendar" role="listitem">
-      <div class="tool-icon">📆</div>
-      <div class="tool-body">
-        <div class="tool-title">Nepali Calendar 2084 BS</div>
-        <span class="tool-title-ne">नेपाली पात्रो २०८४</span>
-        <div class="tool-desc">Full year 2084 BS (2027/2028 AD). Baisakh 1 = April 13, 2027. No Mala Maas — regular 12-month year.</div>
-        <span class="tool-badge new">2027–2028</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
-      <div class="tool-icon">🗓️</div>
-      <div class="tool-body">
-        <div class="tool-title">Nepal Public Holidays 2083</div>
-        <span class="tool-title-ne">सार्वजनिक बिदा सूची २०८३</span>
-        <div class="tool-desc">Official MoHA gazette list. 52 holidays. Search by name, month or type. WhatsApp share on every holiday.</div>
-        <span class="tool-badge pop">Official MoHA</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card gold" href="https://converter.thenepal.io/2083/subha-sait" role="listitem">
-      <div class="tool-icon">💍</div>
-      <div class="tool-body">
-        <div class="tool-title">Shubha Sait 2083</div>
-        <span class="tool-title-ne">शुभ साइत २०८३</span>
-        <div class="tool-desc">41 auspicious marriage dates. Bratabandha, Pasni, Griha Pravesh. Filter by ceremony type. Share on WhatsApp.</div>
-        <span class="tool-badge pop">41 Dates</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card mala" href="https://converter.thenepal.io/2083/mala-mass" role="listitem">
-      <div class="tool-icon">🌙</div>
-      <div class="tool-body">
-        <div class="tool-title">Mala Maas 2083</div>
-        <span class="tool-title-ne">मला मास / अधिक मास २०८३</span>
-        <div class="tool-desc">Complete guide in Nepali & English. Why Dashain & Tihar are late in 2083. Do's & don'ts. Festival impact table.</div>
-        <span class="tool-badge free">Bilingual</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card teal" href="https://converter.thenepal.io/preeti-to-unicode-converter/" role="listitem">
-      <div class="tool-icon">🔤</div>
-      <div class="tool-body">
-        <div class="tool-title">Preeti ↔ Unicode Converter</div>
-        <span class="tool-title-ne">प्रिति युनिकोड कन्भर्टर</span>
-        <div class="tool-desc">Convert Preeti, Kantipur & PCS Nepali fonts to Unicode. Upload .docx/.txt. Batch convert. 100% private — no data sent to server.</div>
-        <span class="tool-badge free">Free · Offline</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card featured" href="https://converter.thenepal.io/date-converter/" role="listitem">
-      <div class="tool-icon">↔️</div>
-      <div class="tool-body">
-        <div class="tool-title">Nepali Date Converter (BS ↔ AD)</div>
-        <span class="tool-title-ne">मिति रूपान्तरण</span>
-        <div class="tool-desc">Convert Bikram Sambat to AD and AD to BS in one place. Covers 2000–2090 BS.</div>
-        <span class="tool-badge pop">Both ways</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
     <a class="tool-card blue" href="https://converter.thenepal.io/ad-to-bs/" role="listitem">
       <div class="tool-icon">📆</div>
       <div class="tool-body">
@@ -398,7 +331,66 @@
       </div>
       <span class="tool-arrow" aria-hidden="true">→</span>
     </a>
-
+    <a class="tool-card featured" href="https://converter.thenepal.io/date-converter/" role="listitem">
+      <div class="tool-icon">↔️</div>
+      <div class="tool-body">
+        <div class="tool-title">Nepali Date Converter (BS ↔ AD)</div>
+        <span class="tool-title-ne">मिति रूपान्तरण</span>
+        <div class="tool-desc">Convert Bikram Sambat to AD and AD to BS in one place. Covers 2000–2090 BS.</div>
+        <span class="tool-badge pop">Both ways</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card gold" href="https://converter.thenepal.io/nepali-calendar-2083/" role="listitem">
+      <div class="tool-icon">📅</div>
+      <div class="tool-body">
+        <div class="tool-title">Nepali Calendar 2083 BS</div>
+        <span class="tool-title-ne">नेपाली पात्रो २०८३</span>
+        <div class="tool-desc">Full year 2083 BS (2026/2027 AD). All 12 months with holidays, tithi, Dashain, Tihar dates. Click any date for details.</div>
+        <span class="tool-badge pop">2026–2027</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card gold" href="https://converter.thenepal.io/2084/calendar" role="listitem">
+      <div class="tool-icon">📆</div>
+      <div class="tool-body">
+        <div class="tool-title">Nepali Calendar 2084 BS</div>
+        <span class="tool-title-ne">नेपाली पात्रो २०८४</span>
+        <div class="tool-desc">Full year 2084 BS (2027/2028 AD). Baisakh 1 = April 14, 2027. No Mala Maas — regular 12-month year.</div>
+        <span class="tool-badge new">2027–2028</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card blue" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
+      <div class="tool-icon">🗓️</div>
+      <div class="tool-body">
+        <div class="tool-title">Nepal Public Holidays 2083</div>
+        <span class="tool-title-ne">सार्वजनिक बिदा सूची २०८३</span>
+        <div class="tool-desc">Public holidays for 2083 BS with BS and AD dates. Search by name, month or type. WhatsApp share on every holiday.</div>
+        <span class="tool-badge pop">Holiday list</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card gold" href="https://converter.thenepal.io/2083/subha-sait" role="listitem">
+      <div class="tool-icon">💍</div>
+      <div class="tool-body">
+        <div class="tool-title">Shubha Sait 2083</div>
+        <span class="tool-title-ne">शुभ साइत २०८३</span>
+        <div class="tool-desc">41 auspicious marriage dates. Bratabandha, Pasni, Griha Pravesh. Filter by ceremony type. Share on WhatsApp.</div>
+        <span class="tool-badge pop">41 Dates</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card mala" href="https://converter.thenepal.io/2083/mala-mass" role="listitem">
+      <div class="tool-icon">🌙</div>
+      <div class="tool-body">
+        <div class="tool-title">Mala Maas 2083</div>
+        <span class="tool-title-ne">मला मास / अधिक मास २०८३</span>
+        <div class="tool-desc">Complete guide in Nepali & English. Why Dashain & Tihar are late in 2083. Do's & don'ts. Festival impact table.</div>
+        <span class="tool-badge free">Bilingual</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
     <a class="tool-card green" href="https://converter.thenepal.io/calculator/age-calculator" role="listitem">
       <div class="tool-icon">🎂</div>
       <div class="tool-body">
@@ -409,139 +401,6 @@
       </div>
       <span class="tool-arrow" aria-hidden="true">→</span>
     </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/calculator/income-tax-calculator" role="listitem">
-      <div class="tool-icon">💼</div>
-      <div class="tool-body">
-        <div class="tool-title">Income Tax Calculator 2083/84</div>
-        <span class="tool-title-ne">आयकर क्यालकुलेटर</span>
-        <div class="tool-desc">Progressive tax slabs, SSF deductions, net income and effective rate for FY 2083/84.</div>
-        <span class="tool-badge new">FY 2083/84</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card gold" href="https://converter.thenepal.io/land-converter/" role="listitem">
-      <div class="tool-icon">🌾</div>
-      <div class="tool-body">
-        <div class="tool-title">Land Converter</div>
-        <span class="tool-title-ne">जग्गा रूपान्तरण</span>
-        <div class="tool-desc">Ropani, Aana, Paisa, Daam, Bigha, Kattha, Dhur, sq ft and sq m — convert instantly.</div>
-        <span class="tool-badge pop">Popular</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card green" href="https://converter.thenepal.io/unit-converter/" role="listitem">
-      <div class="tool-icon">📏</div>
-      <div class="tool-body">
-        <div class="tool-title">Unit Converter</div>
-        <span class="tool-title-ne">एकाई रूपान्तरण</span>
-        <div class="tool-desc">Length, weight, temperature, area and volume conversions.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/currency/" role="listitem">
-      <div class="tool-icon">💱</div>
-      <div class="tool-body">
-        <div class="tool-title">Currency Converter → NPR</div>
-        <span class="tool-title-ne">मुद्रा रूपान्तरण</span>
-        <div class="tool-desc">Today's USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD and JPY rates to Nepali rupee, plus a trip budget estimator.</div>
-        <span class="tool-badge hot">Daily rates</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/currency/inr-to-npr" role="listitem">
-      <div class="tool-icon">🇮🇳</div>
-      <div class="tool-body">
-        <div class="tool-title">INR → NPR Converter</div>
-        <span class="tool-title-ne">भारतीय रुपैयाँ → नेपाली रुपैयाँ</span>
-        <div class="tool-desc">Indian rupee to Nepali rupee at the fixed 1.60 peg, with a reverse calculator.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card teal" href="https://converter.thenepal.io/unicode-to-preeti-converter/" role="listitem">
-      <div class="tool-icon">🔡</div>
-      <div class="tool-body">
-        <div class="tool-title">Unicode → Preeti Converter</div>
-        <span class="tool-title-ne">युनिकोड → प्रिति</span>
-        <div class="tool-desc">Convert Unicode Nepali text to Preeti/Kantipur. Download as .txt or .docx, processed privately in your browser.</div>
-        <span class="tool-badge free">Free · Offline</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card teal" href="https://converter.thenepal.io/download-preeti-font" role="listitem">
-      <div class="tool-icon">⬇️</div>
-      <div class="tool-body">
-        <div class="tool-title">Download Preeti Font</div>
-        <span class="tool-title-ne">प्रिति फन्ट डाउनलोड</span>
-        <div class="tool-desc">Free Preeti font for Windows and Mac, with an install guide.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card teal" href="https://converter.thenepal.io/nepali-typing/" role="listitem">
-      <div class="tool-icon">⌨️</div>
-      <div class="tool-body">
-        <div class="tool-title">Roman to Nepali Typing</div>
-        <span class="tool-title-ne">रोमन → नेपाली टाइपिङ</span>
-        <div class="tool-desc">Type Nepali with English letters. namaste becomes नमस्ते.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card green" href="https://converter.thenepal.io/number-to-words/" role="listitem">
-      <div class="tool-icon">🔢</div>
-      <div class="tool-body">
-        <div class="tool-title">Number to Words</div>
-        <span class="tool-title-ne">अङ्क अक्षरमा</span>
-        <div class="tool-desc">Cheque-style amount in Nepali and English words, with lakh and crore.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/emi-calculator/" role="listitem">
-      <div class="tool-icon">🏦</div>
-      <div class="tool-body">
-        <div class="tool-title">EMI Calculator</div>
-        <span class="tool-title-ne">किस्ता क्याल्कुलेटर</span>
-        <div class="tool-desc">Monthly EMI, total interest and repayment schedule for any loan.</div>
-        <span class="tool-badge free">Free</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card blue" href="https://converter.thenepal.io/nrb-exchange-rates/" role="listitem">
-      <div class="tool-icon">💱</div>
-      <div class="tool-body">
-        <div class="tool-title">NRB Exchange Rates</div>
-        <span class="tool-title-ne">नेपाल राष्ट्र बैंकको दर</span>
-        <div class="tool-desc">Buying and selling rates published by Nepal Rastra Bank.</div>
-        <span class="tool-badge free">Daily rates</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
-    <a class="tool-card gold" href="https://converter.thenepal.io/gold-silver-price/" role="listitem">
-      <div class="tool-icon">🥇</div>
-      <div class="tool-body">
-        <div class="tool-title">Gold &amp; Silver Price</div>
-        <span class="tool-title-ne">सुन चाँदीको भाउ</span>
-        <div class="tool-desc">Rate per tola with a value calculator for tola, gram and ounce.</div>
-        <span class="tool-badge free">Daily rates</span>
-      </div>
-      <span class="tool-arrow" aria-hidden="true">→</span>
-    </a>
-
     <a class="tool-card gold" href="https://converter.thenepal.io/nepali-calendar-2082/" role="listitem">
       <div class="tool-icon">📅</div>
       <div class="tool-body">
@@ -552,7 +411,145 @@
       </div>
       <span class="tool-arrow" aria-hidden="true">→</span>
     </a>
-
+  </div>
+  <h3 class="grp-head">💱 Money &amp; Rates <span class="sec-head-ne">पैसा र दर</span></h3>
+  <div class="tools-grid" role="list">
+    <a class="tool-card blue" href="https://converter.thenepal.io/currency/" role="listitem">
+      <div class="tool-icon">💱</div>
+      <div class="tool-body">
+        <div class="tool-title">Currency Converter → NPR</div>
+        <span class="tool-title-ne">मुद्रा रूपान्तरण</span>
+        <div class="tool-desc">Today's USD, AED, SAR, QAR, KWD, MYR, EUR, GBP, AUD and JPY rates to Nepali rupee, plus a trip budget estimator.</div>
+        <span class="tool-badge hot">Daily rates</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card blue" href="https://converter.thenepal.io/nrb-exchange-rates/" role="listitem">
+      <div class="tool-icon">💱</div>
+      <div class="tool-body">
+        <div class="tool-title">NRB Exchange Rates</div>
+        <span class="tool-title-ne">नेपाल राष्ट्र बैंकको दर</span>
+        <div class="tool-desc">Buying and selling rates published by Nepal Rastra Bank.</div>
+        <span class="tool-badge free">Daily rates</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card gold" href="https://converter.thenepal.io/gold-silver-price/" role="listitem">
+      <div class="tool-icon">🥇</div>
+      <div class="tool-body">
+        <div class="tool-title">Gold &amp; Silver Price</div>
+        <span class="tool-title-ne">सुन चाँदीको भाउ</span>
+        <div class="tool-desc">Rate per tola with a value calculator for tola, gram and ounce.</div>
+        <span class="tool-badge free">Daily rates</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card blue" href="https://converter.thenepal.io/currency/inr-to-npr" role="listitem">
+      <div class="tool-icon">🇮🇳</div>
+      <div class="tool-body">
+        <div class="tool-title">INR → NPR Converter</div>
+        <span class="tool-title-ne">भारतीय रुपैयाँ → नेपाली रुपैयाँ</span>
+        <div class="tool-desc">Indian rupee to Nepali rupee at the fixed 1.60 peg, with a reverse calculator.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card blue" href="https://converter.thenepal.io/emi-calculator/" role="listitem">
+      <div class="tool-icon">🏦</div>
+      <div class="tool-body">
+        <div class="tool-title">EMI Calculator</div>
+        <span class="tool-title-ne">किस्ता क्याल्कुलेटर</span>
+        <div class="tool-desc">Monthly EMI, total interest and repayment schedule for any loan.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card blue" href="https://converter.thenepal.io/calculator/income-tax-calculator" role="listitem">
+      <div class="tool-icon">💼</div>
+      <div class="tool-body">
+        <div class="tool-title">Income Tax Calculator 2083/84</div>
+        <span class="tool-title-ne">आयकर क्यालकुलेटर</span>
+        <div class="tool-desc">Progressive tax slabs, SSF deductions, net income and effective rate for FY 2083/84.</div>
+        <span class="tool-badge new">FY 2083/84</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+  <h3 class="grp-head">🔤 Nepali Fonts &amp; Typing <span class="sec-head-ne">फन्ट र टाइपिङ</span></h3>
+  <div class="tools-grid" role="list">
+    <a class="tool-card teal" href="https://converter.thenepal.io/preeti-to-unicode-converter/" role="listitem">
+      <div class="tool-icon">🔤</div>
+      <div class="tool-body">
+        <div class="tool-title">Preeti ↔ Unicode Converter</div>
+        <span class="tool-title-ne">प्रिति युनिकोड कन्भर्टर</span>
+        <div class="tool-desc">Convert Preeti, Kantipur & PCS Nepali fonts to Unicode. Upload .docx/.txt. Batch convert. 100% private — no data sent to server.</div>
+        <span class="tool-badge free">Free · Offline</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card teal" href="https://converter.thenepal.io/unicode-to-preeti-converter/" role="listitem">
+      <div class="tool-icon">🔡</div>
+      <div class="tool-body">
+        <div class="tool-title">Unicode → Preeti Converter</div>
+        <span class="tool-title-ne">युनिकोड → प्रिति</span>
+        <div class="tool-desc">Convert Unicode Nepali text to Preeti/Kantipur. Download as .txt or .docx, processed privately in your browser.</div>
+        <span class="tool-badge free">Free · Offline</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card teal" href="https://converter.thenepal.io/download-preeti-font" role="listitem">
+      <div class="tool-icon">⬇️</div>
+      <div class="tool-body">
+        <div class="tool-title">Download Preeti Font</div>
+        <span class="tool-title-ne">प्रिति फन्ट डाउनलोड</span>
+        <div class="tool-desc">Free Preeti font for Windows and Mac, with an install guide.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card teal" href="https://converter.thenepal.io/nepali-typing/" role="listitem">
+      <div class="tool-icon">⌨️</div>
+      <div class="tool-body">
+        <div class="tool-title">Roman to Nepali Typing</div>
+        <span class="tool-title-ne">रोमन → नेपाली टाइपिङ</span>
+        <div class="tool-desc">Type Nepali with English letters. namaste becomes नमस्ते.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card green" href="https://converter.thenepal.io/number-to-words/" role="listitem">
+      <div class="tool-icon">🔢</div>
+      <div class="tool-body">
+        <div class="tool-title">Number to Words</div>
+        <span class="tool-title-ne">अङ्क अक्षरमा</span>
+        <div class="tool-desc">Cheque-style amount in Nepali and English words, with lakh and crore.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+  </div>
+  <h3 class="grp-head">📐 Measurement <span class="sec-head-ne">नापी</span></h3>
+  <div class="tools-grid" role="list">
+    <a class="tool-card gold" href="https://converter.thenepal.io/land-converter/" role="listitem">
+      <div class="tool-icon">🌾</div>
+      <div class="tool-body">
+        <div class="tool-title">Land Converter</div>
+        <span class="tool-title-ne">जग्गा रूपान्तरण</span>
+        <div class="tool-desc">Ropani, Aana, Paisa, Daam, Bigha, Kattha, Dhur, sq ft and sq m — convert instantly.</div>
+        <span class="tool-badge pop">Popular</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
+    <a class="tool-card green" href="https://converter.thenepal.io/unit-converter/" role="listitem">
+      <div class="tool-icon">📏</div>
+      <div class="tool-body">
+        <div class="tool-title">Unit Converter</div>
+        <span class="tool-title-ne">एकाई रूपान्तरण</span>
+        <div class="tool-desc">Length, weight, temperature, area and volume conversions.</div>
+        <span class="tool-badge free">Free</span>
+      </div>
+      <span class="tool-arrow" aria-hidden="true">→</span>
+    </a>
   </div>
 
   <!-- MID AD -->
@@ -562,64 +559,58 @@
   </div>
 
   <!-- FESTIVALS -->
-  <h2 class="sec-head">🎉 Festival Dates 2083 <span class="sec-head-ne">चाडपर्व मिति</span></h2>
-  <div class="fest-strip" role="list">
-
-    <a class="fest-card" href="https://converter.thenepal.io/nepali-calendar-2083/dashain-2083" role="listitem">
-      <div class="fest-date-blk"><div class="fest-bs">२५</div><div class="fest-m">असोज</div></div>
-      <div>
-        <div class="fest-name">Dashain — Ghatasthapana</div>
-        <span class="fest-name-ne">दशैं घटस्थापना</span>
-        <div class="fest-ad">Sunday, Oct 11, 2026</div>
-      </div>
-    </a>
-
-    <a class="fest-card" href="https://converter.thenepal.io/nepali-calendar-2083/dashain-2083" role="listitem">
-      <div class="fest-date-blk"><div class="fest-bs">४</div><div class="fest-m">कार्तिक</div></div>
-      <div>
-        <div class="fest-name">Vijaya Dashami — Tika</div>
-        <span class="fest-name-ne">विजया दशमी</span>
-        <div class="fest-ad">Wed, Oct 21 · 11:53 AM NST</div>
-      </div>
-    </a>
-
-    <a class="fest-card" href="https://converter.thenepal.io/2083/tihar/" role="listitem">
+  <h2 class="sec-head">🎉 Upcoming Festivals &amp; Holidays <span class="sec-head-ne">चाडपर्व मिति</span></h2>
+  <div class="fest-strip" role="list" id="festStrip">
+    <a class="fest-card" href="https://converter.thenepal.io/2083/tihar/bhai-tika" role="listitem">
       <div class="fest-date-blk"><div class="fest-bs">२५</div><div class="fest-m">कार्तिक</div></div>
       <div>
-        <div class="fest-name">Tihar — Bhai Tika</div>
+        <div class="fest-name">Bhai Tika — Tihar</div>
         <span class="fest-name-ne">भाइ टीका</span>
-        <div class="fest-ad">Wednesday, Nov 11, 2026</div>
+        <div class="fest-ad">Wed, Nov 11, 2026 · <b>4 days left</b></div>
       </div>
     </a>
-
     <a class="fest-card" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
-      <div class="fest-date-blk"><div class="fest-bs">१५</div><div class="fest-m">जेठ</div></div>
+      <div class="fest-date-blk"><div class="fest-bs">२९</div><div class="fest-m">कार्तिक</div></div>
       <div>
-        <div class="fest-name">Republic Day</div>
-        <span class="fest-name-ne">गणतन्त्र दिवस</span>
-        <div class="fest-ad">Friday, May 29, 2026</div>
+        <div class="fest-name">Chhath Festival</div>
+        <span class="fest-name-ne">छठ पर्व</span>
+        <div class="fest-ad">Sun, Nov 15, 2026 · <b>8 days left</b></div>
       </div>
     </a>
-
-    <a class="fest-card" href="https://converter.thenepal.io/2083/subha-sait" role="listitem">
-      <div class="fest-date-blk"><div class="fest-bs">३०</div><div class="fest-m">फाल्गुन</div></div>
+    <a class="fest-card" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
+      <div class="fest-date-blk"><div class="fest-bs">९</div><div class="fest-m">पौष</div></div>
       <div>
-        <div class="fest-name">Last Shubha Sait</div>
-        <span class="fest-name-ne">फाल्गुन शुभ साइत</span>
-        <div class="fest-ad">Mar 14, 2027 · 41 total dates</div>
+        <div class="fest-name">Dhanya Purnima / Yomari Punhi</div>
+        <span class="fest-name-ne">धान्य पुर्णिमा</span>
+        <div class="fest-ad">Thu, Dec 24, 2026 · <b>47 days left</b></div>
       </div>
     </a>
-
-    <a class="fest-card" href="https://converter.thenepal.io/2083/mala-mass" role="listitem">
-      <div class="fest-date-blk"><div class="fest-bs" style="font-size:1.1rem;color:var(--mala)">जेठ</div><div class="fest-m">३–आषाढ १</div></div>
+    <a class="fest-card" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
+      <div class="fest-date-blk"><div class="fest-bs">२७</div><div class="fest-m">पौष</div></div>
       <div>
-        <div class="fest-name" style="color:var(--mala)">Mala Maas 2083</div>
-        <span class="fest-name-ne" style="color:var(--mala)">मला मास / अधिक मास</span>
-        <div class="fest-ad">May 17 – Jun 15, 2026</div>
+        <div class="fest-name">Prithvi Jayanti — National Unity Day</div>
+        <span class="fest-name-ne">पृथ्वी जयन्ती</span>
+        <div class="fest-ad">Mon, Jan 11, 2027 · <b>65 days left</b></div>
       </div>
     </a>
-
+    <a class="fest-card" href="https://converter.thenepal.io/nepali-calendar-2083/magh-2083" role="listitem">
+      <div class="fest-date-blk"><div class="fest-bs">१</div><div class="fest-m">माघ</div></div>
+      <div>
+        <div class="fest-name">Maghe Sankranti</div>
+        <span class="fest-name-ne">माघे सङ्क्रान्ति</span>
+        <div class="fest-ad">Fri, Jan 15, 2027 · <b>69 days left</b></div>
+      </div>
+    </a>
+    <a class="fest-card" href="https://converter.thenepal.io/2083/nepal-public-holidays" role="listitem">
+      <div class="fest-date-blk"><div class="fest-bs">२८</div><div class="fest-m">माघ</div></div>
+      <div>
+        <div class="fest-name">Saraswati Puja</div>
+        <span class="fest-name-ne">सरस्वती पूजा</span>
+        <div class="fest-ad">Thu, Feb 11, 2027 · <b>96 days left</b></div>
+      </div>
+    </a>
   </div>
+  <p style="font-size:.85rem;margin:8px 0 0" class="fest-links"><a href="https://converter.thenepal.io/2083/nepal-public-holidays">All 2083 holidays →</a> · <a href="https://converter.thenepal.io/2083/subha-sait">Shubha Sait →</a> · <a href="https://converter.thenepal.io/2083/mala-mass">Mala Maas →</a></p>
 
   <!-- 2083 MONTH QUICK NAV -->
   <h2 class="sec-head">📅 2083 Months <span class="sec-head-ne">२०८३ का महिनाहरू</span></h2>
@@ -693,6 +684,26 @@
 <!-- FOOTER -->
 
 <div id="footer"></div>
+<script>
+(function(){
+  var F=[["2026-11-11", "२५", "कार्तिक", "Bhai Tika — Tihar", "भाइ टीका", "/2083/tihar/bhai-tika"], ["2026-11-15", "२९", "कार्तिक", "Chhath Festival", "छठ पर्व", "/2083/nepal-public-holidays"], ["2026-12-24", "९", "पौष", "Dhanya Purnima / Yomari Punhi", "धान्य पुर्णिमा", "/2083/nepal-public-holidays"], ["2027-01-11", "२७", "पौष", "Prithvi Jayanti — National Unity Day", "पृथ्वी जयन्ती", "/2083/nepal-public-holidays"], ["2027-01-15", "१", "माघ", "Maghe Sankranti", "माघे सङ्क्रान्ति", "/nepali-calendar-2083/magh-2083"], ["2027-02-11", "२८", "माघ", "Saraswati Puja", "सरस्वती पूजा", "/2083/nepal-public-holidays"], ["2027-02-19", "७", "फाल्गुन", "National Democracy Day", "प्रजातन्त्र दिवस", "/2083/nepal-public-holidays"], ["2027-03-06", "२२", "फाल्गुन", "Maha Shivaratri", "महाशिवरात्री", "/2083/nepal-public-holidays"], ["2027-03-21", "७", "चैत्र", "Fagu Purnima / Holi", "फागु पूर्णिमा", "/2083/nepal-public-holidays"], ["2027-04-14", "१", "बैशाख", "Nepali New Year 2084", "नयाँ वर्ष २०८४", "/2084/calendar"]];
+  function nst(){var n=new Date(),u=n.getTime()+n.getTimezoneOffset()*6e4,k=new Date(u+(5*60+45)*6e4);return Date.UTC(k.getFullYear(),k.getMonth(),k.getDate());}
+  var t=nst(),up=F.filter(function(f){return Date.parse(f[0])>=t;}).slice(0,6);
+  function lab(n){return n===0?'Today':n===1?'Tomorrow':n+' days left';}
+  var el=document.getElementById('festStrip');
+  if(el&&up.length){
+    el.innerHTML=up.map(function(f){var n=Math.round((Date.parse(f[0])-t)/864e5),d=new Date(Date.parse(f[0]));
+      var ds=d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'});
+      return '<a class="fest-card" href="https://converter.thenepal.io'+f[5]+'" role="listitem"><div class="fest-date-blk"><div class="fest-bs">'+f[1]+'</div><div class="fest-m">'+f[2]+'</div></div><div><div class="fest-name">'+f[3]+'</div><span class="fest-name-ne">'+f[4]+'</span><div class="fest-ad">'+ds+' · <b>'+lab(n)+'</b></div></div></a>';}).join('');
+  }
+  var q=document.getElementById('qBhai');if(q&&Date.parse('2026-11-12')<=t)q.style.display='none';
+  fetch('/data/nrb-rates.json').then(function(r){return r.json();}).then(function(d){
+    var u=(d.rates||[]).filter(function(x){return x.iso3==='USD';})[0];if(!u)return;
+    var h=document.querySelector('a.mpill[href$="usd-to-npr"]');
+    if(h)h.insertAdjacentHTML('afterend','<span class="mpill" style="cursor:default">NRB today: buy Rs '+(u.buy/(u.unit||1)).toFixed(2)+' · sell Rs '+(u.sell/(u.unit||1)).toFixed(2)+' <small>'+d.date+'</small></span>');
+  }).catch(function(){});
+})();
+</script>
 <script src="/components.js"></script>
 
 <script>
