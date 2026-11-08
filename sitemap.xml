@@ -2,7 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://converter.thenepal.io/</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-08</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/2083/bibaha-panchami</loc>
+    <lastmod>2026-11-08</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/2083/chhath-parva</loc>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/dashain-tika-time</loc>
@@ -18,7 +26,7 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/subha-sait</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/</loc>
@@ -26,7 +34,7 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/bhai-tika</loc>
-    <lastmod>2026-11-07</lastmod>
+    <lastmod>2026-11-08</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2084/calendar</loc>
@@ -263,13 +271,5 @@
   <url>
     <loc>https://converter.thenepal.io/unit-converter/</loc>
     <lastmod>2026-11-06</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/2083/bibaha-panchami</loc>
-    <lastmod>2026-11-08</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/2083/chhath-parva</loc>
-    <lastmod>2026-11-08</lastmod>
   </url>
 </urlset>
