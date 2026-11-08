@@ -9,3 +9,11 @@
 
 /data/*
   Cache-Control: public, max-age=300
+
+/header.html
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=3600
+
+/footer.html
+  X-Robots-Tag: noindex
+  Cache-Control: public, max-age=3600
