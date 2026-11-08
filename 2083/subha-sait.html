@@ -380,10 +380,10 @@
       <tbody>
         <tr><td>वैशाख Baisakh</td><td>Apr 14 – May 14, 2026</td><td>7, 8, 22, 23, 24, 25, 30, 31</td><td class="cnt">8</td><td>Baisakh 22–25 (4 days)</td></tr>
         <tr><td>जेठ Jestha</td><td>May 15–16, 2026 only</td><td>1 only (before Mala Maas)</td><td class="cnt" style="color:var(--orange)">1</td><td>Book early — Mala Maas starts Jestha 3</td></tr>
-        <tr><td>आषाढ Ashadh</td><td>Jun 16 – Jul 17, 2026</td><td>9, 13, 14, 15, 17, 18, 23</td><td class="cnt">7</td><td>Ashadh 13–15 (3 days)</td></tr>
-        <tr class="highlight"><td>मंसिर Mangsir</td><td>Nov 16 – Dec 15, 2026</td><td>9, 10, 16, 17, 19, 24, 25, 26</td><td class="cnt">8</td><td>Mangsir 24–26 (3 days)</td></tr>
-        <tr><td>माघ Magh</td><td>Jan 15 – Feb 11, 2027</td><td>4, 12, 15, 19, 20, 27</td><td class="cnt">6</td><td>Magh 19–20 (2 days)</td></tr>
-        <tr class="highlight"><td>फाल्गुन Falgun</td><td>Feb 12 – Mar 13, 2027</td><td>3, 4, 11, 12, 15, 16, 17, 18, 20, 25, 26, 30</td><td class="cnt">12 ⭐</td><td>Falgun 15–18 (4 consecutive days)</td></tr>
+        <tr><td>आषाढ Ashadh</td><td>Jun 15 – Jul 16, 2026</td><td>9, 13, 14, 15, 17, 18, 23</td><td class="cnt">7</td><td>Ashadh 13–15 (3 days)</td></tr>
+        <tr class="highlight"><td>मंसिर Mangsir</td><td>Nov 17 – Dec 15, 2026</td><td>9, 10, 16, 17, 19, 24, 25, 26</td><td class="cnt">8</td><td>Mangsir 24–26 (3 days)</td></tr>
+        <tr><td>माघ Magh</td><td>Jan 15 – Feb 12, 2027</td><td>4, 12, 15, 19, 20, 27</td><td class="cnt">6</td><td>Magh 19–20 (2 days)</td></tr>
+        <tr class="highlight"><td>फाल्गुन Falgun</td><td>Feb 13 – Mar 14, 2027</td><td>3, 4, 11, 12, 15, 16, 17, 18, 20, 25, 26, 30</td><td class="cnt">12 ⭐</td><td>Falgun 15–18 (4 consecutive days)</td></tr>
         <tr><td style="color:var(--ink3);font-family:'DM Sans',sans-serif;font-size:.82rem">No sait months</td><td style="color:var(--ink3)">Shrawan, Bhadra, Ashwin, Kartik, Poush, Chaitra</td><td style="color:var(--ink3)">—</td><td class="cnt none">0</td><td style="color:var(--ink3)">Traditional restrictions apply</td></tr>
         <tr style="background:var(--gold-lt)!important"><td style="font-family:'DM Sans',sans-serif;font-weight:700">Total</td><td>Apr 2026 – Mar 2027</td><td>41 auspicious dates</td><td class="cnt" style="font-size:1rem">41</td><td>Best month: Falgun (12 dates)</td></tr>
       </tbody>
@@ -486,8 +486,9 @@
   <div class="related-grid">
     <a class="rel-card" href="https://converter.thenepal.io/nepali-calendar-2083/"><span class="rel-icon">📅</span><div class="rel-title">Full Nepali Calendar 2083</div><div class="rel-sub">All 12 months</div></a>
     <a class="rel-card" href="https://converter.thenepal.io/nepali-calendar-2083/dashain-2083"><span class="rel-icon">🎊</span><div class="rel-title">Dashain 2083</div><div class="rel-sub">All 15 days + tika time</div></a>
+    <a class="rel-card" href="https://converter.thenepal.io/2083/bibaha-panchami"><span class="rel-icon">💍</span><div class="rel-title">Bibaha Panchami 2083</div><div class="rel-sub">Dec 14 + Mangsir sait</div></a>
     <a class="rel-card" href="https://converter.thenepal.io/2083/tihar/"><span class="rel-icon">🪔</span><div class="rel-title">Tihar 2083</div><div class="rel-sub">All 5 days guide</div></a>
-    <a class="rel-card" href="https://converter.thenepal.io/2083/nepal-public-holidays"><span class="rel-icon">🗓️</span><div class="rel-title">Public Holidays 2083</div><div class="rel-sub">Full MoHA list</div></a>
+    <a class="rel-card" href="https://converter.thenepal.io/2083/nepal-public-holidays"><span class="rel-icon">🗓️</span><div class="rel-title">Public Holidays 2083</div><div class="rel-sub">Full 2083 list</div></a>
     <a class="rel-card" href="https://converter.thenepal.io/bs-to-ad/" target="_blank" rel="noopener"><span class="rel-icon">🔄</span><div class="rel-title">BS → AD Converter</div><div class="rel-sub">Convert any sait date</div></a>
   </div>
 
@@ -519,14 +520,14 @@ const toNe=n=>String(n).split('').map(d=>ND[+d]).join('');
 const MONTH_STARTS={
   baisakh:new Date(2026,3,14),   // Apr 14
   jestha: new Date(2026,4,15),   // May 15
-  ashadh: new Date(2026,5,16),   // Jun 16 (after Mala Maas)
-  mangsir:new Date(2026,10,16),  // Nov 16
+  ashadh: new Date(2026,5,15),   // Jun 15 (after Mala Maas)
+  mangsir:new Date(2026,10,17),  // Nov 17
   magh:   new Date(2027,0,15),   // Jan 15
-  falgun: new Date(2027,1,12),   // Feb 12
-  chaitra:new Date(2027,2,14),   // Mar 14
-  shrawan:new Date(2026,6,18),
-  bhadra: new Date(2026,7,18),
-  ashwin: new Date(2026,8,18),
+  falgun: new Date(2027,1,13),   // Feb 13
+  chaitra:new Date(2027,2,15),   // Mar 15
+  shrawan:new Date(2026,6,17),
+  bhadra: new Date(2026,7,17),
+  ashwin: new Date(2026,8,17),
   kartik: new Date(2026,9,18),
   poush:  new Date(2026,11,16),
 };
@@ -761,8 +762,8 @@ const AI_ANSWERS={
   'total':'41 total marriage (Bibaha) sait dates in 2083 BS: Baisakh 8 + Ashadh 7 + Mangsir 8 + Magh 6 + Falgun 12 = 41.',
   '41':'There are 41 auspicious marriage sait dates in 2083 BS across 5 months. Falgun is busiest with 12 dates.',
   'best':'Best month for marriage in 2083 is Falgun with 12 sait dates. Best window: Falgun 15–18 (Feb 27–Mar 2, 2027) — 4 consecutive auspicious days.',
-  'february':'Falgun (Feb 12–Mar 13, 2027) has 12 marriage sait: Feb 15,16,23,24,27,28, Mar 1,2,4,9,10,14.',
-  'november':'Mangsir (Nov 16–Dec 15, 2026) has 8 marriage sait: Nov 25,26, Dec 2,3,5,10,11,12.',
+  'february':'Falgun (Feb 13–Mar 14, 2027) has 12 marriage sait: Feb 15,16,23,24,27,28, Mar 1,2,4,9,10,14.',
+  'november':'Mangsir (Nov 17–Dec 15, 2026) has 8 marriage sait: Nov 25,26, Dec 2,3,5,10,11,12.',
   'april':'Baisakh (Apr 14–May 14, 2026) has 8 marriage sait: Apr 20,21, May 5,6,7,8,13,14.',
 };
 
