@@ -493,6 +493,17 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
   *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
 
+.hero.hero-compact{padding:26px 20px 22px}
+.hero.hero-compact h1{font-size:clamp(28px,5vw,44px);margin-bottom:6px}
+.hero.hero-compact .hero-sub{margin-bottom:12px;font-size:14px}
+.hero.hero-compact .hero-badges{margin-bottom:0}
+.quick-row{display:flex;gap:6px;margin-left:auto}
+.quick-btn{font:600 11px 'Outfit',sans-serif;text-transform:none;letter-spacing:0;border:1px solid var(--border);background:transparent;color:inherit;border-radius:14px;padding:5px 11px;cursor:pointer;min-height:30px}
+.quick-btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.uni-warn{display:none;margin:8px 0 0;padding:8px 10px;border-radius:8px;background:#fff6dd;border:1px solid #e8c766;color:#5b4300;font-size:12px;line-height:1.5}
+.uni-warn button{font:inherit;font-weight:700;text-decoration:underline;background:none;border:0;color:inherit;cursor:pointer;padding:0}
+.font-note a{color:inherit;text-decoration:underline}
+@media(max-width:680px){.hero.hero-compact{padding:18px 14px 16px}.hero.hero-compact .hero-badges .badge:nth-child(n+3){display:none}.quick-btn{min-height:36px}}
 </style>
 <link rel="preload" href="/header.html" as="fetch" crossorigin>
 <link rel="preload" href="/footer.html" as="fetch" crossorigin>
@@ -503,20 +514,15 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
 <!-- NAV -->
 
 <!-- HERO -->
-<section class="hero" aria-labelledby="hero-h1">
+<section class="hero hero-compact" aria-labelledby="hero-h1">
   <div class="hero-grain" aria-hidden="true"></div>
-  <div class="hero-eyebrow"><div class="hero-flag">🇳🇵</div>Free · No signup · Local conversion</div>
-  <h1 id="hero-h1" class="fu fu1">Preeti to Unicode<br><span class="deva">Converter</span></h1>
-  <p class="hero-sub fu fu2">Convert Preeti font text to Nepali Unicode in your browser. Paste text or upload .docx and .txt files.</p>
-  <div class="hero-badges fu fu3">
-    <span class="badge">✓ No character limit</span>
+  <h1 id="hero-h1">Preeti to Unicode <span class="deva">Converter</span></h1>
+  <p class="hero-sub">Paste Preeti text, get Nepali Unicode instantly. Free, private, runs in your browser.</p>
+  <div class="hero-badges">
     <span class="badge">✓ Upload .docx &amp; .txt</span>
-    <span class="badge">✓ Export Word / TXT / HTML</span>
-    <span class="badge">✓ Focused on Preeti conversion</span>
-    <span class="badge">✓ Dark mode</span>
-    <span class="badge">✓ Zero server data</span>
+    <span class="badge">✓ Export Word / TXT</span>
+    <span class="badge">✓ No data sent to server</span>
   </div>
-  <a class="hero-cta fu fu3" href="#converter">Start Converting Free ↓</a>
 </section>
 
 <!-- TOP AD -->
@@ -541,10 +547,8 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <span class="toolbar-label">Font:</span>
       <div class="font-tabs" role="tablist" aria-label="Font selection">
         <button class="font-tab active" role="tab" aria-selected="true" data-font="preeti" onclick="setFont('preeti',this)">Preeti</button>
-        <button class="font-tab" role="tab" aria-selected="false" data-font="kantipur" aria-disabled="true" disabled title="Temporarily unavailable while accuracy is being verified">Kantipur · testing</button>
-        <button class="font-tab" role="tab" aria-selected="false" data-font="sagarmatha" aria-disabled="true" disabled title="Temporarily unavailable while accuracy is being verified">Sagarmatha · testing</button>
       </div>
-      <p class="font-status" role="note">Preeti is the active, priority font. Kantipur and Sagarmatha are temporarily disabled until their conversion maps pass accuracy testing.</p>
+      <p class="font-status font-note" role="note">Using Preeti, the most common font. Have Kantipur text? <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode</a></p>
       <div class="mode-pills" role="group" aria-label="Conversion direction">
         <button class="mode-pill on" id="btn-pu" onclick="setMode('pu')" aria-pressed="true">Font → Unicode</button>
         <button class="mode-pill" id="btn-up" onclick="setMode('up')" aria-pressed="false">Unicode → Font</button>
@@ -559,7 +563,8 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     <!-- Panels -->
     <div class="conv-body">
       <div class="conv-panel" role="region" aria-label="Input panel">
-        <div class="panel-head"><span class="panel-dot" aria-hidden="true"></span><span id="in-lbl">Preeti Input</span></div>
+        <div class="panel-head"><span class="panel-dot" aria-hidden="true"></span><span id="in-lbl">Preeti Input</span><span class="quick-row"><button type="button" class="quick-btn pri" onclick="pasteIn()">📋 Paste</button><button type="button" class="quick-btn" onclick="loadSample()">Sample</button></span></div>
+        <div class="uni-warn" id="uni-warn" role="status">This text already looks like Nepali Unicode, so Preeti conversion is not needed. <button type="button" onclick="setMode('up')">Convert Unicode → Preeti instead</button></div>
         <textarea class="preeti-input" id="input-ta" placeholder="यहाँ Preeti font को text paste गर्नुहोस् …&#10;&#10;Example: g]kfn = नेपाल" spellcheck="false" autocomplete="off" aria-label="Preeti font input" rows="8"></textarea>
         <div class="counts"><span>Chars: <strong id="in-ch">0</strong></span><span>Words: <strong id="in-wd">0</strong></span><span>Lines: <strong id="in-ln">0</strong></span></div>
       </div>
@@ -938,6 +943,8 @@ const outBox=()=>document.getElementById('out-box');
 function doConvert(){
   const val=inputTA().value;
   counts('in',val);
+  const uw=document.getElementById('uni-warn');
+  if(uw)uw.style.display=(cMode==='pu'&&/[\u0900-\u097F]/.test(val))?'block':'none';
   const ob=outBox();
   if(!val){
     ob.textContent='Converted Devanagari appears here…';
