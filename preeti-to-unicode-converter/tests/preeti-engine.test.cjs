@@ -85,3 +85,24 @@ test('on-screen keyboard labels are generated from the selected font map', () =>
     assert.equal(labels.get(rule.f), rule.r, `Keyboard label for sequence ${rule.f}`);
   }
 });
+
+// Real-word regression fixtures, cross-checked against the open-source npttf2utf reference (GPL, used for testing only).
+test('real Nepali words convert correctly (i-matra clusters, reph, फ, halant+aa)', () => {
+  const cases = {
+    ';+ljwfg': 'संविधान', 'lg/Gt/': 'निरन्तर', 'ljZjljBfno': 'विश्वविद्यालय',
+    'lzIff': 'शिक्षा', ';+k"0f{': 'संपूर्ण', 'kmf]g': 'फोन', 'k|ltlglw': 'प्रतिनिधि',
+    'dfGg\'x\'G5': 'मान्नुहुन्छ', 'g]kfn': 'नेपाल'
+  };
+  for (const [src, want] of Object.entries(cases)) {
+    assert.equal(fwdConvert(src, 'preeti'), want, src);
+    assert.equal(fwdConvert(src, 'kantipur'), want, 'kantipur ' + src);
+  }
+  assert.equal(fwdConvert('jf8{', 'preeti'), 'वार्ड');
+});
+
+test('Kantipur differs from Preeti only on its own codes', () => {
+  assert.equal(fwdConvert('F', 'preeti'), 'ँ');
+  assert.equal(fwdConvert('F', 'kantipur'), 'ा');
+  assert.equal(fwdConvert('X', 'kantipur'), 'हृ');
+  assert.equal(fwdConvert('s', 'kantipur'), fwdConvert('s', 'preeti'));
+});
