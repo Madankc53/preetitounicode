@@ -4,8 +4,8 @@
 User-agent: *
 Allow: /
 
-# Partials loaded by JavaScript; not standalone pages
-Disallow: /header.html
-Disallow: /footer.html
+# header.html / footer.html are fetched by every page to build the menu and footer.
+# Googlebot must be able to fetch them to render the page, so they are NOT blocked here;
+# _headers sends X-Robots-Tag: noindex so they never appear in search results.
 
 Sitemap: https://converter.thenepal.io/sitemap.xml
