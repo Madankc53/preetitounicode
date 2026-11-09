@@ -527,92 +527,17 @@
 
 <!-- === AUTOMATIC FOOTER === -->
 <div id="footer"></div>
+<script src="/u2p-engine.js"></script>
 <script src="/components.js"></script>
 
 <!-- TOAST MESSAGE -->
 <div id="toastMsg" class="toast"></div>
 
 <script>
-  // ====================== FULL MAPPING (ब -> 'a' fixed) ======================
-  const PREETI_MAP = new Map([
-    ['ओ', 'cf]'], ['औ', 'cfW'], ['आ', 'cf'], ['ई', 'O{'], ['ऊ', 'pm'], ['ऐ', 'P{'], ['ऋ', 'C'],
-    ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'm'], ['ू', 'M'], ['ृ', '['], ['े', ']'], ['ै', '{'],
-    ['ो', 'f]'], ['ौ', 'fW'], ['ँ', 'F'], ['ं', '+'], ['ः', 'M'], ['्', '\\'],
-    ['अ', 'c'], ['इ', 'O'], ['उ', 'p'], ['ए', 'P'],
-    ['क', 's'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['ङ', "'"], ['च', 'r'], ['छ', '5'], ['ज', 'h'],
-    ['झ', 'em'], ['ञ', '~'], ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'],
-    ['थ', 'y'], ['द', 'b'], ['ध', 'w'], ['न', 'g'], ['प', 'k'], ['फ', 'km'], 
-    ['ब', 'a'],   // FIXED: ब maps to 'a'
-    ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'], 
-    ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['क्ष', 'If'], ['ज्ञ', '1'], ['त्र', 'q'], 
-    ['श्र', '>'], ['द्ध', '4'], ['द्द', '2'], ['०', ')'], ['१', '!'], ['२', '@'], ['३', '#'], 
-    ['४', '$'], ['५', '%'], ['६', '^'], ['७', '&'], ['८', '*'], ['९', '('], ['।', '.'], ['॥', '..'], ['–', '_']
-  ]);
-
-  const KANTIPUR_MAP = new Map([
-    ['नेपाल', 'g]kfn'], ['ओ', 'cf]'], ['औ', 'cfO'], ['आ', 'cf'], ['ई', 'O_'], ['ऊ', 'pm'], ['ऋ', 'C'],
-    ['ा', 'f'], ['ि', 'l'], ['ी', 'L'], ['ु', 'M'], ['ू', '{'], ['ृ', '['], ['े', ']'], ['ै', "'"], ['ो', 'f]'],
-    ['ौ', 'fO'], ['ँ', 'F'], ['ं', '+'], ['ः', ':'], ['्', '\\'], ['अ', 'c'], ['इ', 'O'], ['उ', 'p'], ['ए', 'P'],
-    ['क', 'k'], ['ख', 'v'], ['ग', 'u'], ['घ', '3'], ['च', 'r'], ['छ', '5'], ['ज', 'h'], ['झ', 'hn'], 
-    ['ब', 'a'],   // Kantipur fix
-    ['भ', 'e'], ['म', 'd'], ['य', 'o'], ['र', '/'], ['ल', 'n'], ['व', 'j'], ['श', 'z'],
-    ['ष', 'if'], ['स', ';'], ['ह', 'x'], ['ज्ञ', '1'], ['त्र', 'q'], ['क्ष', 'I'], ['श्र', '>'], 
-    ['ट', '6'], ['ठ', '7'], ['ड', '8'], ['ढ', '9'], ['ण', '0'], ['त', 't'], ['थ', 'y'], ['द', 'b'], 
-    ['ध', 'w'], ['न', 'g'], ['प', 'k'], ['फ', 'km'], ['।', '.'], ['०', ')'], ['१', '!'], ['२', '@'], 
-    ['३', '#'], ['४', '$'], ['५', '%'], ['६', '^'], ['७', '&'], ['८', '*'], ['९', '(']
-  ]);
-
   let currentFont = 'preeti';
   let uploadedFiles = [];
-
-  function getActiveMap() { return currentFont === 'kantipur' ? KANTIPUR_MAP : PREETI_MAP; }
-
-  // i-kar repositioning (ि before consonant cluster)
-  function repositionIKar(text) {
-    const I_MATRA = '\u093F';
-    const VIRAMA = '\u094D';
-    const CONS_REGEX = /[\u0915-\u0939\u0958-\u095F]/;
-    let chars = [...text];
-    let out = [];
-    for (let i = 0; i < chars.length; i++) {
-      if (chars[i] === I_MATRA) {
-        let clusterStart = out.length - 1;
-        while (clusterStart >= 2 && out[clusterStart-1] === VIRAMA && CONS_REGEX.test(out[clusterStart-2])) {
-          clusterStart -= 2;
-        }
-        if (clusterStart >= 0 && CONS_REGEX.test(out[clusterStart])) {
-          out.splice(clusterStart, 0, I_MATRA);
-        } else out.push(I_MATRA);
-      } else {
-        out.push(chars[i]);
-      }
-    }
-    return out.join('');
-  }
-
-  function convertUnicodeToPreeti(text) {
-    if (!text) return '';
-    let processed = repositionIKar(text);
-    const mapEntries = Array.from(getActiveMap().entries()).sort((a,b) => b[0].length - a[0].length);
-    let result = '';
-    let i = 0;
-    while (i < processed.length) {
-      let matched = false;
-      for (let [unicode, ascii] of mapEntries) {
-        if (processed.startsWith(unicode, i)) {
-          result += ascii;
-          i += unicode.length;
-          matched = true;
-          break;
-        }
-      }
-      if (!matched) {
-        result += processed[i];
-        i++;
-      }
-    }
-    return result;
-  }
+  // Shared, tested engine (u2p-engine.js): correct ि, reph (र्), conjunct and ra-conjunct handling.
+  function convertUnicodeToPreeti(text) { return text ? PreetiU2P.convert(text) : ''; }
 
   // DOM elements
   const inputEl = document.getElementById('unicodeInput');
