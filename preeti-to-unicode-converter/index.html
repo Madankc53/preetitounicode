@@ -827,9 +827,9 @@ const MAPS = {
       ':':'स्','"':'ू','{':'र्','}':'ै','|':'्र','_':')','+':'ं','?':'रु','<':'?','>':'श्र'
     },
     rules:[
-      {f:'km',r:'फ'},{f:'cf]',r:'ओ'},{f:'cfW',r:'औ'},{f:'cf',r:'आ'},
+      {f:'km',r:'फ'},{f:'cf]',r:'ओ'},{f:'cf}',r:'औ'},{f:'cf',r:'आ'},
       {f:'O{',r:'ई'},{f:'pm',r:'ऊ'},{f:'P{',r:'ऐ'},
-      {f:'if',r:'ष'},{f:'em',r:'झ'},{f:'f]',r:'ो'},{f:'fW',r:'ौ'}
+      {f:'if',r:'ष'},{f:'em',r:'झ'},{f:'f]',r:'ो'}
     ],
     post:[
       {f:'्ा',r:''},{f:'ि((?:[क-ह]्)*[क-ह])',r:'$1ि'},{f:'((?:[क-ह]्)*[क-ह])([ािीुूृेैोौंँः]*)र्',r:'र्$1$2'},{f:'ाे',r:'ो'},{f:'ाै',r:'ौ'}
@@ -853,6 +853,9 @@ const MAPS = {
     rules:[],post:[]
   }
 };
+
+// Extra Preeti glyph codes (Latin-1 range) used for letters without a plain keyboard key.
+Object.assign(MAPS.preeti.fwd,{'ª':'ङ','«':'्र','´':'झ','£':'घ्','‰':'झ्','ˆ':'फ्','¿':'रू'});
 
 // Kantipur uses the Preeti keyboard layout; only these codes differ.
 // Cross-checked against the open-source npttf2utf reference tables (used for testing only).

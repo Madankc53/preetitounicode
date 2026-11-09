@@ -288,4 +288,22 @@
     <loc>https://converter.thenepal.io/unit-converter/</loc>
     <lastmod>2026-11-06</lastmod>
   </url>
+  <url>
+    <loc>https://converter.thenepal.io/mangal-to-preeti-converter/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/roman-to-preeti-converter/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/preeti-to-kalimati-converter/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

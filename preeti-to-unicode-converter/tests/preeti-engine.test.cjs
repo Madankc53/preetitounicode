@@ -48,7 +48,8 @@ test('published Preeti examples remain stable', () => {
 
 test('longest Preeti sequences take precedence over shorter overlapping rules', () => {
   assert.equal(fwdConvert('cf]', 'preeti'), 'ओ');
-  assert.equal(fwdConvert('cfW', 'preeti'), 'औ');
+  assert.equal(fwdConvert('cf}', 'preeti'), 'औ');
+  assert.equal(fwdConvert('sf}', 'preeti'), 'कौ');
   assert.equal(fwdConvert('cf', 'preeti'), 'आ');
 });
 
@@ -105,4 +106,11 @@ test('Kantipur differs from Preeti only on its own codes', () => {
   assert.equal(fwdConvert('F', 'kantipur'), 'ा');
   assert.equal(fwdConvert('X', 'kantipur'), 'हृ');
   assert.equal(fwdConvert('s', 'kantipur'), fwdConvert('s', 'preeti'));
+});
+
+// Unicode -> Preeti round trip (u2p-engine.js) must return the original Unicode through the forward engine.
+test('Unicode to Preeti round-trips real words', () => {
+  const u2p = require('../../u2p-engine.js');
+  const words = ['नेपाल','प्रधानमन्त्री','संविधान','शिक्षा','स्वास्थ्य','सम्पूर्ण','राष्ट्र','वार्ड','क्रिया','ट्रक','कृषि','रुपैयाँ','सङ्घीय','श्रीमान्','औषधि','काठमाडौँ','पूर्वी','२०८३'];
+  for (const w of words) assert.equal(fwdConvert(u2p.convert(w), 'preeti'), w, w);
 });
