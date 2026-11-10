@@ -664,7 +664,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
         <tr><td class="ex-preeti">u</td><td class="ex-uni">ग</td><td class="ex-meaning">ga</td></tr>
         <tr><td class="ex-preeti">g</td><td class="ex-uni">न</td><td class="ex-meaning">na</td></tr>
         <tr><td class="ex-preeti">g]kfn</td><td class="ex-uni">नेपाल</td><td class="ex-meaning">Nepal</td></tr>
-        <tr><td class="ex-preeti">sf7df08f}</td><td class="ex-uni">काठमाडौं</td><td class="ex-meaning">Kathmandu</td></tr>
+        <tr><td class="ex-preeti">sf7df8f}F</td><td class="ex-uni">काठमाडौँ</td><td class="ex-meaning">Kathmandu</td></tr>
         <tr><td class="ex-preeti">;+ljwfg</td><td class="ex-uni">संविधान</td><td class="ex-meaning">Constitution</td></tr>
         <tr><td class="ex-preeti">lzIff</td><td class="ex-uni">शिक्षा</td><td class="ex-meaning">Education</td></tr>
         <tr><td class="ex-preeti">hgtf</td><td class="ex-uni">जनता</td><td class="ex-meaning">People</td></tr>
@@ -673,11 +673,57 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     </table>
   </section>
 
+  <!-- Key chart -->
+  <section style="margin-top:40px" id="key-chart">
+    <div class="section-tag">Preeti Key Chart</div>
+    <h2 class="section-h">Preeti keyboard: what each key types</h2>
+    <p class="body-text">Preeti stores every Nepali letter as an ordinary English keystroke. These are the main keys, taken from the converter itself. Some letters need two keys (for example <kbd>if</kbd> = ष, <kbd>km</kbd> = फ, <kbd>0f</kbd> = ण).</p>
+    <table class="ex-table" aria-label="Preeti key chart">
+      <thead><tr><th>Type</th><th>Preeti keys → Unicode</th></tr></thead>
+      <tbody>
+        <tr><td>Vowels</td><td class="ex-uni">cf=आ &nbsp; O=इ &nbsp; p=उ &nbsp; pm=ऊ &nbsp; C=ऋ &nbsp; P=ए &nbsp; cf]=ओ &nbsp; cf}=औ</td></tr>
+        <tr><td>Consonants (क–ञ)</td><td class="ex-uni">s=क &nbsp; v=ख &nbsp; u=ग &nbsp; 3=घ &nbsp; r=च &nbsp; 5=छ &nbsp; h=ज &nbsp; em=झ</td></tr>
+        <tr><td>Consonants (ट–न)</td><td class="ex-uni">6=ट &nbsp; 7=ठ &nbsp; 8=ड &nbsp; 9=ढ &nbsp; 0f=ण &nbsp; t=त &nbsp; y=थ &nbsp; b=द &nbsp; w=ध &nbsp; g=न</td></tr>
+        <tr><td>Consonants (प–ह)</td><td class="ex-uni">k=प &nbsp; km=फ &nbsp; a=ब &nbsp; e=भ &nbsp; d=म &nbsp; o=य &nbsp; /=र &nbsp; n=ल &nbsp; j=व &nbsp; z=श &nbsp; if=ष &nbsp; ;=स &nbsp; x=ह</td></tr>
+        <tr><td>Vowel signs</td><td class="ex-uni">f=ा &nbsp; l=ि &nbsp; L=ी &nbsp; '=ु &nbsp; "=ू &nbsp; [=ृ &nbsp; ]=े &nbsp; }=ै &nbsp; f]=ो &nbsp; f}=ौ</td></tr>
+        <tr><td>Marks &amp; joined letters</td><td class="ex-uni">+=ं &nbsp; F=ँ &nbsp; M=ः &nbsp; |=्र &nbsp; q=त्र &nbsp; 1=ज्ञ &nbsp; &gt;=श्र &nbsp; {=र् (reph)</td></tr>
+        <tr><td>Numbers &amp; stop</td><td class="ex-uni">!=१ &nbsp; @=२ &nbsp; #=३ &nbsp; $=४ &nbsp; %=५ &nbsp; ^=६ &nbsp; &amp;=७ &nbsp; *=८ &nbsp; (=९ &nbsp; )=० &nbsp; .=।</td></tr>
+      </tbody>
+    </table>
+    <p class="body-text">Two things look odd but are normal. The short-i sign <kbd>l</kbd> is typed <em>before</em> the letter it belongs to (<kbd>lzIff</kbd> = शिक्षा), and the reph <kbd>{</kbd> is typed <em>after</em> the letter (<kbd>jf8{</kbd> = वार्ड). The converter moves both to the correct Unicode position.</p>
+  </section>
+
+  <!-- Before / after -->
+  <section style="margin-top:40px" id="before-after">
+    <div class="section-tag">Before &amp; After</div>
+    <h2 class="section-h">Example: a Preeti sentence converted to Unicode</h2>
+    <div class="ex-table" style="padding:14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);line-height:1.8">
+      <div style="font-size:12px;color:var(--muted)">Preeti text (looks like English)</div>
+      <div class="ex-preeti" style="word-break:break-word">g]kfn ;/sf/n] lzIff / :jf:Yo If]qdf !% s/f]8 ?k}ofF cfjtL{ ug]{ ePsf] 5 .</div>
+      <div style="font-size:12px;color:var(--muted);margin-top:10px">Unicode result</div>
+      <div class="ex-uni" style="font-size:18px">नेपाल सरकारले शिक्षा र स्वास्थ्य क्षेत्रमा १५ करोड रुपैयाँ आवर्ती गर्ने भएको छ ।</div>
+    </div>
+  </section>
+
+  <!-- Problems -->
+  <section style="margin-top:40px" id="problems">
+    <div class="section-tag">Troubleshooting</div>
+    <h2 class="section-h">Common problems when converting Preeti text</h2>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">!</div><h3>Output is still English</h3><p>The text was not Preeti. If it already shows Nepali letters, it is Unicode. If it looks like <code>g]kfn</code>, paste it as plain text, not into a box that applies a font.</p></div>
+      <div class="step-card"><div class="step-num">!</div><h3>Copied from a PDF</h3><p>PDF copy often breaks the order of letters or drops spaces. Try copying from the original Word file; if you only have the PDF, check the result line by line.</p></div>
+      <div class="step-card"><div class="step-num">!</div><h3>Mixed English and Nepali</h3><p>Preeti documents keep English words as normal letters, so they can be mistaken for Preeti. Convert only the Nepali parts when a paragraph is mixed.</p></div>
+      <div class="step-card"><div class="step-num">!</div><h3>Wrong joined letters</h3><p>Rare conjuncts in very old files may need a manual fix. Use the Clean Text button and keep your original file.</p></div>
+      <div class="step-card"><div class="step-num">!</div><h3>Kantipur text looks wrong</h3><p>Use the <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode</a> page. A few special keys differ from Preeti.</p></div>
+      <div class="step-card"><div class="step-num">!</div><h3>Need Preeti again</h3><p>Use <a href="/unicode-to-preeti-converter/">Unicode to Preeti</a> or <a href="/roman-to-preeti-converter/">Roman to Preeti</a> to go the other way.</p></div>
+    </div>
+  </section>
+
   <!-- Choosing the right legacy font -->
   <section style="margin-top:40px" id="choose-font">
     <div class="section-tag">Before You Convert</div>
     <h2 class="section-h">Choose the correct legacy Nepali font</h2>
-    <p class="body-text">Preeti, Kantipur and Sagarmatha are legacy Nepali font encodings with different keyboard mappings. Select the font that was used when the original document was typed. Choosing the wrong font can produce incorrect Unicode output even when the copied text is valid.</p>
+    <p class="body-text">Preeti, Kantipur and Sagarmatha are legacy Nepali fonts. Preeti and Kantipur share the same keyboard layout for everyday letters, but a few special keys differ, so use this page for Preeti and the Kantipur page for Kantipur text. Choosing the wrong font can produce wrong characters even when the copied text is valid.</p>
     <p class="body-text">This tool converts stored keyboard characters into Unicode Devanagari; it does not translate text or read scanned images. If the result looks unusual, try the correct font option, keep your original text, and check uncommon symbols and complex joined letters before using the converted document.</p>
   </section>
 
@@ -686,7 +732,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     <div class="section-tag">How To Use</div>
     <h2 class="section-h">How to convert Preeti to Unicode — step by step</h2>
     <div class="steps-grid">
-      <div class="step-card"><div class="step-num">1</div><h3>Select your font</h3><p>Choose Preeti, Kantipur, or Sagarmatha from the tabs. Most old Nepali documents use Preeti.</p></div>
+      <div class="step-card"><div class="step-num">1</div><h3>Select your font</h3><p>Keep Preeti selected (it covers most old Nepali documents). If your text came from the Kantipur font, use the <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode</a> page.</p></div>
       <div class="step-card"><div class="step-num">2</div><h3>Paste or type</h3><p>Paste Preeti text into the left input box, or use the Sample button to see a live example.</p></div>
       <div class="step-card"><div class="step-num">3</div><h3>See Unicode instantly</h3><p>The right panel shows the converted Unicode Devanagari as you type — no button needed.</p></div>
       <div class="step-card"><div class="step-num">4</div><h3>Export or copy</h3><p>Copy to clipboard, or download as .TXT, Word-compatible .DOC, or .HTML file.</p></div>
@@ -702,7 +748,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <div class="feat"><div class="feat-icon">⚡</div><h3>Live conversion</h3><p>Unicode output updates instantly as you type — zero latency, no button to click.</p></div>
       <div class="feat"><div class="feat-icon">📂</div><h3>File upload</h3><p>Upload .txt or .docx files directly. Converted instantly, entirely in your browser.</p></div>
       <div class="feat"><div class="feat-icon">📝</div><h3>Word-compatible export</h3><p>Save the converted text as a Word-compatible .DOC file, or choose TXT and HTML.</p></div>
-      <div class="feat"><div class="feat-icon">🔤</div><h3>3 fonts supported</h3><p>Preeti, Kantipur, and Sagarmatha — all major legacy Nepali fonts in one tool.</p></div>
+      <div class="feat"><div class="feat-icon">🔤</div><h3>Preeti and Kantipur</h3><p>Preeti here, and a dedicated Kantipur page for newspaper-style text.</p></div>
       <div class="feat"><div class="feat-icon">🔄</div><h3>Reverse conversion</h3><p>Convert Unicode back to Preeti/Kantipur for legacy editing workflows.</p></div>
       <div class="feat"><div class="feat-icon">🌙</div><h3>Dark mode</h3><p>Easy on the eyes for late-night work. Preference saved automatically.</p></div>
       <div class="feat"><div class="feat-icon">🔒</div><h3>Local text processing</h3><p>Your pasted text and selected files are processed in your browser; the converter does not upload their contents.</p></div>
@@ -735,7 +781,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">What is the difference between Preeti, Kantipur, and Sagarmatha?</div>
-        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">All three are legacy ASCII-based Nepali fonts, but they use different key mappings. In Preeti, <kbd>s</kbd> = क. In Kantipur, <kbd>k</kbd> = क. Sagarmatha has its own mapping. This tool supports all three — select the correct one from the font tabs. If output looks wrong, try switching fonts.</div></div>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">All three are legacy ASCII-based Nepali fonts. Preeti and Kantipur use almost the same keyboard layout, so ordinary words convert the same way; a few special keys (for example F and X) and some joined-letter glyphs differ. This page converts Preeti; use the <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode converter</a> for Kantipur text. Sagarmatha is not supported yet.</div></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">Why is some converted text incorrect?</div>
@@ -847,7 +893,7 @@ const MAPS = {
       {f:'if',r:'ष'},{f:'em',r:'झ'},{f:'f]',r:'ो'}
     ],
     post:[
-      {f:'्ा',r:''},{f:'ि((?:[क-ह]्)*[क-ह])',r:'$1ि'},{f:'((?:[क-ह]्)*[क-ह])([ािीुूृेैोौंँः]*)र्',r:'र्$1$2'},{f:'ाे',r:'ो'},{f:'ाै',r:'ौ'}
+      {f:'्ा',r:''},{f:'्ो',r:'े'},{f:'्ौ',r:'ै'},{f:'ि((?:[क-ह]्)*[क-ह])',r:'$1ि'},{f:'((?:[क-ह]्)*[क-ह])([ािीुूृेैोौंँः]*)र्',r:'र्$1$2'},{f:'ाे',r:'ो'},{f:'ाै',r:'ौ'}
     ]
   },
   sagarmatha: {

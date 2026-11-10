@@ -114,3 +114,9 @@ test('Unicode to Preeti round-trips real words', () => {
   const words = ['नेपाल','प्रधानमन्त्री','संविधान','शिक्षा','स्वास्थ्य','सम्पूर्ण','राष्ट्र','वार्ड','क्रिया','ट्रक','कृषि','रुपैयाँ','सङ्घीय','श्रीमान्','औषधि','काठमाडौँ','पूर्वी','२०८३'];
   for (const w of words) assert.equal(fwdConvert(u2p.convert(w), 'preeti'), w, w);
 });
+
+test('क्ष + e/ai matras and common sentence', () => {
+  assert.equal(fwdConvert('If]q', 'preeti'), 'क्षेत्र');
+  assert.equal(fwdConvert('sf7df8f}F', 'preeti'), 'काठमाडौँ');
+  assert.equal(fwdConvert('If]qdf', 'kantipur'), 'क्षेत्रमा');
+});
