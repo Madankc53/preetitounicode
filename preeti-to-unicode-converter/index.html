@@ -99,7 +99,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari:ital@0;1&family=Instrument+Serif:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="/assets/docx-convert.js" defer></script>
 
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -624,7 +624,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
         <input type="file" id="file-in" accept=".txt,.docx" multiple onchange="addFiles(this.files)" aria-label="Choose files">
         <div class="drop-icon" aria-hidden="true">📂</div>
         <h4>Drop files here or click to browse</h4>
-        <p>.docx and .txt supported · Multiple files · Files are processed in your browser. DOCX formatting is not preserved.</p>
+        <p>.docx and .txt supported · Multiple files · Files are processed in your browser. Word files keep their formatting; only Preeti/Kantipur text is converted.</p>
       </div>
       <div class="file-list" id="file-list"></div>
       <div class="prog" id="prog"><div class="prog-bg"><div class="prog-bar" id="prog-bar"></div></div><div class="prog-lbl" id="prog-lbl">Processing…</div></div>
@@ -1201,7 +1201,7 @@ function renderFiles(){
       <span aria-hidden="true">${f.name.endsWith('.docx')?'📝':'📄'}</span>
       <span class="fitem-name">${esc(f.name)}</span>
       <span class="fitem-sz">${szFmt(f.size)}</span>
-      <span class="fstatus ${f.status==='pending'?'p':f.status==='done'?'d':'e'}">${f.status==='pending'?'Pending':f.status==='done'?'Done':'Error'}</span>
+      ${f.note?`<span class="fitem-sz" title="${esc(f.note)}" style="color:#b45309">⚠ ${esc(f.note)}</span>`:''}<span class="fstatus ${f.status==='pending'?'p':f.status==='done'?'d':'e'}">${f.status==='pending'?'Pending':f.status==='done'?'Done':'Error'}</span>
       ${f.status==='done'?`<button class="btn" style="padding:4px 9px;font-size:10px;min-height:auto" onclick="dlFile(${i})" aria-label="Download ${esc(f.name)}">⬇</button>`:''}
       <button class="fremove" onclick="rmFile(${i})" aria-label="Remove ${esc(f.name)}">✕</button>
     </div>`).join('');
@@ -1218,10 +1218,15 @@ async function convertFiles(){
     lbl.textContent=`Converting ${f.name}… (${i+1}/${uploadedFiles.length})`;
     bar.style.width=Math.round((i/uploadedFiles.length)*100)+'%';
     try{
-      let raw;
-      if(f.name.endsWith('.txt'))raw=await readText(f.file);
-      else{const buf=await readBuf(f.file);raw=(await mammoth.extractRawText({arrayBuffer:buf})).value;}
-      f.result={data:convertText(raw),name:f.name.replace(/\.[^.]+$/,'-unicode.txt')};
+      const base=f.name.replace(/\.[^.]+$/,'');
+      if(f.name.toLowerCase().endsWith('.docx')&&cMode==='pu'){
+        const r=await DocxLegacyConvert.convert(await readBuf(f.file),(t,k)=>fwdConvert(t,k==='kantipur'?'kantipur':(cFont==='kantipur'?'kantipur':'preeti')));
+        f.result={data:r.text,name:base+'-unicode.txt',blob:r.blob,blobName:base+'-unicode.docx',stats:r.stats};
+        f.note=r.stats.unsupported?'Some text uses a font this tool does not support (e.g. Sagarmatha) and was left unchanged.':r.stats.forced?'No Preeti/Kantipur font found in the file, so text outside Devanagari was converted as Preeti. Check the result.':'';
+      }else{
+        const raw=f.name.toLowerCase().endsWith('.txt')?await readText(f.file):(await DocxLegacyConvert.convert(await readBuf(f.file),t=>t,{})).text;
+        f.result={data:convertText(raw),name:base+'-unicode.txt'};
+      }
       f.status='done';
     }catch(e){f.status='error';}
     renderFiles();await sleep(30);
@@ -1229,9 +1234,9 @@ async function convertFiles(){
   bar.style.width='100%';lbl.textContent='✅ All done!';
   setTimeout(()=>prog.classList.remove('on'),2500);toast('✓ All files converted');
 }
-function dlFile(i){const f=uploadedFiles[i];if(!f?.result)return;dlBlob('\uFEFF'+f.result.data,f.result.name,'text/plain;charset=utf-8');}
-function dlFiles(){uploadedFiles.filter(f=>f.status==='done').forEach(f=>dlBlob('\uFEFF'+f.result.data,f.result.name,'text/plain;charset=utf-8'));toast('✓ Downloaded all');}
-function readText(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsText(f,'UTF-8');});}
+function dlFile(i){const f=uploadedFiles[i];if(!f?.result)return;if(f.result.blob)dlBlob(f.result.blob,f.result.blobName,f.result.blob.type);dlBlob('\uFEFF'+f.result.data,f.result.name,'text/plain;charset=utf-8');}
+function dlFiles(){uploadedFiles.forEach((f,i)=>{if(f.status==='done')dlFile(i);});toast('✓ Downloaded all');}
+function readText(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsText(f,'UTF-8');}).then(t=>t.includes('\uFFFD')?new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsText(f,'windows-1252');}):t);}
 function readBuf(f){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsArrayBuffer(f);});}
 function szFmt(b){return b<1024?b+' B':b<1048576?(b/1024).toFixed(1)+' KB':(b/1048576).toFixed(1)+' MB';}
 function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
