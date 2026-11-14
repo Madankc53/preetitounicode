@@ -1,79 +1,79 @@
 {
  "source": "Nepal Rastra Bank",
  "source_url": "https://www.nrb.org.np/forex/",
- "date": "2026-11-13",
- "published_on": "2026-11-13 00:00:47",
- "fetched_at": "2026-11-13T16:44:31Z",
+ "date": "2026-11-14",
+ "published_on": "2026-11-14 00:00:49",
+ "fetched_at": "2026-11-14T11:47:02Z",
  "rates": [
   {
    "iso3": "AED",
    "name": "UAE Dirham",
    "unit": 1,
-   "buy": 40.89,
-   "sell": 41.05
+   "buy": 40.98,
+   "sell": 41.14
   },
   {
    "iso3": "AUD",
    "name": "Australian Dollar",
    "unit": 1,
-   "buy": 102.52,
-   "sell": 102.93
+   "buy": 102.27,
+   "sell": 102.68
   },
   {
    "iso3": "BHD",
    "name": "Bahrain Dinar",
    "unit": 1,
-   "buy": 398.25,
-   "sell": 399.84
+   "buy": 399.02,
+   "sell": 400.61
   },
   {
    "iso3": "CAD",
    "name": "Canadian Dollar",
    "unit": 1,
-   "buy": 105.37,
-   "sell": 105.79
+   "buy": 105.54,
+   "sell": 105.96
   },
   {
    "iso3": "CHF",
    "name": "Swiss Franc",
    "unit": 1,
-   "buy": 180.56,
-   "sell": 181.28
+   "buy": 179.79,
+   "sell": 180.5
   },
   {
    "iso3": "CNY",
    "name": "Chinese Yuan",
    "unit": 1,
-   "buy": 22.52,
-   "sell": 22.61
+   "buy": 22.56,
+   "sell": 22.65
   },
   {
    "iso3": "DKK",
    "name": "Danish Kroner",
    "unit": 1,
-   "buy": 22.29,
-   "sell": 22.38
+   "buy": 22.26,
+   "sell": 22.35
   },
   {
    "iso3": "EUR",
    "name": "European Euro",
    "unit": 1,
-   "buy": 166.6,
-   "sell": 167.27
+   "buy": 166.43,
+   "sell": 167.1
   },
   {
    "iso3": "GBP",
    "name": "UK Pound Sterling",
    "unit": 1,
-   "buy": 199.31,
-   "sell": 200.11
+   "buy": 199.16,
+   "sell": 199.95
   },
   {
    "iso3": "HKD",
    "name": "Hong Kong Dollar",
    "unit": 1,
-   "buy": 19.14,
-   "sell": 19.22
+   "buy": 19.18,
+   "sell": 19.26
   },
   {
    "iso3": "INR",
@@ -86,64 +86,64 @@
    "iso3": "JPY",
    "name": "Japanese Yen",
    "unit": 10,
-   "buy": 9.4,
-   "sell": 9.44
+   "buy": 9.41,
+   "sell": 9.45
   },
   {
    "iso3": "KRW",
    "name": "South Korean Won",
    "unit": 100,
-   "buy": 11.28,
-   "sell": 11.32
+   "buy": 11.26,
+   "sell": 11.31
   },
   {
    "iso3": "KWD",
    "name": "Kuwaity Dinar",
    "unit": 1,
-   "buy": 486.65,
-   "sell": 488.59
+   "buy": 487.65,
+   "sell": 489.6
   },
   {
    "iso3": "MYR",
    "name": "Malaysian Ringgit",
    "unit": 1,
    "buy": 36.82,
-   "sell": 36.97
+   "sell": 36.96
   },
   {
    "iso3": "OMR",
    "name": "Omani Rial",
    "unit": 1,
-   "buy": 390.06,
-   "sell": 391.62
+   "buy": 390.87,
+   "sell": 392.43
   },
   {
    "iso3": "QAR",
    "name": "Qatari Riyal",
    "unit": 1,
-   "buy": 41.2,
-   "sell": 41.37
+   "buy": 41.29,
+   "sell": 41.45
   },
   {
    "iso3": "SAR",
    "name": "Saudi Arabian Riyal",
    "unit": 1,
-   "buy": 40.02,
-   "sell": 40.18
+   "buy": 40.1,
+   "sell": 40.26
   },
   {
    "iso3": "SEK",
    "name": "Swedish Kroner",
    "unit": 1,
-   "buy": 15.07,
-   "sell": 15.13
+   "buy": 15.01,
+   "sell": 15.07
   },
   {
    "iso3": "SGD",
    "name": "Singapore Dollar",
    "unit": 1,
-   "buy": 116.89,
-   "sell": 117.35
+   "buy": 116.92,
+   "sell": 117.39
   },
   {
    "iso3": "THB",
@@ -156,8 +156,8 @@
    "iso3": "USD",
    "name": "U.S. Dollar",
    "unit": 1,
-   "buy": 150.18,
-   "sell": 150.78
+   "buy": 150.49,
+   "sell": 151.09
   }
  ]
 }
