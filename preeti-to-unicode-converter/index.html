@@ -588,10 +588,11 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     <!-- Panels -->
     <div class="conv-body">
       <div class="conv-panel" role="region" aria-label="Input panel">
-        <div class="panel-head"><span class="panel-dot" aria-hidden="true"></span><span id="in-lbl">Preeti Input</span><span class="quick-row"><button type="button" class="quick-btn pri" onclick="pasteIn()">📋 Paste</button><button type="button" class="quick-btn" onclick="loadSample()">Sample</button></span></div>
+        <div class="panel-head"><span class="panel-dot" aria-hidden="true"></span><span id="in-lbl">Preeti Input</span><span class="quick-row"><button type="button" class="quick-btn pri" onclick="pasteIn()">📋 Paste</button><button type="button" class="quick-btn" onclick="loadSample()">Sample</button><button type="button" class="quick-btn" id="undo-btn" onclick="undoIn()" disabled aria-label="Undo last change to the input">↶ Undo</button><button type="button" class="quick-btn" id="redo-btn" onclick="redoIn()" disabled aria-label="Redo">↷ Redo</button></span></div>
+        <div class="uni-warn" id="font-hint" role="status"></div>
         <div class="uni-warn" id="uni-warn" role="status">This text already looks like Nepali Unicode, so Preeti conversion is not needed. <button type="button" onclick="setMode('up')">Convert Unicode → Preeti instead</button></div>
         <textarea class="preeti-input" id="input-ta" placeholder="यहाँ Preeti font को text paste गर्नुहोस् …&#10;&#10;Example: g]kfn = नेपाल" spellcheck="false" autocomplete="off" aria-label="Preeti font input" rows="8"></textarea>
-        <div class="counts"><span>Chars: <strong id="in-ch">0</strong></span><span>Words: <strong id="in-wd">0</strong></span><span>Lines: <strong id="in-ln">0</strong></span></div>
+        <div class="counts"><span>Chars: <strong id="in-ch">0</strong></span><span>Words: <strong id="in-wd">0</strong></span><span>Lines: <strong id="in-ln">0</strong></span><label class="auto-copy" title="Plain 0–9 are conjunct keys in Preeti (for example 1 is ज्ञ). Turn this on only if your text has ordinary numbers."><input type="checkbox" id="keep-digits"> Keep 0–9 as English digits</label></div>
       </div>
       <div class="conv-divider" aria-hidden="true">
         <button class="swap-btn" onclick="swapAll()" title="Swap direction" aria-label="Swap input and output">⇄</button>
@@ -1055,9 +1056,19 @@ function revConvert(t,font){
   }
   return r;
 }
+function protectKeep(t){
+  // URLs and e-mail addresses (and optionally 0-9) are swapped for private-use markers so they come back unchanged
+  const keep=[];
+  const kd=document.getElementById('keep-digits');
+  const re=(kd&&kd.checked)?/https?:\/\/\S+|www\.\S+|[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}|[0-9]+/g:/https?:\/\/\S+|www\.\S+|[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}/g;
+  const out=t.replace(re,m=>{if(keep.length>=6000)return m;keep.push(m);return String.fromCharCode(0xE100+keep.length-1);});
+  return {out,keep};
+}
 function convertText(t){
   if(!t)return'';
-  return cMode==='pu'?fwdConvert(t,cFont):revConvert(t,cFont);
+  const {out,keep}=protectKeep(t);
+  const r=cMode==='pu'?fwdConvert(out,cFont):revConvert(out,cFont);
+  return keep.length?r.replace(/[\uE100-\uF8FF]/g,c=>keep[c.charCodeAt(0)-0xE100]??c):r;
 }
 
 // ═══════════════════════════════════════════════════
@@ -1071,6 +1082,7 @@ function doConvert(){
   counts('in',val);
   const uw=document.getElementById('uni-warn');
   if(uw)uw.style.display=(cMode==='pu'&&/[\u0900-\u097F]/.test(val))?'block':'none';
+  showFontHint(val);
   const ob=outBox();
   if(!val){
     ob.textContent='Converted Devanagari appears here…';
@@ -1428,6 +1440,46 @@ document.querySelectorAll('.hard-tab').forEach(t=>t.addEventListener('click',()=
   buildHard();
 }));
 buildHard();
+
+// ═══ Input detection hint, undo/redo, mode link ═══
+function showFontHint(val){
+  const el=document.getElementById('font-hint');if(!el)return;
+  let msg='';
+  if(cMode==='pu'&&val.length>=15&&!/[\u0900-\u097F]/.test(val)){
+    if(cFont==='preeti'&&/[¥¨¬®µºÂÈÎÏÔøŒœ‹›™]/.test(val)){
+      msg='These characters are used by Kantipur, not Preeti. <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Try the Kantipur converter</a>.';
+    }else{
+      const w=val.toLowerCase().match(/\b(the|and|is|of|to|in|for|with|that|this|are|you|have)\b/g)||[];
+      if(w.length>=3&&!/[\];{}|\\\[]/.test(val))msg='This looks like English. Only text typed in the Preeti font converts to Nepali, and English words will come out as Nepali letters.';
+    }
+  }
+  el.innerHTML=msg;el.style.display=msg?'block':'none';
+}
+const HIST={u:[],r:[]};
+function updUR(){const u=document.getElementById('undo-btn'),r=document.getElementById('redo-btn');if(u)u.disabled=!HIST.u.length;if(r)r.disabled=!HIST.r.length;}
+function snap(){const v=inputTA().value;if(HIST.u[HIST.u.length-1]!==v){HIST.u.push(v);if(HIST.u.length>50)HIST.u.shift();}HIST.r=[];updUR();}
+function undoIn(){
+  const cur=inputTA().value;
+  while(HIST.u.length&&HIST.u[HIST.u.length-1]===cur)HIST.u.pop();
+  if(!HIST.u.length){updUR();return;}
+  HIST.r.push(cur);inputTA().value=HIST.u.pop();doConvert();updUR();
+}
+function redoIn(){
+  if(!HIST.r.length)return;
+  HIST.u.push(inputTA().value);inputTA().value=HIST.r.pop();doConvert();updUR();
+}
+['clearAll','loadSample','pasteIn','hardInsert','restoreRecent'].forEach(n=>{const f=window[n];if(typeof f!=='function')return;window[n]=function(){snap();return f.apply(this,arguments);};});
+inputTA().addEventListener('paste',snap);
+(function(){
+  const kd=document.getElementById('keep-digits');
+  kd.checked=localStorage.getItem('th-keepdigits')==='1';
+  kd.addEventListener('change',()=>{localStorage.setItem('th-keepdigits',kd.checked?'1':'0');doConvert();});
+  doConvert();
+  // ?mode=up opens the reverse converter directly; the link never carries any text
+  try{const m=new URLSearchParams(location.search).get('mode');if(m==='up'||m==='pu')setMode(m);}catch(e){}
+  const _sm=setMode;
+  window.setMode=function(m){_sm(m);try{const u=new URL(location.href);if(m==='up')u.searchParams.set('mode','up');else u.searchParams.delete('mode');history.replaceState(null,'',u.pathname+u.search+u.hash);}catch(e){}};
+})();
 
 (function init(){
   // Theme
