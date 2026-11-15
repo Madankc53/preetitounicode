@@ -152,3 +152,8 @@ test('every clickable palette item converts back to itself', () => {
     }
   }
 });
+
+test('font guide worked examples convert as printed', () => {
+  const ex = [['g]kfn ;/sf/','नेपाल सरकार'],['lzIff','शिक्षा'],['k|wfgdGqL','प्रधानमन्त्री'],['/fli6«o','राष्ट्रिय'],['ljZjljBfno','विश्वविद्यालय'],['sfo{s|d','कार्यक्रम'],['If]q','क्षेत्र'],['s]Gb|','केन्द्र']];
+  for (const [a, b] of ex) assert.equal(fwdConvert(a, 'preeti'), b, a);
+});
