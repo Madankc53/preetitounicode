@@ -120,3 +120,35 @@ test('क्ष + e/ai matras and common sentence', () => {
   assert.equal(fwdConvert('sf7df8f}F', 'preeti'), 'काठमाडौँ');
   assert.equal(fwdConvert('If]qdf', 'kantipur'), 'क्षेत्रमा');
 });
+
+// ── Reverse direction and the click palette ──
+const revSource = section('function revReorder(t){', 'function convertText(');
+const hardSource = section('const HARD={', 'let hardTab=');
+const revSandbox = {};
+vm.runInNewContext(`
+  ${mapsSource}
+  ${engineSource}
+  ${revSource}
+  ${hardSource}
+  this.api = { revConvert, fwdConvert, HARD };
+`, revSandbox);
+const { revConvert, HARD } = revSandbox.api;
+
+test('Unicode → Preeti writes real Preeti typing order (i-matra first, reph last)', () => {
+  assert.equal(revConvert('शिक्षा', 'preeti'), 'lzIff');
+  assert.equal(revConvert('धर्म', 'preeti'), 'wd{');
+  assert.equal(revConvert('क्षेत्र', 'preeti'), 'If]q');
+  assert.equal(revConvert('आज', 'preeti'), 'cfh');
+  assert.equal(revConvert('पुस्तक', 'preeti'), "k':ts");
+});
+
+test('every clickable palette item converts back to itself', () => {
+  for (const [group, items] of Object.entries(HARD)) {
+    for (const u of items) {
+      const preeti = revConvert(u, 'preeti');
+      assert.equal(fwdConvert(preeti, 'preeti'), u, `${group}: ${u} → ${preeti}`);
+      // ॐ ऽ ॥ have no Preeti key; they are inserted as Unicode and pass through the converter unchanged
+      if (!['ॐ', 'ऽ', '॥'].includes(u)) assert.doesNotMatch(preeti, /[ऀ-ॿ]/, `${group}: ${u} left Devanagari in Preeti output`);
+    }
+  }
+});
