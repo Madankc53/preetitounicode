@@ -518,6 +518,17 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
 .recent .r-meta{font-size:11px;color:var(--muted);flex:1 1 auto}
 .recent .quick-btn{min-height:30px}
 .recent-note{margin-top:8px;font-size:11px;color:var(--muted)}
+
+.hard{margin:14px 0 4px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
+.hard-head{display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;font-size:13px}
+.hard-head span{font-size:11px;color:var(--muted)}
+.hard-tabs{display:flex;gap:6px;margin:10px 0 8px;flex-wrap:wrap}
+.hard-tab{min-height:34px;padding:0 12px;border:1px solid var(--border);border-radius:999px;background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer}
+.hard-tab.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.hard-grid{display:flex;flex-wrap:wrap;gap:6px;max-height:210px;overflow:auto;padding:2px}
+.hard-chip{min-width:44px;min-height:44px;padding:4px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg,#fff);color:inherit;font-family:'Tiro Devanagari',serif;font-size:20px;line-height:1.2;cursor:pointer}
+.hard-chip:hover,.hard-chip:focus-visible{border-color:var(--blue);outline:none;box-shadow:0 0 0 2px rgba(29,78,216,.18)}
+.hard-chip.flash{background:var(--blue);color:#fff}
 </style>
 <link rel="preload" href="/header.html" as="fetch" crossorigin>
 <link rel="preload" href="/footer.html" as="fetch" crossorigin>
@@ -621,6 +632,17 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <button class="btn" onclick="dlHtml()" aria-label="Download as HTML">🌐 .HTML</button>
       <button class="btn" onclick="printOut()" aria-label="Print output">🖨️ Print</button>
     </div>
+
+    <!-- Hard letters & words palette -->
+    <section class="hard" id="hard" aria-label="Hard-to-type letters and words">
+      <div class="hard-head"><strong>Hard to type? Click to add</strong><span id="hard-hint">Clicking adds the Preeti keys to your input. The Unicode result shows on the right.</span></div>
+      <div class="hard-tabs" role="tablist">
+        <button type="button" class="hard-tab on" role="tab" aria-selected="true" data-tab="join">Joined letters</button>
+        <button type="button" class="hard-tab" role="tab" aria-selected="false" data-tab="sign">Signs</button>
+        <button type="button" class="hard-tab" role="tab" aria-selected="false" data-tab="word">Common words</button>
+      </div>
+      <div class="hard-grid" id="hard-grid" role="group"></div>
+    </section>
 
     <!-- Recent conversions (browser only) -->
     <section class="recent" id="recent" hidden aria-label="Recent conversions on this device">
@@ -971,6 +993,8 @@ MAPS.kantipur={
 Object.keys(MAPS).forEach(font=>{
   const rev=new Map();
   Object.entries(MAPS[font].fwd).forEach(([k,v])=>{if(!rev.has(v))rev.set(v,k);});
+  // Letters typed through multi-key rules, and full conjuncts, so Unicode → Preeti never leaves Devanagari behind
+  [['ष','if'],['झ','em'],['फ','km'],['आ','cf'],['ओ','cf]'],['औ','cf}'],['ई','O{'],['ऊ','pm'],['ऐ','P{'],['ो','f]'],['क्ष','If'],['पु',"k'"]].forEach(([u,k])=>{if(!rev.has(u))rev.set(u,k);});
   MAPS[font].rev=rev;
 });
 
@@ -1012,7 +1036,15 @@ function fwdConvert(t,font){
   r=applyPost(r,m.post);
   return r;
 }
+function revReorder(t){
+  // Unicode order → Preeti typing order: reph goes after its syllable, the i-matra goes before its consonant cluster
+  const C='[\\u0915-\\u0939]',H='\\u094D';
+  t=t.replace(new RegExp('(^|[^'+H+'])\\u0930'+H+'((?:'+C+H+')*'+C+')([\\u093E-\\u094C\\u0901-\\u0903]*)','g'),'$1$2$3\uE000');
+  t=t.replace(new RegExp('((?:'+C+H+')*'+C+')\\u093F','g'),'\u093F$1');
+  return t.replace(/\uE000/g,'\u0930\u094D');
+}
 function revConvert(t,font){
+  t=revReorder(t);
   const rm=MAPS[font].rev;
   const keys=[...rm.keys()].sort((a,b)=>b.length-a.length);
   let r='',i=0;
@@ -1070,6 +1102,7 @@ function setFont(font,el){
 
 function setMode(m){
   cMode=m;
+  if(typeof buildHard==='function')setTimeout(buildHard,0);
   const fwd=m==='pu';
   document.getElementById('btn-pu').classList.toggle('on',fwd);
   document.getElementById('btn-pu').setAttribute('aria-pressed',String(fwd));
@@ -1359,6 +1392,42 @@ document.getElementById('recent-on').addEventListener('change',function(){localS
   ['dlTxt','dlDocx','dlHtml'].forEach(n=>{const f=window[n];window[n]=function(){f.apply(this,arguments);saveRecent();};});
   renderRecent();
 })();
+
+// ═══ Hard letters & words palette: chips show Unicode, insert Preeti (or Unicode in Unicode → Preeti mode) ═══
+const HARD={
+  join:'क्ष त्र ज्ञ श्र द्य द्ध द्व द्द ट्ट ड्ड ङ्ग ङ्क त्त क्त न्न स्त ष्ट ह्म ह्न ल्ल ज्ज च्च ञ्च ञ्ज द्भ न्त ण्ड स्थ प्र क्र ग्र श्च क्ष्म त्र्य'.split(' '),
+  sign:'ँ ं ः ् । ऋ ॐ रु रू र् ऽ ॥ ‘ ’ “ ” ₨'.split(' '),
+  word:'राष्ट्र राष्ट्रिय अन्तर्राष्ट्रिय प्रधानमन्त्री मन्त्रालय संविधान विद्यालय विश्वविद्यालय शिक्षा क्षेत्र ज्ञान विज्ञान धर्म कर्म कार्यक्रम श्रीमान् श्रीमती द्वारा पत्रकार स्वतन्त्रता पुस्तक प्रदेश गाउँपालिका उत्तर सर्वोच्च अदालत निर्देशिका उद्योग'.split(' ')
+};
+let hardTab='join';
+function hardInsert(u,btn){
+  const ta=inputTA(),txt=cMode==='pu'?revConvert(u,cFont):u;
+  const a=ta.selectionStart==null?ta.value.length:ta.selectionStart,b=ta.selectionEnd==null?a:ta.selectionEnd;
+  ta.value=ta.value.slice(0,a)+txt+ta.value.slice(b);
+  const pos=a+txt.length;
+  if(!matchMedia('(pointer:coarse)').matches)ta.focus();
+  ta.setSelectionRange(pos,pos);
+  doConvert();
+  if(btn){btn.classList.add('flash');setTimeout(()=>btn.classList.remove('flash'),350);}
+  toast('Added '+u);
+}
+function buildHard(){
+  const g=document.getElementById('hard-grid');if(!g)return;g.textContent='';
+  HARD[hardTab].forEach(u=>{
+    const b=document.createElement('button');b.type='button';b.className='hard-chip';b.textContent=u;
+    b.title=cMode==='pu'?'Adds Preeti keys: '+revConvert(u,cFont):'Adds '+u;
+    b.setAttribute('aria-label','Add '+u);
+    b.onclick=()=>hardInsert(u,b);g.append(b);
+  });
+  const h=document.getElementById('hard-hint');
+  if(h)h.textContent=cMode==='pu'?'Clicking adds the Preeti keys to your input. The Unicode result shows on the right.':'Clicking adds the Unicode letters to your input.';
+}
+document.querySelectorAll('.hard-tab').forEach(t=>t.addEventListener('click',()=>{
+  hardTab=t.dataset.tab;
+  document.querySelectorAll('.hard-tab').forEach(x=>{const on=x===t;x.classList.toggle('on',on);x.setAttribute('aria-selected',String(on));});
+  buildHard();
+}));
+buildHard();
 
 (function init(){
   // Theme
