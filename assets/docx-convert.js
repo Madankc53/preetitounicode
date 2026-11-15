@@ -3,7 +3,7 @@
    Returns the converted text and a new .docx with formatting kept. Runs fully in the browser. */
 (function (root) {
   var W = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
-  var JSZIP_URL = 'https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js';
+  var JSZIP_URL = '/assets/jszip.min.js';
   var PARTS = /^word\/(document|header\d*|footer\d*|footnotes|endnotes)\.xml$/;
 
   function loadJSZip() {
@@ -138,5 +138,19 @@
     var blob = await zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
     return { text: text, blob: blob, stats: stats };
   }
-  root.DocxLegacyConvert = { convert: convertDocx };
+  function xesc(t) { return t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  /* Build a genuine .docx (Office Open XML) from plain Unicode text, one paragraph per line. */
+  async function buildDocx(text, fontName) {
+    var JSZip = await loadJSZip(), f = fontName || 'Mangal';
+    var rpr = '<w:rPr><w:rFonts w:ascii="' + f + '" w:hAnsi="' + f + '" w:cs="' + f + '" w:eastAsia="' + f + '"/><w:sz w:val="28"/><w:szCs w:val="28"/></w:rPr>';
+    var body = String(text).replace(/\r\n?/g, '\n').split('\n').map(function (l) {
+      return '<w:p><w:r>' + rpr + '<w:t xml:space="preserve">' + xesc(l) + '</w:t></w:r></w:p>';
+    }).join('');
+    var zip = new JSZip();
+    zip.file('[Content_Types].xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>');
+    zip.file('_rels/.rels', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>');
+    zip.file('word/document.xml', '<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="' + W + '"><w:body>' + body + '<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="708" w:footer="708" w:gutter="0"/></w:sectPr></w:body></w:document>');
+    return zip.generateAsync({ type: 'blob', mimeType: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+  }
+  root.DocxLegacyConvert = { convert: convertDocx, build: buildDocx };
 })(typeof self !== 'undefined' ? self : this);

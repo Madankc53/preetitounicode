@@ -36,9 +36,9 @@
   "applicationCategory":"UtilityApplication",
   "operatingSystem":"Any",
   "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-  "description":"Browser-based tool for converting Preeti legacy Nepali font text to Unicode Devanagari. Supports pasted text and DOCX/TXT text extraction, with TXT, Word-compatible DOC and HTML exports.",
+  "description":"Browser-based tool for converting Preeti legacy Nepali font text to Unicode Devanagari. Supports pasted text and .docx/.txt files (formatting kept in .docx), with TXT, DOCX and HTML exports.",
   "author":{"@type":"Person","name":"Madan KC","url":"https://madankc.com.np"},
-  "featureList":["Preeti to Unicode","Upload .docx files","Upload .txt files","Export as Word-compatible DOC","Export as TXT","Export as HTML","Dark mode","Click keyboard","Reverse Unicode to Preeti","Local text processing"]
+  "featureList":["Preeti to Unicode","Upload .docx files","Upload .txt files","Export as Word DOCX","Export as TXT","Export as HTML","Dark mode","Click keyboard","Reverse Unicode to Preeti","Local text processing"]
 }
 </script>
 <script type="application/ld+json">
@@ -52,7 +52,7 @@
     {"@type":"HowToStep","position":1,"name":"Select your font","text":"Choose Preeti, the currently supported legacy font."},
     {"@type":"HowToStep","position":2,"name":"Paste or upload text","text":"Paste Preeti font text into the input box, or upload a .docx/.txt file using the file upload zone."},
     {"@type":"HowToStep","position":3,"name":"See instant Unicode output","text":"Unicode Devanagari output appears instantly in the right panel as you type or paste — no button needed."},
-    {"@type":"HowToStep","position":4,"name":"Copy or export","text":"Click Copy Unicode, or export as .TXT, Word-compatible .DOC, or .HTML file."}
+    {"@type":"HowToStep","position":4,"name":"Copy or export","text":"Click Copy Unicode, or export as .TXT, .DOCX, or .HTML file."}
   ]
 }
 </script>
@@ -62,10 +62,10 @@
   "@type":"FAQPage",
   "mainEntity":[
     {"@type":"Question","name":"What is Preeti font?","acceptedAnswer":{"@type":"Answer","text":"Preeti is a legacy ASCII-based Nepali font widely used in Nepal before Unicode became standard. Pressing 's' types 'क' and 'v' types 'ख'. Without Preeti font installed, the text appears as random English letters. Unicode solves this permanently."}},
-    {"@type":"Question","name":"Which fonts does this converter support?","acceptedAnswer":{"@type":"Answer","text":"Preeti is currently supported. Kantipur and Sagarmatha are temporarily unavailable while their conversion maps are being tested."}},
+    {"@type":"Question","name":"Which fonts does this converter support?","acceptedAnswer":{"@type":"Answer","text":"This page converts Preeti. Kantipur text has its own converter page at /preeti-to-unicode-converter/kantipur-to-unicode. Sagarmatha, PCS Nepali and other legacy fonts are not supported yet."}},
     {"@type":"Question","name":"Can I convert a Word document (.docx) from Preeti to Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the file upload zone to drag and drop your .docx file. The tool extracts the text, converts it to Unicode, and lets you download the result as a .txt or .docx file."}},
     {"@type":"Question","name":"Will my Word formatting be kept when I convert a .docx file?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter changes only the text that is set in a Preeti or Kantipur font and keeps the file's headings, bold and italics, tables and layout. Download the result as a .docx or as plain .txt. Older .doc files should be saved as .docx in Word first."}},
-    {"@type":"Question","name":"Is my document safe? Is it uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"Your text and files are never sent to any server. The entire conversion runs locally in your browser using JavaScript. You can turn off your internet and the tool still works."}},
+    {"@type":"Question","name":"Is my document safe? Is it uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"The conversion runs locally in your browser, so the text you paste and the files you choose are not uploaded to our server. The page itself still loads Google Fonts and Google AdSense, which are separate requests that do not carry your text. See the privacy policy for details."}},
     {"@type":"Question","name":"Can I convert Unicode back to Preeti?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click 'Unicode → Font' in the direction toggle above the converter to switch to reverse mode."}},
     {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, fully. The tool is mobile-optimized and works on Android and iOS browsers without any app installation."}}
   ]
@@ -600,7 +600,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <div class="conv-panel" role="region" aria-label="Output panel">
         <div class="panel-head"><span class="panel-dot r" aria-hidden="true"></span><span id="out-lbl">Unicode Output</span><span class="quick-row"><button type="button" class="quick-btn pri" onclick="copyOut()">📋 Copy</button></span></div>
         <div class="out-box empty" id="out-box" role="textbox" tabindex="0" aria-live="polite" aria-label="Converted Unicode output">Converted Devanagari appears here…</div>
-        <div class="counts"><span>Chars: <strong id="out-ch">0</strong></span><span>Words: <strong id="out-wd">0</strong></span><label class="auto-copy"><input type="checkbox" id="auto-copy"> Copy automatically after paste</label></div>
+        <div class="counts"><span>Chars: <strong id="out-ch">0</strong></span><span>Words: <strong id="out-wd">0</strong></span><label class="auto-copy"><input type="checkbox" id="auto-copy"> Copy automatically after paste (off by default)</label><button type="button" class="quick-btn" id="reset-settings" title="Clear saved settings and recent conversions on this device">Reset settings</button></div>
       </div>
     </div>
 
@@ -629,7 +629,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     <div class="export-bar">
       <span class="export-label">Export:</span>
       <button class="btn" onclick="dlTxt()" aria-label="Download as TXT">📄 .TXT</button>
-      <button class="btn blu" onclick="dlDocx()" aria-label="Download as Word-compatible DOC file">📝 Word .DOC</button>
+      <button class="btn blu" onclick="dlDocx()" aria-label="Download as Word .docx file">📝 Word .DOCX</button>
       <button class="btn" onclick="dlHtml()" aria-label="Download as HTML">🌐 .HTML</button>
       <button class="btn" onclick="printOut()" aria-label="Print output">🖨️ Print</button>
     </div>
@@ -779,7 +779,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <div class="step-card"><div class="step-num">1</div><h3>Select your font</h3><p>Keep Preeti selected (it covers most old Nepali documents). If your text came from the Kantipur font, use the <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode</a> page.</p></div>
       <div class="step-card"><div class="step-num">2</div><h3>Paste or type</h3><p>Paste Preeti text into the left input box, or use the Sample button to see a live example.</p></div>
       <div class="step-card"><div class="step-num">3</div><h3>See Unicode instantly</h3><p>The right panel shows the converted Unicode Devanagari as you type — no button needed.</p></div>
-      <div class="step-card"><div class="step-num">4</div><h3>Export or copy</h3><p>Copy to clipboard, or download as .TXT, Word-compatible .DOC, or .HTML file.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>Export or copy</h3><p>Copy to clipboard, or download as .TXT, .DOCX, or .HTML file.</p></div>
     </div>
     <p class="body-text">For <strong>Word documents (.docx)</strong>, open the upload section, select your file and choose Convert All. Only text set in a Preeti or Kantipur font is converted; headings, bold, tables and layout are kept in the downloaded .docx, and you can also download a plain TXT copy. See the <a href="/nepali-font-conversion-guide/">font conversion guide</a> if you are unsure which font your file uses.</p>
   </section>
@@ -791,7 +791,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
     <div class="feat-grid">
       <div class="feat"><div class="feat-icon">⚡</div><h3>Live conversion</h3><p>Unicode output updates instantly as you type — zero latency, no button to click.</p></div>
       <div class="feat"><div class="feat-icon">📂</div><h3>File upload</h3><p>Upload .txt or .docx files directly. Converted instantly, entirely in your browser.</p></div>
-      <div class="feat"><div class="feat-icon">📝</div><h3>Word-compatible export</h3><p>Save the converted text as a Word-compatible .DOC file, or choose TXT and HTML.</p></div>
+      <div class="feat"><div class="feat-icon">📝</div><h3>Word .docx export</h3><p>Save the converted text as a real Word .docx file, or choose TXT and HTML.</p></div>
       <div class="feat"><div class="feat-icon">🔤</div><h3>Preeti and Kantipur</h3><p>Preeti here, and a dedicated Kantipur page for newspaper-style text.</p></div>
       <div class="feat"><div class="feat-icon">🔄</div><h3>Reverse conversion</h3><p>Convert Unicode back to Preeti/Kantipur for legacy editing workflows.</p></div>
       <div class="feat"><div class="feat-icon">🌙</div><h3>Dark mode</h3><p>Easy on the eyes for late-night work. Preference saved automatically.</p></div>
@@ -833,7 +833,7 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">Is my document safe? Does it get uploaded anywhere?</div>
-        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">The converter processes pasted text and selected files locally in your browser; their contents are not uploaded by the conversion tool. The page still loads external resources such as fonts and the document-reading library. DOCX upload extracts text only and does not preserve the original Word formatting.</div></div>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">The converter processes pasted text and selected files locally in your browser; their contents are not uploaded by the conversion tool. The page still loads external resources such as Google Fonts and Google AdSense, which do not receive your text. In a .docx upload, only runs set in a Preeti or Kantipur font are converted and the rest of the formatting is kept.</div></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">What is the difference between Preeti, Kantipur, and Sagarmatha?</div>
@@ -1201,11 +1201,13 @@ function dlTxt(){
   dlBlob('\uFEFF'+t,'nepali-unicode.txt','text/plain;charset=utf-8');
   toast('✓ Downloaded .txt');
 }
-function dlDocx(){
+async function dlDocx(){
   const t=getOut();if(!t){toast('⚠️ Nothing to export');return;}
-  const html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40"><head><meta charset="UTF-8"><style>body{font-family:'Noto Sans Devanagari',Mangal,serif;font-size:14pt;direction:ltr;line-height:1.8}p{margin:0 0 10pt}</style></head><body>${t.split('\n').map(l=>`<p>${escHtml(l)||'&nbsp;'}</p>`).join('')}</body></html>`;
-  dlBlob(html,'nepali-unicode.doc','application/msword');
-  toast('✓ Downloaded Word .doc');
+  try{
+    const blob=await window.DocxLegacyConvert.build(t,'Mangal');
+    dlBlob(blob,'nepali-unicode.docx',blob.type);
+    toast('✓ Downloaded Word .docx');
+  }catch(e){toast('⚠️ Could not build .docx. Download TXT instead.');}
 }
 function dlHtml(){
   const t=getOut();if(!t){toast('⚠️ Nothing to export');return;}
@@ -1397,6 +1399,11 @@ document.getElementById('recent-on').addEventListener('change',function(){localS
   ac.checked=localStorage.getItem('th-autocopy')==='1';
   ro.checked=localStorage.getItem('th-recent-on')!=='0';
   ac.addEventListener('change',()=>localStorage.setItem('th-autocopy',ac.checked?'1':'0'));
+  document.getElementById('reset-settings').onclick=()=>{
+    ['th-autocopy','th-recent-on','th-keepdigits',RK].forEach(k=>localStorage.removeItem(k));
+    ac.checked=false;ro.checked=true;const kd=document.getElementById('keep-digits');if(kd)kd.checked=false;
+    renderRecent();doConvert();toast('✓ Settings and recent list reset');
+  };
   let tm;
   inputTA().addEventListener('paste',()=>{
     clearTimeout(tm);
