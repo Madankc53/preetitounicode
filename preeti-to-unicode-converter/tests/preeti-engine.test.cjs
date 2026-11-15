@@ -157,3 +157,21 @@ test('font guide worked examples convert as printed', () => {
   const ex = [['g]kfn ;/sf/','नेपाल सरकार'],['lzIff','शिक्षा'],['k|wfgdGqL','प्रधानमन्त्री'],['/fli6«o','राष्ट्रिय'],['ljZjljBfno','विश्वविद्यालय'],['sfo{s|d','कार्यक्रम'],['If]q','क्षेत्र'],['s]Gb|','केन्द्र']];
   for (const [a, b] of ex) assert.equal(fwdConvert(a, 'preeti'), b, a);
 });
+
+test('every on-screen keyboard key really converts to the character it shows', () => {
+  for (const font of ['preeti', 'kantipur']) {
+    for (const [key, shown] of getKeyboardKeys(font)) {
+      assert.equal(fwdConvert(key, font), shown, `${font}: key ${JSON.stringify(key)} shows ${shown}`);
+    }
+  }
+});
+
+test('regression: joined letters, numbers, ukar and punctuation', () => {
+  const cases = {
+    'If': 'क्ष', '1': 'ज्ञ', '!@#': '१२३', 'ldlt M': 'मिति ः',
+    "k':tsfno": 'पुस्तकालय', 'dxfgu/kflnsf': 'महानगरपालिका', 'jf:tljs': 'वास्तविक',
+    "8'+uf": 'डुंगा', "6's|f": 'टुक्रा', "b|'t": 'द्रुत', '/fHo': 'राज्य', 'k|b]z': 'प्रदेश',
+    'ef/t': 'भारत', 'sIff': 'कक्षा', 'cf]ifwL': 'ओषधी', 'clxn]': 'अहिले'
+  };
+  for (const [src, want] of Object.entries(cases)) assert.equal(fwdConvert(src, 'preeti'), want, src);
+});
