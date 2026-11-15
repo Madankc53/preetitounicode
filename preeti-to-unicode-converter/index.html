@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- ═══ PRIMARY SEO ═══ -->
-<title>Preeti to Unicode Converter – Free Nepali Tool | TheNepal.io</title>
-<meta name="description" content="Convert Preeti text to Nepali Unicode online. Paste text, use the on-screen Preeti keyboard, or upload DOCX/TXT files. Free and mobile-friendly.">
+<title>Preeti to Unicode Converter Online – Free, Word &amp; Text Files</title>
+<meta name="description" content="Free Preeti to Unicode converter. Paste text or upload a Word (.docx) file, get Nepali Unicode instantly, then copy or download it. Private: runs in your browser.">
 
 <meta name="author" content="Madan KC">
 <link rel="canonical" href="https://converter.thenepal.io/preeti-to-unicode-converter/">
@@ -14,7 +14,7 @@
 <!-- ═══ OPEN GRAPH ═══ -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://converter.thenepal.io/preeti-to-unicode-converter/">
-<meta property="og:title" content="Preeti to Unicode Converter – Free Nepali Font Tool">
+<meta property="og:title" content="Preeti to Unicode Converter Online – Free, Word &amp; Text Files">
 <meta property="og:description" content="Convert Preeti text to Nepali Unicode. Paste text, use the on-screen keyboard, or upload DOCX/TXT files.">
 <meta property="og:image" content="https://converter.thenepal.io/assets/og-default.png">
 <meta property="og:locale" content="en_US">
@@ -22,7 +22,7 @@
 
 <!-- ═══ TWITTER ═══ -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Preeti to Unicode Converter – Free Nepali Font Tool">
+<meta name="twitter:title" content="Preeti to Unicode Converter Online – Free, Word &amp; Text Files">
 <meta name="twitter:description" content="Convert Preeti text to Nepali Unicode. Paste text, use the on-screen keyboard, or upload DOCX/TXT files.">
 <meta name="twitter:image" content="https://converter.thenepal.io/assets/og-default.png">
 
@@ -64,6 +64,7 @@
     {"@type":"Question","name":"What is Preeti font?","acceptedAnswer":{"@type":"Answer","text":"Preeti is a legacy ASCII-based Nepali font widely used in Nepal before Unicode became standard. Pressing 's' types 'क' and 'v' types 'ख'. Without Preeti font installed, the text appears as random English letters. Unicode solves this permanently."}},
     {"@type":"Question","name":"Which fonts does this converter support?","acceptedAnswer":{"@type":"Answer","text":"Preeti is currently supported. Kantipur and Sagarmatha are temporarily unavailable while their conversion maps are being tested."}},
     {"@type":"Question","name":"Can I convert a Word document (.docx) from Preeti to Unicode?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the file upload zone to drag and drop your .docx file. The tool extracts the text, converts it to Unicode, and lets you download the result as a .txt or .docx file."}},
+    {"@type":"Question","name":"Will my Word formatting be kept when I convert a .docx file?","acceptedAnswer":{"@type":"Answer","text":"Yes. The converter changes only the text that is set in a Preeti or Kantipur font and keeps the file's headings, bold and italics, tables and layout. Download the result as a .docx or as plain .txt. Older .doc files should be saved as .docx in Word first."}},
     {"@type":"Question","name":"Is my document safe? Is it uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"Your text and files are never sent to any server. The entire conversion runs locally in your browser using JavaScript. You can turn off your internet and the tool still works."}},
     {"@type":"Question","name":"Can I convert Unicode back to Preeti?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click 'Unicode → Font' in the direction toggle above the converter to switch to reverse mode."}},
     {"@type":"Question","name":"Does this work on mobile phones?","acceptedAnswer":{"@type":"Answer","text":"Yes, fully. The tool is mobile-optimized and works on Android and iOS browsers without any app installation."}}
@@ -504,6 +505,19 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
 .uni-warn button{font:inherit;font-weight:700;text-decoration:underline;background:none;border:0;color:inherit;cursor:pointer;padding:0}
 .font-note a{color:inherit;text-decoration:underline}
 @media(max-width:680px){.hero.hero-compact{padding:18px 14px 16px}.hero.hero-compact .hero-badges .badge:nth-child(n+3){display:none}.quick-btn{min-height:36px}}
+
+.auto-copy{margin-left:auto;font-size:11px;color:var(--muted);display:inline-flex;gap:5px;align-items:center;cursor:pointer}
+.auto-copy input{accent-color:var(--blue)}
+.recent{margin:14px 0 4px;padding:12px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface)}
+.recent[hidden]{display:none}
+.recent-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;font-size:13px}.recent-head .auto-copy{margin-left:auto}
+.recent-head .quick-btn{margin-left:0}
+.recent ul{list-style:none;margin:8px 0 0;display:grid;gap:6px}
+.recent li{display:flex;gap:8px;align-items:center;padding:7px 9px;border:1px solid var(--border);border-radius:8px;font-size:13px}
+.recent li{flex-wrap:wrap}.recent .r-txt{flex:1 1 100%;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Tiro Devanagari',serif;font-size:15px}
+.recent .r-meta{font-size:11px;color:var(--muted);flex:1 1 auto}
+.recent .quick-btn{min-height:30px}
+.recent-note{margin-top:8px;font-size:11px;color:var(--muted)}
 </style>
 <link rel="preload" href="/header.html" as="fetch" crossorigin>
 <link rel="preload" href="/footer.html" as="fetch" crossorigin>
@@ -572,9 +586,9 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
         <button class="swap-btn" onclick="swapAll()" title="Swap direction" aria-label="Swap input and output">⇄</button>
       </div>
       <div class="conv-panel" role="region" aria-label="Output panel">
-        <div class="panel-head"><span class="panel-dot r" aria-hidden="true"></span><span id="out-lbl">Unicode Output</span></div>
+        <div class="panel-head"><span class="panel-dot r" aria-hidden="true"></span><span id="out-lbl">Unicode Output</span><span class="quick-row"><button type="button" class="quick-btn pri" onclick="copyOut()">📋 Copy</button></span></div>
         <div class="out-box empty" id="out-box" role="textbox" tabindex="0" aria-live="polite" aria-label="Converted Unicode output">Converted Devanagari appears here…</div>
-        <div class="counts"><span>Chars: <strong id="out-ch">0</strong></span><span>Words: <strong id="out-wd">0</strong></span></div>
+        <div class="counts"><span>Chars: <strong id="out-ch">0</strong></span><span>Words: <strong id="out-wd">0</strong></span><label class="auto-copy"><input type="checkbox" id="auto-copy"> Copy automatically after paste</label></div>
       </div>
     </div>
 
@@ -607,6 +621,13 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <button class="btn" onclick="dlHtml()" aria-label="Download as HTML">🌐 .HTML</button>
       <button class="btn" onclick="printOut()" aria-label="Print output">🖨️ Print</button>
     </div>
+
+    <!-- Recent conversions (browser only) -->
+    <section class="recent" id="recent" hidden aria-label="Recent conversions on this device">
+      <div class="recent-head"><strong>Recent on this device</strong><label class="auto-copy"><input type="checkbox" id="recent-on" checked> Remember</label><button type="button" class="quick-btn" onclick="clearRecent()">Clear all</button></div>
+      <ul id="recent-list"></ul>
+      <p class="recent-note">Saved only in this browser, never uploaded. Turn off “Remember” or clear all at any time.</p>
+    </section>
 
     <!-- Click keyboard -->
     <div class="kb-wrap">
@@ -763,6 +784,18 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
   </div>
 
   <!-- FAQ -->
+  <section style="margin-top:44px" id="word-file">
+    <h2 class="section-h">Convert a Preeti Word (.docx) file to Unicode</h2>
+    <p style="max-width:78ch;margin-bottom:14px">Many old Nepali documents are Word files typed in Preeti or Kantipur. Copying text out of them gives English-looking letters. You can convert the whole file instead, and keep its formatting.</p>
+    <div class="steps-grid">
+      <div class="step-card"><div class="step-num">1</div><h3>Open the upload box</h3><p>Under the converter, open <strong>Upload .docx / .txt files</strong> and drop your Word file in, or click to browse.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Convert</h3><p>Press <strong>Convert All</strong>. Only text set in Preeti or Kantipur fonts is converted. English text and other fonts are left as they are.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Download</h3><p>Download the converted <strong>.docx</strong>, which keeps your headings, bold, tables and layout, or a plain <strong>.txt</strong> copy.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>Check and set the font</h3><p>Open the result in Word and choose a Unicode font such as Mangal or Noto Sans Devanagari for the converted text. Read it once for rare joined letters.</p></div>
+    </div>
+    <p style="max-width:78ch;margin-top:14px;font-size:14px;color:var(--muted)">Your file is processed in your browser and is not uploaded. Older .doc files must be saved as .docx in Word first.</p>
+  </section>
+
   <section style="margin-top:44px" id="faq">
     <div class="section-tag">FAQ</div>
     <h2 class="section-h">Frequently asked questions</h2>
@@ -782,6 +815,10 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">What is the difference between Preeti, Kantipur, and Sagarmatha?</div>
         <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">All three are legacy ASCII-based Nepali fonts. Preeti and Kantipur use almost the same keyboard layout, so ordinary words convert the same way; a few special keys (for example F and X) and some joined-letter glyphs differ. This page converts Preeti; use the <a href="/preeti-to-unicode-converter/kantipur-to-unicode">Kantipur to Unicode converter</a> for Kantipur text. Sagarmatha is not supported yet.</div></div>
+      </div>
+      <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+        <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">Will my Word formatting be kept when I convert a .docx file?</div>
+        <div class="faq-a" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer"><div itemprop="text">Yes. The converter changes only the text that is set in a Preeti or Kantipur font and keeps the file's headings, bold and italics, tables and layout. Download the result as a .docx or as plain .txt. Older .doc files should be saved as .docx in Word first.</div></div>
       </div>
       <div class="faq-item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
         <div class="faq-q" onclick="toggleFaq(this)" itemprop="name">Why is some converted text incorrect?</div>
@@ -1274,6 +1311,55 @@ function toast(msg){
 // ═══════════════════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════════════════
+// ═══ Return-visit helpers: auto-copy after paste, recent list (localStorage, this browser only) ═══
+const RK='th-recent',RMAX=8,RLEN=20000;
+function rGet(){try{return JSON.parse(localStorage.getItem(RK)||'[]')}catch(e){return[]}}
+function rOn(){return document.getElementById('recent-on').checked}
+function saveRecent(){
+  if(!rOn())return;
+  const i=inputTA().value,o=getOut();
+  if(!i||!o||o==='Converted Devanagari appears here…'||i.length>RLEN)return;
+  let l=rGet().filter(x=>x.i!==i);
+  l.unshift({i:i,o:o,m:cMode,f:cFont,t:Date.now()});
+  try{localStorage.setItem(RK,JSON.stringify(l.slice(0,RMAX)))}catch(e){}
+  renderRecent();
+}
+function ago(t){const m=Math.round((Date.now()-t)/60000);return m<1?'just now':m<60?m+' min ago':m<1440?Math.round(m/60)+' h ago':Math.round(m/1440)+' d ago'}
+function renderRecent(){
+  const box=document.getElementById('recent'),ul=document.getElementById('recent-list'),l=rGet();
+  box.hidden=!l.length&&rOn();
+  ul.textContent='';
+  l.forEach((x,k)=>{
+    const li=document.createElement('li');
+    const tx=document.createElement('span');tx.className='r-txt';tx.textContent=x.o.replace(/\s+/g,' ').slice(0,90);
+    const me=document.createElement('span');me.className='r-meta';me.textContent=(x.m==='pu'?'Preeti → Unicode':'Unicode → Preeti')+' · '+ago(x.t);
+    const b1=document.createElement('button');b1.type='button';b1.className='quick-btn';b1.textContent='Open';b1.onclick=()=>restoreRecent(k);
+    const b2=document.createElement('button');b2.type='button';b2.className='quick-btn';b2.textContent='Copy';b2.onclick=()=>{navigator.clipboard.writeText(x.o).then(()=>toast('✓ Copied'),()=>toast('Use Ctrl+C to copy'))};
+    const b3=document.createElement('button');b3.type='button';b3.className='quick-btn';b3.textContent='✕';b3.setAttribute('aria-label','Remove');b3.onclick=()=>{const a=rGet();a.splice(k,1);localStorage.setItem(RK,JSON.stringify(a));renderRecent()};
+    li.append(tx,me,b1,b2,b3);ul.append(li);
+  });
+}
+function restoreRecent(k){const x=rGet()[k];if(!x)return;if(x.m!==cMode)setMode(x.m);inputTA().value=x.i;doConvert();window.scrollTo({top:document.getElementById('converter').offsetTop-80,behavior:'smooth'});toast('✓ Restored');}
+function clearRecent(){localStorage.removeItem(RK);renderRecent();toast('✓ Cleared');}
+document.getElementById('recent-on').addEventListener('change',function(){localStorage.setItem('th-recent-on',this.checked?'1':'0');if(!this.checked)localStorage.removeItem(RK);renderRecent();});
+(function(){
+  const ac=document.getElementById('auto-copy'),ro=document.getElementById('recent-on');
+  ac.checked=localStorage.getItem('th-autocopy')==='1';
+  ro.checked=localStorage.getItem('th-recent-on')!=='0';
+  ac.addEventListener('change',()=>localStorage.setItem('th-autocopy',ac.checked?'1':'0'));
+  let tm;
+  inputTA().addEventListener('paste',()=>{
+    clearTimeout(tm);
+    tm=setTimeout(()=>{if(ac.checked&&getOut()&&!outBox().classList.contains('empty'))copyOut();},350);
+  });
+  const _pi=pasteIn;
+  window.pasteIn=async function(){await _pi();if(ac.checked&&!outBox().classList.contains('empty'))copyOut();};
+  const _co=copyOut;
+  window.copyOut=async function(){await _co();saveRecent();};
+  ['dlTxt','dlDocx','dlHtml'].forEach(n=>{const f=window[n];window[n]=function(){f.apply(this,arguments);saveRecent();};});
+  renderRecent();
+})();
+
 (function init(){
   // Theme
   const saved=localStorage.getItem('th-theme');
