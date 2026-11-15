@@ -144,6 +144,14 @@ window.siteSearchDatabase = [
         keywords: ['preeti guide', 'unicode guide', 'how to', 'tutorial', 'nepali font']
     },
 
+    { 
+        title: 'Nepali Font Conversion Guide', 
+        url: '/nepali-font-conversion-guide/', 
+        category: 'Guide', 
+        icon: '🔤',
+        keywords: ['font converter guide', 'which nepali font', 'preeti kantipur', 'mangal', 'legacy font', 'unicode font', 'font detector']
+    },
+
     // ==================== UNIT & MEASUREMENT ====================
     { 
         title: 'Unit Converter', 
