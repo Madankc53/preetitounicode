@@ -50,7 +50,7 @@ build('yomari-punhi',
 
 # ---- Tamu Lhosar
 build('tamu-lhosar',
- title='Tamu Lhosar 2083: Wed, Dec 30, 2026 (Poush 15) — Gurung New Year | तमु ल्होसार',
+ title='Tamu Lhosar 2083: Dec 30, 2026 (Poush 15) | तमु ल्होसार',
  desc='Tamu Lhosar 2083, the Gurung New Year, is on Wednesday, December 30, 2026 (Poush 15, 2083 BS). Date, meaning, and days left. Sonam Lhosar follows on Magh 24.',
  h1='Tamu Lhosar 2083: Date and Meaning', h1ne='तमु ल्होसार २०८३ — पुस १५ गते, बुधबार',
  answer='<strong>Tamu Lhosar 2083 is on Wednesday, December 30, 2026</strong> (Poush 15, 2083 BS). It is the Gurung (Tamu) New Year.',
@@ -114,7 +114,7 @@ build('maghe-sankranti',
 
 # ---- Saraswati Puja
 build('saraswati-puja',
- title='Saraswati Puja 2083: Thu, Feb 11, 2027 (Magh 28) — Shree Panchami | सरस्वती पूजा',
+ title='Saraswati Puja 2083: Feb 11, 2027 (Magh 28) | सरस्वती पूजा',
  desc='Saraswati Puja (Shree Panchami, Basanta Panchami) 2083 is on Thursday, February 11, 2027 (Magh 28, 2083 BS). Date, how schools celebrate, holiday status, days left.',
  h1='Saraswati Puja 2083: Date and Meaning', h1ne='सरस्वती पूजा / श्रीपञ्चमी २०८३ — माघ २८ गते, बिहीबार',
  answer='<strong>Saraswati Puja 2083 is on Thursday, February 11, 2027</strong> (Magh 28, 2083 BS), on Magh Shukla Panchami.',
