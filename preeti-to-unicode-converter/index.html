@@ -602,6 +602,9 @@ button,.btn,.font-tab,.mode-pill,.key,.swap-btn,.nav-theme{
         <div class="out-box empty" id="out-box" role="textbox" tabindex="0" aria-live="polite" aria-label="Converted Unicode output">Converted Devanagari appears here…</div>
         <div class="counts"><span>Chars: <strong id="out-ch">0</strong></span><span>Words: <strong id="out-wd">0</strong></span><label class="auto-copy"><input type="checkbox" id="auto-copy"> Copy automatically after paste (off by default)</label><button type="button" class="quick-btn" id="reset-settings" title="Clear saved settings and recent conversions on this device">Reset settings</button></div>
         <div class="conv-warn" id="conv-warn" role="status" style="display:none;font-size:13px;color:var(--muted);margin:6px 0"></div>
+        <details class="cmp-box" id="cmp-box" style="margin:8px 0"><summary style="cursor:pointer;font-size:14px">↔ Compare original and converted, line by line</summary>
+          <div id="cmp-body" style="margin-top:8px;max-height:340px;overflow:auto;border:1px solid var(--border);border-radius:8px"></div>
+        </details>
         <details class="fr-box" style="margin:8px 0"><summary style="cursor:pointer;font-size:14px">🔎 Find &amp; replace in output</summary>
           <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px">
             <input id="fr-find" type="text" placeholder="Find" aria-label="Find in output" style="flex:1;min-width:110px;padding:8px;border:1px solid var(--border);border-radius:8px;font-family:inherit;background:var(--bg);color:var(--ink)">
@@ -1106,11 +1109,23 @@ function doConvert(){
   let r=convertText(val);
   FR.forEach(([f,t])=>{r=r.split(f).join(t);});
   ob.textContent=r;ob.classList.remove('empty');counts('out',r);
+  renderCmp(val,r);
   const cw=document.getElementById('conv-warn');
   if(cw){const L=cMode==='pu'?(r.match(/[A-Za-z]/g)||[]).length:0;
     if(L>0){cw.style.display='block';cw.textContent='Note: '+L+' English letter'+(L>1?'s':'')+' remain in the output. That is normal for English words, but if they should be Nepali, check the font choice.';}
     else cw.style.display='none';}
 }
+function renderCmp(a,b){
+  const box=document.getElementById('cmp-box');if(!box||!box.open)return;
+  const A=a.split('\n'),B=b.split('\n'),body=document.getElementById('cmp-body');body.textContent='';
+  const tb=document.createElement('table');tb.style.cssText='width:100%;border-collapse:collapse;font-size:14px';
+  A.slice(0,300).forEach((l,i)=>{
+    const tr=tb.insertRow();[l,B[i]||''].forEach((v,k)=>{const td=tr.insertCell();td.textContent=v||'\u00a0';td.style.cssText='padding:6px 8px;border-bottom:1px solid var(--border);vertical-align:top;width:50%;word-break:break-word'+(k?';font-family:Mukta,"Noto Sans Devanagari",sans-serif;font-size:16px':';font-family:DM Mono,monospace;color:var(--muted)');});
+  });
+  body.appendChild(tb);
+  if(A.length>300){const n=document.createElement('p');n.style.cssText='padding:6px 8px;font-size:12px';n.textContent='Showing the first 300 lines.';body.appendChild(n);}
+}
+document.getElementById('cmp-box').addEventListener('toggle',()=>doConvert());
 const FR=[];
 (function(){
   const add=document.getElementById('fr-add'),clr=document.getElementById('fr-clear'),list=document.getElementById('fr-list');
