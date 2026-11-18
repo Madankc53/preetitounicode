@@ -86,11 +86,11 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/</loc>
-    <lastmod>2026-11-06</lastmod>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/tihar/bhai-tika</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/yomari-punhi</loc>
@@ -98,11 +98,19 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/2084/calendar</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-18</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/2084/dashain</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2084/nepali-new-year</loc>
     <lastmod>2026-11-16</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/2084/tihar</loc>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/about</loc>
@@ -270,7 +278,7 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/dashain-2083</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-18</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2083/falgun-2083</loc>
