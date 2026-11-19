@@ -152,6 +152,126 @@ window.siteSearchDatabase = [
         keywords: ['font converter guide', 'which nepali font', 'preeti kantipur', 'mangal', 'legacy font', 'unicode font', 'font detector']
     },
 
+    { 
+        title: 'Dashain 2084 (estimated dates)', 
+        url: '/2084/dashain', 
+        category: 'Festival', 
+        icon: '🎊',
+        keywords: ['dashain 2084', 'ghatasthapana 2084', 'vijaya dashami 2084', 'दशैं २०८४']
+    },
+
+    { 
+        title: 'Tihar & Bhai Tika 2084 (estimated)', 
+        url: '/2084/tihar', 
+        category: 'Festival', 
+        icon: '🪔',
+        keywords: ['tihar 2084', 'bhai tika 2084', 'laxmi puja 2084', 'तिहार २०८४']
+    },
+
+    { 
+        title: 'Nepali New Year 2084', 
+        url: '/2084/nepali-new-year', 
+        category: 'Festival', 
+        icon: '🎆',
+        keywords: ['nepali new year 2084', 'naya barsha 2084', 'baisakh 1 2084', 'नयाँ वर्ष']
+    },
+
+    { 
+        title: 'Magh 2083 Marriage Dates', 
+        url: '/2083/magh-bibaha-sait', 
+        category: 'Festival', 
+        icon: '💍',
+        keywords: ['magh marriage dates', 'magh bibaha sait 2083', 'विवाह साइत माघ']
+    },
+
+    { 
+        title: 'Falgun 2083 Marriage Dates', 
+        url: '/2083/falgun-bibaha-sait', 
+        category: 'Festival', 
+        icon: '💍',
+        keywords: ['falgun marriage dates', 'falgun bibaha sait 2083', 'विवाह साइत फाल्गुन']
+    },
+
+    { 
+        title: 'Poush 2083 Marriage Dates (none)', 
+        url: '/2083/poush-bibaha-sait', 
+        category: 'Festival', 
+        icon: '💍',
+        keywords: ['poush marriage dates', 'poush bibaha sait', 'is there sait in poush']
+    },
+
+    { 
+        title: 'Maha Shivaratri 2083', 
+        url: '/2083/maha-shivaratri', 
+        category: 'Festival', 
+        icon: '🔱',
+        keywords: ['maha shivaratri 2083', 'shivaratri date 2027', 'महाशिवरात्रि']
+    },
+
+    { 
+        title: 'Holi 2083 (Fagu Purnima)', 
+        url: '/2083/holi', 
+        category: 'Festival', 
+        icon: '🎨',
+        keywords: ['holi 2083', 'fagu purnima', 'holi date 2027', 'होली']
+    },
+
+    { 
+        title: 'Christmas 2026 in Nepal', 
+        url: '/2083/christmas-nepal', 
+        category: 'Festival', 
+        icon: '🎄',
+        keywords: ['christmas nepal holiday', 'christmas 2026 nepal', 'क्रिसमस']
+    },
+
+    { 
+        title: 'Prithvi Jayanti 2083', 
+        url: '/2083/prithvi-jayanti', 
+        category: 'Festival', 
+        icon: '🇳🇵',
+        keywords: ['prithvi jayanti', 'national unity day', 'पृथ्वी जयन्ती']
+    },
+
+    { 
+        title: "Martyrs' Day 2083 (Shahid Diwas)", 
+        url: '/2083/shahid-diwas', 
+        category: 'Festival', 
+        icon: '🕯️',
+        keywords: ['shahid diwas', 'martyrs day nepal', 'शहीद दिवस']
+    },
+
+    { 
+        title: 'Sonam Lhosar 2083', 
+        url: '/2083/sonam-lhosar', 
+        category: 'Festival', 
+        icon: '🎉',
+        keywords: ['sonam lhosar', 'tamang new year', 'सोनाम ल्होसार']
+    },
+
+    { 
+        title: 'Democracy Day 2083 (Prajatantra Diwas)', 
+        url: '/2083/prajatantra-diwas', 
+        category: 'Festival', 
+        icon: '🗳️',
+        keywords: ['democracy day nepal', 'prajatantra diwas', 'प्रजातन्त्र दिवस']
+    },
+
+    { 
+        title: 'Gyalpo Lhosar 2083', 
+        url: '/2083/gyalpo-lhosar', 
+        category: 'Festival', 
+        icon: '🎉',
+        keywords: ['gyalpo lhosar', 'sherpa new year', 'ग्याल्पो ल्होसार']
+    },
+
+    { 
+        title: 'Nepali Calendar 2084 – Baisakh to Chaitra', 
+        url: '/nepali-calendar-2084/baisakh-2084', 
+        category: 'Calendar', 
+        icon: '📅',
+        keywords: ['baisakh 2084 calendar', 'nepali calendar 2084 months', 'jestha 2084', 'ashadh 2084', 'shrawan 2084', 'bhadra 2084', 'chaitra 2084']
+    },
+
     // ==================== UNIT & MEASUREMENT ====================
     { 
         title: 'Unit Converter', 

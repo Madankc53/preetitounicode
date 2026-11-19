@@ -15,7 +15,7 @@
  *
  * To force every visitor to drop old caches after a big change, bump VERSION.
  */
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CORE_CACHE = 'thenepal-core-' + VERSION;
 const RUNTIME_CACHE = 'thenepal-pages-' + VERSION;
 const OFFLINE_URL = '/offline.html';
