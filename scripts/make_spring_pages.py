@@ -41,7 +41,12 @@ def make(slug, name, ne_name, iso, bs_m_en, bs_m_ne, bs_d, about, holiday, extra
     <h2 id="holiday">Is {name} a public holiday?</h2>
     <p>{holiday[1]} {NOTE_HOL} See the <a href="https://converter.thenepal.io/2083/nepal-public-holidays">2083 holidays list</a>.</p>
   </section>
-'''
+''' + (f'''
+  <section aria-labelledby="alldays">
+    <h2 id="alldays">Other national days of Nepal</h2>
+    <p>{name} is one of five national days. See all of them, with meanings and next dates, on <a href="https://symbols.thenepal.io/national-days-of-nepal/" rel="noopener">National Days of Nepal</a>, and read about the official <a href="https://symbols.thenepal.io/national-day/" rel="noopener">National Day (Ashoj 3)</a>.</p>
+  </section>
+''' if slug in ('prithvi-jayanti', 'shahid-diwas', 'prajatantra-diwas') else '')
     faqs = [(f'When is {name} {year}?', f'{name} {year} is on <strong>{full}</strong> ({bs_m_en} {bs_d}, {year} BS).'),
             (f'Is {name} a public holiday in Nepal?', holiday[1] + ' ' + NOTE_HOL)] + extra_faqs
     out = page(slug, title=ttl, desc=desc, h1=f'{name} {year}: Date and Meaning', h1ne=f'{ne_name} {ne(year)} — {bs_m_ne} {ne(bs_d)} गते, {DOW_NE[dow]}',
