@@ -410,6 +410,20 @@ window.siteSearchDatabase = [
         keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
     },
     { 
+        title: 'Image Compressor', 
+        url: '/image-compressor/', 
+        category: 'Tools', 
+        icon: '🗜️',
+        keywords: ['image compressor', 'reduce image size', 'compress photo', '50kb', '100kb', '200kb', 'photo size kb']
+    },
+    { 
+        title: 'JPG Converter', 
+        url: '/image-converter/', 
+        category: 'Tools', 
+        icon: '🔄',
+        keywords: ['jpg converter', 'png to jpg', 'webp to jpg', 'jpg to png', 'image converter']
+    },
+    { 
         title: 'JPG to PDF', 
         url: '/jpg-to-pdf/', 
         category: 'Tools', 

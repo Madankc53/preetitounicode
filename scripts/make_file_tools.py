@@ -257,4 +257,130 @@ page('pdf-to-jpg', 'PDF to JPG Converter: Turn PDF Pages into Images (Free, No U
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', P_JS,
      [('/jpg-to-pdf/', 'JPG to PDF'), ('/unit-converter/', 'Unit converter'), ('/preeti-to-unicode-converter/', 'Preeti to Unicode'), ('/date-converter/', 'Date converter')],
      'PDF to JPG Converter', 'Free browser-based tool that converts each page of a PDF into a JPG image without uploading the file.')
+
+# ---------------- Image compressor + converter (shared JS core) ----------------
+CORE = r"""
+  var $=function(i){return document.getElementById(i)},drop=$('drop'),msg=$('msg'),grid=$('grid'),go=$('go'),zip=$('zip'),files=[],res=[],urls=[];
+  function kb(n){return n>1048576?(n/1048576).toFixed(2)+' MB':Math.round(n/1024)+' KB';}
+  function load(f){return new Promise(function(ok,bad){
+    if(window.createImageBitmap){createImageBitmap(f,{imageOrientation:'from-image'}).then(ok,fall);}else fall();
+    function fall(){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){ok(im)};im.onerror=bad;im.src=u;}});}
+  function draw(b,s,fill){var w=b.width||b.naturalWidth,h=b.height||b.naturalHeight,c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));var x=c.getContext('2d');if(fill){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);}x.drawImage(b,0,0,c.width,c.height);return c;}
+  function toBlob(c,t,q){return new Promise(function(r){c.toBlob(r,t,q)});}
+  function pick(list){files=Array.from(list).filter(function(f){return /^image\//.test(f.type)||/\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name)});go.disabled=!files.length;zip.hidden=true;grid.innerHTML='';
+    msg.textContent=files.length?files.length+' image'+(files.length>1?'s':'')+' selected.':'Choose one or more images to begin.';}
+  $('file').addEventListener('change',function(e){pick(e.target.files);});
+  ['dragover','dragenter'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.add('over');});});
+  ['dragleave','drop'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.remove('over');if(n==='drop'&&e.dataTransfer)pick(e.dataTransfer.files);});});
+  function card(name,blob,note){var u=URL.createObjectURL(blob);urls.push(u);var f=document.createElement('figure');f.innerHTML='<img alt="" src="'+u+'"><figcaption></figcaption><a download="'+name.replace(/"/g,'')+'" href="'+u+'">Download</a>';f.querySelector('figcaption').textContent=note;grid.appendChild(f);}
+  zip.addEventListener('click',async function(){
+    if(!window.JSZip){msg.textContent='The ZIP library did not load. Download files one by one.';return;}
+    var z=new JSZip();res.forEach(function(o){z.file(o.n,o.b);});msg.textContent='Preparing ZIP...';
+    var b=await z.generateAsync({type:'blob'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='images.zip';document.body.appendChild(a);a.click();a.remove();msg.textContent='ZIP downloaded.';});
+  async function run(fn){
+    go.disabled=true;zip.hidden=true;grid.innerHTML='';res=[];urls.forEach(URL.revokeObjectURL);urls=[];
+    for(var i=0;i<files.length;i++){msg.textContent='Working on image '+(i+1)+' of '+files.length+'...';await new Promise(function(r){setTimeout(r,0)});
+      try{var b=await load(files[i]);await fn(files[i],b);}catch(e){var p=document.createElement('p');p.className='err';p.textContent='Could not read '+files[i].name+'.';grid.appendChild(p);}}
+    msg.textContent='Done. '+res.length+' image'+(res.length===1?'':'s')+' ready.';zip.hidden=res.length<2;go.disabled=false;}
+"""
+C_TOOL = """  <div class="conv">
+    <label class="drop" id="drop" for="file"><input id="file" type="file" accept="image/*" multiple><b>Choose images or drop them here</b><span>JPG, PNG, WebP. Nothing is uploaded.</span></label>
+    <div class="opts">
+      <div class="field"><label for="tgt">Target size</label><select id="tgt"><option value="20">Under 20 KB</option><option value="50">Under 50 KB</option><option value="100" selected>Under 100 KB</option><option value="200">Under 200 KB</option><option value="500">Under 500 KB</option><option value="1024">Under 1 MB</option><option value="c">Custom (KB)...</option></select></div>
+      <div class="field" id="cw" hidden><label for="cust">Custom size in KB</label><input id="cust" type="number" min="5" max="5000" value="150" style="width:100%;font:inherit;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)"></div>
+    </div>
+    <p><button class="btn" id="go" type="button" disabled>Compress images</button> <button class="btn alt" id="zip" type="button" hidden>Download all (ZIP)</button></p>
+    <p class="status" id="msg" aria-live="polite">Choose one or more images to begin.</p>
+    <div class="grid" id="grid"></div>
+  </div>"""
+C_JS = r"""(function(){""" + CORE + r"""
+  $('tgt').addEventListener('change',function(){$('cw').hidden=this.value!=='c';});
+  go.addEventListener('click',function(){
+    var T=($('tgt').value==='c'?Math.max(5,+$('cust').value||100):+$('tgt').value)*1024;
+    run(async function(f,b){
+      var s=1,blob=null,q=.92,best=null;
+      for(var round=0;round<8;round++){
+        var c=draw(b,s,true),lo=.1,hi=.95;best=null;
+        for(var k=0;k<7;k++){var m=(lo+hi)/2,bl=await toBlob(c,'image/jpeg',m);if(bl.size<=T){best=bl;lo=m;}else hi=m;}
+        if(best){blob=best;break;}
+        s*=.82;
+      }
+      var nm=f.name.replace(/\.[^.]+$/,'')+'-compressed.jpg';
+      if(!blob){blob=await toBlob(draw(b,s,true),'image/jpeg',.1);}
+      res.push({n:nm,b:blob});
+      card(nm,blob,kb(f.size)+' → '+kb(blob.size)+(blob.size>T?' (could not reach target)':''));
+    });
+  });
+})();"""
+page('image-compressor', 'Image Compressor: Reduce Photo Size to 50KB, 100KB, 200KB (Free, No Upload)',
+     'Reduce JPG, PNG and WebP photo size to a target like 20KB, 50KB, 100KB or 200KB for Nepali online forms. Free, runs in your browser, no upload.',
+     'Image Compressor (Reduce Photo Size to KB)', 'फोटोको साइज KB मा घटाउनुहोस्', 'File tool',
+     'Shrink a photo to the size an online form asks for. Pick a target such as 50 KB or 100 KB and download the compressed JPG. Your image never leaves your device.',
+     C_TOOL, """  <h2>How to reduce an image to 50 KB or 100 KB</h2>
+  <ol>
+    <li>Choose one or more photos.</li>
+    <li>Pick the size limit the form asks for, or enter your own in KB.</li>
+    <li>Press <strong>Compress images</strong> and download the result. The before and after sizes are shown for each image.</li>
+  </ol>
+  <p>The tool lowers the JPEG quality until the file fits. If quality alone is not enough, it also reduces the pixel dimensions a little, so a very small target such as 20 KB gives a smaller picture.</p>
+  <h2>When you need a small image</h2>
+  <p>Online forms in Nepal often limit uploads: job applications, exam and university forms, passport-size photos, signatures and scanned documents. Check the exact size and format on the form, then compress to just under that limit.</p>
+  <div class="note"><p><strong>Check the result.</strong> Look at the compressed image before you submit it. Very small limits reduce detail, so a signature or ID photo should still be clear and readable. Output is always JPG.</p></div>""",
+     [("How do I reduce a photo to 100 KB?", "Choose the image, select Under 100 KB and press Compress. The tool finds the best quality that fits and shows the new size."),
+      ("Is my photo uploaded to a server?", "No. Compression happens in your browser. The photo stays on your device."),
+      ("Why is my compressed image smaller in pixels?", "To reach a very small target the tool may reduce the dimensions as well as the quality. Choose a larger target if you need more detail."),
+      ("Can I compress many images at once?", "Yes. Select several, compress them together and download them one by one or as a ZIP."),
+      ("What format is the result?", "JPG. PNG and WebP images are converted to JPG with a white background replacing any transparency."),
+      ("Does it work on a phone?", "Yes. Choose photos from your gallery on Android or iPhone.")],
+     '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', C_JS,
+     [('/jpg-to-pdf/', 'JPG to PDF'), ('/image-converter/', 'Image converter'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/unit-converter/', 'Unit converter')],
+     'Image Compressor', 'Free browser-based tool that reduces JPG, PNG and WebP photo size to a target number of KB without uploading the image.')
+
+V_TOOL = """  <div class="conv">
+    <label class="drop" id="drop" for="file"><input id="file" type="file" accept="image/*" multiple><b>Choose images or drop them here</b><span>JPG, PNG, WebP, GIF, BMP. Nothing is uploaded.</span></label>
+    <div class="opts">
+      <div class="field"><label for="fmt">Convert to</label><select id="fmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
+      <div class="field"><label for="q">Quality (JPG and WebP)</label><select id="q"><option value=".95">High</option><option value=".85" selected>Good</option><option value=".7">Smaller file</option></select></div>
+    </div>
+    <p><button class="btn" id="go" type="button" disabled>Convert</button> <button class="btn alt" id="zip" type="button" hidden>Download all (ZIP)</button></p>
+    <p class="status" id="msg" aria-live="polite">Choose one or more images to begin.</p>
+    <div class="grid" id="grid"></div>
+  </div>"""
+V_JS = r"""(function(){""" + CORE + r"""
+  go.addEventListener('click',function(){
+    var t=$('fmt').value,q=+$('q').value,ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[t];
+    run(async function(f,b){
+      var blob=await toBlob(draw(b,1,t==='image/jpeg'),t,q);
+      if(!blob||blob.type!==t)throw 0;
+      var nm=f.name.replace(/\.[^.]+$/,'')+'.'+ext;res.push({n:nm,b:blob});card(nm,blob,kb(f.size)+' → '+kb(blob.size));
+    });
+  });
+})();"""
+page('image-converter', 'JPG Converter: Convert PNG or WebP to JPG and JPG to PNG (Free, No Upload)',
+     'Free image converter for JPG, PNG and WebP. Convert PNG to JPG, WebP to JPG or JPG to PNG in your browser, many files at once, no upload, no watermark.',
+     'JPG Converter (PNG, WebP, JPG)', 'तस्बिर JPG, PNG, WebP मा बदल्नुहोस्', 'File tool',
+     'Convert images between JPG, PNG and WebP. Do several at once and download them as a ZIP. Everything runs in your browser.',
+     V_TOOL, """  <h2>How to convert an image to JPG</h2>
+  <ol>
+    <li>Choose your images (PNG, WebP, GIF, BMP or JPG).</li>
+    <li>Select the format you want, then the quality.</li>
+    <li>Press <strong>Convert</strong> and download each file, or all of them in a ZIP.</li>
+  </ol>
+  <p>Many forms and websites accept only JPG. WebP photos saved from a phone or the web often need converting first. Converting to JPG replaces any transparent area with white.</p>
+  <h2>Which format should I use?</h2>
+  <ul>
+    <li><strong>JPG</strong>: best for photos and the most widely accepted.</li>
+    <li><strong>PNG</strong>: best for logos, screenshots and images with transparency; files are larger.</li>
+    <li><strong>WebP</strong>: smaller files on websites; not accepted everywhere.</li>
+  </ul>
+  <p>Need a particular file size? Use the <a href="/image-compressor/">image compressor</a>. To make a PDF, use <a href="/jpg-to-pdf/">JPG to PDF</a>.</p>""",
+     [("How do I convert PNG to JPG?", "Choose the PNG, select JPG as the output format and press Convert. Transparent areas become white."),
+      ("How do I convert WebP to JPG?", "Choose the WebP file, select JPG and press Convert. It works the same way as any other image."),
+      ("Is this image converter free and private?", "Yes. It is free and the files are converted in your browser, so they are never uploaded."),
+      ("Will converting reduce the quality?", "Converting to JPG or WebP is lossy, so choose High quality if detail matters. Converting to PNG keeps every pixel but makes larger files."),
+      ("Can I convert many images at once?", "Yes. Select several and download them individually or as a ZIP."),
+      ("Does it support JPG to PNG?", "Yes. Choose JPG files and select PNG as the output format.")],
+     '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', V_JS,
+     [('/image-compressor/', 'Image compressor'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/unit-converter/', 'Unit converter')],
+     'Image Converter', 'Free browser-based tool that converts images between JPG, PNG and WebP without uploading them.')
 print('ok')
