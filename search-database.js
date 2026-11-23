@@ -410,6 +410,13 @@ window.siteSearchDatabase = [
         keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
     },
     { 
+        title: 'Photo and Signature Resizer', 
+        url: '/photo-resizer/', 
+        category: 'Tools', 
+        icon: '📸',
+        keywords: ['passport photo size', 'signature resize', 'resize photo pixels', 'photo size kb', 'form photo']
+    },
+    { 
         title: 'Image Compressor', 
         url: '/image-compressor/', 
         category: 'Tools', 
