@@ -410,6 +410,20 @@ window.siteSearchDatabase = [
         keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
     },
     { 
+        title: 'JPG to PDF', 
+        url: '/jpg-to-pdf/', 
+        category: 'Tools', 
+        icon: '🖼️',
+        keywords: ['jpg to pdf', 'image to pdf', 'photo to pdf', 'combine images pdf', 'jpg converter']
+    },
+    { 
+        title: 'PDF to JPG', 
+        url: '/pdf-to-jpg/', 
+        category: 'Tools', 
+        icon: '📄',
+        keywords: ['pdf to jpg', 'pdf to image', 'pdf converter', 'pdf pages to jpg']
+    },
+    { 
         title: 'Number to Words', 
         url: '/number-to-words/', 
         category: 'Tools', 
