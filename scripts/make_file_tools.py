@@ -32,7 +32,12 @@ def sub(s, **k):
 
 def page(slug, title, desc, h1, ne, eyebrow, lead, tool_html, sections, faq, scripts, js, related, app_name, app_desc):
     url = f'{SITE}/{slug}/'
-    faq_ld = [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', a)}} for q, a in faq]
+    _ne = globals().get('NE', {}).get(slug)
+    faq_ld = [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": re.sub('<[^>]+>', '', a)}} for q, a in faq + (_ne['faq'] if _ne else [])]
+    ne_block = ''
+    if _ne:
+        ne_block = ('  <section lang="ne" id="nepali">\n  <h2>' + _ne['h2'] + '</h2>\n  <ol>' + ''.join('<li>' + t + '</li>' for t in _ne['steps']) + '</ol>\n  <p>' + _ne['note'] + '</p>\n'
+                    + ''.join(f'  <details><summary>{q}</summary><p>{a}</p></details>\n' for q, a in _ne['faq']) + '  </section>')
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "WebApplication", "name": app_name, "url": url, "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "description": app_desc,
          "offers": {"@type": "Offer", "price": "0", "priceCurrency": "NPR"}, "isAccessibleForFree": True, "inLanguage": "en"},
@@ -82,6 +87,7 @@ def page(slug, title, desc, h1, ne, eyebrow, lead, tool_html, sections, faq, scr
     <script>(adsbygoogle = window.adsbygoogle || []).push({{}});</script>
   </div>
 {sections}
+{ne_block}
   <h2>Frequently asked questions</h2>
 {faq_html}  <h2>Related tools</h2>
   <div class="pills">
