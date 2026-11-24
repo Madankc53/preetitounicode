@@ -410,6 +410,34 @@ window.siteSearchDatabase = [
         keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
     },
     { 
+        title: 'Guide: Reduce Photo Size to 50 KB or 100 KB', 
+        url: '/guide/reduce-photo-size-to-50kb-100kb', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['reduce photo size', '50kb', '100kb', 'compress photo phone', 'photo size kb form']
+    },
+    { 
+        title: 'Guide: Make a PDF From Photos on Phone', 
+        url: '/guide/make-pdf-from-photos-on-phone', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['photo to pdf', 'jpg to pdf phone', 'combine photos pdf', 'scan to pdf']
+    },
+    { 
+        title: 'Guide: Convert WebP to JPG', 
+        url: '/guide/convert-webp-to-jpg', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['webp to jpg', 'webp converter', 'png to jpg', 'convert webp']
+    },
+    { 
+        title: 'Guide: Convert PDF to JPG on Phone', 
+        url: '/guide/convert-pdf-to-jpg-on-phone', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['pdf to jpg', 'pdf to image', 'pdf pages to jpg', 'pdf to png']
+    },
+    { 
         title: 'Free File Tools', 
         url: '/file-tools/', 
         category: 'Tools', 
