@@ -410,6 +410,13 @@ window.siteSearchDatabase = [
         keywords: ['roman nepali typing', 'english to nepali unicode', 'transliteration', 'type nepali']
     },
     { 
+        title: 'Free File Tools', 
+        url: '/file-tools/', 
+        category: 'Tools', 
+        icon: '🧰',
+        keywords: ['file tools', 'pdf converter', 'image tools', 'photo tools', 'form photo', 'document tools']
+    },
+    { 
         title: 'Photo and Signature Resizer', 
         url: '/photo-resizer/', 
         category: 'Tools', 

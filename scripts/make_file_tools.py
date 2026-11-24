@@ -100,6 +100,7 @@ def page(slug, title, desc, h1, ne, eyebrow, lead, tool_html, sections, faq, scr
     open(f'{slug}/index.html', 'w', encoding='utf-8').write(head + mid + body)
 
 # ---------------- JPG to PDF ----------------
+if __name__ == '__main__': raise SystemExit('Superseded: run scripts/make_pro_tools.py (it reuses the helpers above)')
 J_TOOL = '''  <div class="conv">
     <label class="drop" id="drop" for="files"><input id="files" type="file" accept="image/jpeg,image/png,image/webp,image/*" multiple><b>Choose images or drop them here</b><span>JPG, JPEG, PNG or WebP. Nothing is uploaded.</span></label>
     <ul class="list" id="list" aria-live="polite"></ul>

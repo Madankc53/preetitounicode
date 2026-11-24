@@ -126,16 +126,87 @@ progress{width:100%;height:10px;margin:8px 0}
   <p class="eyebrow">File tool</p>
   <h1>JPG Converter (PNG, WebP, JPG)</h1>
   <p class="ne">तस्बिर JPG, PNG, WebP मा बदल्नुहोस्</p>
-  <p class="lead">Convert images between JPG, PNG and WebP. Do several at once and download them as a ZIP. Everything runs in your browser.</p>
-  <div class="conv">
-    <label class="drop" id="drop" for="file"><input id="file" type="file" accept="image/*" multiple><b>Choose images or drop them here</b><span>JPG, PNG, WebP, GIF, BMP. Nothing is uploaded.</span></label>
-    <div class="opts">
-      <div class="field"><label for="fmt">Convert to</label><select id="fmt"><option value="image/jpeg">JPG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select></div>
-      <div class="field"><label for="q">Quality (JPG and WebP)</label><select id="q"><option value=".95">High</option><option value=".85" selected>Good</option><option value=".7">Smaller file</option></select></div>
+  <p class="lead">Convert images between JPG, PNG and WebP. Results update as you change the format, and you can download them all as a ZIP. Everything runs in your browser.</p>
+<style>
+.tk{--r:14px}
+.tk [hidden]{display:none!important}
+.tk-drop.mini{padding:14px 12px}.tk-drop.mini svg,.tk-drop.mini small{display:none}.tk-drop.mini b{margin:0;font-size:.98rem}.tk-drop.mini .tk-btns{margin-top:8px}
+.tk-chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 4px}
+.tk-chips label{position:relative}
+.tk-chips input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.tk-chips span{display:inline-block;min-height:44px;line-height:44px;padding:0 15px;border:1.5px solid var(--line);border-radius:999px;font-weight:700;font-size:.92rem;color:var(--ink);background:var(--bg)}
+.tk-chips input:checked+span{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.tk-chips input:focus-visible+span{outline:3px solid var(--red);outline-offset:2px}
+.tk-trust{display:flex;flex-wrap:wrap;gap:8px 16px;margin:0 0 14px;padding:0;list-style:none;font-size:.84rem;font-weight:600;color:var(--ink2)}
+.tk-trust li::before{content:"✓ ";color:var(--ok);font-weight:800}
+.tk-steps{display:flex;gap:6px;list-style:none;margin:0 0 14px;padding:0;font-size:.78rem;font-weight:700;color:var(--mute)}
+.tk-steps li{flex:1;text-align:center;padding:7px 4px;border-bottom:3px solid var(--line)}
+.tk-steps li.on{color:var(--ink);border-color:var(--red)}
+.tk-steps li.done{color:var(--ok);border-color:var(--ok)}
+.tk-drop{display:block;position:relative;border:2px dashed var(--line);border-radius:var(--r);padding:30px 16px;text-align:center;background:var(--bg);cursor:pointer;transition:border-color .15s,background .15s}
+.tk-drop:hover,.tk-drop.over,.tk-drop:focus-within{border-color:var(--red)}
+.tk-drop.over{background:var(--note)}
+.tk-drop svg{width:44px;height:44px;color:var(--red)}
+.tk-drop b{display:block;font-size:1.08rem;color:var(--ink);margin-top:6px}
+.tk-drop small{display:block;color:var(--mute);font-size:.86rem;margin-top:2px}
+.tk-drop input{position:absolute;opacity:0;width:1px;height:1px;left:0;top:0}
+.tk-btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;justify-content:center}
+.tk-b{font:inherit;font-weight:700;min-height:46px;padding:0 20px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.tk-b.pri{background:var(--red);border-color:var(--red);color:#fff}
+.tk-b:hover,.tk-b:focus-visible{border-color:var(--red);outline:none}
+.tk-b:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+.tk-b[disabled],.tk-b[aria-disabled=true]{opacity:.5;pointer-events:none}
+.tk-sec{font-size:.74rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:18px 0 4px}
+.tk-row{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+.tk-row .f{flex:1 1 130px}.tk-row label.l{display:block;font-size:.8rem;font-weight:700;color:var(--mute);margin-bottom:4px}
+.tk-in{width:100%;font:inherit;font-size:1.05rem;font-weight:700;padding:11px 12px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);min-height:46px}
+.tk-in:focus{outline:2px solid var(--red);outline-offset:1px}
+.tk-chk{display:flex;align-items:center;gap:10px;min-height:44px;font-weight:600;color:var(--ink2);cursor:pointer}
+.tk-chk input{width:20px;height:20px;accent-color:var(--red)}
+.tk-files{list-style:none;margin:12px 0;padding:0;display:grid;gap:10px}
+.tk-file{display:grid;grid-template-columns:60px 1fr;gap:12px;align-items:center;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:10px}
+.tk-file img{width:60px;height:60px;object-fit:cover;border-radius:10px;background:var(--line)}
+.tk-file .nm{font-weight:700;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.95rem}
+.tk-file .st{font-size:.88rem;color:var(--ink2)}
+.tk-file .st b{color:var(--ok)}
+.tk-file .st.bad b{color:var(--gold)}
+.tk-file .ac{grid-column:1/-1;display:flex;gap:8px;flex-wrap:wrap}
+.tk-file .tk-b{min-height:40px;padding:0 14px;font-size:.88rem}
+.tk-cmp{position:relative;margin:12px 0;border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:repeating-conic-gradient(var(--line) 0 25%,var(--card) 0 50%) 0 0/16px 16px;line-height:0;touch-action:none}
+.tk-cmp img{width:100%;height:auto;display:block;max-height:420px;object-fit:contain;background:var(--card)}
+.tk-cmp .top{position:absolute;inset:0;clip-path:inset(0 50% 0 0)}
+.tk-cmp .top img{height:100%}
+.tk-cmp .bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.3);left:50%;pointer-events:none}
+.tk-cmp .tag{position:absolute;top:8px;font-size:.74rem;font-weight:800;line-height:1.3;background:rgba(0,0,0,.65);color:#fff;padding:3px 9px;border-radius:99px}
+.tk-cmp .tag.a{left:8px}.tk-cmp .tag.b{right:8px}
+.tk-cmp input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.tk-bar{position:sticky;bottom:0;z-index:5;display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--card);border-top:1px solid var(--line);margin:14px -18px -18px;padding:12px 18px;border-radius:0 0 16px 16px}
+.tk-sum{flex:1 1 160px;font-size:.88rem;color:var(--ink2)}
+.tk-sum b{color:var(--ok)}
+.tk-live{min-height:1.4em;font-size:.85rem;color:var(--mute);margin:8px 0 0}
+.tk-sw{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.tk-sw label{position:relative;width:44px;height:44px}
+.tk-sw input[type=radio]{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer}
+.tk-sw i{display:block;width:100%;height:100%;border-radius:50%;border:2px solid var(--line)}
+.tk-sw input:checked+i{border-color:var(--red);box-shadow:0 0 0 3px var(--card),0 0 0 5px var(--red)}
+.tk-sw input:focus-visible+i{outline:3px solid var(--ink);outline-offset:3px}
+.tk-sw input[type=color]{position:static;width:44px;height:44px;border:0;padding:0;background:none;cursor:pointer;opacity:1}
+.tk-stage{position:relative;display:inline-block;max-width:100%;line-height:0}
+.tk-stage canvas{max-width:100%;height:auto;border:1px solid var(--line);border-radius:12px;touch-action:none;cursor:grab;background:#fff}
+.tk-guide{position:absolute;inset:0;pointer-events:none;display:none;overflow:hidden;border-radius:12px}
+.tk-guide.on{display:block}
+.tk-guide::before{content:"";position:absolute;left:50%;top:48%;width:52%;height:62%;transform:translate(-50%,-50%);border:2px dashed rgba(255,255,255,.95);border-radius:50%;box-shadow:0 0 0 1px rgba(0,0,0,.5),0 0 0 999px rgba(0,0,0,.18)}
+@media (max-width:520px){.tk-drop{padding:26px 12px}.tk-bar{margin:14px -14px -14px;padding:10px 14px}.conv{padding:14px}}
+</style>
+  <div class="conv tk" id="app">
+    <ul class="tk-trust"><li>Stays on your device</li><li>Free, no sign-up</li><li>No watermark</li></ul><ol class="tk-steps" id="steps"><li class="on">1. Add</li><li class="">2. Choose format</li><li class="">3. Download</li></ol>
+    <label class="tk-drop" id="drop" for="file"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 002 2h12a2 2 0 002-2v-3"/></svg><b>Drop images here, or tap to choose</b><small>JPG, PNG, WebP, GIF, BMP. Paste with Ctrl+V.</small><input id="file" type="file" accept="image/*" multiple><span class="tk-btns"><span class="tk-b pri">Choose files</span><span class="tk-b" id="cam">Take photo</span></span><input id="camin" type="file" accept="image/*" capture="environment"></label>
+    <div id="panel" hidden>
+      <p class="tk-sec" id="fml">Convert to</p><div class="tk-chips" role="radiogroup" aria-labelledby="fml"><label><input type="radio" name="fmt" value="image/jpeg" checked><span>JPG</span></label><label><input type="radio" name="fmt" value="image/png"><span>PNG</span></label><label><input type="radio" name="fmt" value="image/webp"><span>WebP</span></label></div><p class="tk-sec" id="ql">Quality (JPG and WebP)</p><div class="tk-chips" role="radiogroup" aria-labelledby="ql"><label><input type="radio" name="q" value=".95"><span>High</span></label><label><input type="radio" name="q" value=".85" checked><span>Good</span></label><label><input type="radio" name="q" value=".7"><span>Smaller file</span></label></div><p class="tk-sec" id="mxl">Largest side</p><div class="tk-chips" role="radiogroup" aria-labelledby="mxl"><label><input type="radio" name="mx" value="0" checked><span>Original</span></label><label><input type="radio" name="mx" value="1920"><span>1920 px</span></label><label><input type="radio" name="mx" value="1280"><span>1280 px</span></label><label><input type="radio" name="mx" value="800"><span>800 px</span></label></div>
+      <p class="tk-live" id="live" aria-live="polite"></p>
+      <ul class="tk-files" id="files"></ul>
+      <div class="tk-bar"><div class="tk-sum" id="sum"></div><button class="tk-b" id="clr" type="button">Start over</button><button class="tk-b" id="zip" type="button" hidden>Download all (ZIP)</button></div>
     </div>
-    <p><button class="btn" id="go" type="button" disabled>Convert</button> <button class="btn alt" id="zip" type="button" hidden>Download all (ZIP)</button></p>
-    <p class="status" id="msg" aria-live="polite">Choose one or more images to begin.</p>
-    <div class="grid" id="grid"></div>
   </div>
   <div class="ad">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-1239173186536702" data-ad-slot="1642070334" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -166,45 +237,64 @@ progress{width:100%;height:10px;margin:8px 0}
   <div class="pills">
     <a href="/image-compressor/">Image compressor</a>
     <a href="/jpg-to-pdf/">JPG to PDF</a>
-    <a href="/pdf-to-jpg/">PDF to JPG</a>
-    <a href="/unit-converter/">Unit converter</a>
+    <a href="/photo-resizer/">Photo resizer</a>
+    <a href="/file-tools/">All file tools</a>
   </div>
 </main>
 <div id="footer"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function(){
-  var $=function(i){return document.getElementById(i)},drop=$('drop'),msg=$('msg'),grid=$('grid'),go=$('go'),zip=$('zip'),files=[],res=[],urls=[];
-  function kb(n){return n>1048576?(n/1048576).toFixed(2)+' MB':Math.round(n/1024)+' KB';}
-  function load(f){return new Promise(function(ok,bad){
-    if(window.createImageBitmap){createImageBitmap(f,{imageOrientation:'from-image'}).then(ok,fall);}else fall();
-    function fall(){var u=URL.createObjectURL(f),im=new Image();im.onload=function(){ok(im)};im.onerror=bad;im.src=u;}});}
-  function draw(b,s,fill){var w=b.width||b.naturalWidth,h=b.height||b.naturalHeight,c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));var x=c.getContext('2d');if(fill){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);}x.drawImage(b,0,0,c.width,c.height);return c;}
-  function toBlob(c,t,q){return new Promise(function(r){c.toBlob(r,t,q)});}
-  function pick(list){files=Array.from(list).filter(function(f){return /^image\//.test(f.type)||/\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name)});go.disabled=!files.length;zip.hidden=true;grid.innerHTML='';
-    msg.textContent=files.length?files.length+' image'+(files.length>1?'s':'')+' selected.':'Choose one or more images to begin.';}
-  $('file').addEventListener('change',function(e){pick(e.target.files);});
-  ['dragover','dragenter'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.add('over');});});
-  ['dragleave','drop'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.remove('over');if(n==='drop'&&e.dataTransfer)pick(e.dataTransfer.files);});});
-  function card(name,blob,note){var u=URL.createObjectURL(blob);urls.push(u);var f=document.createElement('figure');f.innerHTML='<img alt="" src="'+u+'"><figcaption></figcaption><a download="'+name.replace(/"/g,'')+'" href="'+u+'">Download</a>';f.querySelector('figcaption').textContent=note;grid.appendChild(f);}
-  zip.addEventListener('click',async function(){
-    if(!window.JSZip){msg.textContent='The ZIP library did not load. Download files one by one.';return;}
-    var z=new JSZip();res.forEach(function(o){z.file(o.n,o.b);});msg.textContent='Preparing ZIP...';
-    var b=await z.generateAsync({type:'blob'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='images.zip';document.body.appendChild(a);a.click();a.remove();msg.textContent='ZIP downloaded.';});
-  async function run(fn){
-    go.disabled=true;zip.hidden=true;grid.innerHTML='';res=[];urls.forEach(URL.revokeObjectURL);urls=[];
-    for(var i=0;i<files.length;i++){msg.textContent='Working on image '+(i+1)+' of '+files.length+'...';await new Promise(function(r){setTimeout(r,0)});
-      try{var b=await load(files[i]);await fn(files[i],b);}catch(e){var p=document.createElement('p');p.className='err';p.textContent='Could not read '+files[i].name+'.';grid.appendChild(p);}}
-    msg.textContent='Done. '+res.length+' image'+(res.length===1?'':'s')+' ready.';zip.hidden=res.length<2;go.disabled=false;}
+  var $=function(i){return document.getElementById(i)},drop=$('drop');
+  function kb(n){return n>=1048576?(n/1048576).toFixed(2)+' MB':Math.max(1,Math.round(n/1024))+' KB';}
+  function step(n){[].forEach.call($('steps').children,function(li,i){li.className=i<n?'done':(i===n?'on':'');});}
+  function val(n){var r=document.querySelector('input[name='+n+']:checked');return r?r.value:null;}
+  function setRadio(n,v){[].forEach.call(document.querySelectorAll('input[name='+n+']'),function(r){r.checked=r.value===String(v);});}
+  function lsGet(k,d){try{var v=JSON.parse(localStorage.getItem(k)||'null');return v||d;}catch(e){return d;}}
+  function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+  function load(f){return window.createImageBitmap?createImageBitmap(f,{imageOrientation:'from-image'}):new Promise(function(ok,bad){var u=URL.createObjectURL(f),i=new Image();i.onload=function(){ok(i)};i.onerror=bad;i.src=u;});}
+  function tb(c,t,q){return new Promise(function(r){c.toBlob(r,t,q)});}
+  function isImg(f){return /^image\//.test(f.type)||/\.(jpe?g|png|webp|gif|bmp)$/i.test(f.name);}
+  function bind(onFiles,test){
+    var t=test||isImg;
+    function go(list){var a=Array.from(list).filter(t);if(a.length)onFiles(a);}
+    $('file').addEventListener('change',function(e){go(e.target.files);e.target.value='';});
+    if($('cam')){$('cam').addEventListener('click',function(e){e.preventDefault();e.stopPropagation();$('camin').click();});$('camin').addEventListener('change',function(e){go(e.target.files);e.target.value='';});}
+    ['dragover','dragenter'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.add('over');});});
+    ['dragleave','drop'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.remove('over');if(n==='drop'&&e.dataTransfer)go(e.dataTransfer.files);});});
+    document.addEventListener('paste',function(e){var a=Array.from((e.clipboardData&&e.clipboardData.files)||[]).filter(t);if(a.length){e.preventDefault();onFiles(a);}});
+  }
+  function mini(on,t){drop.classList.toggle('mini',on);drop.querySelector('b').textContent=t;}
 
-  go.addEventListener('click',function(){
-    var t=$('fmt').value,q=+$('q').value,ext={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'}[t];
-    run(async function(f,b){
-      var blob=await toBlob(draw(b,1,t==='image/jpeg'),t,q);
-      if(!blob||blob.type!==t)throw 0;
-      var nm=f.name.replace(/\.[^.]+$/,'')+'.'+ext;res.push({n:nm,b:blob});card(nm,blob,kb(f.size)+' → '+kb(blob.size));
-    });
-  });
+  var items=[],seq=0,token=0,urls=[],EXT={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+  var st=lsGet('iv-set',{fmt:'image/jpeg',q:'.85',mx:'0'});setRadio('fmt',st.fmt);setRadio('q',st.q);setRadio('mx',st.mx);
+  bind(async function(fl){
+    for(var i=0;i<fl.length;i++){try{var b=await load(fl[i]),u=URL.createObjectURL(fl[i]);urls.push(u);items.push({id:++seq,f:fl[i],b:b,u:u,r:null});}catch(e){}}
+    $('panel').hidden=false;mini(true,'Add more images');step(1);run();});
+  async function run(){
+    if(!items.length)return;var my=++token,t=val('fmt'),q=+val('q'),mx=+val('mx');$('live').textContent='Converting...';items.forEach(function(it){it.r=null;});render();
+    for(var i=0;i<items.length;i++){if(my!==token)return;await new Promise(function(r){setTimeout(r,0)});var it=items[i],w=it.b.width||it.b.naturalWidth,h=it.b.height||it.b.naturalHeight,s=mx?Math.min(1,mx/Math.max(w,h)):1;
+      var c=document.createElement('canvas');c.width=Math.max(1,Math.round(w*s));c.height=Math.max(1,Math.round(h*s));var x=c.getContext('2d');if(t==='image/jpeg'){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);}x.drawImage(it.b,0,0,c.width,c.height);
+      var bl=await tb(c,t,q);if(my!==token)return;if(!bl||bl.type!==t){it.r={err:1};render();continue;}it.r={blob:bl,u:URL.createObjectURL(bl),w:c.width,h:c.height,t:t};urls.push(it.r.u);render();}
+    if(my===token){$('live').textContent='';step(2);}
+  }
+  function render(){
+    var ul=$('files');ul.innerHTML='';var done=0,tot=0;
+    items.forEach(function(it){var li=document.createElement('li');li.className='tk-file',r=it.r;var st,nm='';
+      if(!r)st='<span class="st">Converting...</span>';else if(r.err)st='<span class="st bad">This browser cannot save that format. Try JPG or PNG.</span>';else{done++;tot+=r.blob.size;nm=it.f.name.replace(/\.[^.]+$/,'')+'.'+EXT[r.t];st='<span class="st">'+kb(it.f.size)+' → <b>'+kb(r.blob.size)+'</b> · '+r.w+'×'+r.h+' px</span>';}
+      li.innerHTML='<img alt="" src="'+it.u+'"><div><div class="nm"></div>'+st+'</div><div class="ac">'+(r&&r.blob?'<a class="tk-b pri" download="'+nm.replace(/"/g,'')+'" href="'+r.u+'">Download</a>':'')+'<button type="button" class="tk-b" data-i="'+it.id+'">Remove</button></div>';
+      li.querySelector('.nm').textContent=it.f.name;ul.appendChild(li);});
+    $('zip').hidden=done<2;$('sum').innerHTML=done?'<b>'+done+'</b> image'+(done>1?'s':'')+' · '+kb(tot):'';
+  }
+  $('files').addEventListener('click',function(e){var id=+e.target.getAttribute('data-i');if(!id)return;items=items.filter(function(x){return x.id!==id});if(!items.length){reset();}else render();});
+  ['fmt','q','mx'].forEach(function(n){[].forEach.call(document.querySelectorAll('input[name='+n+']'),function(r){r.addEventListener('change',function(){lsSet('iv-set',{fmt:val('fmt'),q:val('q'),mx:val('mx')});run();});});});
+  function reset(){token++;items=[];urls.forEach(function(u){URL.revokeObjectURL(u)});urls=[];$('panel').hidden=true;$('files').innerHTML='';mini(false,'Drop images here, or tap to choose');step(0);}
+  $('clr').addEventListener('click',reset);
+  $('zip').addEventListener('click',async function(){
+    if(!window.JSZip){$('live').textContent='The ZIP library did not load. Download files one by one.';return;}
+    var z=new JSZip(),seen={};items.forEach(function(it){if(it.r&&it.r.blob){var n=it.f.name.replace(/\.[^.]+$/,''),k=n;seen[n]=(seen[n]||0)+1;if(seen[n]>1)k=n+'-'+seen[n];z.file(k+'.'+EXT[it.r.t],it.r.blob);}});
+    $('live').textContent='Preparing ZIP...';var b=await z.generateAsync({type:'blob'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='converted-images.zip';document.body.appendChild(a);a.click();a.remove();$('live').textContent='ZIP downloaded.';});
+  step(0);
 })();
 </script>
 <script src="/components.js"></script>
