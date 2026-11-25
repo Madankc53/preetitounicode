@@ -263,7 +263,7 @@ page('image-compressor', 'Image Compressor: Reduce Photo Size to 50KB, 100KB, 20
       ("Which format should I choose?", "JPG works everywhere and suits most forms. WebP gives smaller files but is not accepted by every website."),
       ("Does it work on a phone?", "Yes. You can choose from the gallery or take a photo with the camera.")],
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', IC_JS,
-     [('/photo-resizer/', 'Photo & signature resizer'), ('/image-converter/', 'JPG converter'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/pdf-to-jpg/', 'PDF to JPG')],
+     [('/guide/reduce-photo-size-to-50kb-100kb', 'Guide: reduce photo size to KB'), ('/photo-resizer/', 'Photo & signature resizer'), ('/image-converter/', 'JPG converter'), ('/jpg-to-pdf/', 'JPG to PDF')],
      'Image Compressor', 'Free browser-based tool that reduces JPG, PNG and WebP photo size to a target number of KB, with before and after comparison, without uploading the image.')
 
 
@@ -487,7 +487,7 @@ page('jpg-to-pdf', 'JPG to PDF Converter: Combine Images into One PDF (Free, No 
      'Turn photos and scans into one PDF. Reorder and rotate pages, choose A4 or Letter, and shrink the file for upload limits. It all happens in your browser.',
      JP_TOOL, J_SECTIONS.replace('Use the arrows to put the pages in the order you want. Remove any you do not need.', 'Use the arrows to put pages in order, rotate any that are sideways, and remove those you do not need.'), J_FAQ,
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>', JP_JS,
-     [('/pdf-to-jpg/', 'PDF to JPG'), ('/image-compressor/', 'Image compressor'), ('/photo-resizer/', 'Photo resizer'), ('/file-tools/', 'All file tools')],
+     [('/guide/make-pdf-from-photos-on-phone', 'Guide: make a PDF from photos'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/image-compressor/', 'Image compressor'), ('/photo-resizer/', 'Photo resizer')],
      'JPG to PDF Converter', 'Free browser-based tool that converts JPG, PNG and WebP images into a single PDF without uploading them.')
 
 # ================= PDF TO JPG (pro) =================
@@ -547,7 +547,7 @@ page('pdf-to-jpg', 'PDF to JPG Converter: Turn PDF Pages into Images (Free, No U
      PD_TOOL, P_SECTIONS.replace('Pick the image quality.', 'Choose the pages you want (or leave it empty for all) and the image quality.').replace('Password-protected PDFs cannot be opened here.', 'If a PDF has a password, the tool asks for it.'),
      [(q, a.replace('Remove the password first, then convert the file.', 'Enter the password when asked.') if False else a) for q, a in P_FAQ if not q.startswith('Can it open')] + [("Can it open a password-protected PDF?", "Yes, if you know the password. The tool asks for it and then converts the pages.")],
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>\n<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', PD_JS,
-     [('/jpg-to-pdf/', 'JPG to PDF'), ('/image-compressor/', 'Image compressor'), ('/image-converter/', 'JPG converter'), ('/file-tools/', 'All file tools')],
+     [('/guide/convert-pdf-to-jpg-on-phone', 'Guide: convert PDF to JPG'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/image-compressor/', 'Image compressor'), ('/image-converter/', 'JPG converter')],
      'PDF to JPG Converter', 'Free browser-based tool that converts selected pages of a PDF into JPG or PNG images without uploading the file.')
 
 # ================= IMAGE CONVERTER (pro) =================
@@ -614,7 +614,7 @@ page('image-converter', 'JPG Converter: Convert PNG or WebP to JPG and JPG to PN
       ("Can I convert many images at once?", "Yes. Select several and download them individually or as a ZIP."),
       ("Does it support JPG to PNG?", "Yes. Choose JPG files and select PNG as the output format.")],
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', IV_JS,
-     [('/image-compressor/', 'Image compressor'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/photo-resizer/', 'Photo resizer'), ('/file-tools/', 'All file tools')],
+     [('/guide/convert-webp-to-jpg', 'Guide: convert WebP to JPG'), ('/image-compressor/', 'Image compressor'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/photo-resizer/', 'Photo resizer')],
      'Image Converter', 'Free browser-based tool that converts images between JPG, PNG and WebP without uploading them.')
 
 
@@ -638,6 +638,13 @@ HUB_SECTIONS = """  <h2>Which tool do I need?</h2>
   </table></div>
   <h2>Private by design</h2>
   <p>These tools run inside your browser. Your photos, scans and PDFs are not uploaded to any server, so documents such as citizenship certificates, passport photos and bank papers stay on your device. Nothing is added to your files, and there is no watermark or sign-up.</p>
+  <h2>Step-by-step guides</h2>
+  <ul>
+    <li><a href="/guide/reduce-photo-size-to-50kb-100kb">How to reduce a photo to 50 KB or 100 KB on your phone</a></li>
+    <li><a href="/guide/make-pdf-from-photos-on-phone">How to make a PDF from photos on your phone</a></li>
+    <li><a href="/guide/convert-webp-to-jpg">How to convert WebP to JPG</a></li>
+    <li><a href="/guide/convert-pdf-to-jpg-on-phone">How to convert a PDF to JPG</a></li>
+  </ul>
   <h2>Tips for online forms</h2>
   <ul>
     <li>Read the notice for the exact size, KB limit, format and background colour. Forms differ, and the sizes in these tools are examples.</li>
