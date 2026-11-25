@@ -6,6 +6,7 @@ SITE = 'https://converter.thenepal.io'
 base = open('number-to-words/index.html', encoding='utf-8').read()
 CSS = re.search(r'<style>.*?</style>', base, re.S).group(0)
 EXTRA_CSS = '''<style>
+.num{width:100%;font:inherit;font-size:1.05rem;font-weight:700;padding:10px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
 .drop{position:relative;display:block;overflow:hidden;border:2px dashed var(--line);border-radius:14px;padding:26px 14px;text-align:center;background:var(--bg);cursor:pointer}
 .drop:hover,.drop:focus-within,.drop.over{border-color:var(--red)}
 .drop b{display:block;font-size:1.05rem;color:var(--ink)}.drop span{font-size:.88rem;color:var(--mute)}
@@ -383,4 +384,84 @@ page('image-converter', 'JPG Converter: Convert PNG or WebP to JPG and JPG to PN
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', V_JS,
      [('/image-compressor/', 'Image compressor'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/unit-converter/', 'Unit converter')],
      'Image Converter', 'Free browser-based tool that converts images between JPG, PNG and WebP without uploading them.')
+
+# ---------------- Photo / signature resizer ----------------
+R_TOOL = """  <div class="conv">
+    <label class="drop" id="drop" for="file"><input id="file" type="file" accept="image/*"><b>Choose a photo or signature image</b><span>JPG, PNG or WebP. Nothing is uploaded.</span></label>
+    <div class="opts">
+      <div class="field"><label for="pre">Common sizes</label><select id="pre">
+        <option value="413x531">Passport photo, 35 x 45 mm (413 x 531 px)</option>
+        <option value="591x591">Square photo, 2 x 2 in (591 x 591 px)</option>
+        <option value="300x400">Photo 300 x 400 px</option>
+        <option value="200x230">Small photo 200 x 230 px</option>
+        <option value="300x100">Signature 300 x 100 px</option>
+        <option value="140x60">Signature 140 x 60 px</option>
+        <option value="c">Custom size</option></select></div>
+      <div class="field"><label for="w">Width (px)</label><input class="num" id="w" type="number" min="20" max="4000" value="413"></div>
+      <div class="field"><label for="h">Height (px)</label><input class="num" id="h" type="number" min="20" max="4000" value="531"></div>
+      <div class="field"><label for="kb">Max file size (KB)</label><select id="kb"><option value="0">No limit</option><option value="20">20 KB</option><option value="50">50 KB</option><option value="100" selected>100 KB</option><option value="200">200 KB</option><option value="500">500 KB</option></select></div>
+      <div class="field"><label for="mode">Fit</label><select id="mode"><option value="fill">Fill the frame (crop edges)</option><option value="fit">Show whole image (white borders)</option></select></div>
+    </div>
+    <div id="stage" hidden>
+      <p class="status">Drag the picture to position it. Use the slider to zoom.</p>
+      <canvas id="cv" style="max-width:100%;height:auto;border:1px solid var(--line);border-radius:10px;touch-action:none;cursor:grab;background:#fff"></canvas>
+      <p><label for="zm" class="status">Zoom</label><input id="zm" type="range" min="1" max="4" step="0.01" value="1" style="width:100%"></p>
+      <p><button class="btn" id="go" type="button">Create image</button> <span class="status" id="msg" aria-live="polite"></span></p>
+      <p id="out" hidden><a class="btn dl" id="dl" download="resized.jpg">Download JPG</a> <span class="status" id="sz"></span></p>
+    </div>
+    <p class="status" id="hint" aria-live="polite">Choose an image to begin.</p>
+  </div>"""
+R_JS = r"""(function(){
+  var $=function(i){return document.getElementById(i)},cv=$('cv'),x=cv.getContext('2d'),img=null,ox=0,oy=0,url=null;
+  function kb(n){return n>1048576?(n/1048576).toFixed(2)+' MB':Math.round(n/1024)+' KB';}
+  function dims(){var w=Math.min(4000,Math.max(20,+$('w').value||413)),h=Math.min(4000,Math.max(20,+$('h').value||531));return [Math.round(w),Math.round(h)];}
+  function geo(){var d=dims(),W=d[0],H=d[1],iw=img.width||img.naturalWidth,ih=img.height||img.naturalHeight,z=+$('zm').value,
+    sc=($('mode').value==='fill'?Math.max(W/iw,H/ih):Math.min(W/iw,H/ih))*z,dw=iw*sc,dh=ih*sc;
+    var mx=Math.max(0,(dw-W)/2),my=Math.max(0,(dh-H)/2);ox=Math.max(-mx,Math.min(mx,ox));oy=Math.max(-my,Math.min(my,oy));
+    return {W:W,H:H,dw:dw,dh:dh,x:(W-dw)/2+ox,y:(H-dh)/2+oy};}
+  function paint(){if(!img)return;var g=geo();cv.width=g.W;cv.height=g.H;x.fillStyle='#fff';x.fillRect(0,0,g.W,g.H);x.drawImage(img,g.x,g.y,g.dw,g.dh);}
+  function reset(){ox=oy=0;$('zm').value=1;$('out').hidden=true;paint();}
+  function load(f){if(!f)return;var p=window.createImageBitmap?createImageBitmap(f,{imageOrientation:'from-image'}):new Promise(function(ok,bad){var u=URL.createObjectURL(f),i=new Image();i.onload=function(){ok(i)};i.onerror=bad;i.src=u;});
+    p.then(function(b){img=b;$('stage').hidden=false;$('hint').textContent=f.name;reset();},function(){$('hint').textContent='Could not read this image.';});}
+  $('file').addEventListener('change',function(e){load(e.target.files[0]);});
+  var drop=$('drop');['dragover','dragenter'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.add('over');});});
+  ['dragleave','drop'].forEach(function(n){drop.addEventListener(n,function(e){e.preventDefault();drop.classList.remove('over');if(n==='drop'&&e.dataTransfer)load(e.dataTransfer.files[0]);});});
+  $('pre').addEventListener('change',function(){if(this.value!=='c'){var p=this.value.split('x');$('w').value=p[0];$('h').value=p[1];}reset();});
+  ['w','h'].forEach(function(i){$(i).addEventListener('input',function(){$('pre').value='c';if(img)reset();});});
+  ['mode','zm'].forEach(function(i){$(i).addEventListener('input',function(){if(i==='mode')ox=oy=0;paint();});});
+  var drag=null;cv.addEventListener('pointerdown',function(e){drag={x:e.clientX,y:e.clientY,ox:ox,oy:oy};cv.setPointerCapture(e.pointerId);cv.style.cursor='grabbing';});
+  cv.addEventListener('pointermove',function(e){if(!drag)return;var k=cv.width/cv.clientWidth;ox=drag.ox+(e.clientX-drag.x)*k;oy=drag.oy+(e.clientY-drag.y)*k;paint();});
+  ['pointerup','pointercancel'].forEach(function(n){cv.addEventListener(n,function(){drag=null;cv.style.cursor='grab';});});
+  $('go').addEventListener('click',async function(){
+    if(!img)return;paint();var T=(+$('kb').value)*1024,b=null,msg=$('msg');msg.textContent='Working...';
+    var tb=function(q){return new Promise(function(r){cv.toBlob(r,'image/jpeg',q)})};
+    if(!T){b=await tb(.95);}else{var lo=.05,hi=.95,best=null;for(var k=0;k<8;k++){var m=(lo+hi)/2,bl=await tb(m);if(bl.size<=T){best=bl;lo=m;}else hi=m;}b=best||await tb(.05);}
+    if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(b);$('dl').href=url;$('dl').download='photo-'+cv.width+'x'+cv.height+'.jpg';
+    $('sz').textContent=cv.width+' x '+cv.height+' px, '+kb(b.size);$('out').hidden=false;
+    msg.textContent=(T&&b.size>T)?'Could not reach '+kb(T)+' at this size. Try smaller dimensions or a higher limit.':'Done.';
+  });
+})();"""
+page('photo-resizer', 'Passport Photo and Signature Resizer: Set Size in Pixels and KB (Free)',
+     'Resize a photo or signature to exact pixels and a maximum KB for Nepali online forms. Crop by dragging, set width and height, download a JPG. Free, no upload.',
+     'Photo and Signature Resizer', 'फोटो र हस्ताक्षरको साइज मिलाउनुहोस्', 'File tool',
+     'Set the exact width, height and maximum file size a form asks for. Position the picture, then download a JPG. Your image never leaves your device.',
+     R_TOOL, """  <h2>How to resize a passport photo or signature</h2>
+  <ol>
+    <li>Choose your photo or signature image.</li>
+    <li>Pick a common size or type the exact width and height in pixels, and set the maximum file size in KB.</li>
+    <li>Drag the picture into position, zoom if needed, then press <strong>Create image</strong> and download the JPG.</li>
+  </ol>
+  <p>For a signature, photograph or scan it on plain white paper, then use the <em>Show whole image</em> fit so nothing is cropped. For a face photo, use <em>Fill the frame</em> and drag until the face is centred.</p>
+  <div class="note"><p><strong>Follow your form's instructions.</strong> The sizes listed here are common examples, not official requirements. Every form, exam body or office sets its own pixel size, KB limit and background colour, so check its notice and type those values in. Check the result before you upload it.</p></div>
+  <h2>Pixels, mm and KB</h2>
+  <p>Pixels set how large the image is on screen, and KB is the file size. A 35 x 45 mm photo at 300 dpi is about 413 x 531 pixels. A smaller KB limit lowers the JPEG quality, so choose the largest limit your form allows for the sharpest result.</p>""",
+     [("How do I resize a photo to a specific size in pixels?", "Choose the photo, type the width and height in pixels, adjust the position and press Create image. The download has exactly that size."),
+      ("How do I reduce a photo to under 50 KB or 100 KB?", "Set the Max file size to 50 KB or 100 KB. The tool lowers the quality until the file fits and shows the final size."),
+      ("Can I use it for a signature?", "Yes. Choose a signature size such as 300 x 100 px, use Show whole image so nothing is cropped, and set the KB limit your form asks for."),
+      ("Are these the official sizes for Nepali forms?", "No. They are common examples. Always use the exact size and KB limit written on your form or notice."),
+      ("Is my photo uploaded to a server?", "No. Everything is done in your browser, so the image stays on your device."),
+      ("Does it work on a phone?", "Yes. Choose a photo from your gallery or camera, then drag with your finger to position it.")],
+     '', R_JS,
+     [('/image-compressor/', 'Image compressor'), ('/image-converter/', 'JPG converter'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/pdf-to-jpg/', 'PDF to JPG')],
+     'Photo and Signature Resizer', 'Free browser-based tool that resizes a photo or signature to an exact pixel size and maximum KB without uploading it.')
 print('ok')
