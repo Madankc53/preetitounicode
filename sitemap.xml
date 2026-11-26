@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://converter.thenepal.io/</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/2083/bibaha-panchami</loc>
@@ -198,7 +198,7 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/file-tools/</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/gold-silver-price/</loc>
@@ -215,14 +215,6 @@
   <url>
     <loc>https://converter.thenepal.io/guide/convert-nepali-date-of-birth-bs-to-ad</loc>
     <lastmod>2026-11-07</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/merge-pdf-files-on-phone</loc>
-    <lastmod>2026-11-26</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/guide/remove-pages-from-pdf</loc>
-    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/convert-pdf-to-jpg-on-phone</loc>
@@ -249,12 +241,20 @@
     <lastmod>2026-11-25</lastmod>
   </url>
   <url>
+    <loc>https://converter.thenepal.io/guide/merge-pdf-files-on-phone</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
     <loc>https://converter.thenepal.io/guide/nepali-months-guide</loc>
     <lastmod>2026-11-06</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/reduce-photo-size-to-50kb-100kb</loc>
     <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/guide/remove-pages-from-pdf</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/guide/when-did-nepal-adopt-bikram-sambat</loc>
@@ -278,7 +278,7 @@
   </url>
   <url>
     <loc>https://converter.thenepal.io/jpg-to-pdf/</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/land-converter/</loc>
@@ -287,6 +287,10 @@
   <url>
     <loc>https://converter.thenepal.io/mangal-to-preeti-converter/</loc>
     <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/merge-pdf/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/nepali-calendar-2082/</loc>
@@ -413,16 +417,8 @@
     <lastmod>2026-11-06</lastmod>
   </url>
   <url>
-    <loc>https://converter.thenepal.io/merge-pdf/</loc>
-    <lastmod>2026-11-26</lastmod>
-  </url>
-  <url>
-    <loc>https://converter.thenepal.io/split-pdf/</loc>
-    <lastmod>2026-11-26</lastmod>
-  </url>
-  <url>
     <loc>https://converter.thenepal.io/pdf-to-jpg/</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/photo-resizer/</loc>
@@ -451,6 +447,10 @@
   <url>
     <loc>https://converter.thenepal.io/roman-to-preeti-converter/</loc>
     <lastmod>2026-11-09</lastmod>
+  </url>
+  <url>
+    <loc>https://converter.thenepal.io/split-pdf/</loc>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://converter.thenepal.io/today-nepali-date/</loc>
