@@ -480,6 +480,20 @@ window.siteSearchDatabase = [
         keywords: ['pdf to jpg', 'pdf to image', 'pdf converter', 'pdf pages to jpg']
     },
     { 
+        title: 'Merge PDF', 
+        url: '/merge-pdf/', 
+        category: 'Tools', 
+        icon: '📚',
+        keywords: ['merge pdf', 'combine pdf', 'join pdf', 'pdf jodne', 'multiple pdf into one']
+    },
+    { 
+        title: 'Split PDF', 
+        url: '/split-pdf/', 
+        category: 'Tools', 
+        icon: '✂️',
+        keywords: ['split pdf', 'extract pages from pdf', 'delete pages from pdf', 'remove pages pdf', 'separate pdf pages']
+    },
+    { 
         title: 'Number to Words', 
         url: '/number-to-words/', 
         category: 'Tools', 
