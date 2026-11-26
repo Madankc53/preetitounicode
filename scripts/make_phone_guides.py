@@ -19,7 +19,7 @@ def guide(g):
     slug = g['slug']; url = f'{SITE}/guide/{slug}'
     faq = g['faq']
     ld = {"@context": "https://schema.org", "@graph": [
-        {"@type": "Article", "headline": g['h1'], "description": g['desc'], "datePublished": DATE, "dateModified": DATE, "inLanguage": "en", "mainEntityOfPage": url,
+        {"@type": "Article", "headline": g['h1'], "description": g['desc'], "datePublished": g.get("date", DATE), "dateModified": g.get("date", DATE), "inLanguage": "en", "mainEntityOfPage": url,
          "publisher": {"@type": "Organization", "name": "TheNepal.io", "url": SITE + "/"}},
         {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": SITE + "/"}, {"@type": "ListItem", "position": 2, "name": g['tool_name'], "item": SITE + g['tool']}, {"@type": "ListItem", "position": 3, "name": g['crumb'], "item": url}]},
         {"@type": "HowTo", "name": g['h1'], "step": [{"@type": "HowToStep", "name": t, "text": re.sub('<[^>]+>', '', d)} for t, d in g['steps']]},
@@ -69,7 +69,7 @@ def guide(g):
       <header class="bl-hero">
         <span class="bl-eyebrow">Guide · {g['eyebrow']}</span>
         <h1>{g['h1']}</h1>
-        <p class="bl-meta">Updated <time datetime="{DATE}">24 November 2026</time> · {g['read']} min read</p>
+        <p class="bl-meta">Updated <time datetime="{g.get('date', DATE)}">{g.get('date_h', '24 November 2026')}</time> · {g['read']} min read</p>
         <div class="bl-ans"><p><strong>Short answer:</strong> {g['short']}</p></div>
         <p class="bl-ne" lang="ne">{g['ne_line']}</p>
         <div class="bl-cta"><a class="bl-btn pri" href="{g['tool']}">{g['cta']}</a><a class="bl-btn" href="#steps">See the steps</a></div>
@@ -223,6 +223,61 @@ G.append(dict(slug='convert-pdf-to-jpg-on-phone', title='How to Convert a PDF to
       ('Why is the JPG so large?', 'High quality and big pages create bigger images. Choose Standard or Small, or shrink the result with the Image Compressor.'),
       ('Is there a page limit?', 'The tool converts up to 100 pages at a time to keep your browser responsive.')],
  related=[('/pdf-to-jpg/', 'PDF to JPG', 'The tool this guide uses'), ('/jpg-to-pdf/', 'JPG to PDF', 'The reverse: images into one PDF'), ('/image-compressor/', 'Image Compressor', 'Shrink the images afterwards'), ('/guide/make-pdf-from-photos-on-phone', 'Make a PDF from photos', 'Step-by-step guide'), ('/file-tools/', 'All file tools', 'Free, private, in your browser')], disc=DISC))
+
+G.append(dict(slug='merge-pdf-files-on-phone', date='2026-11-26', date_h='26 November 2026', title='How to Merge PDF Files Into One on Your Phone (Free, No App)',
+ desc='Combine several PDF files into one on your phone or computer. Put the files in order, pick pages, and download one PDF. Free, no upload, no watermark.',
+ h1='How to Merge PDF Files Into One on Your Phone', crumb='Merge PDF files', eyebrow='PDF', read=4,
+ tool='/merge-pdf/', tool_name='Merge PDF', cta='Open Merge PDF',
+ short='open <a href="/merge-pdf/">Merge PDF</a>, add your PDF files, put them in the right order with the arrows, then tap <strong>Merge PDFs</strong> and <strong>Download PDF</strong>. Nothing is uploaded.',
+ ne_line='धेरै PDF लाई एउटै PDF बनाउनुपर्‍यो? Merge PDF खोल्नुहोस्, फाइलहरू छान्नुहोस्, क्रम मिलाउनुहोस् र "Merge PDFs" थिच्नुहोस्।',
+ jump=[('when', 'When you need it'), ('steps', 'Steps'), ('size', 'Keeping the size small'), ('mistakes', 'Mistakes'), ('faq', 'FAQ')],
+ steps=[('Open Merge PDF', 'Go to <a href="/merge-pdf/">Merge PDF</a> and tap <em>Choose files</em>. You can select several PDFs at once.'), ('Put the files in order', 'Use the up and down arrows. The merged PDF follows the order on screen.'), ('Choose pages if needed', 'To use only some pages of a file, type them in its <em>Pages</em> box, for example <code>1-3, 5</code>.'), ('Merge and download', 'Tap <em>Merge PDFs</em>, then <em>Download PDF</em>.')],
+ body='''      <h2 id="when">When do you need to merge PDFs?</h2>
+      <p>Many job, admission and bank forms accept only one PDF but ask for several documents, such as a citizenship certificate, a transcript and a photo page. Merging puts them in a single file in the order you choose.</p>
+      <h2 id="steps">How to merge PDF files, step by step</h2>
+      ''' + steps([('Open Merge PDF', 'Go to <a href="/merge-pdf/">Merge PDF</a> and tap <em>Choose files</em>. You can select several PDFs at once.'), ('Put the files in order', 'Use the up and down arrows. The merged PDF follows the order on screen.'), ('Choose pages if needed', 'To use only some pages of a file, type them in its <em>Pages</em> box, for example <code>1-3, 5</code>.'), ('Merge and download', 'Tap <em>Merge PDFs</em>, then <em>Download PDF</em>.')]) + '''
+      ''' + note('<strong>Private by design.</strong> Your browser combines the files. They are not sent to any server.', True) + '''
+      <h2 id="size">How do I keep the merged file small?</h2>
+      <p>The merged file is about as large as the originals added together. If the form has an upload limit, make the parts smaller first.</p>
+      ''' + ul(['Shrink photos with the <a href="/image-compressor/">Image Compressor</a> before you make PDFs.', 'Make each scan a PDF with <a href="/jpg-to-pdf/">JPG to PDF</a> and choose the Small quality.', 'Then merge the small PDFs here.']) + '''
+      <h2 id="mistakes">Common mistakes to avoid</h2>
+      ''' + ul(['Adding a password-protected PDF. Remove the password first, because locked files cannot be merged.', 'Wrong order. Check the numbers beside each file name before you merge.', 'Including pages you do not need. Type the pages you want in the Pages box.', 'Not opening the result. Scroll through the merged PDF once before you upload it.']),
+ ne_steps=['<a href="/merge-pdf/">Merge PDF</a> खोलेर PDF फाइलहरू छान्नुहोस्।', 'तीर (↑ ↓) ले फाइलको क्रम मिलाउनुहोस्।', 'कुनै फाइलको केही पेज मात्र चाहिए "Pages" मा जस्तै 1-3, 5 लेख्नुहोस्।', '"Merge PDFs" थिचेर "Download PDF" बाट डाउनलोड गर्नुहोस्।'],
+ ne_note='तपाईंका PDF इन्टरनेटमा अपलोड हुँदैनन्। पासवर्ड भएको PDF जोड्न पहिले पासवर्ड हटाउनुपर्छ।',
+ faq=[('How do I merge PDF files on my phone?', 'Open Merge PDF in your phone browser, add the PDFs, put them in order and tap Merge PDFs. Then download the new PDF.'),
+      ('Can I merge only some pages of a file?', 'Yes. Type the page numbers in the Pages box under that file, for example 1-3, 5. Leave it empty to use every page.'),
+      ('Is my PDF uploaded to a server?', 'No. The files are combined in your browser, so they stay on your device.'),
+      ('Why is the merged PDF so large?', 'It is about the sum of the original files. Make the images smaller before creating the PDFs, then merge them.'),
+      ('Can I merge password-protected PDFs?', 'Not directly. Remove the password first, then add the file.'),
+      ('Does merging reduce quality?', 'No. Pages are copied as they are, so text stays sharp.')],
+ related=[('/merge-pdf/', 'Merge PDF', 'The tool this guide uses'), ('/split-pdf/', 'Split PDF', 'Keep or remove pages'), ('/jpg-to-pdf/', 'JPG to PDF', 'Make a PDF from photos'), ('/image-compressor/', 'Image Compressor', 'Shrink photos before you make a PDF')], disc=DISC))
+
+G.append(dict(slug='remove-pages-from-pdf', date='2026-11-26', date_h='26 November 2026', title='How to Remove Pages from a PDF or Extract Pages (Free, No Upload)',
+ desc='Delete pages from a PDF, keep only the pages you need, or save each page separately. Free in your browser on phone or computer. No upload, no watermark.',
+ h1='How to Remove Pages from a PDF or Extract Pages', crumb='Remove or extract PDF pages', eyebrow='PDF', read=4,
+ tool='/split-pdf/', tool_name='Split PDF', cta='Open Split PDF',
+ short='open <a href="/split-pdf/">Split PDF</a>, add your PDF, choose <strong>Remove these pages</strong> or <strong>Keep only these pages</strong>, type the page numbers and tap <strong>Split PDF</strong>. Nothing is uploaded.',
+ ne_line='PDF बाट पेज हटाउनुपर्‍यो वा केही पेज मात्र राख्नुपर्‍यो? Split PDF खोल्नुहोस्, PDF छान्नुहोस्, पेज नम्बर लेख्नुहोस् र "Split PDF" थिच्नुहोस्।',
+ jump=[('when', 'When you need it'), ('steps', 'Steps'), ('modes', 'Which option to choose'), ('mistakes', 'Mistakes'), ('faq', 'FAQ')],
+ steps=[('Open Split PDF', 'Go to <a href="/split-pdf/">Split PDF</a> and choose your PDF. The tool shows the number of pages.'), ('Choose what to do', 'Pick <em>Keep only these pages</em>, <em>Remove these pages</em> or <em>Save every page separately</em>.'), ('Type the page numbers', 'Use numbers and ranges, for example <code>1-3, 5</code>. Page 1 is the first page of the file.'), ('Split and download', 'Tap <em>Split PDF</em>, then download the new PDF or the ZIP.')],
+ body='''      <h2 id="when">When do you need to remove or extract PDF pages?</h2>
+      <p>A scan may contain a blank page, a wrong page or pages the form does not ask for. You may also need to send only one page of a long file. Removing or extracting pages gives you a new, shorter PDF and leaves the original unchanged.</p>
+      <h2 id="steps">How to remove pages from a PDF, step by step</h2>
+      ''' + steps([('Open Split PDF', 'Go to <a href="/split-pdf/">Split PDF</a> and choose your PDF. The tool shows the number of pages.'), ('Choose what to do', 'Pick <em>Keep only these pages</em>, <em>Remove these pages</em> or <em>Save every page separately</em>.'), ('Type the page numbers', 'Use numbers and ranges, for example <code>1-3, 5</code>. Page 1 is the first page of the file.'), ('Split and download', 'Tap <em>Split PDF</em>, then download the new PDF or the ZIP.')]) + '''
+      ''' + note('<strong>Private by design.</strong> Your browser makes the new file. The PDF is not sent to any server.', True) + '''
+      <h2 id="modes">Which option should I choose?</h2>
+      ''' + table(['Option', 'What you get', 'Use it when'], [['Keep only these pages', 'One PDF with just the pages you list', 'You need page 4, or pages 2-3, from a long file'], ['Remove these pages', 'One PDF without the pages you list', 'A blank or wrong page must go'], ['Save every page separately', 'A ZIP with one PDF per page', 'Each page must be uploaded on its own']]) + '''
+      <h2 id="mistakes">Common mistakes to avoid</h2>
+      ''' + ul(['Counting pages wrongly. Use the page numbers shown in your PDF viewer, starting at 1.', 'Choosing Keep when you meant Remove. Keep makes a file with only the listed pages.', 'Trying a password-protected PDF. Remove the password first.', 'Not checking the result. Open the new PDF and look at every page before you upload it.']),
+ ne_steps=['<a href="/split-pdf/">Split PDF</a> खोलेर PDF छान्नुहोस्।', 'पेज राख्ने, हटाउने वा हरेक पेज अलग बनाउने विकल्प छान्नुहोस्।', '"Pages" मा जस्तै 1-3, 5 लेख्नुहोस्।', '"Split PDF" थिचेर बनेको फाइल डाउनलोड गर्नुहोस्।'],
+ ne_note='मूल PDF जस्ताको तस्तै रहन्छ र नयाँ फाइल मात्र बन्छ। PDF इन्टरनेटमा अपलोड हुँदैन।',
+ faq=[('How do I remove a page from a PDF on my phone?', 'Open Split PDF, add the PDF, choose Remove these pages, type the page number and tap Split PDF. Then download the new PDF.'),
+      ('How do I extract one page from a PDF?', 'Choose Keep only these pages and type the page number, for example 4.'),
+      ('Can I save every page as a separate file?', 'Yes. Choose Save every page separately to get a ZIP with one PDF per page, up to 300 pages.'),
+      ('Is my PDF uploaded to a server?', 'No. The new file is made in your browser, so the PDF stays on your device.'),
+      ('Does it change my original PDF?', 'No. The original file stays as it is, and you get a new file.'),
+      ('Can I do this with a password-protected PDF?', 'Not directly. Remove the password first, then add the file.')],
+ related=[('/split-pdf/', 'Split PDF', 'The tool this guide uses'), ('/merge-pdf/', 'Merge PDF', 'Combine PDFs into one'), ('/pdf-to-jpg/', 'PDF to JPG', 'Turn pages into pictures'), ('/jpg-to-pdf/', 'JPG to PDF', 'Make a PDF from photos')], disc=DISC))
 
 for g in G: guide(g)
 print('guides ok', len(G))

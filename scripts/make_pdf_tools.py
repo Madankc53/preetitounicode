@@ -125,7 +125,7 @@ page('merge-pdf', 'Merge PDF Files: Combine PDFs into One (Free, No Upload)',
      'Merge PDF Files', 'PDF फाइलहरू जोड्नुहोस्', 'File tool',
      'Combine several PDFs into one. Put the files in order, choose pages if you need to, and download. Your files stay on your device.',
      MG_TOOL, MG_SECTIONS, MG_FAQ, PDFLIB, MG_JS,
-     [('/split-pdf/', 'Split PDF'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/image-compressor/', 'Image compressor'), ('/pdf-to-jpg/', 'PDF to JPG')],
+     [('/guide/merge-pdf-files-on-phone', 'Guide: merge PDF files'), ('/split-pdf/', 'Split PDF'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/image-compressor/', 'Image compressor')],
      'Merge PDF', 'Free browser-based tool that combines several PDF files into one without uploading them.')
 
 # ================= SPLIT PDF =================
@@ -203,6 +203,6 @@ page('split-pdf', 'Split PDF: Extract or Remove Pages from a PDF (Free, No Uploa
      'Split PDF and Remove Pages', 'PDF का पेज छुट्याउनुहोस् वा हटाउनुहोस्', 'File tool',
      'Take pages out of a PDF, keep only the ones you need, or save each page as its own file. Your PDF stays on your device.',
      SP_TOOL, SP_SECTIONS, SP_FAQ, PDFLIB + '\n<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>', SP_JS,
-     [('/merge-pdf/', 'Merge PDF'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/jpg-to-pdf/', 'JPG to PDF'), ('/image-compressor/', 'Image compressor')],
+     [('/guide/remove-pages-from-pdf', 'Guide: remove pages from a PDF'), ('/merge-pdf/', 'Merge PDF'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/jpg-to-pdf/', 'JPG to PDF')],
      'Split PDF', 'Free browser-based tool that extracts, removes or separates pages of a PDF without uploading it.')
 print('pdf tools ok')

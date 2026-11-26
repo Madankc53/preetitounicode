@@ -438,6 +438,20 @@ window.siteSearchDatabase = [
         keywords: ['pdf to jpg', 'pdf to image', 'pdf pages to jpg', 'pdf to png']
     },
     { 
+        title: 'Guide: Merge PDF Files on Phone', 
+        url: '/guide/merge-pdf-files-on-phone', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['merge pdf', 'combine pdf files', 'join pdf', 'multiple pdf into one']
+    },
+    { 
+        title: 'Guide: Remove Pages from a PDF', 
+        url: '/guide/remove-pages-from-pdf', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['remove pages from pdf', 'delete pdf page', 'extract pages from pdf', 'split pdf']
+    },
+    { 
         title: 'Free File Tools', 
         url: '/file-tools/', 
         category: 'Tools', 
