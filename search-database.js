@@ -438,6 +438,20 @@ window.siteSearchDatabase = [
         keywords: ['pdf to jpg', 'pdf to image', 'pdf pages to jpg', 'pdf to png']
     },
     { 
+        title: 'Guide: Merge PDF Files on Phone', 
+        url: '/guide/merge-pdf-files-on-phone', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['merge pdf', 'combine pdf files', 'join pdf', 'multiple pdf into one']
+    },
+    { 
+        title: 'Guide: Remove Pages from a PDF', 
+        url: '/guide/remove-pages-from-pdf', 
+        category: 'Guide', 
+        icon: '📘',
+        keywords: ['remove pages from pdf', 'delete pdf page', 'extract pages from pdf', 'split pdf']
+    },
+    { 
         title: 'Free File Tools', 
         url: '/file-tools/', 
         category: 'Tools', 
@@ -478,6 +492,20 @@ window.siteSearchDatabase = [
         category: 'Tools', 
         icon: '📄',
         keywords: ['pdf to jpg', 'pdf to image', 'pdf converter', 'pdf pages to jpg']
+    },
+    { 
+        title: 'Merge PDF', 
+        url: '/merge-pdf/', 
+        category: 'Tools', 
+        icon: '📚',
+        keywords: ['merge pdf', 'combine pdf', 'join pdf', 'pdf jodne', 'multiple pdf into one']
+    },
+    { 
+        title: 'Split PDF', 
+        url: '/split-pdf/', 
+        category: 'Tools', 
+        icon: '✂️',
+        keywords: ['split pdf', 'extract pages from pdf', 'delete pages from pdf', 'remove pages pdf', 'separate pdf pages']
     },
     { 
         title: 'Number to Words', 

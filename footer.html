@@ -103,6 +103,8 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
           <li><a href="/image-converter/">JPG Converter</a></li>
           <li><a href="/jpg-to-pdf/">JPG to PDF</a></li>
           <li><a href="/pdf-to-jpg/">PDF to JPG</a></li>
+          <li><a href="/merge-pdf/">Merge PDF</a></li>
+          <li><a href="/split-pdf/">Split PDF</a></li>
         </ul>
       </details>
       <details class="nf-col" open>
@@ -190,8 +192,8 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
       prio:['/preeti-to-unicode-converter','/unicode-to-preeti-converter','/nepali-typing','/preeti-to-unicode-converter/kantipur-to-unicode','/download-preeti-font','/preeti-unicode-guide']},
     {id:'money',title:'Money & Rates',re:/^\/(nrb-exchange-rates|gold-silver-price|emi-calculator|number-to-words)$/,
       prio:['/nrb-exchange-rates','/gold-silver-price','/emi-calculator','/number-to-words']},
-    {id:'conv',title:'Converters & Units',re:/^\/(date-converter|bs-to-ad|ad-to-bs|land-converter|unit-converter|currency|jpg-to-pdf|pdf-to-jpg|image-compressor|image-converter|photo-resizer|file-tools)/,
-      prio:['/date-converter','/bs-to-ad','/ad-to-bs','/land-converter','/unit-converter','/jpg-to-pdf','/pdf-to-jpg','/image-compressor','/image-converter','/photo-resizer']},
+    {id:'conv',title:'Converters & Units',re:/^\/(date-converter|bs-to-ad|ad-to-bs|land-converter|unit-converter|currency|jpg-to-pdf|pdf-to-jpg|image-compressor|image-converter|photo-resizer|merge-pdf|split-pdf|file-tools)/,
+      prio:['/date-converter','/bs-to-ad','/ad-to-bs','/land-converter','/unit-converter','/jpg-to-pdf','/pdf-to-jpg','/image-compressor','/image-converter','/photo-resizer','/merge-pdf','/split-pdf']},
     {id:'calc',title:'Calculators',re:/^\/calculator\//},
     {id:'guide',title:'Guides',re:/^\/guide\//,limit:10},
     {id:'site',title:'Site',re:/^\/(about|contact|privacy-policy)$/,prio:['/about','/contact','/privacy-policy']}
@@ -213,6 +215,8 @@ html[data-theme="dark"] .nf{--bg:#0b1220;--bg2:#111c33;--tx:#f1f5f9;--tx2:#cbd5e
     '/number-to-words':'Number to Words',
     '/jpg-to-pdf':'JPG to PDF',
     '/pdf-to-jpg':'PDF to JPG',
+    '/merge-pdf':'Merge PDF',
+    '/split-pdf':'Split PDF',
     '/file-tools':'All File Tools',
     '/photo-resizer':'Photo & Signature Resizer',
     '/image-compressor':'Image Compressor',
