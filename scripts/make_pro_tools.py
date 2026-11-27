@@ -488,7 +488,7 @@ page('jpg-to-pdf', 'JPG to PDF Converter: Combine Images into One PDF (Free, No 
      'Turn photos and scans into one PDF. Reorder and rotate pages, choose A4 or Letter, and shrink the file for upload limits. It all happens in your browser.',
      JP_TOOL, J_SECTIONS.replace('Use the arrows to put the pages in the order you want. Remove any you do not need.', 'Use the arrows to put pages in order, rotate any that are sideways, and remove those you do not need.'), J_FAQ,
      '<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>', JP_JS,
-     [('/guide/make-pdf-from-photos-on-phone', 'Guide: make a PDF from photos'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/image-compressor/', 'Image compressor'), ('/merge-pdf/', 'Merge PDF')],
+     [('/guide/make-pdf-from-photos-on-phone', 'Guide: make a PDF from photos'), ('/pdf-to-jpg/', 'PDF to JPG'), ('/compress-pdf/', 'Compress PDF'), ('/merge-pdf/', 'Merge PDF')],
      'JPG to PDF Converter', 'Free browser-based tool that converts JPG, PNG and WebP images into a single PDF without uploading them.')
 
 # ================= PDF TO JPG (pro) =================
@@ -626,6 +626,8 @@ TOOLS = [('/photo-resizer/', '📸', 'Photo & Signature Resizer', 'Exact pixels 
          ('/pdf-to-jpg/', '📄', 'PDF to JPG', 'Turn PDF pages into JPG or PNG images. Pick pages.'),
          ('/merge-pdf/', '📚', 'Merge PDF', 'Combine several PDFs into one. Reorder files, pick pages.'),
          ('/split-pdf/', '✂️', 'Split PDF', 'Keep, remove or separate pages of a PDF.'),
+         ('/compress-pdf/', '🗜️', 'Compress PDF', 'Reduce a PDF to a target size in KB.'),
+         ('/png-to-pdf/', '🖼️', 'PNG to PDF', 'Turn PNG screenshots and images into one PDF.'),
          ('/image-converter/', '🔄', 'JPG Converter', 'PNG, WebP and JPG in any direction. Many files at once.')]
 HUB_TOOL = KIT_CSS + '<style>.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:6px 0 4px}.hub a{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;min-height:120px}.hub a:hover,.hub a:focus-visible{border-color:var(--red);outline:none}.hub .i{font-size:1.7rem}.hub b{display:block;font-size:1.05rem;color:var(--ink);margin:6px 0 2px}.hub span{font-size:.9rem;color:var(--ink2)}</style>\n  <div class="tk"><ul class="tk-trust"><li>Stays on your device</li><li>Free, no sign-up</li><li>No watermark</li></ul>\n  <div class="hub">' + ''.join(f'<a href="{u}"><span class="i">{i}</span><b>{t}</b><span>{d}</span></a>' for u, i, t, d in TOOLS) + '</div></div>'
 HUB_SECTIONS = """  <h2>Which tool do I need?</h2>
@@ -636,6 +638,8 @@ HUB_SECTIONS = """  <h2>Which tool do I need?</h2>
       <tr><td>The file is too big to upload (for example over 100 KB)</td><td><a href="/image-compressor/">Image Compressor</a></td></tr>
       <tr><td>I need one PDF made from several photos or scans</td><td><a href="/jpg-to-pdf/">JPG to PDF</a></td></tr>
       <tr><td>I need pictures of the pages in a PDF</td><td><a href="/pdf-to-jpg/">PDF to JPG</a></td></tr>
+      <tr><td>My PDF is too big to upload</td><td><a href="/compress-pdf/">Compress PDF</a></td></tr>
+      <tr><td>I have PNG screenshots to turn into a PDF</td><td><a href="/png-to-pdf/">PNG to PDF</a></td></tr>
       <tr><td>I have several PDFs and the form wants one</td><td><a href="/merge-pdf/">Merge PDF</a></td></tr>
       <tr><td>I need only some pages of a PDF, or one page removed</td><td><a href="/split-pdf/">Split PDF</a></td></tr>
       <tr><td>The site only accepts JPG and my image is PNG or WebP</td><td><a href="/image-converter/">JPG Converter</a></td></tr>
@@ -665,7 +669,7 @@ HUB_FAQ = [("Are these file tools free?", "Yes. They are free, with no account a
 page('file-tools', 'Free Online File Tools: Photo Resizer, Image Compressor, JPG to PDF',
      'Free tools for Nepali online forms: resize photos and signatures, compress images to KB, convert JPG to PDF, PDF to JPG and PNG or WebP to JPG. No upload.',
      'Free File Tools for Forms and Documents', 'फारम र कागजातका लागि निःशुल्क उपकरण', 'File tools',
-     'Resize photos, shrink files, and convert between JPG, PDF, PNG and WebP. Seven tools that run in your browser, so your files stay private.',
+     'Resize photos, shrink files, and convert between JPG, PDF, PNG and WebP. Nine tools that run in your browser, so your files stay private.',
      HUB_TOOL, HUB_SECTIONS, HUB_FAQ, '', '// no script',
      [(u, t) for u, _, t, _ in TOOLS[:6]], 'Free File Tools', 'Collection of free browser-based tools to resize, compress and convert photos, signatures and PDFs.')
 print('pro tools ok')
