@@ -508,6 +508,20 @@ window.siteSearchDatabase = [
         keywords: ['split pdf', 'extract pages from pdf', 'delete pages from pdf', 'remove pages pdf', 'separate pdf pages']
     },
     { 
+        title: 'Compress PDF', 
+        url: '/compress-pdf/', 
+        category: 'Tools', 
+        icon: '🗜️',
+        keywords: ['compress pdf', 'reduce pdf size', 'pdf size reducer', 'pdf to 200kb', 'pdf to 100kb', 'smaller pdf']
+    },
+    { 
+        title: 'PNG to PDF', 
+        url: '/png-to-pdf/', 
+        category: 'Tools', 
+        icon: '🖼️',
+        keywords: ['png to pdf', 'convert png to pdf', 'screenshot to pdf', 'image to pdf']
+    },
+    { 
         title: 'Number to Words', 
         url: '/number-to-words/', 
         category: 'Tools', 
