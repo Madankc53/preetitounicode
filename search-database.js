@@ -522,6 +522,13 @@ window.siteSearchDatabase = [
         keywords: ['png to pdf', 'convert png to pdf', 'screenshot to pdf', 'image to pdf']
     },
     { 
+        title: 'Sign PDF', 
+        url: '/sign-pdf/', 
+        category: 'Tools', 
+        icon: '✍️',
+        keywords: ['sign pdf', 'add signature to pdf', 'esign pdf', 'sign pdf online', 'pdf signature', 'pdf ma sahi']
+    },
+    { 
         title: 'Number to Words', 
         url: '/number-to-words/', 
         category: 'Tools', 
