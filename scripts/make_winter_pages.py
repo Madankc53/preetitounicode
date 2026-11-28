@@ -114,7 +114,7 @@ build('maghe-sankranti',
 
 # ---- Saraswati Puja
 build('saraswati-puja',
- title='Saraswati Puja 2083: Feb 11, 2027 (Magh 28) | सरस्वती पूजा',
+ title='Saraswati Puja 2083 (Shree Panchami): Feb 11, 2027, Magh 28 | सरस्वती पूजा',
  desc='Saraswati Puja (Shree Panchami, Basanta Panchami) 2083 is on Thursday, February 11, 2027 (Magh 28, 2083 BS). Date, how schools celebrate, holiday status, days left.',
  h1='Saraswati Puja 2083: Date and Meaning', h1ne='सरस्वती पूजा / श्रीपञ्चमी २०८३ — माघ २८ गते, बिहीबार',
  answer='<strong>Saraswati Puja 2083 is on Thursday, February 11, 2027</strong> (Magh 28, 2083 BS), on Magh Shukla Panchami.',

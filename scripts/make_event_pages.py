@@ -166,7 +166,7 @@ bp_event = {"@type": "Event", "name": "Bibaha Panchami 2083", "startDate": "2026
   "location": {"@type": "Place", "name": "Janakpurdham, Nepal", "address": {"@type": "PostalAddress", "addressCountry": "NP"}},
   "description": "Wedding of Ram and Sita, celebrated on Mangsir Shukla Panchami in Janakpurdham."}
 bp = page('bibaha-panchami',
-  'Bibaha Panchami 2083: Mon, Dec 14, 2026 (Mangsir 28) + Wedding Sait | विवाह पञ्चमी',
+  'Bibaha Panchami (Vivah Panchami) 2083: Dec 14, 2026 | विवाह पञ्चमी',
   'Bibaha Panchami (Vivah Panchami) 2083 is on Monday, December 14, 2026 (Mangsir 28, 2083 BS). Date in Nepali and English, days left, and all 8 marriage sait dates in Mangsir 2083 with English dates.',
   'Bibaha Panchami 2083: Date and Wedding Sait',
   'विवाह पञ्चमी २०८३ — मंसिर २८ गते, सोमबार',
